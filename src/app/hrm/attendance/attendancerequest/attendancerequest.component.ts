@@ -38,8 +38,7 @@ export class AttendancerequestComponent implements OnInit {
 
         this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
         this.attendancerequest = this.attendancerequest.filter(t => (t.isSubmitted == true) && (t.isApproved == null || t.isApproved == false) && (t.isRejected == null || t.isRejected == false))
-        console.log(this.attendancerequest);
-    }
+     }
 
     async updatingrequest(value) {
         this.UpdatingRequest = { ...value.oldData, ...value.newData };

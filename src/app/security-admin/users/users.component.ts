@@ -138,12 +138,9 @@ export class UsersComponent implements OnInit {
         value.email = user.email;
         value.phone = user.phone;
         value.cityId = user.cityId;
-        value.roleId = user.roleId;
-
-        value.companyId = this.companyId;
-
-        console.log(value);
-    }
+        value.roleId = user.roleId; 
+        value.companyId = this.companyId; 
+     }
 
     DeleteUser(value) {
 

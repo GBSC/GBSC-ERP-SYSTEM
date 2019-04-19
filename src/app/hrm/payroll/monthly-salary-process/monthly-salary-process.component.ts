@@ -46,8 +46,7 @@ export class MonthlySalaryProcessComponent implements OnInit {
 
     this.payrollSetupService.getPayrollYears().subscribe(resp => {
       this.payrollYears = resp;
-      console.log(this.payrollYears);
-    })
+     })
   }
 
   formatDate(date: Date) {
@@ -71,13 +70,10 @@ export class MonthlySalaryProcessComponent implements OnInit {
         salaryDate: date.SalaryDate,
         UserMonthlyProcesses: this.payrollProcess
       }
-      console.log(d);
-      if (d.UserMonthlyProcesses.length) {
+       if (d.UserMonthlyProcesses.length) {
         this.payrollService.addUserSalary(d).subscribe(resp => {
           this.addUserSalary = resp;
-          console.log(d);
-          console.log(this.addUserSalary);
-          console.log(value);
+         
         })
         this.toastr.success("Successfully ! Payroll Process")
       } else {

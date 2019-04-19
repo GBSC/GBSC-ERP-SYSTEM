@@ -202,12 +202,7 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveClosing/${leaveclosingId}`).toPromise();
     }
 
-    prepareLeaveData(employees, LeaveType, empleavepolicy, LeavePolicies) {
-        console.log(employees)
-        console.log(LeaveType)
-        console.log(empleavepolicy)
-        console.log(LeavePolicies)
-        console.log('it worked');
+    prepareLeaveData(employees, LeaveType, empleavepolicy, LeavePolicies) { 
         let fromEmp = [];
         let fromGroup = [];
         employees.forEach(u => {
@@ -251,15 +246,11 @@ export class LeaveService {
 
         });
         let abc = []
-        fromGroup = fromGroup.filter(g => {
-            console.log("G", g);
+        fromGroup = fromGroup.filter(g => { 
             
-            let y = fromEmp.find((em: any) => {
-                console.log("emfrom", em);
+            let y = fromEmp.find((em: any) => { 
                 
-                if (g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
-                    console.log(g);
-                    // if(em.gender === 'Male')
+                if (g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) { 
                     return em;
                 }
             });
@@ -267,13 +258,8 @@ export class LeaveService {
                 return g;
             }
             abc.push(y);
-        })
-        console.log(abc);
-        console.log(fromGroup);
-        console.log(fromEmp);
-        this.data = [...fromGroup, ...fromEmp]
-        console.log(this.data);
-        return this.data;
-        // console.log(LeaveType);
+        }) 
+        this.data = [...fromGroup, ...fromEmp] 
+        return this.data; 
     }
 }

@@ -52,8 +52,7 @@ public asignRosterForm: FormGroup;
             })
           }
 
-          console.log(this.asignreoter);
-      });
+       });
 
   });
 
@@ -62,19 +61,16 @@ public asignRosterForm: FormGroup;
 
   this.attendancesetupservice.GetRosters().subscribe(res =>{
     this.roster = res;
-    console.log(this.roster)
-  });
+   });
 
   this.attendancesetupservice.GetShifts().subscribe(res =>{
     this.shifts = res;
-    console.log(this.shifts)
-
+ 
   });
 
   this.empservice.getAllEmployees().subscribe(res=> {
     this.employees = res;
-    console.log(this.employees);
-  });
+   });
 
 
 
@@ -87,15 +83,12 @@ public asignRosterForm: FormGroup;
       // assignRosterId : this.asignreoter.userAssignRosters[0].assignRosterId
     }
     this.asignreoter.userAssignRosters.push(a);
-    console.log(a);
-  }
+   }
 
 
   removeUser(i){
-    console.log(this.asignreoter.userAssignRosters);
-        this.asignreoter.userAssignRosters.splice(i, 1)
-        console.log(this.asignreoter.userAssignRosters);
-  }
+         this.asignreoter.userAssignRosters.splice(i, 1)
+   }
   changeremarks(e, i) {
     this.asignreoter.daysoffs[i].remarks = e.target.value
 }
@@ -107,11 +100,9 @@ public asignRosterForm: FormGroup;
     })
     this.asignRosterForm.value.userAssignRosters =  this.asignreoter.userAssignRosters;
      this.asignRosterForm.value.daysoffs =  this.asignreoter.daysoffs;
-    console.log(value);
-
+ 
       let x = await this.attendancesetupservice.updateAsignRoster(value);
-      console.log(x);
-   }
+    }
 
 
   //  save(value){

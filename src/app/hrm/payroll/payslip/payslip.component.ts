@@ -86,8 +86,7 @@ export class PayslipComponent implements OnInit {
     }
     days
     getattendancerequest(value) {
-        console.log(value);
-        this.PayslipForm.value.From = this.formatDate(new Date(this.PayslipForm.value.From))
+         this.PayslipForm.value.From = this.formatDate(new Date(this.PayslipForm.value.From))
         this.PayslipForm.value.Till = this.formatDate(new Date(this.PayslipForm.value.Till))
         this.attendanceService.getUserAttendancesbyIddate(value.UserId, value.From, value.Till).subscribe(res => {
             this.employeeData = res;
@@ -106,9 +105,7 @@ export class PayslipComponent implements OnInit {
             //     })
             // });
 
-        })
-        console.log(this.employeeData);
-        console.log(value);
+        }) 
     }
 
     Updatingloan(value) {

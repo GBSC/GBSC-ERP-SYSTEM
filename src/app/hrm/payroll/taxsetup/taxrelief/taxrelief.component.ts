@@ -37,7 +37,8 @@ export class TaxreliefComponent implements OnInit {
 
     updateTaxRelief() {
         this.payrollsetupservice.updateTaxRelief(this.updatingtaxRelief).subscribe(rp => {
-        console.log(rp);  });
+        console.log(rp);
+      });
     }
 
     async deleteTaxRelief(value) {

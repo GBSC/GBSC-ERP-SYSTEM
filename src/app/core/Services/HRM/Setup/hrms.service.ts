@@ -63,9 +63,7 @@ export class HrmsService {
         return this.httpService.put(this.setupUrl2 + '/UpdateCity', data);
     }
 
-    deleteCity(cityId): Observable<any>  {
-        console.log(cityId);
-        
+    deleteCity(cityId): Observable<any>  { 
         return this.httpService.delete(this.setupUrl2 + '/DeleteCity/'+ cityId);
     }
 

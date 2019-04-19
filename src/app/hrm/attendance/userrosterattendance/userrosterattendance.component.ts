@@ -31,14 +31,11 @@ export class UserrosterattendanceComponent implements OnInit {
     async ngOnInit() {
 
         this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
-        console.log(this.userRosterattendance);
-
+ 
         this.employee = await this.employeeService.GetAllEmployees();
 
         this.attendanceSetupService.GetAsignRosters().subscribe(assignRoster => {
-            this.assignRoster = assignRoster;
-            console.log(assignRoster);
-
+            this.assignRoster = assignRoster; 
         });
 
     }
@@ -47,11 +44,9 @@ export class UserrosterattendanceComponent implements OnInit {
         this.assignRoster.forEach(ar => {  
         return ar.userAssignRosters.forEach(g => {
                 if(g.userId == e){ 
-                    console.log(g);
-                    
+                     
                     this.userRosterId = g.assignRosterId; 
-                    console.log(this.userRosterId); 
-                    return;
+                     return;
                 }
             });
         });
@@ -59,19 +54,15 @@ export class UserrosterattendanceComponent implements OnInit {
     }
 
     async adduserRosterattendance(value) {
-        console.log(value);
-
+ 
         if (value.checkInTime != null && value.checkOutTime != null) {
 
             value.isPresent = true
         }
-        console.log(this.userRosterId);
-        value.assignRosterId = this.userRosterId
-        console.log(value);
-        
+         value.assignRosterId = this.userRosterId
+         
         await this.attendanceservice.addUserRosterAttendance(value);
-        console.log(value); 
-        this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
+         this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
     }
 
     async updatingattendance(value) {

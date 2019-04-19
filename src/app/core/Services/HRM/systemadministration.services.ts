@@ -33,17 +33,14 @@ export class SystemAdministrationService {
     }
 
     async saveNewRoleData(data) {
-        console.log(data);
-        return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
+         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
     async getModulesByCompanyId(companyId: any) {
 
         let params = new HttpParams().set('companyId', companyId);
 
-        let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
-
-        console.log(response);
+        let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise(); 
         // localStorage.setItem('modulesFromApi', JSON.stringify(response));
 
         for (let m of response) {

@@ -49,8 +49,7 @@ export class IncometaxRuleDetailComponent implements OnInit {
   selectionChanged(e) {
     e.component.collapseAll(-1);
     e.component.expandRow(e.currentSelectedRowKeys[0]);
-    console.log(e);
-  }
+   }
 
   addIncomeTax() {
     this.router.navigate(['/hrm/payroll/incometaxrule']);

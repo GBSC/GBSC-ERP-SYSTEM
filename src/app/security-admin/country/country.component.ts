@@ -38,13 +38,11 @@ export class CountryComponent implements OnInit {
     }
 
     async UpdateCountry() {
-        console.log(this.updatingModel); 
-        await this.hrmService.updateCountry(this.updatingModel);
+         await this.hrmService.updateCountry(this.updatingModel);
     }
 
     async deleteCountry(countr) {
-        console.log(countr);
-        
+         
         await this.hrmService.DeleteCountry(countr.key.countryId);
     }
  

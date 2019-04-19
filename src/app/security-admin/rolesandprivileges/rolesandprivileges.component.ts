@@ -32,8 +32,7 @@ export class RolesandprivilegesComponent implements OnInit {
     constructor(public systemAdmin: SystemAdministrationService, public authService: AuthService, public toaster: ToastrService) {
 
         this.companyId = this.authService.getUserCompanyId();
-        console.log(this.companyId);
-    }
+     }
 
     ngOnInit() {
 
@@ -42,14 +41,12 @@ export class RolesandprivilegesComponent implements OnInit {
         // this.systemAdmin.getPermissions();
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
-        console.log(this.modules);
-
+ 
     }
 
     fetchRoles() {
         this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => {
-            console.log(resp);
-            this.roles = resp;
+             this.roles = resp;
         });
     }
 

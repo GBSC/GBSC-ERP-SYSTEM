@@ -29,8 +29,7 @@ export class BranchComponent implements OnInit {
     }
 
     async addBranches(value) {
-        // console.log(value);
-        
+         
         value.data.companyId = this.authService.getUserCompanyId(); 
         await this.SystemAdministrationServiceobj.addBranch(value.data).subscribe(res => {
             
@@ -53,8 +52,7 @@ export class BranchComponent implements OnInit {
     }
 
      deletBranch(value) {
-        console.log(value)
-         this.SystemAdministrationServiceobj.deletBranch(value.key).subscribe(res => {
+          this.SystemAdministrationServiceobj.deletBranch(value.key).subscribe(res => {
             console.log(res);
             
         });

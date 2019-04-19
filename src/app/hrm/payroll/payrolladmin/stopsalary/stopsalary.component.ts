@@ -36,9 +36,7 @@ export class StopsalaryComponent implements OnInit {
         this.popupVisible = true;
     }
 
-    selectionChangedHandler(e) {
-        console.log(e);
-
+    selectionChangedHandler(e) { 
         this.userData.UserStopSalaries = e.selectedRowsData.map(u => {
             return {
                 userId: u.userId
@@ -61,8 +59,7 @@ export class StopsalaryComponent implements OnInit {
     selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);
-    }
+     }
 
     addselecteduser() {
         this.popupVisible = false;
@@ -71,8 +68,7 @@ export class StopsalaryComponent implements OnInit {
     async addStopSalary(value) {
 
         this.userData = { ...this.userData, ...value.data };
-        console.log(this.userData);
-        await this.payrollservice.addStopSalary(this.userData);
+         await this.payrollservice.addStopSalary(this.userData);
         this.StopSalary = await this.payrollservice.getStopSalaries();
     }
 

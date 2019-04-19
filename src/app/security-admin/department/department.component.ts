@@ -33,8 +33,7 @@ export class DepartmentComponent implements OnInit {
                  this.deprt = res;   
              });
          });
-         console.log(value);
-
+ 
      }
 
     updatingDepartment(value){ 
@@ -44,16 +43,14 @@ export class DepartmentComponent implements OnInit {
     }
 
      updateDepartment() { 
-        console.log(this.updatingModel);
-        
+         
          this.SystemAdministrationServiceobj.updateDepartment(this.updatingModel).subscribe(r => {
             console.log(r);
             
         });
     }
      deletDepartment(value) {
-        console.log(value); 
-           this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId).subscribe(rep => {
+            this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId).subscribe(rep => {
               console.log(rep); 
           });
     }

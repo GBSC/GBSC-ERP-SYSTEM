@@ -72,7 +72,6 @@ export class UserregistrationComponent implements OnInit {
     }
 
     update(value) {
-console.log(value);
 
         let user = this.user;
         user.firstName = value.FirstName;
@@ -84,8 +83,7 @@ console.log(value);
         user.userType = value.UserType;
 
         this.userService.editUser(user).subscribe(resp => {
-            console.log(resp);
-            
+             
             this.displayToast("Account Updated")
             if (this.username && value.Password) {
                 let passChangeModel = { username: this.username, password: value.Password }
@@ -104,7 +102,6 @@ console.log(value);
 
         this.userService.getUser(this.userId).subscribe(resp => {
             this.user = resp
-            console.log(resp); 
             this.patchValues(this.user);
             this.userService.getUsernameByUserId(this.user.userId).subscribe(u => {
                 this.username = u;
@@ -123,7 +120,6 @@ console.log(value);
 
 
     patchValues(user) {
-        console.log(user.cityId);
         
         this.userForm.patchValue({
             'FirstName': user.firstName,

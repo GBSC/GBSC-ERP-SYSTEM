@@ -39,10 +39,8 @@ export class CreateAttendancerequestComponent implements OnInit {
 
         this.rosterattendance = await this.attendanceservice.getUserRosterAttendances();
         this.rosters = await this.attendanceSetupservice.getRosters();
-        console.log(this.rosters);
-        this.shift = await this.attendanceSetupservice.getShifts();
-        console.log(this.shift); 
-    }
+         this.shift = await this.attendanceSetupservice.getShifts();
+     }
 
 
     getattendancerequest(value) {
@@ -50,27 +48,21 @@ export class CreateAttendancerequestComponent implements OnInit {
         this.attendancerequestForm.value.ToDate = this.formatDate(new Date(this.attendancerequestForm.value.ToDate))
         this.attendanceservice.getUserAttendancesbyIddate(value.UserId, value.FromDate, value.ToDate).subscribe(res => {
             this.employeeData = res;
-            console.log(this.employeeData);
-            this.employeeData.forEach(element => {
-                console.log(element.assignRosterId);
-                this.attendanceSetupservice.getAsignRosterById(element.assignRosterId).subscribe(res => {
+             this.employeeData.forEach(element => {
+                 this.attendanceSetupservice.getAsignRosterById(element.assignRosterId).subscribe(res => {
                     this.employeeAsignRosters = res;
-                    console.log(this.employeeAsignRosters)
-                })
+                 })
             });
 
         })
-        console.log(value);
-    }
+     }
 
     GetUserattendance(value) {
         this.currentUserAttendance = this.rosterattendance.filter(ul => ul.userId == value)
-        console.log(this.currentUserAttendance); 
-    } 
+     } 
 
     async updateUserAttendance(value) {
-        console.log(value);
-        let x = await this.attendanceservice.updateUserRosterAttendance(value.key);
+         let x = await this.attendanceservice.updateUserRosterAttendance(value.key);
         return x;
     } 
 

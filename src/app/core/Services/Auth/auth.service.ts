@@ -17,7 +17,7 @@ export class AuthService {
         let response: any = await this.ApiService.post(this.API_URL, credentials).toPromise();
 
         if (response.status && response.message === 'Login Successful') {
-            // console.log(response);
+ 
 
             let userData = {
                 userLevel: response.userLevel,

@@ -51,16 +51,14 @@ export class AssignrosterComponent implements OnInit {
         // console.log(this.assignrosters);
         this.attendancesetupservice.GetAsignRosters().subscribe(res=>{
             this.assignrosters = res;
-            console.log(this.assignrosters);
-        });
+         });
 
  
         // this.roster = await this.attendancesetupservice.getRosters();
 
         this.attendancesetupservice.GetRosters().subscribe(res=>{
             this.roster = res;
-            console.log(this.roster);
-        });
+         });
 
         // this.employee = await this.empservice.GetAllEmployees();
 
@@ -70,19 +68,16 @@ export class AssignrosterComponent implements OnInit {
 
         this.attendancesetupservice.GetShifts().subscribe(res=>{
             this.shifts = res;
-            console.log(this.shifts);
-        });
+         });
 
         this.empservice.getAllEmployees().subscribe(res=>{
             this.employee = res;
-            console.log(this.employee);
-        });
+         });
 
 
         this.hrmsServiceobj.GetAllDepartments().subscribe(res=>{
             this.departments = res ;
-            console.log(this.departments);
-        });
+         });
 
     }
     
@@ -91,8 +86,7 @@ export class AssignrosterComponent implements OnInit {
         delete this.calendarForm.value.Dayoff;
         delete this.calendarForm.value.Remarks;
         this.Daysoffs = this.calendarForm.value; 
-        console.log(this.Daysoffs);
-
+ 
     } 
     public inputvaluelist: any = []; 
 
@@ -129,8 +123,7 @@ export class AssignrosterComponent implements OnInit {
             this.inputvaluelist.push(a);
             //   counter ++;
         }
-        console.log(this.inputvaluelist);
-
+ 
         return this.inputvaluelist;
     }
 
@@ -152,8 +145,7 @@ export class AssignrosterComponent implements OnInit {
 
     openOffDayModel() {
         this.currentdate = this.formatDate(new Date());
-        console.log(this.currentdate);
-    }
+     }
 
     formatDate(date: Date) {
         return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -165,8 +157,7 @@ export class AssignrosterComponent implements OnInit {
     }
 
     selectionChangedHandler(e) {
-        console.log(e);
-        console.log(this.rosterData);
+ 
         
         this.rosterData.UserAssignRosters = e.selectedRowsData.map(u => {
             return {
@@ -189,11 +180,9 @@ export class AssignrosterComponent implements OnInit {
     async addassignroster(value) {
         this.rosterData = { ...this.rosterData, ...value.data };
         this.rosterData.Daysoffs = this.Daysoffs.Daysoffs.map(d => d);
-        console.log(this.rosterData);
-        await this.attendancesetupservice.addAsignRoster(this.rosterData);
+         await this.attendancesetupservice.addAsignRoster(this.rosterData);
         this.assignrosters = await this.attendancesetupservice.getAsignRosters();
-        console.log(this.assignrosters);
-    }
+     }
 
     async updatingAssignroster(value) {
 
@@ -216,8 +205,7 @@ export class AssignrosterComponent implements OnInit {
 
 
     routeForUpdateAssignroster(id){
-        console.log(id);
-          this.router.navigate(['/hrm/attendance/updateassignroster/'+id.key]);
+           this.router.navigate(['/hrm/attendance/updateassignroster/'+id.key]);
     }
 
 

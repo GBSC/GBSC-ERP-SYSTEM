@@ -25,8 +25,7 @@ export class DepartmentWiseAttendanceComponent  implements AfterViewInit {
     ngOnInit() {
       this.attendancesetupServiceobj.GetShifts().subscribe(res=> {
         this.shifts = res;
-        console.log(this.shifts);
-      });
+       });
       }
 
 
@@ -53,8 +52,7 @@ export class DepartmentWiseAttendanceComponent  implements AfterViewInit {
   }
 
   onShiftChange(value){
-    console.log(value);
-    this.shiftId = value;
+     this.shiftId = value;
 
   }
   toggleFilter() {

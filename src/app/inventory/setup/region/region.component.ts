@@ -37,8 +37,7 @@ export class RegionComponent implements OnInit {
 
     UpdateModel(value) {
         this.updatedmodel = Object.assign(value.oldData, value.newData);
-        console.log(this.updatedmodel);
-    }
+     }
 
     UpdateRegion(value) {
         var updateRow: Region = value.data;

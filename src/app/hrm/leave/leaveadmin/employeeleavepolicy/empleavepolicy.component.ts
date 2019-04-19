@@ -86,10 +86,8 @@ export class EmpleavepolicyComponent implements OnInit {
             if (this.isUpdate() === true) {
                 this.leaveservice.getEmpPolicyById(this.id).subscribe(resp => {
                     this.empLeavePolicy = resp
-                    console.log(resp);
-                    this.patchvalues(resp); 
-                    console.log(resp);
-                });
+                     this.patchvalues(resp); 
+                 });
             }
         });
     }
@@ -109,8 +107,7 @@ export class EmpleavepolicyComponent implements OnInit {
         this.sample = this.leavepolicy.find(e => e.groupId ===  this.selectedEmployee.groupId); 
         if(this.sample != undefined || this.sample != null){
             this.patchvalues(this.sample);
-            console.log(this.sample);
-        }  
+         }  
     }
 
     getQuantitybyType(leaveTypeId) {  
@@ -119,20 +116,17 @@ export class EmpleavepolicyComponent implements OnInit {
     }
 
     async addemployeeleavepolicy(value) { 
-        console.log( this.selectedEmployee.userId);
-        
+         
         value.UserId =  this.selectedEmployee.userId 
         await this.leaveservice.addLeavePolicyEmployee(value);
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
     } 
 
     async updateEmpLeavePolicy(value) {
-        console.log(value); 
-        // value.UserId =  this.selectedEmployee.userId 
+         // value.UserId =  this.selectedEmployee.userId 
         value.leavePolicyEmployeeWiseId = this.id 
         // await this.leaveservice.updateLeavePolicyEmployee(value);
-        console.log(value); 
-    }
+     }
 
     async deleteEmpleavePolicy(value) {
         await this.leaveservice.DeleteLeavePolicyEmployee(value.key);

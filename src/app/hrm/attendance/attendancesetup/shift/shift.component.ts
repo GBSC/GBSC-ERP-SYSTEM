@@ -89,10 +89,7 @@ export class ShiftComponent implements OnInit {
 
     async addAttendanceFlag(value) {
         let data = value.data;
-        this.attendanceFlag.push(data);
-        console.log(data);
-        console.log(value);
-
+        this.attendanceFlag.push(data); 
     }
 
     get f() { return this.ShiftForm.controls; }
@@ -104,8 +101,7 @@ export class ShiftComponent implements OnInit {
         }
         else {
             this.ShiftForm.value.ShiftAttendanceFlags = this.attendanceFlag;
-            console.log(value)
-            await this.attendancesetupservice.addShift(value);
+             await this.attendancesetupservice.addShift(value);
             this.toastr.success("Shift Added");
             this.router.navigate(['/hrm/attendance/shifts']);
         }

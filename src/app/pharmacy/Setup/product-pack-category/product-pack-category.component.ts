@@ -33,10 +33,8 @@ export class ProductPackCategoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        //console.log(value);
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
-        //console.log(this.UpdatedModel);
-    }
+         this.UpdatedModel = { ...value.oldData, ...value.newData };
+     }
 
     async UpdatePackCategory() {
         return await this.PharmacyService.UpdatePackCategory(this.UpdatedModel).toPromise();

@@ -29,8 +29,7 @@ export class MasterPayrollDetailComponent implements OnInit {
 
         this.payrollSetupService.getMasterPayrolls().subscribe(r=>{
             this.masterPayroll = r
-            console.log(this.masterPayroll)
-        });
+         });
 
         this.employees = await this.employeeService.GetAllEmployees();
 

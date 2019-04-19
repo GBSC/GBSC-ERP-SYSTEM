@@ -66,8 +66,7 @@ export class BasicinformationComponent implements OnInit {
     }
 
     update(value) {
-        console.log(value); 
-        this.submitted = true;
+         this.submitted = true;
         if (this.EmpbasicForm.invalid) { 
             this.toster.error("Fill All Required Fields");  
         }
@@ -78,8 +77,7 @@ export class BasicinformationComponent implements OnInit {
             console.log(resp); 
             this.showSuccess("Basic Information Updated");
         }); 
-        console.log(value); 
-        }
+         }
     }
 
     async ngOnInit() {
@@ -109,8 +107,7 @@ export class BasicinformationComponent implements OnInit {
 
                 this.Employee = resp; 
                 this.patchValues(resp);
-                console.log(resp);
-            });
+             });
         }  
     }
 

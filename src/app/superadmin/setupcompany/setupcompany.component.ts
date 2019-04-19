@@ -114,11 +114,9 @@ export class SetupcompanyComponent implements OnInit {
     }
 
 
-    async onAddCompany(value) {
-        // console.log(value);
+    async onAddCompany(value) { 
         this.superAdminService.addCompany(value).subscribe(resp => {
-            console.log(resp);
-            this.companyId = resp.companyID;
+             this.companyId = resp.companyID;
             this.superAdminService.addModule({ Name: "Security Admin", CompanyId: this.companyId, Code: "000", ModuleId: 0 }).subscribe();
         });
     }

@@ -80,18 +80,15 @@ export class ViewleaverequestComponent implements OnInit {
     }
 
     updateLeaveRequest(e) { 
-        // if(e.data.isApproved) {
-        let leave = this.leaverequest.find(l => {
+         let leave = this.leaverequest.find(l => {
             if (l.leaveRequestId === e.key) {
                 return l;
             }
         })
-        console.log(leave);
-        leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
+         leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
             if (e.data.isApproved) {
                 let g = +(d.totalLeaveDetailValue -= d.value);
-                console.log(g);
-                delete d.leaveRequestDetailId
+                 delete d.leaveRequestDetailId
                 return d;
             }
             return d;
@@ -105,9 +102,7 @@ export class ViewleaverequestComponent implements OnInit {
         });
         if (e.data.isApproved) {
             let isOnLeaveDays = [];
-
-            console.log( this.employeeService.updatedLeaves);
-
+ 
                 this.employeeService.updatedLeaves.forEach(async markleave => {
                     let leaveType : any = {};
                     leaveType.id = markleave.leaveTypeId;
@@ -118,8 +113,7 @@ export class ViewleaverequestComponent implements OnInit {
                     if (fromDate <= tillDate) {
                 
                         for(fromDate; fromDate <= tillDate; fromDate.setDate(fromDate.getDate()+1)){
-                            // console.log(fromDate);
-                            let d = new Date(fromDate);
+                             let d = new Date(fromDate);
                            
                             leaveType.days.push(d);
                         }
@@ -128,18 +122,14 @@ export class ViewleaverequestComponent implements OnInit {
                     }
                     return markleave;
                 })
-                  console.log( this.employeeService.updatedLeaves);
-                  console.log(isOnLeaveDays);
+ 
                   isOnLeaveDays.forEach(ld => {
                       ld.days.forEach(async d => {
                           let checkIn = new Date(d);
                           checkIn.setHours(9);
                           let checkOut = new Date(d);
                           checkOut.setHours(18);
-                          console.log('chekciN', checkIn)
-                          console.log('checktou', checkOut)
-                          console.log('d', d)
-                        //   console.log('d', d.set)
+                           
                           let mL = {
                             checkInTime: checkIn,
                             checkOutTime: checkOut,

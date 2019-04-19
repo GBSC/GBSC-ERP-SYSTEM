@@ -315,7 +315,6 @@ export class PharmacyService {
     }
 
     AddInventoryItem(InventoryItem: InventoryItem): Observable<InventoryItem> {
-        console.log(InventoryItem);
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem);
     }
 

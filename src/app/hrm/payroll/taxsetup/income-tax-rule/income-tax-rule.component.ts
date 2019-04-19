@@ -130,10 +130,8 @@ export class IncomeTaxRuleComponent implements OnInit {
 
         this.incomeTaxForm.value.TaxSchedules = this.taxScheduleadd
         this.incomeTaxForm.value.TaxReliefs = this.taxReliefadd
-        console.log(value);
-        await this.payrollsetupservice.addIncomeTaxRule(value);
-        console.log(value);
-        this.toastr.success("Income Tax Rule Added");
+         await this.payrollsetupservice.addIncomeTaxRule(value);
+         this.toastr.success("Income Tax Rule Added");
         this.router.navigate(['/hrm/payroll/incometaxrule-detail']);
         this.incomeTax = await this.payrollsetupservice.getIncomeTaxRules();
 

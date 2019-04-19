@@ -30,8 +30,7 @@ export class DailyAttendanceComponent implements AfterViewInit {
   ngOnInit() {
     this.attendancesetupServiceobj.GetShifts().subscribe(res=> {
       this.shifts = res;
-      console.log(this.shifts);
-    });
+     });
 
     this.hrmsServiceobj.GetAllDepartments().subscribe(res =>{
         this.department = res;

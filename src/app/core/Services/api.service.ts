@@ -64,8 +64,7 @@ export class ApiService {
 
 
     post(path: string, body: any = {}): Observable<any> {
-        console.log(this.user)
-        if(this.user){
+         if(this.user){
             body.companyId = this.user.assignedId.companyId;
             body.departmentId = this.user.assignedId.departmentId;
             body.branchId = this.user.assignedId.branchId;

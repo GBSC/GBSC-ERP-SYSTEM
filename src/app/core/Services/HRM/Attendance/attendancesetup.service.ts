@@ -15,17 +15,11 @@ export class AttendancesetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
-     getAssignRosterByUser(id : number, fromdate : string, todate : string) : Observable<any> {
-        console.log(fromdate);
-        console.log(todate);
+     getAssignRosterByUser(id : number, fromdate : string, todate : string) : Observable<any> { 
 
         let params = new HttpParams();
         params = params.append("fromdate", fromdate);
-        params = params.append("todate", todate);
-
-        console.log(params);
-
-        
+        params = params.append("todate", todate);  
         return this.ApiService.get(`${this.baseUrl}/GetAssignedRostersByUser/` + id, params);
      }
 

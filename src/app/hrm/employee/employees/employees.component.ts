@@ -18,8 +18,7 @@ export class EmployeesComponent implements OnInit {
 
      async ngOnInit() {
 
-        this.emp =  await this.employee.GetAllEmployees();
-        console.log(this.emp);
+        this.emp =  await this.employee.GetAllEmployees(); 
         
      }
 

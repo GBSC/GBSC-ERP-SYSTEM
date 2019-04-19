@@ -17,8 +17,7 @@ export class PayrollService {
         return this.ApiService.get(`${this.baseUrl}/GetUserSalaries`);
     }
 
-     addUserSalary(data) : Observable<any> {
-        console.log(data); 
+     addUserSalary(data) : Observable<any> { 
         return this.ApiService.post(`${this.baseUrl}/AddUserSalary`, data);
     }
 
@@ -32,12 +31,9 @@ export class PayrollService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteUserSalary/${usersalaryId}`).toPromise();
     }
 
-    getMonthlyRecord(payrollyear) : Observable <any> {
-        console.log(payrollyear); 
+    getMonthlyRecord(payrollyear) : Observable <any> { 
         let params = new HttpParams(); 
-        params = params.append("payrollyear", payrollyear);
-        console.log(params);
-        // return this.http.get(`http://localhost:58090/api/Payroll/GetMonthlyDetail?` + params);
+        params = params.append("payrollyear", payrollyear);  
         return this.ApiService.get(`${this.baseUrl}/GetMonthlyDetail?` + params);
     }
 

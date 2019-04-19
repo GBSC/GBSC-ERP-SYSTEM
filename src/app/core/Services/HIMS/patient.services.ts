@@ -174,8 +174,7 @@ export class PatientService {
     addDocuments(models: FormData, id) {
 
         this.ApiService.post(this.API_URL + '/patients/AddPatientDocuments/' + id, models).subscribe(res => {
-            //    console.log(res);
-        });
+         });
     }
 
     getPatientDocumentByPatientId(id) {
@@ -314,8 +313,7 @@ export class PatientService {
     }
 
     async  addConsultant(value) {
-        console.log(value)
-          return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', value).toPromise();
+           return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', value).toPromise();
     }
 
     async updateConsultant(consultant: Consultant) {
@@ -345,8 +343,7 @@ export class PatientService {
     }
 
     async deleteTest(id) {
-        console.log(id);
-        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
+         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
     }
 
     async UpdateAppointmentTests(id, appointmentTest: AppointmentTest) {
@@ -369,9 +366,6 @@ export class PatientService {
     }
 
     GetActiveVisits()  :Observable <any> {
-
-        console.log( this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits'))
-        console.log( this.API_URL + '/Visits/GetActiveVisits')
         return  this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits');
     }
 
@@ -460,9 +454,7 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
     }
 
-    async GetPatientAppointmentsByPatientIdAsync(id) {
-        console.log(id);
-        console.log(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
+    async GetPatientAppointmentsByPatientIdAsync(id) { 
         return await this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id).toPromise();
     }
 

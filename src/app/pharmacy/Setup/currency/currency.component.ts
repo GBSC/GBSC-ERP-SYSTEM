@@ -17,8 +17,7 @@ export class CurrencyComponent implements OnInit {
     ngOnInit() {
         this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => {
             this.Currencies = res;
-            // console.log(this.Currencies);
-        });
+         });
     }
 
     async AddCurrency(value) {

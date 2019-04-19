@@ -45,8 +45,7 @@ export class StopsalarydetailComponent implements OnInit {
   selectionChanged(e) {
     e.component.collapseAll(-0);
     e.component.expandRow(e.currentSelectedRowKeys[0]);
-    console.log(e);
-  }
+   }
 
   addStopSalary() {
     this.router.navigate(['/hrm/payroll/payrolladmin/stopsalary']);

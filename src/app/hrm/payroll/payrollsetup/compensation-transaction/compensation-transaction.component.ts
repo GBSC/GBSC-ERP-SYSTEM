@@ -26,8 +26,7 @@ export class CompensationTransactionComponent implements OnInit {
 
         this.payrollsetupservice.getPayrollYears().subscribe(resp => {
             this.payrollYears = resp;
-           console.log(this.payrollYears);
-         })
+          })
 
         this.employees = await this.employeeservice.GetAllEmployees();
 

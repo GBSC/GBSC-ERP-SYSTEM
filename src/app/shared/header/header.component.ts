@@ -37,11 +37,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     ngOnInit() {
 
         this.accessableModules = this.authService.getAccessableModulesAndFeatures().modules;
-        this.accessibleFeatures = this.authService.getAccessableModulesAndFeatures().features;
-
-        //   console.log(this.accessableModules);
-        // console.log(this.accessibleFeatures);
-
+        this.accessibleFeatures = this.authService.getAccessableModulesAndFeatures().features; 
         this.Username = this.authService.getProfileInfo().Username;
         this.UserLevel = this.authService.getProfileInfo().UserLevel;
 

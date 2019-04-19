@@ -65,10 +65,8 @@ export class LeavetypebalanceComponent implements OnInit {
 
         });
 
-        console.log(this.data);
-        // await this.leavesetupservice.updateLeaveTypeBalance(this.data);
-        console.log(this.data);
-        // await this.leavesetupservice.addLeaveTypeBalance(this.data);
+         // await this.leavesetupservice.updateLeaveTypeBalance(this.data);
+         // await this.leavesetupservice.addLeaveTypeBalance(this.data);
         // this.leavetypebalance = await this.leavesetupservice.getLeaveTypeBalances();
     }
 

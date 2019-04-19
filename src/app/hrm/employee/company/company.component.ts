@@ -94,8 +94,7 @@ export class EmployeeCompanyComponent implements OnInit {
             this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
 
                 this.EmployeeCompany = resp                
-                console.log(resp);
-                
+                 
                 this.patchValues(resp); 
             });
 
@@ -117,8 +116,7 @@ export class EmployeeCompanyComponent implements OnInit {
     get f() { return this.EmpCompanyForm.controls; }
 
     update(value) { 
-        console.log(value);  
-
+ 
         this.submitted = true;
         if (this.EmpCompanyForm.invalid) { 
             this.toster.error("Fill All Required Fields");  

@@ -33,8 +33,7 @@ export class InOutDurationComponent  implements AfterViewInit {
 
         this.hrmsServiceobj.GetAllDepartments().subscribe(res => {
             this.department = res;
-            console.log(this.department);
-        });
+         });
     }
   
   
@@ -64,23 +63,20 @@ export class InOutDurationComponent  implements AfterViewInit {
 
     
     onDepartmentChange(value) {
-        console.log(value);
-        this.departmentId = value;
+         this.departmentId = value;
         if(this.departmentId){
             this.employeeServiceobj.GetEmployeesByDepartmentId(this.departmentId).subscribe(res=>{
                 this.users = res;
                 if(this.users){
                     this.User = false;
                 }
-                console.log(res);
-            });
+             });
         }
     }
 
     onUserChange(value){
         this.userId = value;
-        console.log(this.userId);
-    }
+     }
     toggleFilter() {
         this.showHideFilter = !this.showHideFilter;
         

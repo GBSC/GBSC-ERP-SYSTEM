@@ -87,8 +87,5 @@ console.log(this.data);
     async deleteleavetypebalance(value) {
         await this.leavesetupservice.deleteLeaveTypeBalance(value.key);
     }
-
-
-
-
+ 
 }

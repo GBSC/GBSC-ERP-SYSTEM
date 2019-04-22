@@ -27,8 +27,7 @@ export class HrmsService {
     }
  
     async addCountry(data) {
-        // return await this.httpService.post('http://localhost:58090/api/setup/AddCountry', data).toPromise();
-        return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
+         return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
 
     }
 

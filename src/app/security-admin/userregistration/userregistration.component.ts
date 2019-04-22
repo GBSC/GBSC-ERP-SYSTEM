@@ -17,6 +17,7 @@ export class UserregistrationComponent implements OnInit {
     public user: any;
     public username: any;
     public userId: any;
+    submitted = false;
 
     public userForm: FormGroup;
 
@@ -40,8 +41,8 @@ export class UserregistrationComponent implements OnInit {
             'RoleId': [],
             'Email': [],
             'UserType': [],
-            'Username': [],
-            'Password': [],
+            'Username': ['', Validators.required],
+            'Password': ['', [Validators.required, Validators.minLength(6)]],
             'ConfirmPassword': []
         });
 
@@ -59,16 +60,23 @@ export class UserregistrationComponent implements OnInit {
 
         this.systemAdminService.getDropdownRolesByCompany(this.companyId).subscribe(resp => this.roles = resp);
 
-    }
+    } 
+
+    get emp() { return this.userForm.controls; }
 
     submit(value) {
-
-        value.companyId = this.companyId;
+        this.submitted = true;
+        if (this.userForm.invalid) { 
+            this.toastr.error("Fill All Required Fields");  
+        } 
+        else{
+        value.companyId = this.companyId; 
         this.userService.createAppUser(value).subscribe(resp => {
             this.userId = resp.userId;
             this.displayToast("Account Created");
             this.setValues();
         });
+     }
     }
 
     update(value) {

@@ -34,6 +34,7 @@ export class ViewleaverequestComponent implements OnInit {
         this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
 
         this.leaverequest = await this.leaveservice.getAllleaverequest(); 
+             console.log(this.leaverequest);
              
         this.leaveOpening = await this.leaveservice.getLeaveOpening();
 
@@ -70,6 +71,7 @@ export class ViewleaverequestComponent implements OnInit {
     contentReady(e) {
         if (!e.component.getSelectedRowKeys().length)
             e.component.selectRowsByIndexes(-1);
+             
     }
 
     public dataToUpdate: any = null;
@@ -77,6 +79,8 @@ export class ViewleaverequestComponent implements OnInit {
     selectionChanged(e) {
         e.component.collapseAll(-0);
         e.component.expandRow(e.currentSelectedRowKeys[0]); 
+         console.log(e);
+         
     }
 
     updateLeaveRequest(e) { 

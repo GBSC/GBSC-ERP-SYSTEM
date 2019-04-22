@@ -22,12 +22,15 @@
                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                   <dxo-paging [pageSize]="7"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
-                   <dxi-column dataField="name" caption="Name"></dxi-column>
+                   <dxi-column dataField="name" caption="Name">
+                      <dxi-validation-rule type="required" message="Department Title is required"></dxi-validation-rule>
+                   </dxi-column>
                    <dxi-column
                    dataField="branchId"
                    caption="Branches"
                    [width]="225">         
                    <dxo-lookup [dataSource]="branch" displayExpr="name" valueExpr="branchId"></dxo-lookup>
+                   <dxi-validation-rule type="required" message="Select Branch Please"></dxi-validation-rule>
                </dxi-column>
                  </dx-data-grid>
                </div>

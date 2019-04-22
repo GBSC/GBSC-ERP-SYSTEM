@@ -126,29 +126,28 @@ export class EmployeeCompanyComponent implements OnInit {
         if (this.EmployeeCompany.userCompanyId > 0) { 
             value.UserCompanyId = this.EmployeeCompany.userCompanyId; 
        if( 
-           this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ConfirmationDueDate == null
+           this.formatDate(new Date(value.ConfirmationDueDate)) >= this.formatDate(new Date(value.AppointmentDate)) || value.ConfirmationDueDate == null
               ) 
               {
-                if(  
-                    this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate)) || value.ConfirmationDueDate == null || value.ConfirmationDate == null               
-                    ) 
-                    {                        
-                        if( 
-                            this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) || value.ContractStartDate == null || value.ConfirmationDate == null
-                            ) 
+                if(this.formatDate(new Date(value.ConfirmationDate)) >= this.formatDate(new Date(value.AppointmentDate)) && this.formatDate(new Date(value.ConfirmationDate)) >= this.formatDate(new Date(value.ConfirmationDueDate)) || value.ConfirmationDueDate == null) 
+                    {   
+                        console.log(this.formatDate(new Date(value.ConfirmationDate)) >= this.formatDate(new Date(value.AppointmentDate)));
+                        
+                         if(this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) && this.formatDate( new Date (value.ContractStartDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ContractStartDate == null || value.ConfirmationDate == null) 
                             {
-                                if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
+                                if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate)) && this.formatDate( new Date (value.ContractEndDate)) >= this.formatDate( new Date (value.AppointmentDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
                                 { 
-                                    if( 
-                                        this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))|| value.LeavingDate == null )
+                                    if(this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate)) && this.formatDate( new Date (value.LeavingDate)) >= this.formatDate( new Date (value.ContractEndDate)) && this.formatDate( new Date (value.LeavingDate)) >= this.formatDate( new Date (value.ContractStartDate))&& this.formatDate( new Date (value.LeavingDate)) >= this.formatDate( new Date (value.ConfirmationDate)) || value.LeavingDate == null)
                                         {    
-                                            if( 
-                                                this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
+                                            if(this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
                                                 {     
                                                             value.userId = this.id;
                                                             value.CompanyId = this.authService.getUserCompanyId();  
                                                             this.employeeService.updateUserCompany(value).subscribe(c => { 
                                                             this.showSuccess("Company Information Updated"); 
+                                                            console.log(value);
+                                                            console.log(c);
+                                                            
                                                             }) 
     
                                                 }

@@ -22,9 +22,10 @@
                   <label class="control-label">
                     First Name <em class="required_label">*</em>
                   </label>
-                  <input type="text" formControlName="FirstName" [value]="user?.firstName"
-                    class="form-control m-input m-input--solid">
-
+                  <input type="text" formControlName="FirstName" [value]="user?.firstName" class="form-control m-input" [ngClass]="{ 'is-invalid': submitted && emp.FirstName.errors }">
+                    <div *ngIf="submitted && emp.FirstName.errors" class="invalid-feedback">
+                      <div *ngIf="emp.FirstName.errors.required">First Name is required</div>
+                    </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -32,8 +33,10 @@
                   <label class="control-label">
                     Last Name <em class="required_label">*</em>
                   </label>
-                  <input type="text" formControlName="LastName" [value]="user?.lastName"
-                    class="form-control m-input m-input--solid">
+                  <input type="text" formControlName="LastName" [value]="user?.lastName" class="form-control m-input" [ngClass]="{ 'is-invalid': submitted && emp.LastName.errors }">
+                  <div *ngIf="submitted && emp.LastName.errors" class="invalid-feedback">
+                    <div *ngIf="emp.LastName.errors.required">Last Name is required</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -51,8 +54,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group m-form__group">
-                  <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
-                  <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone"
+                  <label for="Contact-Number">Contact Number</label>
+                  <input class="form-control m-input" maxlength="11" formControlName="Phone"
                     [value]="user?.phone" aria-describedby="Contact_Number" type="text">
                 </div>
               </div>
@@ -64,7 +67,7 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group">
                   <label for="City" class="control-label">Role</label>
-                  <select class="form-control m-input m-input--solid" formControlName="RoleId" [value]="user?.roleId">
+                  <select class="form-control m-input" formControlName="RoleId" [value]="user?.roleId">
                     <!-- <option value="" disabled selected>-- Select City --</option> -->
                     <option *ngFor="let role of roles" [value]="role?.roleId">{{role.name}}</option>
                   </select>
@@ -73,7 +76,7 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group">
                   <label for="City" class="control-label">User Type</label>
-                  <select class="form-control m-input m-input--solid" formControlName="UserType"
+                  <select class="form-control m-input" formControlName="UserType"
                     [value]="user?.userType">
                     <!-- <option value="" disabled selected>-- Select City --</option> -->
                     <option *ngFor="let usertype of userTypes" [value]="usertype">{{usertype}}</option>
@@ -83,7 +86,7 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group">
                   <label for="email" class="control-label">Email</label>
-                  <input type="email" class="form-control m-input m-input--solid" formControlName="Email"
+                  <input type="email" class="form-control m-input" formControlName="Email"
                     [value]="user?.email" name="email" aria-describedby="emailHelp">
                 </div>
               </div>
@@ -97,18 +100,23 @@
 
                 <div class="col-md-6">
                   <div class="form-group m-form__group">
-                    <label class="control-label">User Name</label>
-                    <input type="text" formControlName="Username" class="form-control m-input m-input--solid"
-                      id="UserName" name="Username" aria-describedby="emailHelp" [value]="username">
+                    <label class="control-label">User Name <em class="required_label">*</em> </label>
+                    <input type="text" formControlName="Username" class="form-control m-input" id="UserName" name="Username" aria-describedby="emailHelp" [value]="username" [ngClass]="{ 'is-invalid': submitted && emp.Username.errors }">
+                    <div *ngIf="submitted && emp.Username.errors" class="invalid-feedback">
+                      <div *ngIf="emp.Username.errors.required">User Name is required</div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group m-form__group">
-                    <label for="employee_id">Password</label>
-                    <input class="form-control m-input m-input--solid" formControlName="Password" placeholder="Password"
-                      aria-describedby="Password" type="password">
+                    <label for="employee_id">Password <em class="required_label">*</em> </label>
+                    <input class="form-control m-input" formControlName="Password" placeholder="Password" aria-describedby="Password" type="password" [ngClass]="{ 'is-invalid': submitted && emp.Password.errors }">
+                    <div *ngIf="submitted && emp.Password.errors" class="invalid-feedback">
+                      <div *ngIf="emp.Password.errors.required">Password is required</div>
+                      <div *ngIf="emp.Password.errors.minlength">Password must be at least 6 characters</div> 
+                    </div>  
                   </div>
                 </div>
               </div>
@@ -116,7 +124,7 @@
                 <div class="col-md-6">
                   <div class="form-group m-form__group">
                     <label for="employee_id">Confirm Password</label>
-                    <input class="form-control m-input m-input--solid" formControlName="ConfirmPassword"
+                    <input class="form-control m-input" formControlName="ConfirmPassword"
                       placeholder="Confirm Password" aria-describedby="Password" type="password">
                   </div>
                 </div>

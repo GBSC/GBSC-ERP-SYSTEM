@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  api_url: 'http://cfcapp:8087/',
+  production: true,
+  api_url: 'http://gbsc-erp.azurewebsites.net/',
   repotr_url: 'http://gbsc-erp.azurewebsites.net/report/',
   firebase: {
       apiKey: 'AIzaSyD6eADZofvvncbTswItjCrD6rDSQJkJALI',

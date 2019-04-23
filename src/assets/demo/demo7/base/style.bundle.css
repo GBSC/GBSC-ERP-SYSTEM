@@ -30937,7 +30937,7 @@ body.m-content--skin-light2 {
             margin-left: -40px; }
         .m-header-menu .m-menu__nav > .m-menu__item .m-menu__submenu.m-menu__submenu--center {
           margin: 0 auto;
-          left: 0;
+          left: 200px;
           right: 0; }
         .m-header-menu .m-menu__nav > .m-menu__item .m-menu__submenu > .m-menu__subnav > .m-menu__item.m-menu__item--submenu {
           position: relative;

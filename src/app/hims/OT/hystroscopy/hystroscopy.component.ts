@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 import { OTService } from '../../../core/Services/HIMS/ot.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class HystroscopyComponent implements OnInit {
   public hystroscopyById : any;
 
   constructor(public patientserviceobj : PatientService, 
-    public otServiceobj : OTService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router) { 
+    public otServiceobj : OTService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router , public Toast: ToastrService) { 
 
       this.hystroscopyForm = this.formBuilder.group({
         HystroscopyId:[''],
@@ -104,13 +105,26 @@ export class HystroscopyComponent implements OnInit {
   addhystroscopy(value){
     delete this.hystroscopyForm.value.HystroscopyId;
     this.otServiceobj.addHystroscopy(value).subscribe(res=>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+        this.hystroscopyForm.reset();
+        this.Toast.success('Saved');
+      }
+      else{
+        this.Toast.error('          ')
+      }
     })
   }
 
   updatehystroscopy(value){
     this.otServiceobj.updateHystroscopy(value).subscribe(res =>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+         this.Toast.success('Updated');
+      }
+      else{
+        this.Toast.error('          ')
+      }
     })
   }
 

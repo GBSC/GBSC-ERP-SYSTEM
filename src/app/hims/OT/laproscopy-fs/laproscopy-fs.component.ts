@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 import { OTService } from '../../../core/Services/HIMS/ot.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class LaproscopyFsComponent implements OnInit {
   public laproscopyfsById : any;
 
   constructor(public patientserviceobj : PatientService, 
-    public otServiceobj : OTService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router) { 
+    public otServiceobj : OTService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router, public Toast: ToastrService) { 
       this.laproscopyfsForm = this.formBuilder.group({
         LaproscopyFSId:[''],
         LaproscopyFsDate :[''],
@@ -109,13 +110,26 @@ export class LaproscopyFsComponent implements OnInit {
   addLaproscopyFs(value){
     delete this.laproscopyfsForm.value.LaproscopyFSId;
     this.otServiceobj.addLaproscopyFs(value).subscribe(res =>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+        this.laproscopyfsForm.reset();
+        this.Toast.success('Saved');
+      }
+      else{
+        this.Toast.error('          ')
+      }
     });
   }
 
   updateLaproscopyFs(value){
     this.otServiceobj.updateLaproscopyFs(value).subscribe(res =>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+         this.Toast.success('Updated');
+      }
+      else{
+        this.Toast.error('          ')
+      }
     });
   }
 

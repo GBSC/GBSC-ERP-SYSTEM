@@ -36,16 +36,16 @@
                         <label for="exampleInputEmail1">
                           Patient
                         </label>
-                        <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                        <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                         </dx-select-box>
                       </div>
                     </div>
                     <div class="col-sm-3">
                       <div class="form-group m-form__group">
                           <label for="exampleInputEmail1">
-                            File No
+                              Patient Name
                           </label>
-                          <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.mrn || ''">
+                          <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.fullName || ''">
                         </div>
                     </div>
                   

@@ -17,6 +17,8 @@ export class MedicineRequestReportComponent implements AfterViewInit {
   @ViewChild("control")
   control: ElementRef;
 
+  public depertId : any;
+
    public medicineRequestDate : any;
 
   constructor(public renderer: Renderer2,public ngZone: NgZone , public router : ActivatedRoute) { }
@@ -24,6 +26,8 @@ export class MedicineRequestReportComponent implements AfterViewInit {
   ngOnInit(){
 
     this.router.params.subscribe((params)=>{
+        this.depertId = +params['id'];
+        console.log( this.depertId)
         this.medicineRequestDate = this.formatDate(new Date(params['date']));
           //  this.fwbInitialDate =  params['date'];
  
@@ -35,7 +39,7 @@ export class MedicineRequestReportComponent implements AfterViewInit {
    }
   
    formatDate(date: Date) {
-    return    date.getFullYear()   + "-" + ( date.getMonth() +1) + "-" + date.getDate()   + "T" + date.getHours()  + ":" + date.getMinutes() + ":" + date.getMilliseconds();
+    return    date.getFullYear()   + "-" + ( date.getMonth() +1) + "-" + date.getDate() ;
   }
 
   ngAfterViewInit() {
@@ -55,6 +59,9 @@ export class MedicineRequestReportComponent implements AfterViewInit {
               invokeAction: 'WebDocumentViewer/Invoke'
           },callbacks: {
             ParametersSubmitted: (s, e) => this.ngZone.run(() => {
+                console.log(e.Parameters)
+                if(this.depertId)
+                e.Parameters.filter(function (p) { return p.Key == "depertId"; })[0].Value = this.depertId;
                 if(this.medicineRequestDate)
                 e.Parameters.filter(function (p) { return p.Key == "date"; })[0].Value = this.medicineRequestDate;
             })

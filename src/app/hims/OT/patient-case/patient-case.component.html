@@ -46,7 +46,7 @@
                       <label for="exampleInputEmail1">
                         Patient
                       </label>
-                      <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                      <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
                     </div>
                   </div>
@@ -54,6 +54,12 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Patient Name
+                            </label>
+                            <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.fullName || ''">
+                          </div>
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                               Gender
@@ -78,17 +84,17 @@
                           </dx-select-box>
                           </div>
                       </div>
-                      <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Time Start
-                          </label>
-                          <input type="time" class="form-control m-input" formControlName="TimeStart"  [value]="patientCaseById?.timeStart | date : 'hh:mm:ss' || ''">
-                        </div>
-                      </div>
+                    
                 </div>
                 <div class="row">
-            
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Time Start
+                      </label>
+                      <input type="time" class="form-control m-input" formControlName="TimeStart"  [value]="patientCaseById?.timeStart | date : 'hh:mm:ss' || ''">
+                    </div>
+                  </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">

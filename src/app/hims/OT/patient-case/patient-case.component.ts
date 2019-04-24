@@ -3,6 +3,7 @@ import { PatientService } from '../../../core';
 import { OTService } from '../../../core/Services/HIMS/ot.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patient-case',
@@ -29,7 +30,7 @@ export class PatientCaseComponent implements OnInit {
   public IsUpdate : boolean = false;
 
 
-  constructor(public OTServiceObj : OTService, public patientserviceobj : PatientService ,public formBuilder: FormBuilder,public route : ActivatedRoute, public router: Router ) { 
+  constructor(public OTServiceObj : OTService, public patientserviceobj : PatientService ,public formBuilder: FormBuilder,public route : ActivatedRoute, public router: Router , public Toast: ToastrService) { 
 
     this.patientCaseForm = this.formBuilder.group({
       OtPatientCaseId :[''] ,
@@ -118,12 +119,25 @@ export class PatientCaseComponent implements OnInit {
     delete this.patientCaseForm.value.OtPatientCaseId;
     this.OTServiceObj.addPatientCase(value).subscribe(res =>{
       console.log(res);
+      if(res != null){
+        this.Toast.success('Saved')
+        this.patientCaseForm.reset();
+        }
+        else{
+          this.Toast.error('       ')
+        }
     });
   }
 
   updatePatientCase(value){
     this.OTServiceObj.updatePatientCase(value).subscribe(res =>{
+      if(res != null){
       console.log(res);
+      this.Toast.success('Saved')
+      }
+      else{
+        this.Toast.error('       ')
+      }
     });
     console.log(value);
   }

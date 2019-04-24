@@ -67,7 +67,7 @@ export const OTRouting: ModuleWithProviders = RouterModule.forChild([
                     { path: 'laproscopyspreport/:id/:date', component: LaproscopySpReportComponent },
                     { path: 'laproscopyfsreport/:id/:date', component: LaproscopyFsReportComponent },
                     { path: 'hystroscopyreport/:id/:date', component: HystroscopyReportComponent },
-                    { path: 'medicinerequestreport/:date', component: MedicineRequestReportComponent }
+                    { path: 'medicinerequestreport/:id/:date', component: MedicineRequestReportComponent }
 
 
                 ]

@@ -4,6 +4,7 @@ import { HrmsService} from '../../../../core/Services/HRM/Setup/hrms.service';
 import {EmployeeService} from '../../../../core/Services/HRM/Employee/employee.service';
 import {PharmacyService} from '../../../../core/Services/Pharmacy/pharmacy.service';
 import { FormGroup , FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-medicine-request',
@@ -30,7 +31,7 @@ export class MedicineRequestComponent implements OnInit {
   public DisabledFields : boolean = true;
 
   constructor(public formBuilder : FormBuilder, public otServiceobj : OTService, public objHrmsService : HrmsService  , public objEmployeeService:EmployeeService 
-    , public objPharmacyService : PharmacyService) {
+    , public objPharmacyService : PharmacyService , public Toast: ToastrService) {
 
     this.MedicineRequestForm = this.formBuilder.group({
       RoDate : [''],
@@ -117,7 +118,16 @@ export class MedicineRequestComponent implements OnInit {
     console.log(this.arraydata);
 
     this.otServiceobj.addInvMedicineRequest(value).subscribe(res=> {
-      console.log(res);
+      if(res){
+        console.log(res);
+        this.MedicineRequestForm.reset();
+        this.arraydata =[]
+        this.Toast.success('Saved');
+
+      }
+      else{
+        this.Toast.success('Select All');
+      }
     })
     
   }

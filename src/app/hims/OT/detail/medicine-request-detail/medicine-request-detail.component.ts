@@ -37,18 +37,20 @@ export class MedicineRequestDetailComponent implements OnInit {
     this.Router.navigate(['/ot/otsetup/medicinerequest']);
   }
   medicineRequestReport(d){
+    console.log(d)
+    let deprtId = d.key.departmentId;
     console.log(d.key.requestDate);
-    let date = d.key.requestDate;
-    // let date =  this.formatDate(new Date(d.key.requestDate)) ;
+    // let date = d.key.requestDate;
+      let date =  this.formatDate(new Date(d.key.requestDate)) ;
       console.log(date)
  
-    this.Router.navigate(['/ot/report/medicinerequestreport/'+date]);
+      this.Router.navigate(['/ot/report/medicinerequestreport/'+deprtId+'/'+date]);
   }
 
 
   
   formatDate(date: Date) {
-    return    date.getFullYear()   + "-" + ( date.getMonth() +1) + "-" + date.getDate()   + "T" + date.getHours()  + ":" + date.getMinutes() + ":" + date.getMilliseconds();
+    return    date.getFullYear()   + "-" + ( date.getMonth() +1) + "-" + date.getDate();
   }
 
 }

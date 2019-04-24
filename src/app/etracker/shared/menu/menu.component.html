@@ -126,7 +126,12 @@
 								<a routerLink="/etracker/reports/visit-summary" class="m-menu__link "><span class="m-menu__link-text">Visit
 										Summary</span></a>
 							</li>
-
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Summary')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/ordersummary" class="m-menu__link "><span class="m-menu__link-text">Order Summary</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Summary')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/orderdetail" class="m-menu__link "><span class="m-menu__link-text">Order Detail</span></a>
+							</li>
 						</ul>
 						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
 							<div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

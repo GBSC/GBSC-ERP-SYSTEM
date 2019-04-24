@@ -1,8 +1,12 @@
-import { Component, OnInit ,ViewChild  } from '@angular/core';
+// import { Component, OnInit ,ViewChild  } from '@angular/core';
+// import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
+// import { AuthService } from '../../../../app/core';
+// import { AgGridNg2 } from 'ag-grid-angular';
+// import "ag-grid-enterprise";
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
+import { AuthService, InventorysystemService, eTrackerUserService } from '../../../core';
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
-import { AuthService } from '../../../../app/core';
-import { AgGridNg2 } from 'ag-grid-angular';
-import "ag-grid-enterprise";
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +16,7 @@ import "ag-grid-enterprise";
 })
 export class OrderSummaryDetailComponent implements OnInit {
 
-  @ViewChild('agGrid') agGrid: AgGridNg2;
+  // @ViewChild('agGrid') agGrid: AgGridNg2;
 
 
   pivotGridDataSource: any;
@@ -32,44 +36,48 @@ export class OrderSummaryDetailComponent implements OnInit {
 
   public autoGroupColumnDef : any;
   public rowModelType : any;
+
+  
+  public startDate: any;
+  public endDate: any;
  
-  constructor(public storeService: StoreService, public authService : AuthService) {
+  constructor(public storeService: StoreService, public authService : AuthService ,  public toastr: ToastrService ) {
     this.companyId = authService.getUserCompanyId();
       this.userId = authService.getUserId();
       console.log(this.userId);
  
     this.columnDefs  = [
-       {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true  },
+       {headerName: 'Serial Number', field: 'serialNumber'  ,  filter: false, enableValue: true   ,hide :true },
       // {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true },
       // {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true },
       // {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true },
       // {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true },
       // {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true },
       
-      { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true },
-      {headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   },
-      {headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true},
-      {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true },
+      { headerName: "Region",field: "region"    ,  filter: false, enableValue: true   ,hide :true  },
+      {headerName: 'City', field: 'city'      ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Area', field: 'area' ,  filter: false, enableValue: true   ,hide :true},
+      {headerName: 'Distributor', field: 'distributor'      ,  filter: false, enableValue: true   ,hide :true  },
+      {headerName: 'Territory', field: 'territory'      ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'section', field: 'section' , enableRowGroup: true,  enablePivot: true,  rowGroup: true ,hide :true},
+      {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true  ,hide :true },
       
       // {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true },
-      {headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'DSF', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Shop', field: 'shop' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Product', field: 'product' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Product Category', field: 'productCategory' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Brand', field: ' brand' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Product Type', field: 'productType' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Pack Category', field: 'productPackCategory' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Pack Type', field: 'packType' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Pack Size', field: 'packSize' ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Quantity',    valueGetter: 'data.quantity' , cellClass: 'total-col',aggFunc: 'sum', editable: false   },
-      {headerName: 'Pkg Qty',    valueGetter: 'data.packSize' , cellClass: 'total-col',aggFunc: 'sum', editable: false   },
-      {headerName: 'KG',  valueGetter: 'data.kg' , cellClass: 'total-col',aggFunc: 'sum', editable: false},
-      {headerName: 'LTR',    valueGetter: 'data.ltr' , cellClass: 'total-col',aggFunc: 'sum', editable: false   }
+      {headerName: 'Store category', field: 'category' ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Store classification', field: 'classification'     ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'DSF', field: 'createUser'   ,  filter: false, enableValue: true   ,hide :true},
+      {headerName: 'Shop', field: 'shop'  ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Product', field: 'product'  ,  filter: false, enableValue: true   ,hide :true  },
+      {headerName: 'Product Category', field: 'productCategory'  ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Brand', field: ' brand'  ,  filter: false, enableValue: true   ,hide :true  },
+      {headerName: 'Product Type', field: 'productType' ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Pack Category', field: 'productPackCategory' ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Pack Type', field: 'packType'  ,  filter: false, enableValue: true   ,hide :true },
+      {headerName: 'Pack Size', field: 'packSize'  ,  filter: false, enableValue: true   ,hide :true  },
+      {headerName: 'Quantity',    valueGetter: 'data.quantity' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true  },
+      {headerName: 'Pkg Qty',    valueGetter: 'data.packSize' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true  },
+      {headerName: 'KG',  valueGetter: 'data.kg' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true},
+      {headerName: 'LTR',    valueGetter: 'data.ltr' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true  }
        // {headerName: 'Create Date', field: 'createDate' ,  filter: false, enableValue: true },
       // {headerName: 'Close Date', field: 'endTime' ,  filter: false, enableValue: true },
       // {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
@@ -81,9 +89,9 @@ export class OrderSummaryDetailComponent implements OnInit {
       // {  headerName: 'Total Closed', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false }
 
          ]; 
-        this.defaultColDef = {
+         this.defaultColDef = {
           width: 100,
-          allowedAggFuncs: ["sum", "min", "max", "random" , "count"],
+          allowedAggFuncs: ["sum", "min", "max", "random" , "count" ,  "avg" , "round"],
           sortable: true,
           resizable: true,
           filter: true
@@ -94,212 +102,70 @@ export class OrderSummaryDetailComponent implements OnInit {
  
 
      ngOnInit() {
+      this.currentdate = this.formatDate(new Date());
+
     }
-public abc : any = [];
-    onGridReady(){
-      //  console.log(this.companyId);
-      // console.log(this.userId);
-      // let usrId = 332;
-      // console.log(usrId)
-          // this.storeService.orderSummaryDetail(this.companyId,usrId).subscribe(res => {
-          //    this.rowData = res;
-          // });
-this.rowData = [
-                  {
-                  serialNumber: 1,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection1",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Ali Ahmed shop",
-                  product: "Eva Canola Oil 600",
-                  productCategory: "EVA COOKING OIL Cat3",
-                  brand: "SOye Bean",
-                  productType: "cooking",
-                  productPackCategory: "Small",
-                  packType: "Tin",
-                  packSize: 4,
-                  quantity: 5,
-                  kg: 0,
-                  ltr: 1
-                  },
-                  {
-                  serialNumber: 2,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection1",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Ali Ahmed shop",
-                  product: "Eva Cooking Oil 1x5 Pillow Pouch",
-                  productCategory: "EVA COOKING OIL Cat3",
-                  brand: "Eva",
-                  productType: "cooking",
-                  productPackCategory: "Bulk",
-                  packType: "Pouch",
-                  packSize: 10,
-                  quantity: 7,
-                  kg: 0,
-                  ltr: 0
-                  },
-                  {
-                  serialNumber: 3,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir new test shop123",
-                  product: "Eva Canola Oil 600",
-                  productCategory: "EVA COOKING OIL Cat3",
-                  brand: "SOye Bean",
-                  productType: "cooking",
-                  productPackCategory: "Small",
-                  packType: "Tin",
-                  packSize: 4,
-                  quantity: 5,
-                  kg: 0,
-                  ltr: 1
-                  },
-                  {
-                  serialNumber: 4,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir new test shop123",
-                  product: "Eva Cooking Oil 1x5 Pillow Pouch",
-                  productCategory: "EVA COOKING OIL Cat3",
-                  brand: "Eva",
-                  productType: "cooking",
-                  productPackCategory: "Bulk",
-                  packType: "Pouch",
-                  packSize: 10,
-                  quantity: 8,
-                  kg: 0,
-                  ltr: 0
-                  },
-                  {
-                  serialNumber: 5,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir new test shop123",
-                  product: "Eva Sunflower Oil 3 Ltr PetBottle",
-                  productCategory: "Eva Sunflower Cat5",
-                  brand: "SOye Bean",
-                  productType: "soybeen",
-                  productPackCategory: "Tin",
-                  packType: "Large Tin",
-                  packSize: 10,
-                  quantity: 8,
-                  kg: 0,
-                  ltr: 1
-                  },
-                  {
-                  serialNumber: 6,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir shop test",
-                  product: "Dalda Canola Oil Pouch",
-                  productCategory: "EVA CANOLA OIL Cat4",
-                  brand: "Dalda",
-                  productType: "canola",
-                  productPackCategory: "Medium",
-                  packType: "Pouch",
-                  packSize: 10,
-                  quantity: 4,
-                  kg: 1,
-                  ltr: 0
-                  },
-                  {
-                  serialNumber: 7,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir shop test",
-                  product: "Dalda Canola Oil Pouch",
-                  productCategory: "EVA CANOLA OIL Cat4",
-                  brand: "Dalda",
-                  productType: "canola",
-                  productPackCategory: "Medium",
-                  packType: "Pouch",
-                  packSize: 10,
-                  quantity: 5,
-                  kg: 1,
-                  ltr: 0
-                  },
-                  {
-                  serialNumber: 8,
-                  region: "amir region 2",
-                  city: "amir city",
-                  area: "amir area",
-                  distributor: "amir dist2",
-                  territory: "amir teeritory",
-                  section: "amir section",
-                  subsection: "amir subsection3",
-                  category: "LMT",
-                  classification: "250 to 499",
-                  createUser: "ammir ali",
-                  shop: "Amir shop test",
-                  product: "Eva Sunflower Oil 3 Ltr PetBottle",
-                  productCategory: "Eva Sunflower Cat5",
-                  brand: "SOye Bean",
-                  productType: "soybeen",
-                  productPackCategory: "Tin",
-                  packType: "Large Tin",
-                  packSize: 10,
-                  quantity: 5,
-                  kg: 0,
-                  ltr: 1
-                  }
-                ]
-                console.log(this.rowData);
+    public x : any = [];
+     
+
+    public formDate  ='';
+
+    public toDate    ='';
+    public currentdate: any;
+      public abc: any = [];
+      onGridReady(fromdate , todate){
+
+        if(fromdate == '' &&  todate != ''){
+          fromdate = '1-1-0001';
+          console.log(todate);
+          todate = todate
+          this.formDate = fromdate;
+          this.toDate = todate
+          console.log(fromdate);
+          this.storeService.orderSummaryDetail(this.companyId,this.userId , this.formDate,  this.toDate).subscribe(res => {
+            console.log(res);
+            this.rowData = res;
+           console.log(this.rowData);
+         });
+        }
+        else if(fromdate != '' &&  todate != ''){
+          this.formDate = fromdate 
+        this.toDate = todate
+        console.log(this.companyId);
+        console.log(this.userId);
+        let usrId = 350;
+        console.log(usrId)
+          this.storeService.shopCensusSummary(this.companyId,this.userId ,  this.formDate, this.toDate).subscribe(res => {
+            this.rowData = res;
+           console.log(this.rowData);
+         });
+        }
+        else if(fromdate == '' &&  todate == ''){
+          this.formDate = '1-1-0001' 
+          this.toDate = this.currentdate
+          console.log(this.companyId);
+          console.log(this.userId);
+          let usrId = 350;
+          console.log(usrId)
+      
+            this.storeService.orderSummaryDetail(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+               this.rowData = res;
+              console.log(this.rowData);
+            });  
+        }
+  
+        else{
+          this.toastr.error("please Selet Both Dates")
+        }
+      }
+  
+      formatDate(date: Date) {
+        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     }
+    
+  
+ 
+ 
 
 
 }

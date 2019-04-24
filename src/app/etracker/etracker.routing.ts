@@ -30,6 +30,7 @@ import { VisitSummaryDetailReportComponent } from './reports/visit-summary-detai
 import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
 import { TestReportComponent } from "./reports/test-report/test-report.component";
 import { OrderSummaryDetailComponent } from "./reports/order-summary-detail/order-summary-detail.component";
+import { OrderDetailComponent } from "./reports/order-detail/order-detail.component";
 import { ShopEditComponent } from './shop-edit/shop-edit.component';
 
 
@@ -68,7 +69,9 @@ const routes: Routes = [
                     { path: 'visit-summary', component: VisitSummaryReportComponent },
                     { path: 'visit-summary-report/:id/:fdate/:tdate', component: VisitSummaryDetailReportComponent },
                     { path: 'testrepo', component: TestReportComponent},
-                    { path: 'ordersummary', component: OrderSummaryDetailComponent}
+                    { path: 'ordersummary', component: OrderSummaryDetailComponent},
+                    { path: 'orderdetail', component: OrderDetailComponent}
+
                 ]
             }
         ]

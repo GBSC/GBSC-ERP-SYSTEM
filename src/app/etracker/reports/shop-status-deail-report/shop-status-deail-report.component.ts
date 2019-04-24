@@ -58,7 +58,6 @@ export class ShopStatusDeailReportComponent implements OnInit {
     console.log(this.Data)
     // this.Data.shift();
 
-
      this.Data.forEach(element => {
       //  if(element.TotalShop){
       //   this.sumTotalShop.push(parseInt( element.TotalShop , 10))
@@ -82,8 +81,6 @@ export class ShopStatusDeailReportComponent implements OnInit {
 
     //   this.TShop += (this.sumTotalShop[index])
     // }
-
-
     
     // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
 
@@ -134,7 +131,6 @@ export class ShopStatusDeailReportComponent implements OnInit {
     //  console.log(this.totalActiveshop);
     //  console.log(this.totalCloseshop);
     // // console.log(this.dayone)
-
     
     // this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
     
@@ -142,7 +138,6 @@ export class ShopStatusDeailReportComponent implements OnInit {
   getSum(total, num) {
     return total + num;
   }
-
 
   btn(){
     var divToPrint=document.getElementById("printTable");

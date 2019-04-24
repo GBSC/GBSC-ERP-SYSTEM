@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class DailySemenAnalysisComponent implements OnInit {
     public Procedurearray: any = [];
     public dailysemenanalysisobj: any;
 
-    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router) {
+    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService,   public Toast: ToastrService,public router: Router) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],
@@ -62,7 +63,14 @@ export class DailySemenAnalysisComponent implements OnInit {
         this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
         console.log(value);
         this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res => {
-            console.log(res);
+            if (res != null) {
+                console.log(res);
+                this.Procedurearray = [];
+            }
+            else {
+                this.Toast.error('Issue');
+            }
+ 
         });
 
         // this.DailySemenAnalysisForm.reset();

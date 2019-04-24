@@ -114,6 +114,7 @@
                             <div class="col-md-4">
                                 <label for="Timeframe"> Consultant </label>
                                 <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
+                                    <option disabled selected  >----Select----</option>  
                                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                                 </select>
                             </div>

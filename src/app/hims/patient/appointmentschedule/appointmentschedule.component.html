@@ -50,7 +50,7 @@
                 <div   class="form-group col-lg-3">
                   <label for="exampleSelect1"> Consultant </label>
                   <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" placeholder="All" formControlName="ConsultantId" required>
-                   <option disabled selected (click)="log($event)">All</option>  
+                   <option disabled selected (click)="log($event)">----Select----</option>  
                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                   </select>
                 </div>
@@ -84,8 +84,8 @@
                   </div>
                   <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> </label>
-                    Patient Name
-                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
+                    Patient
+                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="mrn" valueExpr="patientId" [searchEnabled]="true"
                      formControlName="PatientId" placeholder="" style="margin-top: 7px;">
                   </dx-select-box> 
                   

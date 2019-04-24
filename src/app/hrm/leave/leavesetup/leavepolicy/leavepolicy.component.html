@@ -1,77 +1,423 @@
- 
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Leave Policy Detail
-                </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" [showBorders]="true" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
-            (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
-            <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
-              <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">
-              </dxo-popup>
-            </dxo-editing>
-            <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-            <dxo-paging [pageSize]="6"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-            </dxo-pager>
-
-            <dxi-column dataField="groupId" caption="Group">
-              <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveTypeId" caption="Leave Policy">
-              <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
-              <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
-              <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
-            <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false"></dxi-column>
-            <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false"></dxi-column>
-            <dxi-column dataField="maximumAtATime" caption="maximum at a Time" [visible]="false"></dxi-column>
-            <dxi-column dataField="minimumAtATime" caption="minimum at a Time" [visible]="false"></dxi-column>
-            <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
-            <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
-            <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
-            <dxi-column dataField="encashmentApplicationLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
-            <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
-            <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column> 
-            <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
-            <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
-            <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
-            <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
-            <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="allowOnZeroBalance" caption="Allow on Zero Balance" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
-            <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="printOnPaySlip" caption="Print on Payslip" [visible]="false"></dxi-column>
-          </dx-data-grid>
-
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">
+          Leave Policy Detail
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="pull-right"> 
+          <a class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-add" data-toggle="modal" data-target="#m_modal_4"></i>
+            <span class="m-menu__link-text">Add Policy
+            </span>
+          </a>
         </div>
       </div>
- 
- 
+    </div>
+    <dx-data-grid id="gridContainer" 
+    [dataSource]="LeavePolicies" 
+    [showBorders]="true" 
+    (onRowUpdating)="updatingleavepolicy($event)"
+    (onRowUpdated)="updateLeavePolicy()" 
+      (onRowRemoved)="deleteleavePolicy($event)">
+      <dxo-editing mode="popup" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+        <dxo-popup title="Leave Policy" [onShowing]="addleavepolicy" [showTitle]="true" [width]="1200" [height]="630">
+        </dxo-popup>
+      </dxo-editing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dxo-paging [pageSize]="6"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+      </dxo-pager>
+
+      <dxi-column dataField="groupId" caption="Group">
+        <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="leaveTypeId" caption="Leave Policy">
+        <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
+        <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
+        <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
+      <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false">
+      </dxi-column>
+      <dxi-column dataField="maximumAtATime" caption="maximum at a Time" [visible]="false"></dxi-column>
+      <dxi-column dataField="minimumAtATime" caption="minimum at a Time" [visible]="false"></dxi-column>
+      <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
+      <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
+      <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
+      <dxi-column dataField="encashmentApplicationLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
+      <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
+      <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
+      <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="allowOnZeroBalance" caption="Allow on Zero Balance" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+      <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="printOnPaySlip" caption="Print on Payslip" [visible]="false"></dxi-column>
+    </dx-data-grid>
+
+  </div>
+</div>
+
+<!--beginModal-->
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add Leave Policy
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-max-height="200">         
+          <form [formGroup]="leavePolicyForm">
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-8">
+                <label> Group</label>
+                <select class="form-control m-input" formControlName="GroupId" [ngClass]="{ 'is-invalid': submitted && lp.GroupId.errors }">
+                  <option *ngFor="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
+                </select>
+                <div *ngIf="submitted && lp.GroupId.errors" class="invalid-feedback">
+                  <div *ngIf="lp.GroupId.errors.required">Group is required</div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Leave Type
+                </label>
+                <select class="form-control m-input" formControlName="LeaveTypeId" [ngClass]="{ 'is-invalid': submitted && lp.LeaveTypeId.errors }">
+                  <option>--- Select Leave Types ---</option>
+                  <option *ngFor="let levetype of leaveTypes" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                </select>
+                <div *ngIf="submitted && lp.LeaveTypeId.errors" class="invalid-feedback">
+                  <div *ngIf="lp.LeaveTypeId.errors.required">Leave Type required</div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <label>
+                  Leave Year
+                </label>
+                <!-- <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" formControlName="LeaveYearId"> 
+                          </dx-select-box> -->
+                <select class="form-control m-input" formControlName="LeaveYearId" [ngClass]="{ 'is-invalid': submitted && lp.LeaveYearId.errors }">
+                  <option>--- Select Leave Year ---</option>
+                  <option *ngFor="let ly of leaveYears" [value]="ly.leaveYearId">{{ly.name}}</option>
+                </select>
+                <div *ngIf="submitted && lp.LeaveYearId.errors" class="invalid-feedback">
+                  <div *ngIf="lp.LeaveYearId.errors.required">Leave Year required</div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-30"></div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-3">
+                <label>Entitled Qty (Days) </label>
+                <input class="form-control m-input" formControlName="EntitledQuantity" type="text" [ngClass]="{ 'is-invalid': submitted && lp.EntitledQuantity.errors }">
+                <div *ngIf="submitted && lp.EntitledQuantity.errors" class="invalid-feedback">
+                  <div *ngIf="lp.EntitledQuantity.errors.required">entitled Quantity is required</div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <label>Maximum Allowed</label>
+                <input class="form-control m-input" formControlName="MaximumAllowedBalance" type="text">
+              </div>
+              <div class="col-lg-3">
+                <label>Maximum can be Taken</label>
+                <input class="form-control m-input" formControlName="MaximumAtATime" type="text">
+              </div>
+              <div class="col-lg-3">
+                <label>Minimum can be Taken</label>
+                <input class="form-control m-input" formControlName="MinimumAtATime" type="text">
+              </div>
+            </div>
+            <div class="m--space-20"></div>
+
+            <div class="form-group m-form__group row"> 
+              <div class="col-lg-4">
+                <label>Minimum Intemation Period </label>
+                <input class="form-control m-input" formControlName="MinimumIntimationPeriod" type="text">
+              </div>
+              <div class="col-lg-4">
+                <label>Encashment Application limit </label>
+                <input class="form-control m-input" formControlName="EncashmentApplicationLimit" type="text">
+              </div> 
+            </div>
+            <div class="m--space-20"></div> 
+
+            <div class="form-group m-form__group row">
+              <div class="col-md-4">
+                <label>Paid</label>
+                <input type="text" class="form-control m-input" formControlName="PaidDaysQuantity">
+              </div>
+              <div class="col-md-4">
+                <label>Half Paid</label>
+                <input type="text" class="form-control m-input" formControlName="HalfPaidDaysQuantity">
+              </div>
+              <div class="col-md-4">
+                <label>UnPaid Quantity</label>
+                <input type="text" class="form-control m-input" formControlName="UnPaidDaysQuantity">
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    File Attachement Required
+                  </label>
+                  <div class="col-md-1">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsFileAttachmentRequired">
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control m-input" formControlName="FileAttachmentDaysLimit">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    Job Period Based
+                  </label>
+                  <div class="col-lg-1">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsJobPeriodBased">
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control m-input" placeholder="In Month" formControlName="JobPeriodTime">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    Is Balance Brought Forward
+                  </label>
+                  <div class="col-lg-1">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsBalanceBroughtForward">
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control m-input" formControlName="BalanceBroughtForwardQuantity">
+                  </div>
+
+                  <div class="col-md-3">
+                    <input type="text" class="form-control m-input" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    Leave is Encashable
+                  </label>
+                  <div class="col-lg-1">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsEncashable">
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" class="form-control m-input" formControlName="EncashmentDays">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">Day Continuation Restriction </label>
+                  <div class="col-lg-3">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="DayContinuationRestriction">
+                      <span></span>
+                    </label>
+                  </div>
+
+                  <div class="m--space-07"></div>
+
+                  <label class="col-md-3 col-form-label">
+                    For Males
+                  </label>
+                  <div class="col-md-2">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsMale">
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-07"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    For Females
+                  </label>
+                  <div class="col-md-3">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsFemale">
+                      <span></span>
+                    </label>
+                  </div>
+
+                  <label class="col-md-3 col-form-label">
+                    For Married Only
+                  </label>
+                  <div class="col-md-2">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsMarried">
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    Short Leave Allowed
+                  </label>
+                  <div class="col-md-3">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsShortLeaveAllowed">
+                      <span></span>
+                    </label>
+                  </div>
+
+                  <div class="m--space-10"></div>
+
+                  <label class="col-md-3 col-form-label">
+                    Allowed Only one in Service
+                  </label>
+                  <div class="col-lg-2">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsAllowedOnlyOnceInService">
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-md-4 col-form-label">
+                    Is Prorated
+                  </label>
+                  <div class="col-md-3">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsProrated">
+                      <span></span>
+                    </label>
+                  </div>
+
+                  <label class="col-md-3 col-form-label">
+                    Is Active
+                  </label>
+                  <div class="col-md-2">
+                    <label class="m-checkbox">
+                      <input type="checkbox" formControlName="IsActive">
+                      <span></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+          </form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" (click)="addleavepolicy(leavePolicyForm.value)" class="btn btn-primary">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--endModal-->

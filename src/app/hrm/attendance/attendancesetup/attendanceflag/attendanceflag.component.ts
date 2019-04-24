@@ -34,10 +34,12 @@ export class AttendanceflagComponent implements OnInit {
     }
 
      addattendanceflag(value) {
-         this.attendancesetupservice.addAttendanceFlag(value.data).subscribe(rs => { console.log(rs);});
-        this.attendancesetupservice.getAttendanceFlags().subscribe(resp => {
-            this.attendanceflag = resp 
-        });   
+         this.attendancesetupservice.addAttendanceFlag(value.data).subscribe(rs => { console.log(rs);
+            this.attendancesetupservice.getAttendanceFlags().subscribe(resp => {
+                this.attendanceflag = resp 
+            }); 
+        });
+     
      }
 
     updatingattendanceflag(value) {

@@ -1,3 +1,7 @@
+
+<div class="m-content"> 
+    <div class="row">
+      <div class="col-md-12">
 <div class="m-portlet">
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
@@ -23,11 +27,11 @@
 
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
           <dxo-paging [pageSize]="7"></dxo-paging>
-          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20, 30]" [showInfo]="true">
           </dxo-pager>
           <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-          <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column>
-          <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column>
+          <dxi-column dataField="fromDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
+          <dxi-column dataField="toDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
           <dxi-column dataType="boolean" dataField="isDefaultRoster" caption="Default Roster"></dxi-column>
           <dxi-column dataField="rosterId" caption="Roster">
             <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
@@ -58,22 +62,22 @@
             </div>
           </div>
           <div *dxTemplate="let x of 'detail'">
-            <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true">
+            <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true" [columnAutoWidth]="true">
               <dxo-paging [pageSize]="5"></dxo-paging>
-              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20,30]" [showInfo]="true">
               </dxo-pager>
               <dxi-column dataField="userId" caption="Users">
                 <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                 </dxo-lookup>
               </dxi-column>
             </dx-data-grid>
-            <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true">
+            <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true" [columnAutoWidth]="true">
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="shortDate"></dxi-column>
+              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
               <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
             </dx-data-grid>
           </div>
@@ -123,7 +127,10 @@
     </div>
   </div>
 </div>
-
+  </div>
+    </div>
+      </div>
+    
 <div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -139,61 +146,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
-                    <div class="m-portlet__body">
-                      <div class="form-group row">
-                        <div class="form-group col-lg-5">
-                          <label for="exampleSelect1"> Date </label>
-                          <input class="form-control m-input m-input--solid" formControlName="Dayoff" type="date">
-                        </div>
-                        <div class="form-group col-lg-5">
-                            <label for="exampleSelect1"> Remarks </label>
-                            <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
-                          </div>
-                        <div class="form-group col-lg-2 margin">
-                          <button type="button" (click)="addrange()" class="btn btn-info blankinput">
-                            +
-                          </button>
-                        </div>
-                      </div>
-                      <div class="m-section">
-                        <div class="m-section__content">
-                          <table class="table m-table m-table--head-separator-primary">
-                            <thead>
-                              <tr>
-                                <th>
-                                  Off Days
-                                </th>
-                                <th>
-                                    Remarks
-                                  </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let offDaysDateLists of offDaysDateList ; let i = index" >
-                                <td>{{offDaysDateLists.Dayoff}}</td>
-                                <td>{{offDaysDateLists.Remarks}}</td>
-                                <td>
-                                    <button type="button" (click)="remove(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
-                                        <i class="la la-trash-o"></i>
-                                      </button>
-                                 </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                      
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" (click)="addOffDaysList(offDaysDateList)" data-dismiss="modal"  class="btn btn-primary">
-                        Submit
-                      </button>
-                      <button type="button" data-dismiss="modal" class="btn btn-secondary">
-                        Cancel
-                      </button>
-                    </div>
-                  </form> -->
+    
         <div class="form-group row">
           <div class="form-group col-lg-5">
             <label for="exampleInputEmail1"> From Date </label>
@@ -229,7 +182,11 @@
                   <input type="text" [value]="day.Dayoff" formControlName="Dayoff">
                 </td>
                 <td>
-                  <input type="text" [value]="day.Remarks" value="off" placeholder="on" formControlName="Remarks" (change)="changeremarks($event , i)">
+                  <select class="form-control m-input" [value]="day.Remarks" (change)="changeremarks($event , i)"> 
+                    <option value="On"> On</option>
+                    <option value="Off"> Off</option>
+                    <option value="HalfDay"> Half Day</option>
+                  </select>
                 </td>
               </tr>
             </tbody>

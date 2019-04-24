@@ -38,23 +38,9 @@ export class LeavetypebalanceComponent implements OnInit {
 
         this.data = this.leaveservice.prepareLeaveData(this.employees, this.LeaveType, this.empleavepolicy
             , this.LeavePolicies);
+console.log(this.data);
 
-        this.employees = this.employees.map(user => {
-            let u;
-            for (let lp of this.empleavepolicy) {
-                if (lp.userId == user.userId) {
-                    console.log('lp', lp)
-                    console.log('user', user)
-                    user.sampleCount = lp.entitledQuantity;
-                    user.sampleId = lp.leaveTypeId;
-                    u = user;
-                } else {
-                    return user;
-                }
-            }
-
-
-        });
+//       
         // console.log('emp', this.employees); 
         // this.LeavePolicies.forEach(e => { 
         //     for(let user of this.employees) {
@@ -101,8 +87,5 @@ export class LeavetypebalanceComponent implements OnInit {
     async deleteleavetypebalance(value) {
         await this.leavesetupservice.deleteLeaveTypeBalance(value.key);
     }
-
-
-
-
+ 
 }

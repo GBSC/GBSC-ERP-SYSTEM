@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class SuperadminserviceService {
 
     public SystemAdmin_API_URL = "systemadmin/api/";
+    public fullUrlPath = environment.api_url + this.SystemAdmin_API_URL;
     public AuthUrl = "authentication/api/"
 
     // public Account_API_URL = "http://localhost:61161/api/"
@@ -18,38 +19,36 @@ export class SuperadminserviceService {
 
     }
 
-    addCompany(company: Company) {
-        return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/AddCompany', company);
+    addCompany(company: Company): Observable<any> {
+        return this.http.post(this.fullUrlPath + 'Setup/AddCompany', company);
     }
 
-    addModule(module: Module) : Observable<any>{
-        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddModuleWithAllFeatures', module);
-        // return this.http.post('http://localhost:58090/api/CompanySetup/AddModuleWithAllFeatures', module);
+    addModule(module: Module): Observable<any> {
+        return this.http.post(this.fullUrlPath + 'CompanySetup/AddModuleWithAllFeatures', module);
     }
 
     registerAdmin(admin: SystemAdminRegistrationViewModel) {
-        return this.ApiService.post(this.AuthUrl + '/accounts', admin);
-        // return this.http.post('http://localhost:61161/api/accounts', admin);
+        return this.http.post(environment.api_url + this.AuthUrl + '/accounts', admin);
     }
 
-    getCompanyInfo(companyid: any) {
-        return this.ApiService.get(this.SystemAdmin_API_URL + 'CompanySetup/GetCompanyInfo/' + companyid);
+    getCompanyInfo(companyid: any): Observable<any> {
+        return this.http.get(this.fullUrlPath + 'CompanySetup/GetCompanyInfo/' + companyid);
     }
 
-    getModulesByCompany(companyid : number) : Observable<any[]> {
-        return this.ApiService.get(this.SystemAdmin_API_URL + 'Setup/GetModulesByCompany/' + companyid);
+    getModulesByCompany(companyid: number) {
+        return this.http.get(this.fullUrlPath + 'Setup/GetModulesByCompany/' + companyid);
     }
 
-    getFeaturesByModules(moduleids : number[]) : Observable<any[]> {
-        return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/GetFeaturesByModules', moduleids);
+    getFeaturesByModules(moduleids: number[]) {
+        return this.http.post(this.fullUrlPath + 'Setup/GetFeaturesByModules', moduleids);
     }
 
-    getAllModuleFeatures(moduleids : number[]) : Observable<any[]> {
-        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/GetAllModuleFeatures', moduleids);
+    getAllModuleFeatures(moduleids: number[]) {
+        return this.http.post(this.fullUrlPath + 'CompanySetup/GetAllModuleFeatures', moduleids);
     }
 
-    addCompanyFeatures(features : any[]) : Observable<any> {
-        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddCompanyFeatures', features);
+    addCompanyFeatures(features: any[]): Observable<any> {
+        return this.http.post(this.fullUrlPath + 'CompanySetup/AddCompanyFeatures', features);
     }
 
 }

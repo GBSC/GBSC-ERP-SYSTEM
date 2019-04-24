@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DISABLED } from '@angular/forms/src/model';
 import { ToastrService } from 'ngx-toastr';
+import { and } from '@angular/router/src/utils/collection';
 
 // import { VisitTest } from 'src/app/core/Models/HIMS/visittest';
 
@@ -89,34 +90,9 @@ export class VisitdetailComponent implements OnInit {
             testName: [''],
         });
 
-    }
-
-
-
-
-
-    enableVitalsInputFields() {
-        //   console.log(this.formattime(new Date(this.visit.endTime)));
-        //  console.log(this.formatDate(new Date()));
-        console.log(this.formattime(new Date(this.visit.endTime)));
-        if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date())) {
-            //   console.log(true);
-            this.vitalUpdateFieldsEnabled = false;
-        } else {
-            this.vitalUpdateFieldsEnabled = true;
-            // console.log(false);
-        }
-    }
-
-
-
-
-
-
-
-
-    async ngOnInit() {
-
+    }   
+    
+    async ngOnInit() { 
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
         //  console.log(this.consultant);
@@ -142,16 +118,7 @@ export class VisitdetailComponent implements OnInit {
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-                console.log(this.visit);
-
-                // work for disable time strat
-
-                this.enableVitalsInputFields();
-
-
-                // work for disable time end
-
-
+                console.log(this.visit);  
 
                 this.visitdiag = this.visit.visitDiagnoses
 
@@ -211,17 +178,11 @@ export class VisitdetailComponent implements OnInit {
                                 TentativeTime: this.appointment.tentativeTime,
                                 ConsultantId: this.getconsultantbyId.consultantId,
                             });
-                        }
+                        } 
 
-
-
-
-                    });
-
-
+                    }); 
                 });
-
-
+ 
 
                 if (this.visit.patientVital) {
                     this.VisitVitalDetailForm.patchValue({
@@ -240,30 +201,68 @@ export class VisitdetailComponent implements OnInit {
                     this.VisitNoteForm.patchValue({
                         ClinicalNote: visit.visitNote.clinicalNote
                     });
-                }
-
-
-
+                } 
 
             });
-        });
-
-
+        }); 
 
     }
 
     formatDate(date: Date) {
-
-
-
+ 
         return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + (date.getMinutes() + 1);
     }
-    formattime(date: Date) {
 
-        //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
-
-        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + (date.getHours() + 5) + "/" + (date.getMinutes() + 16);
+    formatDateTime(date: Date) {
+ 
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + (date.getMinutes() + 1);
     }
+
+    formattime(date: Date) { 
+        if(date.getHours() < 10){
+
+            return (date.getFullYear() + "-" + date.getMonth() + 1) + "-" + date.getDate() + "T" + ("0" + date.getHours() + 5) + ":" + (date.getMinutes() + 16)+ ":" + (date.getSeconds() + 16);
+        }
+        else{
+            return (date.getFullYear() + "-" + date.getMonth() + 1) + "-" + date.getDate() + "T" + (date.getHours() + 5) + ":" + (date.getMinutes() + 16)+ ":" + (date.getSeconds() + 16);
+        }
+    }
+ 
+    FullDateTime(date : Date) {  
+        var year = date.getFullYear()
+        var month :any = (date.getMonth() + 1)
+        var dat  :any =  date.getDate()
+       var hours :any  = date.getHours()  
+       var mintes: any = date.getMinutes(); 
+    //    var sec :any = date.getSeconds()
+
+       hours = hours ? hours : 12; // the hour '0' should be '12'
+       hours = hours < 10 ? '0'+hours : hours;
+       mintes = mintes < 10 ? '0' +mintes : mintes;
+       month = month < 10 ? '0'+month : month;
+       dat = dat < 10 ? '0'+dat : dat;
+    //    sec = sec < 10 ? '0'+sec : sec;
+       var strTime = year +'-'+ month  +'-'+ dat +'T'+ hours + ':' + mintes ;
+       return strTime;
+   }
+
+    FullDateAndTime(date : Date) {  
+        var year = date.getFullYear()
+        var month :any = (date.getMonth() + 1)
+        var dat  :any =  date.getDate()
+       var hours :any  = date.getHours()  
+       var minutes: any = (date.setTime(date.getMinutes() + 15)); 
+    //    var sec :any = date.getSeconds()
+
+       hours = hours ? hours : 12; // the hour '0' should be '12'
+       hours = hours < 10 ? '0'+hours : hours;
+       minutes = minutes < 10 ? '0' +minutes : minutes;
+       month = month < 10 ? '0'+month : month;
+       dat = dat < 10 ? '0'+dat : dat;
+    //    sec = sec < 10 ? '0'+sec : sec;
+       var strTime = year +'-'+ month  +'-'+ dat +'T'+ hours + ':' + minutes;
+       return strTime;
+   }
 
 
     goback() {
@@ -273,7 +272,19 @@ export class VisitdetailComponent implements OnInit {
         this.VisitVitalDetailForm.controls['Height'].enable();
     }
 
-    async  editPatientVitals(value) {
+    async editPatientVitals(value) { 
+         
+      console.log(this.FullDateAndTime(new Date(this.visit.createdAt)));
+      console.log(this.FullDateTime(new Date()));
+      console.log(this.FullDateAndTime(new Date(this.visit.createdAt)) > this.FullDateTime(new Date()));
+      
+      
+     if(this.FullDateAndTime(new Date(this.visit.createdAt)) > this.FullDateTime(new Date()))
+        { 
+            this.toastr.error("Time Out")
+        }
+        else {
+              
         this.VisitVitalDetailForm.value.VisitId = this.id;
         if (this.visit.patientVitalId === null) {
             //   console.log(value);
@@ -283,11 +294,12 @@ export class VisitdetailComponent implements OnInit {
         }
         else {
             this.VisitVitalDetailForm.value.PatientVitalId = this.visit.patientVitalId;
-
             await this.PatientServiceobj.UpdatePatientVital(value);
             this.toastr.success('Saved');
             //   console.log(value);
         }
+    }
+               
     }
 
     async editPatientAppointment(value) {

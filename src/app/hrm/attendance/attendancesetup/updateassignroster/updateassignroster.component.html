@@ -152,8 +152,13 @@
                                     <input type="date" class="form-control m-input m-input--solid" [value]="x?.dayoff | date : 'yyyy-MM-dd'" >
                                   </th>
                                 <td>
-                                    <input type="text" class="form-control m-input m-input--solid" [value]="x?.remarks" (change)="changeremarks($event , i)">
-                                </td>
+                                    <!-- <input type="text" class="form-control m-input m-input--solid" [value]="x?.remarks" (change)="changeremarks($event , i)"> -->
+                                    <select class="form-control m-input" [value]="x?.remarks" (change)="changeremarks($event , i)"> 
+                                      <option value="On"> On</option>
+                                      <option value="Off"> Off</option>
+                                      <option value="HalfDay"> Half Day</option>
+                                    </select>
+                                  </td>
                               </tr>
                             </tbody>
                           </table>

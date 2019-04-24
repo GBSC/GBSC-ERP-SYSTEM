@@ -4,10 +4,8 @@
     /* border-color: #c4c5d6; */
 }
 
-#example1 {
-    empty-cells: hide !important;
-    border-collapse: separate;
-    } 
+ 
+
 .margin{
     margin-top: 25px;
 }
@@ -34,6 +32,10 @@
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #f4f5f8;
+}
+
+#printTable{
+    width: 1350px;
 }
     /* .m-body * {
         visibility: hidden;
@@ -91,23 +93,16 @@ table.dataTable td {
 
 th:first-child + th + th,
 td:first-child + td + td {
-  display:none;
+  /* display:none; */
 } 
 
 tr.group,
 tr.group:hover {
     background-color: #ddd !important;
 }
+
+.table .active {
+    /* background: #f1f1f1; */
+    font-weight: 800;
+}
  
-
-table td {
-    empty-cells:hide !important;
-}
-table td > *:empty {
-    display:none !important;
-}
-
-#example1 {
-    empty-cells: hide !important;
-    border-collapse: separate;
-    }

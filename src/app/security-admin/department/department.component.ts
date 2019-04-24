@@ -27,20 +27,17 @@ export class DepartmentComponent implements OnInit {
 
 
      addDepartment(value) {
-        console.log(value);
         value.data.companyId = this.authService.getUserCompanyId();
-         this.SystemAdministrationServiceobj.addDepartment(value.data);
-        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
-            this.deprt = res; 
-            console.log(res);
-            
-        });
-        console.log(value.data);
-    }
+         this.SystemAdministrationServiceobj.addDepartment(value.data).subscribe(rp => {
+             this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+                 this.deprt = res;   
+             });
+         });
+         console.log(value);
 
-    updatingDepartment(value){
-        console.log(value.oldData);
-        console.log(value.newData);
+     }
+
+    updatingDepartment(value){ 
 
         this.updatingModel = {...value.oldData, ...value.newData};
         this.updatingModel.companyId = this.authService.getUserCompanyId(); 
@@ -56,7 +53,7 @@ export class DepartmentComponent implements OnInit {
     }
      deletDepartment(value) {
         console.log(value); 
-           this.SystemAdministrationServiceobj.deletDepartment(value.key).subscribe(rep => {
+           this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId).subscribe(rep => {
               console.log(rep); 
           });
     }

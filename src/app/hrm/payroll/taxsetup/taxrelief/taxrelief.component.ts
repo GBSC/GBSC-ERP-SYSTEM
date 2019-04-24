@@ -16,22 +16,28 @@ export class TaxreliefComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
+        this.payrollsetupservice.getTaxReliefs().subscribe(res => {
+            this.taxRelief = res
+        });
 
         this.incometaxRule = await this.payrollsetupservice.getIncomeTaxRules();
     }
 
-    async addTaxRelief(value) {
-        await this.payrollsetupservice.addTaxRelief(value.data);
-        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
+    addTaxRelief(value) {
+        this.payrollsetupservice.addTaxRelief(value.data).subscribe(r => {
+            this.payrollsetupservice.getTaxReliefs().subscribe(tr => {
+                this.taxRelief = tr
+            });
+        });
     }
 
     updatingTaxRelief(value) {
         this.updatingtaxRelief = { ...value.oldData, ...value.newData };
     }
 
-    async updateTaxRelief() {
-        await this.payrollsetupservice.updateTaxRelief(this.updatingtaxRelief);
+    updateTaxRelief() {
+        this.payrollsetupservice.updateTaxRelief(this.updatingtaxRelief).subscribe(rp => {
+        console.log(rp);  });
     }
 
     async deleteTaxRelief(value) {

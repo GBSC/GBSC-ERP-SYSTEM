@@ -4,34 +4,65 @@
 </div>
 <form class="signup-form" [formGroup]="EmpCompanyForm">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Designation</label>
-        <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="EmployeeCompany?.designationId">
+        <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="EmployeeCompany?.designationId" [ngClass]="{ 'is-invalid': submitted && f.DesignationId.errors }">
           <option> --- Select Designation ---</option>
           <option *ngFor="let d of designation" [value]="d.designationId">{{d.name}}</option>
         </select>
+        <div *ngIf="submitted && f.DesignationId.errors" class="invalid-feedback">
+          <div *ngIf="f.DesignationId.errors.required">Designation is required</div>  
+      </div>
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label class="control-label">Department</label>
+        <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="EmployeeCompany?.name || ''" [ngClass]="{ 'is-invalid': submitted && f.DepartmentId.errors }">
+          <option *ngFor="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
+        </select>
+        <div *ngIf="submitted && f.DepartmentId.errors" class="invalid-feedback">
+          <div *ngIf="f.DepartmentId.errors.required">Department is required</div>  
+      </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label class="control-label">Branch</label>
+          <select class="form-control m-input m-input--solid" formControlName="BranchId" [value]="EmployeeCompany?.branchId || ''" [ngClass]="{ 'is-invalid': submitted && f.BranchId.errors }">
+            <option *ngFor="let brnch of branches" [value]="brnch?.branchId">{{brnch.name}}</option>
+          </select>
+          <div *ngIf="submitted && f.BranchId.errors" class="invalid-feedback">
+            <div *ngIf="f.BranchId.errors.required">Branch is required</div>  
+        </div>
+        </div>
+      </div>
   </div>
   <div class="m--space-07"></div>
-  <div class="row">
+  <div class="row"> 
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Function</label>
-        <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="EmployeeCompany?.functionId">
+        <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="EmployeeCompany?.functionId" [ngClass]="{ 'is-invalid': submitted && f.FunctionId.errors }">
 
           <option *ngFor="let fnc of functions" [value]="fnc.functionId">{{fnc.name}}</option>
         </select>
+        <div *ngIf="submitted && f.FunctionId.errors" class="invalid-feedback">
+          <div *ngIf="f.FunctionId.errors.required">Function  is required</div>  
+      </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
-        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="EmployeeCompany?.managementLevelId">
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="EmployeeCompany?.managementLevelId" [ngClass]="{ 'is-invalid': submitted && f.ManagementLevelId.errors }">
           <option> --- Select Management Level ---</option>
           <option *ngFor="let ml of managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
         </select>
+        <div *ngIf="submitted && f.ManagementLevelId.errors" class="invalid-feedback">
+          <div *ngIf="f.ManagementLevelId.errors.required">Management Level is required</div>  
+      </div>
       </div>
     </div>
   </div>
@@ -45,18 +76,24 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Emptype">Employee Type</label>
-        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="EmployeeCompany?.employeeTypeId">
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="EmployeeCompany?.employeeTypeId" [ngClass]="{ 'is-invalid': submitted && f.EmployeeTypeId.errors }">
           <option *ngFor="let emptype of employeetype" [value]="emptype.employeeTypeId">{{emptype.name}}</option>
         </select>
+        <div *ngIf="submitted && f.EmployeeTypeId.errors" class="invalid-feedback">
+          <div *ngIf="f.EmployeeTypeId.errors.required">Employee Type is required</div>  
+      </div>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Empstatus">Employee Status</label>
-        <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId">
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId" [ngClass]="{ 'is-invalid': submitted && f.EmployeeStatusId.errors }">
           <option *ngFor="let cempstatus of employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
+        <div *ngIf="submitted && f.EmployeeStatusId.errors" class="invalid-feedback">
+          <div *ngIf="f.EmployeeStatusId.errors.required">Employee Status is required</div>  
+      </div>
       </div>
     </div>
   </div>
@@ -67,9 +104,11 @@
               <label>
                 Appointment Date
               </label>
-              <div class="input-group m-form__group">
+              <div class="input-group m-form__group"> 
                 <dx-date-box formControlName="AppointmentDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.appointmentDate" type="date">
-                </dx-date-box>
+                  <dxi-validation-rule type="required" message="Appointment Date is required">
+                    </dxi-validation-rule>
+                </dx-date-box>   
               </div>
             </div>  
       </div>
@@ -134,40 +173,32 @@
       </div>
 
   <div class="row">
-    <div class="col-md-4">
-
+   <div class="col-md-4"> 
       <div class="form-group m-form__group">
         <label>
           Leaving Date
         </label>
         <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" (change)="check()">
-                <span></span>
-              </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.leavingDate" type="date">
+          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.leavingDate" type="date">
           </dx-date-box>
         </div>
       </div>
-
     </div>
+
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="username"> Resign Date</label>
-        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.resignDate" type="date">
+        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.resignDate" type="date">
         </dx-date-box>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
-          placeholder="Approved By">
-
+        <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" [ngClass]="{ 'is-invalid': submitted && f.Approver.errors }" class="form-control m-input m-input--solid" placeholder="Approved By">
+        <div *ngIf="submitted && f.Approver.errors" class="invalid-feedback">
+          <div *ngIf="f.Approver.errors.required">Approver Name is required</div>  
+      </div>
       </div>
     </div>
   </div>

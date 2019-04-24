@@ -17,7 +17,9 @@ export class AllowanceComponent implements OnInit {
     async ngOnInit() {
         this.allowance = await this.payrollsetupservice.getAllowances();
 
-        this.allowanceDeductions = await this.payrollsetupservice.getAllowanceDeductions();
+        this.payrollsetupservice.getAllowanceDeductions().subscribe(rs => {
+            this.allowanceDeductions = rs;
+        });
 
         this.allowanceTypes = await this.payrollsetupservice.getAllowanceCalculationTypes();
     }

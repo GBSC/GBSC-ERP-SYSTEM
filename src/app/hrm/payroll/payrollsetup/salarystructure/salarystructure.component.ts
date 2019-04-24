@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SalarystructureComponent implements OnInit {
 
+    dataSource = ['% of Gross', 'Fixed Value']
     public isDisabled = true;
     public payrollTypes: any;
     public salarystructure: any;
@@ -40,6 +41,8 @@ export class SalarystructureComponent implements OnInit {
 
     async ngOnInit() {
 
+        console.log(this.dataSource);
+        
         this.StructureDetail = [];
 
         this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
@@ -48,9 +51,10 @@ export class SalarystructureComponent implements OnInit {
 
         this.benefit = await this.payrollsetupservice.getBenefits();
 
-        this.allowance = await this.payrollsetupservice.getAllowanceDeductions();
-
-
+        this.payrollsetupservice.getAllowanceDeductions().subscribe(rsp => {
+            this.allowance = rsp
+        });
+ 
         this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
 
         this.groups = await this.setupservice.getAllGroups();

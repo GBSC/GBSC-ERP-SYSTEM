@@ -63,10 +63,9 @@ export class PatientvitalsComponent implements OnInit {
             //  console.log(x);
         });
 
-    }
-
-    async  onsubmit(value) {
-
+    } 
+    async  onsubmit(value) { 
+ 
         let visitID = JSON.parse(sessionStorage.getItem('visitId'));
         //  console.log(visitID);
         this.visitid = visitID.visitID;

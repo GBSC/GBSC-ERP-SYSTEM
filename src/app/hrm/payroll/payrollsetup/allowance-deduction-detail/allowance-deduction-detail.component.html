@@ -29,9 +29,12 @@
       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
       </dxo-pager>
 
-      <dxi-column dataField="title"></dxi-column>
+      <dxi-column dataField="title" caption="Title">
+        <dxi-validation-rule type="required" message="Allowance/Deduction Title is required"></dxi-validation-rule>
+      </dxi-column>
       <dxi-column dataField="type" caption="Allowance/Deduction">
         <dxo-lookup [dataSource]="lookupDataSource"></dxo-lookup>
+        <dxi-validation-rule type="required" message="Allowance/Deduction Type is required"></dxi-validation-rule>
     </dxi-column>
       <dxi-column dataField="allowanceCalculationTypeId"caption="Calculation Type">
         <dxo-lookup [dataSource]="allowanceCalculationTypes" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>

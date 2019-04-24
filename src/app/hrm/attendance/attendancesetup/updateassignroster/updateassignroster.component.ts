@@ -109,7 +109,7 @@ public asignRosterForm: FormGroup;
      this.asignRosterForm.value.daysoffs =  this.asignreoter.daysoffs;
     console.log(value);
 
-      let x =    await  this.attendancesetupservice.updateAsignRoster(value);
+      let x = await this.attendancesetupservice.updateAsignRoster(value);
       console.log(x);
    }
 

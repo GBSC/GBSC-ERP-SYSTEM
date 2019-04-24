@@ -20,7 +20,7 @@
                 (onRowUpdated)="EditGroup()"
                 (onRowRemoved)="deleteGroup($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Group" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
@@ -33,7 +33,9 @@
                 </dxo-pager>
 
                 <dxi-column dataField="code"></dxi-column>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                  <dxi-validation-rule type="required" message="Group Title is required"></dxi-validation-rule>
+                </dxi-column>
                 <dxi-column dataField="description"></dxi-column>
 
               </dx-data-grid>

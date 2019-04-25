@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PatientService } from '../../../core';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-daily-semen-analysis',
@@ -9,13 +11,15 @@ import { PatientService } from '../../../core';
 })
 export class DailySemenAnalysisComponent implements OnInit {
 
-    private DailySemenAnalysisForm: FormGroup;
-    private ProcedureForm: FormGroup;
-    private Patients: any;
-    private Consultants: any;
-    private Procedure: any;
+    public DailySemenAnalysisForm: FormGroup;
+    public ProcedureForm: FormGroup;
+    public Patients: any;
+    public Consultants: any;
+    public Procedure: any;
+    public Procedurearray: any = [];
+    public dailysemenanalysisobj: any;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
+    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],
@@ -23,7 +27,8 @@ export class DailySemenAnalysisComponent implements OnInit {
             'Remarks': ['', Validators.required],
             'PatientId': ['', Validators.required],
             'ConsultantId': ['', Validators.required],
-            'ProcedureId': ['', this.formBuilder.array([])]
+            'DailySemenAnalysisProcedures': ['', this.formBuilder.array([])],
+            // 'ProcedureId' :['',Validators.required] 
         });
     }
 
@@ -42,19 +47,33 @@ export class DailySemenAnalysisComponent implements OnInit {
         this.PatientServiceobj.getProcedure().subscribe(res => {
             this.Procedure = res;
             console.log(this.Procedure);
+
         });
 
 
     }
 
-
     addDailySemenAnalysis(value) {
-        console.log(value);
         console.log(this.DailySemenAnalysisForm.value);
+        this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
+        console.log(value);
+        this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res => {
+            console.log(res);
+        });
+
+        this.DailySemenAnalysisForm.reset();
+        this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }
 
-    addData(value) {
-        console.log(value.key);
+    addProcedure(value) {
+        let x = value.key;
+        this.Procedurearray.push(x);
     }
+
+    deleteProcedure(value) {
+        this.Procedurearray.splice(value.key, 1)
+    }
+
+
 
 }

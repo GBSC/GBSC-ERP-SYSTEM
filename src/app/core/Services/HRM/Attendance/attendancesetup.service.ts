@@ -1,20 +1,54 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { Shift } from '../../../Models/HRM/shift';
+import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AttendancesetupService {
 
-    private baseUrl: string = "SystemAdmin/api/AttendanceSetup";
+    public baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
+     getAssignRosterByUser(id : number, fromdate : string, todate : string) : Observable<any> {
+        console.log(fromdate);
+        console.log(todate);
+
+        let params = new HttpParams();
+        params = params.append("fromdate", fromdate);
+        params = params.append("todate", todate);
+
+        console.log(params);
+
+        
+        return this.ApiService.get(`${this.baseUrl}/GetAssignedRostersByUser/` + id, params);
+     }
+
+    GetAsignRosters():Observable<any>{
+        return this.ApiService.get(`${this.baseUrl}/GetAssignRosters`);
+    }
+
+    async getAsignRoster(id) {
+        return await this.ApiService.get(`${this.baseUrl}/GetAssignRoster/` + id).toPromise();
+
+    }
+
+    getAsignRosterById(id): Observable<any> {
+        return this.ApiService.get(this.baseUrl + '/GetAssignRoster/' + id);
+    }
+
     async addAsignRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();
+    }
+
+    UpdateAsignRoster(value):Observable<any>{
+        return  this.ApiService.post(`${this.baseUrl}/UpdateAssignRoster`, value);
     }
 
     async getdataToUpdate(attendanceId, attendanceUrl) {
@@ -23,9 +57,7 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
-
         return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
-
     }
 
     async DeleteAsignRoster(id) {
@@ -33,21 +65,19 @@ export class AttendancesetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAssignRoster/${id}`).toPromise();
     }
 
-    async getAttendanceFlags() {
+     getAttendanceFlags() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`);
     }
-    async addAttendanceFlag(data) {
+     addAttendanceFlag(data) {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddattendanceFlag`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddattendanceFlag`, data);
 
     }
 
     async updateAttendanceFlag(data) {
 
-        let attendanceflag = await this.getdataToUpdate(data.key, 'GetAttendanceFlag');
-        attendanceflag = { ...attendanceflag, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, attendanceflag).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, data).toPromise();
 
     }
 
@@ -77,21 +107,19 @@ export class AttendancesetupService {
     }
 
 
-    async getAttendanceRequestTypes() {
+     getAttendanceRequestTypes() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`).toPromise();
-    }
-    async addAttendanceRequestType(data) {
-
-        return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data).toPromise();
-
+        return this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`);
     }
 
-    async updateAttendanceRequestType(data) {
+     addAttendanceRequestType(data) {
 
-        let attendanceRequestType = await this.getdataToUpdate(data.key, 'GetAttendanceRequestType');
-        attendanceRequestType = { ...attendanceRequestType, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestType`, attendanceRequestType).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data);
+
+    }
+
+     updateAttendanceRequestType(data) { 
+        return this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestType`, data);
 
     }
 
@@ -165,22 +193,18 @@ export class AttendancesetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagType/${id}`).toPromise();
     }
 
-    async getFlagValues() {
+     getFlagValues() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetFlagValues`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetFlagValues`);
 
     }
-    async addFlagValue(data) {
+     addFlagValue(data) {
 
-        return await this.ApiService.post(`${this.baseUrl}/Addflagvalue`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddFlagValue`, data);
     }
 
-    async updateFlagValue(data) {
-
-        let flagvalue = await this.getdataToUpdate(data.key, 'GetFlagValue');
-        flagvalue = { ...flagvalue, ...data.data }
-
-        return await this.ApiService.put(`${this.baseUrl}/UpdateFlagValue`, flagvalue).toPromise();
+     updateFlagValue(data) { 
+        return this.ApiService.put(`${this.baseUrl}/UpdateFlagValue`, data);
 
     }
 
@@ -192,17 +216,20 @@ export class AttendancesetupService {
     async getRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
     }
+
+    GetRosters():Observable<any>{
+        return   this.ApiService.get(`${this.baseUrl}/GetRosters`);
+
+    }
     async addRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
 
     }
 
-    async updateRoster(data) {
-
-        let roster = await this.getdataToUpdate(data.key, 'Getroster');
-        roster = { ...roster, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateRoster`, roster).toPromise();
+   updateRoster(data) {
+ 
+        return this.ApiService.put(`${this.baseUrl}/UpdateRoster`, data);
 
     }
 
@@ -215,17 +242,22 @@ export class AttendancesetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
     }
+    GetShifts(): Observable<Shift> {
+        return this.ApiService.get(`${this.baseUrl}/GetShifts`);
+    }
+
+    getShift(id): Observable<Shift> {
+
+        return this.ApiService.get(this.baseUrl + '/GetShift/' + id);
+    }
 
     async addShift(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
     }
 
-    async updateShift(data) {
-
-        let shift = await this.getdataToUpdate(data.key, 'GetsSift');
-        shift = { ...shift, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateShift`, shift).toPromise();
+    updateShift(data: Shift): Observable<any> {
+        return this.ApiService.put(`${this.baseUrl}/UpdateShift`, data);
 
     }
 
@@ -260,11 +292,8 @@ export class AttendancesetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddOverTimeFlag`, data).toPromise();
     }
 
-    async updateOvertimeFlag(data) {
-
-        let overtimeflag = await this.getdataToUpdate(data.key, 'GetOverTimeFlag');
-        overtimeflag = { ...overtimeflag, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, overtimeflag).toPromise();
+    async updateOvertimeFlag(data) { 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, data).toPromise();
 
     }
 

@@ -4,7 +4,7 @@ import { PharmacyService, PatientService } from '../../../core';
 import { SalesIndentItem } from '../../../core/Models/Pharmacy/SalesIndentItem';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { ActivatedRoute } from '@angular/router';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { SalesIndent } from '../../../core/Models/Pharmacy/SalesIndent';
 
 @Component({
@@ -16,25 +16,25 @@ import { SalesIndent } from '../../../core/Models/Pharmacy/SalesIndent';
 export class VisitPrescriptionComponent implements OnInit {
     @ViewChild(DxDataGridComponent) gridContainer: DxDataGridComponent
 
-    private InventoryItems: InventoryItem;
-    private InventoryItemDataSource: InventoryItem;
-    private FilteredInventoryItems: any;
-    private SelectedInventoryItem: InventoryItem;
+    public InventoryItems: InventoryItem;
+    public InventoryItemDataSource: InventoryItem;
+    public FilteredInventoryItems: any;
+    public SelectedInventoryItem: any;
 
-    private CurrentPatient: any;
-    // private CurrentPatientID : number;
+    public CurrentPatient: any;
+    // public CurrentPatientID : number;
 
-    private Prescriptions: any[] = [];
-    private SalesIndentItems: SalesIndentItem[] = [];
-    private SalesIndent: SalesIndent;
+    public Prescriptions: any[] = [];
+    public SalesIndentItems: SalesIndentItem[] = [];
+    public SalesIndent: SalesIndent;
 
-    private TotalQuantity: number = 0;
-    private TotalCostPrice: number = 0;
-    private TotoalRetailPrice: number = 0;
+    public TotalQuantity: number = 0;
+    public TotalCostPrice: number = 0;
+    public TotoalRetailPrice: number = 0;
 
-    private Index: number = 0;
+    public Index: number = 0;
 
-    constructor(private PharmacyService: PharmacyService, private PatientService: PatientService, private Router: ActivatedRoute) {
+    constructor(public PharmacyService: PharmacyService, public PatientService: PatientService, public Router: ActivatedRoute) {
     }
 
     async ngOnInit() {
@@ -100,7 +100,7 @@ export class VisitPrescriptionComponent implements OnInit {
         var b: any = {
             quantity: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays),
             tradeOfferPricePerUnit: Number.parseFloat(this.SelectedInventoryItem.retailPrice),
-            totalTradeOfferPerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.costPrice),
+            totalTradeOfferPerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.unitPrice),
             totalTradePricePerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.retailPrice),
             inventoryItemId: <number>value.data.inventoryItemId,
             treatmentStart: value.data.treatmentStart,

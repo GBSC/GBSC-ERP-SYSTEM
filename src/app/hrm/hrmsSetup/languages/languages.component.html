@@ -11,11 +11,15 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="language" keyExpr="languageId" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              <dx-data-grid id="gridContainer" 
+               [dataSource]="language"
+               keyExpr="languageId"
+               (onRowInserted)="addLanguage($event)" 
+               (onRowUpdated)="EditLanguage($event)"
                 (onRowRemoved)="deleteLanguage($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

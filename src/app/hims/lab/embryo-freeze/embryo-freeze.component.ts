@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../../app/core';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
@@ -19,29 +19,29 @@ export class EmbryoFreezeComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private id: number;
-    private clinicalRecord: any;
-    private thawAssessment: any;
-    private embryoFreezeDetails: any;
-    private tvopu: any;
-    private freeFreezeOptions: any;
-    private topBottomOptions: any;
-    private thawAssessmentForm: FormGroup;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public id: number;
+    public clinicalRecord: any;
+    public thawAssessment: any;
+    public embryoFreezeDetails: any;
+    public tvopu: any;
+    public freeFreezeOptions: any;
+    public topBottomOptions: any;
+    public thawAssessmentForm: FormGroup;
 
     constructor(
-        private formBuild: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private route: ActivatedRoute,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologyService,
-        private thawAssessmentService: ThawAssessmentService,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public formBuild: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public route: ActivatedRoute,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologyService,
+        public thawAssessmentService: ThawAssessmentService,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.thawAssessmentForm = this.formBuild.group({
             "CreateDate": ['']

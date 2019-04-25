@@ -1,44 +1,193 @@
- 
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Salary Structure</h3>
+<div class="m-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Salary Structure
+                </h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
+          <div class="m-portlet__body">
+            <form [formGroup]="salaryStructureForm">
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                          Title:
+                        </label>
+                        <div class="col-lg-8">
+                         <input type="text" class="form-control m-input" formControlName="Title">
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Group:
+                    </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input" formControlName="GroupId">
+                        <!-- <option value="" disabled selected>-- Select Employee --</option> -->
+                        <option *ngFor="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-              <dx-data-grid id="gridContainer" [dataSource]="salarystructure" keyExpr="salaryStructureId" (onRowInserted)="addSalaryStructure($event)" (onRowUpdated)="updateSalaryStructure($event)" (onRowRemoved)="deleteSalaryStructure($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Salary Structure" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-                </dxo-editing>
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Payroll Type:
+                    </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input" formControlName="PayrollTypeId">
+                        <!-- <option value="" disabled selected>-- Select Employee --</option> -->
+                        <option *ngFor="let pt of payrollTypes" [value]="pt.payrollTypeId">{{pt.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                          Minimum Salary:
+                        </label>
+                        <div class="col-lg-8">
+                         <input type="number" class="form-control m-input" formControlName="MinimumSalary">
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                          Maximum Salary:
+                        </label>
+                        <div class="col-lg-8">
+                            <input type="number" class="form-control m-input" formControlName="MaximumSalary">
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
 
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager>
+                  <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group m-form__group row">
+                          <label class="col-lg-4 col-form-label m-checkbox">
+                              Is Hourly Pay:
+                          </label>
+                          <div class="col-lg-8">
+                              <label class="m-checkbox">
+                           <input type="checkbox" #testbool (change)="check(testbool.checked)" class="form-control m-input" formControlName="IsHourlyPay">
+                           <span></span>
+                          </label>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="col-md-6">
+                        <div class="form-group m-form__group row">
+                          <label class="col-lg-4 col-form-label">
+                              Per Hour Pay:
+                          </label>
+                          <div class="col-lg-8">
+                              <input type="number" class="form-control m-input" formControlName="PerHourPay">
+                          </div>
+                        </div>
+                      </div>  
+                    </div>
 
-                <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
-                </dxi-column>
+            </form>
+            <div class="m--space-30"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                          Salary Structure Details
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
   
-                <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                  <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
-                </dxi-column>
- 
-                <dxi-column dataField="title" caption="Title"></dxi-column>
-                <dxi-column dataField="isHourlyPay" caption="Hourly Pay" dataType="boolean"></dxi-column>
-                <dxi-column dataField="perHourPay" caption="Per Hour Pay"></dxi-column>
-                <dxi-column dataField="minimumSalary" caption="Minimum Salary"></dxi-column>
-                <dxi-column dataField="maximumSalary" caption="Maximum Salary"></dxi-column>
-              </dx-data-grid>
+                  <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer" [dataSource]="Detail" [showBorders]="true"
+                         (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                            <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="8"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>
+          
+                          <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                          </dxi-column>
+            
+                          <dxi-column dataField="benefitId" caption="Benefit">
+                            <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                          </dxi-column>
+          
+                          <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                          </dxi-column>
+
+                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                          <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
+                        </dx-data-grid>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
             </div>
+            <div class="m--space-50"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions m-form__actions" style="padding:19px;">
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                        <div *ngIf="isUpdate(); else create">
+                          <button class="btn btn-primary" (click)="updateSalaryStructure(salaryStructureForm.value)">
+                            Update
+                          </button>
+                        </div>
+                        <ng-template #create>
+                          <button class="btn btn-Success" (click)="addSalaryStructure(salaryStructureForm.value)">
+                            Submit
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                            Reset
+                          </button>
+                        </ng-template>
+                      </div>
+                      <div class="col-lg-3"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
           </div>
         </div>
       </div>
- 
+    </div>
+  
+  </div>

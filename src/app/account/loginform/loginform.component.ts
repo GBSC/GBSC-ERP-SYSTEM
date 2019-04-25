@@ -18,11 +18,11 @@ export class LoginformComponent implements OnInit {
     loginForm: FormGroup;
     public myLoginForm = new Loginform();
 
-    constructor(private formBuilder: FormBuilder, private accountservice: AuthService, private router: Router, private route: ActivatedRoute) {
+    constructor(public formBuilder: FormBuilder, public accountservice: AuthService, public router: Router, public route: ActivatedRoute) {
 
         this.loginForm = formBuilder.group({
-            'Username': ['rootadmin', Validators.required],
-            'Password': ['Pass@2018', Validators.required]
+            'Username': ['', Validators.required],
+            'Password': ['', Validators.required]
         });
     }
 

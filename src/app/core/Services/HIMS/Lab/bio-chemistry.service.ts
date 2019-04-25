@@ -16,9 +16,9 @@ export class BioChemistryService {
     public embryologist: any;
     public embryologycode: any;
 
-    private readonly API_URL = 'hims/api/biochemistry/';
+    public readonly API_URL = 'hims/api/biochemistry/';
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
 
     getPatientBioChemistryTestByClinicalRecordId(id: number) {

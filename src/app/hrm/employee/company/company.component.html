@@ -14,10 +14,7 @@
       </div>
     </div>
   </div>
-
   <div class="m--space-07"></div>
-
-
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
@@ -49,7 +46,6 @@
       <div class="form-group m-form__group">
         <label for="Emptype">Employee Type</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="EmployeeCompany?.employeeTypeId">
-
           <option *ngFor="let emptype of employeetype" [value]="emptype.employeeTypeId">{{emptype.name}}</option>
         </select>
       </div>
@@ -59,7 +55,6 @@
       <div class="form-group m-form__group">
         <label for="Empstatus">Employee Status</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId">
-          <!-- <option value="" disabled selected>-- Select Employee Status --</option> -->
           <option *ngFor="let cempstatus of employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
       </div>
@@ -67,123 +62,76 @@
   </div>
   <div class="m--space-07"></div>
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label>
-          Contract Start
-        </label>
-        <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input #cs type="checkbox">
-                <span></span>
+    <div class="col-md-4"> 
+            <div class="form-group m-form__group">
+              <label>
+                Appointment Date
               </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="ContractStartDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractStartDate" type="date">
-          </dx-date-box>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-
-      <div class="form-group m-form__group">
-        <label>
-          Contract End
-        </label>
-        <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
-                <span></span>
-              </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="ContractEndDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractEndDate" type="date">
-          </dx-date-box>
-        </div>
+              <div class="input-group m-form__group">
+                <dx-date-box formControlName="AppointmentDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.appointmentDate" type="date">
+                </dx-date-box>
+              </div>
+            </div>  
       </div>
 
-    </div>
-    <div class="col-md-4">
-
-      <div class="form-group m-form__group">
-        <label>
-          Appointment Date
-        </label>
-        <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
-                <span></span>
-              </label>
-            </span>
+      <div class="col-md-4"> 
+          <div class="form-group m-form__group">
+            <label>
+              Confirmation Due Date
+            </label>
+            <div class="input-group m-form__group">
+              <dx-date-box formControlName="ConfirmationDueDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDueDate" type="date">
+              </dx-date-box>
+            </div>
           </div>
-          <dx-date-box formControlName="AppointmentDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.appointmentDate" type="date">
-          </dx-date-box>
         </div>
+
+        <div class="col-md-4"> 
+            <div class="form-group m-form__group">
+              <label>
+                Confirmation Date (DOJ)
+              </label> 
+                <dx-date-box formControlName="ConfirmationDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDate" type="date">
+                </dx-date-box> 
+            </div>
+            </div>
       </div>
-
-    </div>
-  </div>
-
   <div class="m--space-07"></div>
 
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label for="employee_id">Next Appraisal Date</label>
-        <dx-date-box formControlName="NextAppraisalDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.nextAppraisalDate" type="date">
-        </dx-date-box>
-      </div>
-    </div>
-    <div class="col-md-4">
-
-      <div class="form-group m-form__group">
-        <label>
-          Confirmation Due Date
-        </label>
-        <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
-                <span></span>
-              </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="ConfirmationDueDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDueDate" type="date">
-          </dx-date-box>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-
-      <div class="form-group m-form__group">
-        <label>
-          Confirmation Date
-        </label>
-        <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
-                <span></span>
-              </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="ConfirmationDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDate" type="date">
+      <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label for="employee_id">Next Appraisal Date</label>
+          <dx-date-box formControlName="NextAppraisalDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.nextAppraisalDate" type="date">
           </dx-date-box>
         </div>
       </div>
 
-    </div>
-  </div>
+      <div class="col-md-4">
+          <div class="form-group m-form__group">
+            <label>
+              Contract Start
+            </label>
+            <div class="input-group m-form__group"> 
+              <dx-date-box formControlName="ContractStartDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractStartDate" type="date">
+              </dx-date-box>
+            </div>
+          </div>
+        </div>
+        
+      <div class="col-md-4"> 
+          <div class="form-group m-form__group">
+            <label>
+              Contract End
+            </label>
+            <div class="input-group m-form__group"> 
+              <dx-date-box formControlName="ContractEndDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractEndDate" type="date">
+              </dx-date-box>
+            </div>
+          </div>
+          </div>
 
-  <div class="m--space-07"></div>
+      </div>
 
   <div class="row">
     <div class="col-md-4">
@@ -217,8 +165,9 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" displayFormat="dd/MM/yyyy" [value]="Employee?.approver" class="form-control m-input m-input--solid"
+        <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
           placeholder="Approved By">
+
       </div>
     </div>
   </div>

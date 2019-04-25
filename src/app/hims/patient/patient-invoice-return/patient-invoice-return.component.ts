@@ -14,20 +14,20 @@ import { PatientInvoiceReturnItem } from '../../../core/Models/HIMS/PatientInvoi
 
 export class PatientInvoiceReturnComponent implements OnInit {
 
-    private ReturnForm: FormGroup;
-    private CurrentDate: Date = new Date();
-    private PurchaseDate: Date = new Date();
-    private PatientInvoiceReturnItems: PatientInvoiceReturnItem[] = [];
+    public ReturnForm: FormGroup;
+    public CurrentDate: Date = new Date();
+    public PurchaseDate: Date = new Date();
+    public PatientInvoiceReturnItems: PatientInvoiceReturnItem[] = [];
 
-    private TotalGrossReturn: number = 0;
-    private TotalDiscountDeduction: number = 0;
-    private TotalNetReturn: number = 0;
+    public TotalGrossReturn: number = 0;
+    public TotalDiscountDeduction: number = 0;
+    public TotalNetReturn: number = 0;
 
-    private InvoiceId: number = null;
-    private PatientId: number = null;
+    public InvoiceId: number = null;
+    public PatientId: number = null;
 
 
-    private ReturnItem: any = {
+    public ReturnItem: any = {
         Nature: '',
         Name: '',
         InvoiceType: '',
@@ -45,7 +45,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
         Remarks: '',
     };
 
-    constructor(private PatientService: PatientService, private FormBuilder: FormBuilder, private Toastr: ToastrService) {
+    constructor(public PatientService: PatientService, public FormBuilder: FormBuilder, public Toastr: ToastrService) {
         this.ReturnForm = this.FormBuilder.group({
             InvoiceType: [''],
             ReturnDate: new Date(),
@@ -81,7 +81,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
                         this.InvoiceId = res.patientInvoiceId;
                         if (res.patientInvoiceItems.length > 0) {
                             res.patientInvoiceItems.forEach((PatientInvoiceItem: any) => {
-                                if (PatientInvoiceItem.isPaid === true) {
+                                // if (PatientInvoiceItem.isPaid === true) {   -----------
                                     let ReturnItem: any = {
                                         Nature: PatientInvoiceItem.nature || '',
                                         Name: PatientInvoiceItem.name || '',
@@ -101,7 +101,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
                                     // console.log(ReturnItem);
                                     this.PatientInvoiceReturnItems.push(ReturnItem);
                                     // console.log(this.PatientInvoiceReturnItems);
-                                }
+                                // }
                             });
                         }
 

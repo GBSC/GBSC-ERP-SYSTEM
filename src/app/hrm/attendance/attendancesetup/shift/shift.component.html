@@ -1,4 +1,4 @@
- 
+<div class="m-content">
         <div class="m-portlet">
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -14,17 +14,23 @@
             <form [formGroup]="ShiftForm"> 
 
                <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                       <label>
                       Shift Code:
                       </label>
                       <input type="text" class="form-control m-input" formControlName="ShiftCode" placeholder="0">
-                    </div>
+                    </div> -->
                     <div class="col-lg-6">
                       <label class="">
                        Shift Title:
                       </label>
                       <input type="text" class="form-control m-input" formControlName="ShiftTitle" placeholder="Shift Title">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                        Shift Hour:
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="ShiftHours" placeholder="00">
                     </div>
                   </div>
   
@@ -33,13 +39,15 @@
                         <label>
                         Start Time:
                         </label>
-                        <input type="date" class="form-control m-input" formControlName="StartTime" placeholder="00:00">
+                        <input type="time" class="form-control m-input" formControlName="StartTime" [value]="shift?.startTime | date:'HH:mm:ss'" placeholder="00:00">
+                        <!-- <dx-date-box formControlName="StartTime" type="time" width="100%"></dx-date-box> -->
                       </div>
                       <div class="col-lg-6">
                         <label class="">
                          End Time:
                         </label>
-                        <input type="date" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
+                        <input type="time" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
+                        <!-- <dx-date-box formControlName="EndTime" type="time" width="100%"></dx-date-box> -->
                       </div>
                     </div>
   
@@ -48,7 +56,8 @@
                           <label>
                           Grace Time:
                           </label>
-                          <input type="date" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
+                          <input type="time" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
+                          <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="GraceTime" type="datetime" width="100%"></dx-date-box> -->
                         </div>
                         <div class="col-lg-6">
                           <label class="">
@@ -68,13 +77,15 @@
                             <label>
                             Overtime Start Time:
                             </label>
+                            <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="OverTimeStartTime" type="datetime" width="100%"></dx-date-box> -->
                             <input type="time" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00">
                           </div>
                           <div class="col-lg-6">
                             <label class="">
                             Minimum Over Time:
                             </label>
-                            <input type="time" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00:00">
+                            <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="MinimumOverTime" type="datetime" width="100%"></dx-date-box> -->
+                            <input type="number" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00">
                           </div>
                         </div>
 
@@ -84,14 +95,31 @@
                                   In Time Shift Threshold:
                               </label>
                               <input type="time" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
+                              <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="InTimeShiftThreshold" type="datetime" width="100%"></dx-date-box> -->
                             </div>
                             <div class="col-lg-6">
                               <label class="">
                                   Out Time Shift Threshold:
                               </label>
                               <input type="time" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
+                              <!-- <dx-date-box [value]="now" formControlName="OutTimeShiftThreshold" type="datetime" width="100%"></dx-date-box> -->
                             </div>
                           </div>
+                          
+                        <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                               OverTime Rate:
+                            </label>
+                            <input type="number" class="form-control m-input" formControlName="OverTimeRate" placeholder="0">
+                          </div>
+                          <div class="col-lg-6">
+                            <label class="">
+                             Description:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="Description" placeholder="Description">
+                          </div>
+                        </div>
             </form>
  
             <div class="m--space-30"></div>
@@ -109,12 +137,10 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="[]"
-                         keyExpr="assignRosterId"
-                         (onRowInserted)="addAssignroster($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                            <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                            </dxo-popup>
+                        [dataSource]="Flag" 
+                         (onRowInserted)="addAttendanceFlag($event)"
+                         (onRowUpdated)="updateAttendanceFlag($event)">
+                          <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -123,10 +149,18 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager>  
-                          <dxi-column dataField="description" caption="Description"> 
+                          <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                              <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                              </dxo-lookup>
+                            </dxi-column> 
+                          <dxi-column dataField="fromTime" dataType="datetime" format="shortTime"> </dxi-column>
+                          <dxi-column dataField="toTime" dataType="datetime" format="shortTime"> </dxi-column>
+                          <dxi-column dataField="flagTypeId" caption="Flag Type">
+                              <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
+                              </dxo-lookup>
                             </dxi-column>
+                          <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
                         </dx-data-grid>
-                      
                     </div>
                   </div>
                 </div>
@@ -139,19 +173,25 @@
             <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
-                  <div class="col-lg-2"></div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                      <div *ngIf="isUpdate(); else create">
+                          <button class="btn btn-primary" (click)="update(ShiftForm.value)">
+                              Update
+                            </button>        
+                      </div> 
+                      <ng-template #create>
                     <button type="reset" class="btn btn-brand" (click)="addshift(ShiftForm.value)">
                       Submit
                     </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
-                    </button>
+                  </ng-template> 
                   </div>
+                  <div class="col-lg-4"></div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </div>
    
     

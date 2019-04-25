@@ -7,6 +7,7 @@ import { AttendancesetupService } from '../../../../core';
     styleUrls: ['./roster.component.scss']
 })
 export class RosterComponent implements OnInit {
+    public rosterUpdate: any;
     public roster: any;
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
@@ -16,16 +17,23 @@ export class RosterComponent implements OnInit {
     }
 
     async addroster(value) {
-        this.attendancesetupservice.addRoster(value.data);
+        await this.attendancesetupservice.addRoster(value.data);
         this.roster = await this.attendancesetupservice.getRosters();
     }
 
-    async updateroster(value) {
-        this.attendancesetupservice.updateRoster(value);
+     updatingroster(value) {
+         this.rosterUpdate = {...value.oldData, ...value.newData};
+    }
+
+     updateroster() {
+         this.attendancesetupservice.updateRoster(this.rosterUpdate).subscribe(res => {
+             console.log(res);
+             
+         });
     }
 
     async deleteroster(value) {
-        this.attendancesetupservice.DeleteRoster(value.key);
+        await this.attendancesetupservice.DeleteRoster(value.key);
     }
 
 }

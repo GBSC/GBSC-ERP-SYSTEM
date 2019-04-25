@@ -1,0 +1,174 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+              Update Assign Roster 
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <!--begin::Section-->
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#m_tabs_1_1">
+                  Roster Detail
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#m_tabs_1_3">
+                  Users
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#m_tabs_1_4">
+                    Calendar
+                  </a>
+                </li>
+            </ul>
+            <form [formGroup]="asignRosterForm">
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
+                    <div class="m-section">
+                        <div class="m-section__content">
+                          <table class="table m-table m-table--head-bg-success">
+                            <thead>
+                              <tr>
+                                <th>
+                                  From Date
+                                </th>
+                                <th>
+                                  To Date
+                                </th>
+                                <th>
+                                  Default Roster
+                                </th>
+                                <th>
+                                  Roster
+                                </th>
+                                <th>
+                                  Shift
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">
+                                  <input type="text" class="form-control m-input m-input--solid" [value]="asignreoter?.fromDate | date: 'dd/MM/yyyy'" >
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control m-input m-input--solid" [value]="asignreoter?.toDate | date: 'dd/MM/yyyy'" >
+                                </td>
+                                <td>
+                                  
+                                  <input type="checkbox" class="m-checkbox m-checkbox--state-brand" [value]="asignreoter?.isDefaultRoster" formControlName="isDefaultRoster" >
+                                </td>
+                                <td>
+                               <dx-select-box [items]="roster" displayExpr="name" valueExpr="rosterId" [searchEnabled]="true" formControlName="rosterId"> 
+                                  </dx-select-box> 
+                                </td>
+                                <td>
+                                <dx-select-box [items]="shifts" displayExpr="shiftTitle" valueExpr="shiftsId" [searchEnabled]="true"formControlName="shiftsId"> 
+                                  </dx-select-box> 
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                         </div>
+                      </div>
+                </div>
+                <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
+                    <div class="m-section">
+                        <div class="m-section__content">
+                            <div class="form-group m-form__group row">
+                                <div class="form-group col-lg-10">
+                                    <label for="exampleSelect1"> User Name </label>
+                                    <dx-select-box [items]="employees" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true"  #userId > 
+                                    </dx-select-box>
+                                </div>
+                                <div class="form-group col-lg-2 margin">
+                                    <a class="btn btn-warning m-btn m-btn--icon m-btn--icon-only" (click)="addUser(userId.value)">
+                                        <i class="la la-save"></i>
+                                    </a>
+                                 </div>
+                            </div>
+                          <table class="table m-table m-table--head-bg-success">
+                            <thead>
+                              <tr>
+                                <!-- <th>
+                                  #
+                                </th> -->
+                                <th>
+                                 User Name
+                                </th>
+                                <th>
+                                  Action
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let x of asignreoter?.userAssignRosters;let i = index">
+                                <!-- <th scope="row">
+                                   {{x}}
+                                </th> -->
+                                <td>
+                                  {{x.userId}}
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning m-btn m-btn--icon m-btn--icon-only" (click)="removeUser(i)">
+                                      <i class="la la-trash"></i>
+                                    </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                         </div>
+                      </div>
+                </div>
+                <div class="tab-pane" id="m_tabs_1_4" role="tabpanel">
+                    <div class="m-section">
+                        <div class="m-section__content">
+
+                          <table class="table m-table m-table--head-bg-success">
+                            <thead>
+                              <tr>
+                                <th>
+                                 Date
+                                </th>
+                                <th>
+                                  Remarks
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let x of asignreoter?.daysoffs;let i = index">
+                                <th scope="row">
+                                    <input type="date" class="form-control m-input m-input--solid" [value]="x?.dayoff | date : 'yyyy-MM-dd'" >
+                                  </th>
+                                <td>
+                                    <input type="text" class="form-control m-input m-input--solid" [value]="x?.remarks" (change)="changeremarks($event , i)">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                         </div>
+                      </div>
+                </div>
+                <button type="button" (click)="save(asignRosterForm.value)" class="btn btn-success m-btn--wide">Save</button>
+              </div>
+            </form>
+        
+          <!--end::Section-->
+        </div>
+        <!--end::Form-->
+      </div>
+      <!--begin::Portlet-->
+    </div>
+  </div>
+</div>

@@ -7,12 +7,14 @@ const routes: Routes = [
     { path: 'employee', loadChildren: './dashboard/dashboard.module#DashboardModule' },
     { path: 'login', loadChildren: './account/account.module#AccountModule' },
     { path: 'hims', loadChildren: './hims/patient/patient.module#PatientModule' },
-    { path: 'lab', loadChildren: './hims/lab/lab.module#LabModule' },
+     { path: 'lab', loadChildren: './hims/lab/lab.module#LabModule' },
+    //  { path: 'ultrasound', loadChildren: './hims/ultrasound/ultrasound.module#UltraSoundModule' },
     { path: 'coordination', loadChildren: './hims/coordination/coordination-routing.module#CoordinationRoutingModule' },
     { path: 'hrm', loadChildren: './hrm/hrm.module#HrmModule' },
     { path: 'inventory', loadChildren: './inventory/inventory.module#InventoryModule' },
     { path: 'pharmacy', loadChildren: './pharmacy/pharmacy.module#PharmacyModule' },
-    { path: 'etracker', loadChildren: './etracker/etracker.module#EtrackerModule' },
+    { path: 'finance', loadChildren: './finance/finance.module#FinanceModule' },
+    { path: 'etracker', loadChildren: './etracker/etracker.module#EtrackerModule' }
 ];
 
 

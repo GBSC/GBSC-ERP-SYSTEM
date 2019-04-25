@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
@@ -8,36 +8,43 @@ import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType'
     styleUrls: ['./customer-type.component.scss']
 })
 export class CustomerTypeComponent implements OnInit {
-    private CustomerTypes: any;
-    private newCusTyp: CustomerType;
+    public CustomerTypes: any;
+    public newCusTyp: CustomerType;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
-        console.log(this.CustomerTypes);
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
+        // console.log(this.CustomerTypes);
     }
 
     OldValue(value) {
         this.newCusTyp = { ...value.oldData, ...value.newData };
-        console.log(this.newCusTyp);
+        // console.log(this.newCusTyp);
     }
 
-    async AddCustomerType(value) {
-        console.log(value);
-        await this.InventoryService.AddCustomerType(value.data);
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+    AddCustomerType(value) {
+        // console.log(value);
+        this.InventoryService.AddCustomerType(value.data).subscribe();
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
     }
 
-    async UpdateCustomerType() {
-        return this.InventoryService.UpdateCustomerType(this.newCusTyp);
+    UpdateCustomerType() {
+        return this.InventoryService.UpdateCustomerType(this.newCusTyp).subscribe();
     }
 
-    async DeleteCustomerType(value) {
-        console.log(value);
-        return await this.InventoryService.DeleteCustomerType(value.key);
+    DeleteCustomerType(value) {
+        // console.log(value);
+        return this.InventoryService.DeleteCustomerType(value.key).subscribe();
     }
 
 }

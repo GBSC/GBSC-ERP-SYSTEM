@@ -9,13 +9,15 @@ export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 
         this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
 
-        this.branch = await this.SystemAdministrationServiceobj.getBranches();
+         this.SystemAdministrationServiceobj.getBranches().subscribe(res => {
+            this.branch = res
+         });
     }
 
 

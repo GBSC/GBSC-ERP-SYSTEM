@@ -44,12 +44,12 @@ export class VisitsComponent implements OnInit {
     public patinetappointment: any = [];
     id: number;
     vistid: number;
-    private Patient: any;
+    public Patient: any;
     Visits: Visits;
 
     public Patientappointment: any;
 
-    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote': ['', Validators.required],
@@ -64,9 +64,10 @@ export class VisitsComponent implements OnInit {
             'TentativeTime': ['', Validators.required],
             'IsFinalAppointment': [false],
             'IsCancelled': [false],
-            'VisitStatus': ['Pending'],
+            'VisitStatus': ['pendding'],
             'VisitId': ['', Validators.required],
-            'AppointmentDate': ['']
+            'AppointmentDate': [''],
+            'FinalTime':['']
         });
 
         this.VisitDiagnosesForm = this.formBuilder.group({
@@ -165,19 +166,22 @@ export class VisitsComponent implements OnInit {
         // console.log(value);
         let y = this.visitid;
         this.PatientVisitNoteForm.value.VisitId = y;
-        let x = await this.PatientServiceobj.addVisitNote(value);
-        // console.log(x);
-        this.displayToastSuccess("Saved");
-        // this.visitid = this.PatientServiceobj.visitid;
-        // console.log(this.visitid);
+        console.log(value);
+          let x = await this.PatientServiceobj.addVisitNote(value);
+           this.displayToastSuccess("Saved");
+       // // this.visitid = this.PatientServiceobj.visitid;
+          console.log(this.visitid);
     }
 
     async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;
         this.PatientAppointmentForm.value.VisitId = this.visitid;
         this.PatientAppointmentForm.value.AppointmentDate = value.TentativeTime;
+        if(value.IsFinalAppointment == true){
+            this.PatientAppointmentForm.value.FinalTime = value.AppointmentDate
+        }
         console.log(value);
-        await this.PatientServiceobj.addAppointment(value);
+           await this.PatientServiceobj.addAppointment(value);
 
         console.log(value);
         // console.log(this.visitid);

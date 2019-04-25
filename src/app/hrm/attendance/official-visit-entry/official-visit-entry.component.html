@@ -19,8 +19,8 @@
                 (onRowUpdating)="updatingVisitentry($event)"
                 (onRowUpdated)="updateVisitentry()"
                 (onRowRemoved)="deleteofficialVisitentry($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Official Visit Entry" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Official Visit Entry" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,10 +30,10 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                    <dxi-column dataField="branchId" caption="Branch">
+                    <!-- <dxi-column dataField="branchId" caption="Branch">
                       <dxo-lookup [dataSource]="branches" displayExpr="name" valueExpr="branchId">
                       </dxo-lookup>
-                    </dxi-column>  
+                    </dxi-column>   -->
                             <dxi-column dataField="userId" caption="Employee">
                               <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
                               </dxo-lookup>

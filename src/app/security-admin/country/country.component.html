@@ -10,10 +10,10 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="countries" keyExpr="countryId" 
+              <dx-data-grid id="gridContainer" [dataSource]="countries"
               (onRowInserted)="addNewCountry($event)"
-               (onRowUpdating)="UpdatingCountry($event)"
-               (onRowUpdated)="UpdateCountry()"
+              (onRowUpdated)="UpdateCountry()"
+              (onRowUpdating)="UpdatingCountry($event)"
                 (onRowRemoved)="deleteCountry($event)">
                 <dxo-export [enabled]="true" fileName="Countries"></dxo-export>
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
@@ -26,7 +26,6 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <dxi-column dataField="code"></dxi-column>
                 <dxi-column dataField="name"></dxi-column>
               </dx-data-grid>
             </div>

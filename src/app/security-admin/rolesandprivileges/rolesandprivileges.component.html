@@ -5,47 +5,45 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text col-lg-10">Set New Role</h3>
-              <button class="btn btn-success blankinput" type="button" (click)="createNewRole()"> Add New </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text ">List All Roles</h3>
             </div>
           </div>
+          <div class="m-portlet__head-tools">
+              <ul class="m-portlet__nav">
+                  <li class="m-portlet__nav-item">
+                      <a class="m-portlet__nav-link m-portlet__nav-link--icon">
+                          <span class="m--font-bolder" style="color: white;">
+                              Set New Role
+                            </span>
+                      </a>
+                    </li>
+                <li class="m-portlet__nav-item">
+                  <a (click)="createNewRole()" class="btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="Add New Role">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <div class="m-portlet__body">
-                <div class="m-section">
-                  <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="">
+                    <dx-data-grid id="gridContainer" [dataSource]="roles" (onRowRemoved)="deleteRole($event)">
+                        <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true">
+                          </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
-                      <dxo-paging [pageSize]="5"></dxo-paging>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                      <dxi-column dataField="ManualCode" caption="Action"></dxi-column>
-                      <dxi-column dataField="Discription" caption="Discription"></dxi-column>
-                      <dxi-column dataField="" caption="Role Id"></dxi-column>
-                      <dxi-column dataField="" caption="Role Name"></dxi-column>
-                      <dxi-column dataField="" caption="Company"></dxi-column>
-                      <dxi-column dataField="" caption="Menu Permission"></dxi-column>
-                      <dxi-column dataField="" caption="Added Date"></dxi-column>
+                      <dxi-column dataField="roleName" caption="Role"></dxi-column>
+                      <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                        <div *dxTemplate="let d of 'chartCellTemplate'">
+                          <div class="chart-cell">
+                              <button (click)="editRole(d)" icon="edit">Edit Role</button> 
+                          </div>
+                      </div>
                     </dx-data-grid>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -81,7 +79,7 @@
           </div>
 
           <div class="form-group col-lg-4">
-            <dx-tree-view [items]="products" [width]="320" showCheckBoxesMode="normal" (onItemSelectionChanged)="selectionChanged($event)">
+            <dx-tree-view showCheckBoxesMode="normal">
             </dx-tree-view>
           </div>
           <a data-toggle="modal" data-target="#m_modal_3">
@@ -89,7 +87,7 @@
           </a>
 
           <div class="form-group col-lg-4">
-            <dx-tree-view id="selection-treeview" [items]="products" [width]="320" showCheckBoxesMode="normal">
+            <dx-tree-view id="selection-treeview" showCheckBoxesMode="normal">
             </dx-tree-view>
           </div>
         </div>
@@ -132,24 +130,25 @@
         <h2>Create A Role</h2>
       </div>
       <div class="name-container">
-        <input type="text" id="name" class="form-control m-input" (change)="role.Name = $event.target.value" placeholder="Insert role name here...">
+        <input [value]="role.roleName" type="text" id="name" class="form-control m-input" (change)="editRoleName($event)" placeholder="Insert role name here...">
       </div>
       <div class="content-container">
         <div class="right">
-          <div class="module" *ngFor="let module of modules;">
+          <div class="module" *ngFor="let module of modules">
 
             <div class="checkbox">
               <img (click)="module.expanded = !module.expanded" [src]="!module.expanded? '/assets/images/baseline-add-24px.svg' : '/assets/images/baseline-remove-24px.svg'"
                 alt="">
-              <input type="checkbox" (change)="addThis($event, 'RoleModules', module, 'ModuleId')">
+              <input [checked]="moduleAlreadySelected(module)" type="checkbox" (change)="changeModule($event, module)">
+              <!-- <input [checked]="moduleExists(module)" type="checkbox" (change)="addThis($event, 'roleModules', module, 'ModuleId')"> -->
               <p>{{module?.name}}</p>
             </div>
             <div class="parent" *ngIf="module?.expanded">
               <div class="children" *ngFor="let feature of module.features; let i = index">
                 <div class="feature">
-                  <input #fet type="checkbox" (change)="addThis($event, 'RoleFeatures', feature, 'FeatureId')">
+                  <input [checked]="featuerAlreadySelected(feature)"  #fet type="checkbox" (change)="changeFeatures($event, feature)">
                   <p>{{feature.name}}</p>
-                  <div *ngIf="fet.checked" (click)="setCurrentFeature(feature)">
+                  <div [style.display]="fet.checked? 'flex' : 'none'" (click)="setCurrentFeature(feature)">
                     <p>Create/Edit/View/Delete</p>
                   </div>
                 </div>
@@ -161,7 +160,7 @@
       </div>
       <div class="role-actions">
         <button class="btn btn-primary" (click)="showPopup = false">Cancel</button>
-        <button class="btn btn-info" (click)="saveRole()">Save Role</button>
+        <button [disabled]="requestSent" class="btn btn-info" (click)="saveRole()">Save Role</button>
       </div>
     </div>
     <div class="popup" *ngIf="popup">
@@ -174,7 +173,7 @@
         </div>
         <div class="p-rights">
           <div class="rights-box" *ngFor="let permission of typeOfPermissions; let i = index">
-            <input type="checkbox" [checked]="toggleRights(permission, i).checked" (change)="addPermissions($event, permission)">
+            <input type="checkbox" [checked]="permissionAlreadySelected({permissionName: permission, featureId: currentFeature.featureId})" (change)="changePermissions($event, permission)">
             <p>{{permission}}</p>
           </div>
         </div>

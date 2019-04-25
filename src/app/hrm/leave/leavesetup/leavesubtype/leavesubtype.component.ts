@@ -28,8 +28,6 @@ export class LeavesubtypeComponent implements OnInit {
 
     async deletesubleave(data) {
         await this.leavesetupservice.deleteLeaveSubType(data.key);
-
-
     }
 
 }

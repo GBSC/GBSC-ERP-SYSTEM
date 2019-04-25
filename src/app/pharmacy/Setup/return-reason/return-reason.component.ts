@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { ReturnReason } from '../../../core/Models/Pharmacy/ReturnReason';
 
 @Component({
@@ -8,10 +8,10 @@ import { ReturnReason } from '../../../core/Models/Pharmacy/ReturnReason';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons: ReturnReason;
-    private UpdatedModel: any;
+    public ReturnReasons: ReturnReason;
+    public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
@@ -20,6 +20,7 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     async AddReturnReason(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddReturnReason(value.data).toPromise();
         this.PharmacyService.GetReturnReasons().subscribe((res: ReturnReason) => this.ReturnReasons = res);
     }

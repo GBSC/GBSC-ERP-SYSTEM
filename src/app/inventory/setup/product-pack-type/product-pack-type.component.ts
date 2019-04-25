@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { PackType } from '../../../core/Models/Inventory/Setup/PackType';
 
 @Component({
     selector: 'app-product-pack-type',
@@ -7,31 +8,41 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./product-pack-type.component.scss']
 })
 export class ProductPackTypeComponent implements OnInit {
-    private PackTypes: any;
-    private UpdatedModel: any;
+    public PackTypes: any;
+    public UpdatedModel: any;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.PackTypes = await this.InventoryService.GetPackTypes();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
+            this.PackTypes = res;
+        });
     }
 
-    async AddPackType(value) {
-        await this.InventoryService.AddPackType(value.data);
-        this.PackTypes = await this.InventoryService.GetPackTypes();
+    AddPackType(value) {
+        value.data.companyId = this.CompanyId;
+        this.InventoryService.AddPackType(value.data).subscribe(res => {
+            this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
+                this.PackTypes = res;
+            });
+        });
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdatePackType() {
-        return await this.InventoryService.UpdatePackType(this.UpdatedModel);
+    UpdatePackType() {
+        return this.InventoryService.UpdatePackType(this.UpdatedModel).subscribe();
     }
 
-    async DeletePackType(value) {
-        return await this.InventoryService.DeletePackType(value.key);
+    DeletePackType(value) {
+        return this.InventoryService.DeletePackType(value.key).subscribe();
     }
 }

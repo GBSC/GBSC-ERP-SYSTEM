@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 
 @Component({
@@ -9,35 +9,47 @@ import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 })
 
 export class BrandComponent implements OnInit {
-    private Brands: any;
-    private newbrand: Brand;
+    public Brands: any;
+    public newbrand: Brand;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
     }
 
-    async ngOnInit() {
-        this.Brands = await this.InventoryService.GetBrands();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetNonGeneralBrands(this.CompanyId).subscribe((res: Brand) => {
+            this.Brands = res;
+        });
         //console.log(this.Brands);
     }
 
     mergeBrand(value) {
+        value.companyId = this.CompanyId;
+        value.isGeneralBrand = false;
         this.newbrand = Object.assign(value.oldData, value.newData);
         //console.log(this.newbrand);
     }
 
-    async AddBrand(value) {
+    AddBrand(value) {
         //console.log(value);
-        await this.InventoryService.AddBrand(value.data);
-        this.Brands = await this.InventoryService.GetBrands();
+        value.data.companyId = this.CompanyId;
+        value.data.isGeneralBrand = false;
+        this.InventoryService.AddBrand(value.data).subscribe(res => {
+            this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
+                this.Brands = res;
+            });
+        });
     }
 
-    async UpdateBrand() {
-        return await this.InventoryService.UpdateBrand(this.newbrand);
+    UpdateBrand() {
+        return this.InventoryService.UpdateBrand(this.newbrand).subscribe();
     }
 
-    async DeleteBrand(value) {
+    DeleteBrand(value) {
         //console.log(value);
-        return await this.InventoryService.DeleteBrand(value.key);
+        return this.InventoryService.DeleteBrand(value.key).subscribe();
     }
 
 }

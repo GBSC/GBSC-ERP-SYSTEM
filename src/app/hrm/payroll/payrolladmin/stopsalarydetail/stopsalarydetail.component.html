@@ -1,0 +1,56 @@
+
+<div class="m-content">
+
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Stop Salary Detail
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+            <dx-data-grid id="gridContainer" 
+            [dataSource]="StopSalary"
+						keyExpr="stopSalaryId" 
+            (onSelectionChanged)="selectionChanged($event)"
+            (onContentReady)="contentReady($event)"
+            (onToolbarPreparing)="onToolbarPreparing($event)"
+            [masterDetail]="{ enabled: true, template: 'detail' }"
+            [columnAutoWidth]="true" 
+             [showBorders]="true">
+                
+            <dxo-selection mode="single"></dxo-selection>
+             <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                </dxo-pager>                
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+
+                <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+                    <dxo-lookup [dataSource]="PayrollType" displayExpr="name" valueExpr="payrollTypeId">
+                    </dxo-lookup>
+                  </dxi-column> 
+  
+                <dxi-column dataField="action" caption="Action"></dxi-column>
+                <dxi-column dataField="from" caption="From" dataType="date" format="shortdate"></dxi-column> 
+                <dxi-column dataField="till" caption="Till" dataType="date" format="shortdate"></dxi-column> 
+                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>  
+                <div *dxTemplate="let stopsalary of 'detail'">
+                    <dx-data-grid [dataSource]="stopsalary.data.userStopSalaries" [showBorders]="true">
+ 
+                        <dxi-column dataField="userId" caption="Employees">
+                            <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
+                            </dxo-lookup>
+                            </dxi-column>
+                        </dx-data-grid>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

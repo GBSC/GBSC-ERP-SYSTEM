@@ -309,76 +309,23 @@
                   <input type="text" class="form-control m-input" formControlName="IessiEmployeeContribution" id="" aria-describedby="emailHelp"
                     placeholder="Minimum Salary">
                 </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions">
+                    <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
+                      Save
+                    </button> |
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="m-portlet__foot m-portlet__foot--fit">
-              <div class="m-form__actions">
-                <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
-                  Save
-                </button> |
-                <button type="reset" class="btn btn-secondary">
-                  Cancel
-                </button>
-              </div>
-            </div>
+      
           </form>
         </div>
 
       </div>
     </div>
-  </div>
-  
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Fund Setup
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="fundSetup"
-           keyExpr="fundSetupId"
-            (onRowUpdated)="updateFundSetup()"
-            (onRowUpdating)="updatingFundSetup($event)"
-             (onRowRemoved)="deleteFundSetup($event)">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
-              <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-            </dxo-editing>
-            <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter> 
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-            <dxo-paging [pageSize]="8"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-            </dxo-pager>
- 
-            <dxi-column dataField="payrollYearId" caption="Payroll Year">
-              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="pfEmployerContribution"></dxi-column>
-            <dxi-column dataField="pfEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="taxableAmountLimit"></dxi-column>
-            <dxi-column dataField="minServicePeriod" [visible]="false"></dxi-column>
-            <dxi-column dataField="applicableFrom"></dxi-column>
-            <dxi-column dataField="eobiMinimumSalary" [visible]="false"></dxi-column>
-            <dxi-column dataField="eobiEmployerContribution"></dxi-column>
-            <dxi-column dataField="eobiEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="maximumContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="exemptAge"></dxi-column>
-            <dxi-column dataField="sessiMinimumSalary" [visible]="false"></dxi-column>
-            <dxi-column dataField="sessiEmployerContribution"></dxi-column>
-            <dxi-column dataField="sessiEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="pessiMinimumSalary" [visible]="false"></dxi-column>
-            <dxi-column dataField="pessiEmployerContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="pessiEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="iessiMinimumSalary" [visible]="false"></dxi-column>
-            <dxi-column dataField="iessiEmployerContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="iessiEmployeeContribution" [visible]="false"></dxi-column>
-          </dx-data-grid>
-
-        </div>
-      </div>
-    
+  </div>  
 </div>

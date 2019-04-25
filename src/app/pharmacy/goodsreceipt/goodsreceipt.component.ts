@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
-import { PharmacyService } from '../../core';
+import { PharmacyService, AuthService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
@@ -17,40 +17,43 @@ import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
 export class GoodsreceiptComponent implements OnInit {
 
-    private GoodReceiptNoteForm: FormGroup;
-    private GoodReceiptNoteItemsForm: FormGroup;
+    public GoodReceiptNoteForm: FormGroup;
+    public GoodReceiptNoteItemsForm: FormGroup;
 
-    private SelectedPurchaseOrder: PurchaseOrder;
-    private SelectedPurchaseOrderItems: any[] = [];
+    public SelectedPurchaseOrder: PurchaseOrder;
+    public SelectedPurchaseOrderItems: any[] = [];
 
-    private ExpectedAmount: number[] = [];
-    private PaymentAmount: number[] = [];
-    private DifferenceAmount: number[] = [];
+    public ExpectedAmount: number[] = [];
+    public PaymentAmount: number[] = [];
+    public DifferenceAmount: number[] = [];
 
-    private ExpectedQuantity: number[] = [];
-    private ReceivedQuantity: number[] = [];
-    private DifferenceQuantity: number[] = [];
+    public ExpectedQuantity: number[] = [];
+    public ReceivedQuantity: number[] = [];
+    public DifferenceQuantity: number[] = [];
 
-    private TotalExpectedQuantity: number = 0;
-    private TotalReceivedQuantity: number = 0;
-    private TotalDifferenceQuantity: number = 0;
-    private TotalExpectedAmount: number = 0;
-    private TotalPaymentAmount: number = 0;
-    private TotalDifferenceAmount: number = 0;
+    public TotalExpectedQuantity: number = 0;
+    public TotalReceivedQuantity: number = 0;
+    public TotalDifferenceQuantity: number = 0;
+    public TotalExpectedAmount: number = 0;
+    public TotalPaymentAmount: number = 0;
+    public TotalDifferenceAmount: number = 0;
 
-    private GrnItems: GRNItem[] = [];
-    private Grn: GRN;
-    private Inventories: Inventory[] = [];
+    public GrnItems: GRNItem[] = [];
+    public Grn: GRN;
+    public Inventories: Inventory[] = [];
 
-    private GrnItemSaveTrack: number[] = [];
-    private isDisable = false;
+    public GrnItemSaveTrack: number[] = [];
+    public isDisable = false;
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
+    // public PackSizes : any;
+
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService, public Auth : AuthService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
             PurchaseOrderDate: [''],
             Supplier: [''],
+            VendorBillNumber: [''],
             GrnDate: [''],
             Origin: [''],
             Remarks: [''],
@@ -67,7 +70,7 @@ export class GoodsreceiptComponent implements OnInit {
             Description: [''],
             PackType: [''],
             PackSize: [''],
-            Unit: [''],
+            MeasurementUnit: [''],
             Rate: [],
             ExpectedAmount: [],
             PaymentAmount: [],
@@ -80,6 +83,9 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     ngOnInit() {
+        // this.PharmacyService.GetPackSizes().subscribe((res : any) => {
+        //     this.PackSizes = res;
+        // });
     }
 
     GetSelectedPurchaseOrderDetails(ponumber, keycode) {
@@ -105,11 +111,11 @@ export class GoodsreceiptComponent implements OnInit {
     CalculateGridData(receivedquantity, index) {
         this.ReceivedQuantity[index] = Number.parseInt(receivedquantity);
         this.ExpectedQuantity[index] = <number>this.SelectedPurchaseOrderItems[index].quantity;
-        this.DifferenceQuantity[index] = this.ExpectedQuantity[index] - this.ReceivedQuantity[index];
+        this.DifferenceQuantity[index] = this.ReceivedQuantity[index] - this.ExpectedQuantity[index];
 
         this.ExpectedAmount[index] = <number>this.SelectedPurchaseOrderItems[index].grandTotal;
-        this.PaymentAmount[index] = <number>this.SelectedPurchaseOrderItems[index].inventoryItem.retailPrice * this.ReceivedQuantity[index];
-        this.DifferenceAmount[index] = this.ExpectedAmount[index] - this.PaymentAmount[index];
+        this.PaymentAmount[index] = Number.parseFloat(this.SelectedPurchaseOrderItems[index].inventoryItem.unitPrice) * (Number.parseInt(this.SelectedPurchaseOrderItems[index].packSize) || 1) * this.ReceivedQuantity[index];
+        this.DifferenceAmount[index] = this.PaymentAmount[index] - this.ExpectedAmount[index];
 
         this.TotalReceivedQuantity = this.ReceivedQuantity.reduce(function(a, b) { return a + b; }, 0);
         this.TotalExpectedQuantity = this.ExpectedQuantity.reduce(function(a, b) { return a + b; }, 0);
@@ -122,23 +128,33 @@ export class GoodsreceiptComponent implements OnInit {
     AddGrnItem(index) {
 
         var a: any = {
-            ReceivedQuantity: this.ReceivedQuantity[index],
+            CompanyId : this.Auth.getUserCompanyId(),
+            ReceivedQuantity: this.ReceivedQuantity[index] * Number.parseInt(this.SelectedPurchaseOrderItems[index].packSize),
             ExpectedQuantity: this.ExpectedQuantity[index],
             DifferenceQuantity: this.DifferenceQuantity[index],
             ExpectedAmount: this.ExpectedAmount[index],
             PaymentAmount: this.PaymentAmount[index],
             DifferenceAmount: this.DifferenceAmount[index],
-            InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
+            InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId,
+            PackSize : Number.parseInt(this.SelectedPurchaseOrderItems[index].packSize) || null,
+            Rate : this.SelectedPurchaseOrderItems[index].inventoryItem.unitPrice
         };
+
         console.log("GrnItem", a);
         this.GrnItems[index] = a;
         console.log("GrnItems", this.GrnItems);
 
-        var b: any = {
-            InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
-            StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
-            InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
-        };
+        if(this.SelectedPurchaseOrderItems[index].inventory != null && this.SelectedPurchaseOrderItems[index].inventory != undefined) {
+            var b: any = {
+                CompanyId : this.Auth.getUserCompanyId(),
+                InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
+                StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
+                InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
+            };
+        } else {
+            var b : any = {};
+        }
+
         console.log("Inventory", b);
         this.Inventories[index] = b;
         console.log("Inventories", this.Inventories);
@@ -149,9 +165,11 @@ export class GoodsreceiptComponent implements OnInit {
         this.isDisable = true;
     }
 
-    SubmitGRN() {
+    SubmitGRN(form) {
+        console.log(form);
         if (this.GrnItemSaveTrack.reduce(function(a, b) { return a + b; }, 0) === this.SelectedPurchaseOrderItems.length) {
             var a: any = {
+                CompanyId : this.Auth.getUserCompanyId(),
                 GrnDate: this.GoodReceiptNoteForm.value.GrnDate || new Date().toISOString(),
                 PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
                 Remarks: this.GoodReceiptNoteForm.value.Remarks,
@@ -162,6 +180,7 @@ export class GoodsreceiptComponent implements OnInit {
                 TotalReceivedQuantity: this.TotalReceivedQuantity,
                 TotalDifferenceQuantity: this.TotalDifferenceQuantity,
                 Supplier: this.SelectedPurchaseOrder.supplier.name,
+                VendorBillNumber : form.VendorBillNumber,
                 GrnItems: this.GrnItems
             };
 

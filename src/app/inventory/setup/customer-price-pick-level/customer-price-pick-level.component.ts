@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { CustomerPricePickLevel } from '../../../core/Models/Inventory/Setup/CustomerPricePickLevel';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
     selector: 'app-customer-price-pick-level',
@@ -7,34 +9,44 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-price-pick-level.component.scss']
 })
 export class CustomerPricePickLevelComponent implements OnInit {
-    private CustomerPrices: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    public CustomerPrices: any;
+    public CustomerTypes: any;
+    public UpdatedModel: any;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.CustomerPrices = await this.InventoryService.GetPricePickLevels();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
+        this.InventoryService.GetPricePickLevelsByCompany(this.CompanyId).subscribe((res: CustomerPricePickLevel) => {
+            this.CustomerPrices = res;
+        });
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
     }
 
-    async AddCustomerPrice(value) {
-        await this.InventoryService.AddCustomerPricePickLevel(value.data);
-        this.CustomerPrices = await this.InventoryService.GetPricePickLevels();
+    AddCustomerPrice(value) {
+        this.InventoryService.AddCustomerPricePickLevel(value.data).subscribe(res => {
+            this.InventoryService.GetPricePickLevelsByCompany(this.CompanyId).subscribe((res: CustomerPricePickLevel) => {
+                this.CustomerPrices = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateCustomerPrice() {
-        return await this.InventoryService.UpdateCustomerPricePickLevel(this.UpdatedModel);
+    UpdateCustomerPrice() {
+        return this.InventoryService.UpdateCustomerPricePickLevel(this.UpdatedModel).subscribe();
     }
 
-    async DeleteCustomerPrice(value) {
-        return await this.InventoryService.DeleteCustomerPricePickLevel(value.key);
+    DeleteCustomerPrice(value) {
+        return this.InventoryService.DeleteCustomerPricePickLevel(value.key).subscribe();
     }
 
 }

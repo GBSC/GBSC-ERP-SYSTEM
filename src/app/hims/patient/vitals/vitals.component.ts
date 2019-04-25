@@ -17,7 +17,7 @@ export class VitalsComponent implements OnInit {
 
     // patientVital :  PatientVital   ;
     public patientVital: any = {};
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) { }
+    constructor(public PatientServiceobj: PatientService, public route: ActivatedRoute) { }
 
     async ngOnInit() {
         this.route.params.subscribe(params => {
@@ -26,7 +26,7 @@ export class VitalsComponent implements OnInit {
 
             let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe((patientVital) => {
                 this.patientVital = patientVital
-                //  console.log(this.patientVital)
+                   console.log(this.patientVital)
             });
             // console.log(x);
 

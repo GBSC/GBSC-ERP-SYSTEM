@@ -2,29 +2,34 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
+          <span class="m-portlet__head-icon"><i class="flaticon-share"></i></span> 
         <h3 class="m-portlet__head-text">Unit</h3>
       </div>
     </div>
   </div>
 
 
-<div class="m-portlet__body">
-<div class="row">
-  <div class="col-md-12"> 
-    <dx-data-grid id="gridContainer" [dataSource]="Units" keyExpr="unitId" (onRowInserted)="AddUnit($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateUnit()" (onRowRemoved)="DeleteUnit($event)"> 
-      <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-        <dxo-popup title="Add Unit" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-      </dxo-editing>
-      <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxo-header-filter [visible]="true"></dxo-header-filter>
-      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-      <dxo-paging [pageSize]="8"></dxo-paging>
-      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-      <dxi-column dataField="name" caption="Name"></dxi-column>
-      <dxi-column dataField="description" caption="Description"></dxi-column>
-      </dx-data-grid> 
-   </div>
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-md-12">
+        <dx-data-grid id="gridContainer" [dataSource]="Units" keyExpr="unitId" (onRowInserted)="AddUnit($event)"
+          (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateUnit()" (onRowRemoved)="DeleteUnit($event)">
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+            <dxo-popup title="Add Unit" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false"
+              [closeOnOutsideClick]="true"></dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+          <dxi-column dataField="unitCode" dataType="number" caption="Code"></dxi-column>
+          <dxi-column dataField="name" caption="Name"></dxi-column>
+          <dxi-column dataField="description" caption="Description"></dxi-column>
+        </dx-data-grid>
+      </div>
 
-   
+
+    </div>
+  </div>
 </div>
-</div></div>

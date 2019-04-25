@@ -13,9 +13,11 @@ export class MasterPayrollDetailComponent implements OnInit {
     public employees: any;
     public masterPayroll: any;
     public currency: any;
+    public benefit: any;
     public allowance: any;
     public banks: any;
     public payrollType: any;
+    public salaryCalculationtype: any;
     public frequency: any;
 
 
@@ -25,17 +27,18 @@ export class MasterPayrollDetailComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.masterPayroll = await this.payrollSetupService.getMasterPayrolls();
+        this.payrollSetupService.getMasterPayrolls().subscribe(r=>{
+            this.masterPayroll = r
+            console.log(this.masterPayroll)
+        });
 
         this.employees = await this.employeeService.GetAllEmployees();
 
-        this.currency = await this.payrollSetupService.getCurrencies();
+        this.allowance = await this.payrollSetupService.getAllowanceDeductions();
+        
+        this.salaryCalculationtype = await this.payrollSetupService.getSalaryCalculationTypes();
 
-        this.allowance = await this.payrollSetupService.getAllowances();
-
-        this.banks = await this.setupService.getAllBanks();
-
-        this.frequency = await this.payrollSetupService.getFrequencies();
+        this.benefit = await this.payrollSetupService.getBenefits();
 
         this.payrollType = await this.payrollSetupService.getPayrollTypes();
     }
@@ -64,11 +67,11 @@ export class MasterPayrollDetailComponent implements OnInit {
     }
 
     addmasterpayroll() {
-        this.router.navigate(['/hrm/payroll/payrollsetup/masterpayroll']);
+        this.router.navigate(['/hrm/payroll/masterpayroll']);
     }
 
     getData(d) {
         this.masterPayrollId = d.key;
-        this.router.navigate(['hrm/payroll/payrollsetup/updatemasterpayroll/' + this.masterPayrollId]);
+        this.router.navigate(['hrm/payroll/updatemasterpayroll/' + this.masterPayrollId]);
     }
 }

@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { DxDataGridModule, DxLoadPanelModule, DxDataGridComponent, DxTemplateModule } from 'devextreme-angular';
-import popup from 'devextreme/ui/popup';
-import { find } from 'rxjs/operator/find';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { PatientService } from '../../../core';
 import { ToastrService } from 'ngx-toastr';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ArrayType } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -21,9 +18,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     @ViewChild('appointmentgrid') appointmentgrid: DxDataGridComponent;
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public patientIdIs;
-    private appointmentForm: FormGroup;
+    public appointmentForm: FormGroup;
 
 
 
@@ -32,13 +29,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public appointment: any;
     public appointmenttest: any;
 
-    private newOrPrevious: string = 'previous';
-    private tentativeorfinal: string = 'tetative';
-    private showAddNewPatientRow: boolean = false;
+    public newOrPrevious: string = 'previous';
+    public tentativeorfinal: string = 'tetative';
+    public showAddNewPatientRow: boolean = false;
 
 
-    private appointmentTimeForm: FormGroup;
-    private InvoiceForm: FormGroup;
+    public appointmentTimeForm: FormGroup;
+    public InvoiceForm: FormGroup;
     public appointtime: any;
 
     public allpatients: any;
@@ -46,7 +43,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public profileForm: FormGroup;
 
-    private PatientInvoiceItemsdata: any[] = [];
+    public PatientInvoiceItemsdata: any[] = [];
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
@@ -62,13 +59,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public date: any;
     public visitNatures: any;
 
-    private getTestbyId: any = [];
+    public getTestbyId: any = [];
     public gettestName: any = [];
 
     submitted = false;
 
-    private tentativeAppointments: any[];
-    private finalizedAppointments: any[];
+    public tentativeAppointments: any[];
+    public finalizedAppointments: any[];
 
     public appointmentbydate: any;
 
@@ -77,7 +74,7 @@ export class AppointmentscheduleComponent implements OnInit {
     public currenttime: any;
 
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http: HttpClient, private router: Router) {
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public formBuilder: FormBuilder, public Http: HttpClient, public router: Router) {
 
         this.appointmenttestForm = this.formBuilder.group({
             AppointmentId: ['', Validators.required],
@@ -162,6 +159,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
         this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+        console.log(this.finalizedAppointments);
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
 
 
@@ -181,6 +179,8 @@ export class AppointmentscheduleComponent implements OnInit {
 
     formateDateAndTime(date: Date) {
         return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "T" + date.getHours() + ":" + date.getMinutes();
+        // let dateFormat = require('dateformat');
+
     }
 
     calculateCellValue(data) {
@@ -269,7 +269,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private patid: number = null;
+    public patid: number = null;
 
     get f() { return this.patientForm.controls; }
 
@@ -362,7 +362,9 @@ export class AppointmentscheduleComponent implements OnInit {
                             this.appointmentForm.value.IsCancelled = 'false';
                         }
                         console.log(value);
-                        await this.PatientServiceobj.addAppointment(value);
+
+
+                          await this.PatientServiceobj.addAppointment(value);
 
 
                         //let tr = await this.PatientServiceobj.addAppointment(value);
@@ -403,7 +405,9 @@ export class AppointmentscheduleComponent implements OnInit {
                         this.appointmentForm.value.IsCancelled = 'false';
                     }
                     console.log(value);
+
                     await this.PatientServiceobj.addAppointment(value);
+
                     // let tr = await this.PatientServiceobj.addAppointment(value);
                     // console.log(tr);
                     // value.AppointmentId = tr.appointmentID;
@@ -491,7 +495,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private consultantfee: any = {};
+    public consultantfee: any = {};
 
     async updateAppointment(value) {
 
@@ -507,17 +511,17 @@ export class AppointmentscheduleComponent implements OnInit {
                 console.log('1', value.key);
             }
 
-            else {
-                console.log(value);
-                let finaltime = this.formateDateAndTime(new Date(value.key.finalTime));
-                console.log(value);
-                console.log(finaltime)
-                value.key.finalTime = finaltime;
-                value.key.appointmentDate = value.key.finalTime;
-                value.key.isCancelled = 'false';
-                console.log(value.key.finalTime);
-                console.log('2', value.key);
-            }
+            // else {
+            //     console.log(value);
+            //     let finaltime = this.formateDateAndTime(new Date(value.key.finalTime));
+            //     console.log(value);
+            //     console.log(finaltime)
+            //     value.key.finalTime = finaltime;
+            //     value.key.appointmentDate = value.key.finalTime;
+            //     value.key.isCancelled = 'false';
+            //     console.log(value.key.finalTime);
+            //     console.log('2', value.key);
+            // }
 
             // this.InvoiceForm.value.appointmentId = value.key.appointmentId;
             // this.consultantfee =   this.consultant.find(t=> t.consultantId ==  value.key.consultantId);
@@ -618,19 +622,15 @@ export class AppointmentscheduleComponent implements OnInit {
         }
     }
 
-    selectNewOrPrevious(e) {
-        console.log(e.target.value);
-        this.newOrPrevious = e.target.value;
-        console.log(this.appointmentForm.value.PatientId);
-        if (this.appointmentForm.value.PatientId) {
-            this.appointmentForm.value.PatientId = '';
-        }
-
-        console.log(this.appointmentForm.value.PatientId);
-
-
-        // console.log(this.newOrPrevious);
-    }
+    // selectNewOrPrevious(e) {
+    //     console.log(e.target.value);
+    //     this.newOrPrevious = e.target.value;
+    //     console.log(this.appointmentForm.value.PatientId);
+    //     if (this.appointmentForm.value.PatientId) {
+    //         this.appointmentForm.value.PatientId = '';
+    //     }
+    //     console.log(this.appointmentForm.value.PatientId);
+    // }
 
     hidePopup(e, popup) {
         if (e.target.id === 'popup') {

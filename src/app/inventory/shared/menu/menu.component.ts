@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
+import { AuthService } from '../../../core';
 
 declare let mLayout: any;
 
@@ -9,10 +10,12 @@ declare let mLayout: any;
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, AfterViewInit {
+    public accessibleFeatures : string[] = [];
 
-    constructor() { }
+    constructor(public AuthService: AuthService) { }
 
     ngOnInit() {
+        this.accessibleFeatures = this.AuthService.getAccessableModulesAndFeatures().features;
     }
     ngAfterViewInit() {
 

@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { BiochemistryoutsiderService } from '../../../../app/core/Services/HIMS/Lab/biochemistryoutsider.service';
 import { PatientService } from '../../../../app/core';
 import { Spouse } from '../../../../app/core/Models/HIMS/spouse';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 
 @Component({
     selector: 'app-biochemistry-outsider',
@@ -12,18 +12,18 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 })
 export class BiochemistryOutsiderComponent implements OnInit {
 
-    private patients: any;
-    private spouse: Spouse;
-    private patient: any;
-    private tests: any;
-    private id: any;
+    public patients: any;
+    public spouse: Spouse;
+    public patient: any;
+    public tests: any;
+    public id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
-    constructor(private formBuilder: FormBuilder,
-        private bioChemistryOutsiderService: BiochemistryoutsiderService,
-        private patientService: PatientService) {
+    constructor(public formBuilder: FormBuilder,
+        public bioChemistryOutsiderService: BiochemistryoutsiderService,
+        public patientService: PatientService) {
 
         this.tests = [];
     }

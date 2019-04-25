@@ -1,0 +1,154 @@
+<div class="m-subheader-search">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2 class="m-subheader-search__title" style="text-align: left;">
+            Shop Status Summary
+            <span class="m-subheader-search__desc">
+              Report
+            </span>
+          </h2>
+        </div>
+        <div class="col-sm-6">
+          <button (click)="toggleFilter()" style="float: right; border: solid 1px;" class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
+            <span *ngIf="showHideFilter">
+              <i class="la la-close"></i>
+              <span>
+                Hide
+              </span>
+            </span>
+  
+            <span *ngIf="!showHideFilter">
+              <i class="la la-sort"></i>
+              <span>
+                Show Filters
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showHideFilter" class="m-grid m-grid--ver-desktop m-grid--desktop">
+  
+      <div class="col-sm-12">
+        <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Region
+              </label>
+              <select [disabled]="DisableRegion" #Region class="form-control m-input" (change)="onRegionChange(Region.value)">
+                <option class='option' disabled selected>Select Region</option>
+                <option class='option' *ngFor="let region of Regions" [value]="regionId || region?.regionId">{{region?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="m-form__group form-group">
+              <label>
+                City
+              </label>
+              <select [disabled]="DisableCity" #City class="form-control m-input" (change)="onCityChange(City.value)">
+                <option class='option' disabled selected>Select City</option>
+                <option class='option' *ngFor="let city of Cities" [value]="cityId || city?.cityId">{{city?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="m-form__group form-group">
+              <label>
+                Area
+              </label>
+              <select [disabled]="DisableArea" #Area class="form-control m-input" (change)="onAreaChange(Area.value)">
+                <option class='option' disabled selected>Select Area</option>
+                <option class='option' *ngFor="let area of Areas" [value]="areaId || area?.areaId">{{area?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Distributor
+              </label>
+              <select [disabled]="DistributorDisable" #Distributor class="form-control m-input" (change)="onDistributorChange(Distributor.value)">
+                <option class='option' disabled selected>Select Distributor</option>
+                <option class='option' *ngFor="let distributor of Distributors" [value]="distributorId || distributor?.distributorId">{{distributor?.name}}</option>
+              </select>
+            </div>
+          </div>
+  
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Territory
+              </label>
+              <select [disabled]="TerritoryDisable" #Territory class="form-control m-input" (change)="onTerritoryChange(Territory.value)">
+                <option class='option' disabled selected>Select Region</option>
+                <option class='option' *ngFor="let territory of Territories" [value]="territoryId || territory?.territoryId">{{territory?.name}}</option>
+              </select> </div>
+          </div>
+  
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Section
+              </label>
+              <select [disabled]="SectionDisable" #Section class="form-control m-input" (change)="onSectionChange(Section.value)">
+                <option class='option' disabled selected>Select Section</option>
+                <option class='option' *ngFor="let section of Sections" [value]="sectionId || section?.sectionId">{{section?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="m-form__group form-group">
+              <label>
+                Subsection
+              </label>
+              <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input" (change)="onSubsectionChange(SubSection.value)">
+                <option class='option' disabled selected>Select Subsection</option>
+                <option class='option' *ngFor="let subsection of Subsections" [value]="subsectionId || subsection?.subsectionId">{{subsection?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="m-form__group form-group">
+              <label>
+                DSF (Current)
+              </label>
+              <select [disabled]="DsfDisable" #DSF class="form-control m-input" (change)="onDsfChange(DSF.value)">
+                <option class='option' disabled selected>Select DSF</option>
+                <option class='option' *ngFor="let dsf of DSFs" [value]="dsf?.userId">{{dsf?.firstName}}
+                  {{dsf?.lastName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Classifications
+              </label>
+              <select #Classification class="form-control m-input" (change)="onClassificationSelect(Classification.value)">
+                <option *ngFor="let classification of Classifications" [value]="classification">{{classification}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                Categories
+              </label>
+              <select #Category class="form-control m-input" (change)="onCategorySelect(Category.value)">
+                <option *ngFor="let category of Categories" [value]="category">{{category}}</option>
+              </select> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div #scripts></div>
+    <div #control style="width:100%; height: 1000px">
+      <div data-bind="dxReportViewer: $data"></div>
+    </div>

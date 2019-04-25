@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { HomeComponent } from './home/home.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
@@ -32,6 +33,21 @@ import { GrnViewComponent } from './grn-view/grn-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
+import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
+import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
+import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
+import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
+import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
+import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales-report.component';
+import { CreditSalesComponent } from './Reports/credit-sales/credit-sales.component';
+import { GoodsReceiveNoteComponent } from './Reports/goods-receive-note/goods-receive-note.component';
+import { GrnTabularComponent } from './Reports/grn-tabular/grn-tabular.component';
+import { MonthlyCashSaleReportComponent } from './Reports/monthly-cash-sale-report/monthly-cash-sale-report.component';
+import { SupplierWisePurchaseComponent } from './Reports/supplier-wise-purchase/supplier-wise-purchase.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 @NgModule({
     imports: [
@@ -40,8 +56,10 @@ import { PrescriptionViewComponent } from './prescription-view/prescription-view
         ReactiveFormsModule,
         routing,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule
     ],
     declarations: [
         HomeComponent,
@@ -70,7 +88,19 @@ import { PrescriptionViewComponent } from './prescription-view/prescription-view
         GrnViewComponent,
         PurhcaseorderViewComponent,
         CurrencyComponent,
-        PrescriptionViewComponent
+        PrescriptionViewComponent,
+        InternalRequisitionComponent,
+        InternalRequisitionViewComponent,
+        PurchaseInvoiceComponent,
+        PurchaseInvoiceViewComponent,
+        PharmacyPurchaseReturnComponent,
+        PurchaseReturnViewComponent,
+        CashSalesReportComponent,
+        CreditSalesComponent,
+        GoodsReceiveNoteComponent,
+        GrnTabularComponent,
+        MonthlyCashSaleReportComponent,
+        SupplierWisePurchaseComponent
     ],
     providers: [
         {

@@ -46,7 +46,7 @@
                 </dxo-editing> -->
                 <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                 <dxo-selection mode="single"></dxo-selection>
-                <dxi-column dataField="returnNumber" caption="Return Number" [width]="230" [fixed]="true"></dxi-column>
+                <dxi-column dataField="returnNumber" caption="Return Number"></dxi-column>
                 <dxi-column dataField="salesOrder.salesOrderCode" caption="Sales Order Code"></dxi-column>
                 <dxi-column dataField="returnDate" dataType="date" caption="Return Date"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
@@ -55,20 +55,11 @@
                 <dxi-column dataField="salesOrder.contactPerson" caption="Sales Order Contact Person"></dxi-column>
                 <dxi-column dataField="salesOrder.againstLotNumber" caption="Sales Order Lot Number"></dxi-column>
                 <dxi-column dataField="salesOrder.slipNumber" caption="Sales Order Slip Number"></dxi-column>
-                <div *dxTemplate="let order of 'detail'">
-                  <dx-data-grid [dataSource]="order.data.salesReturnItems" showBorders="true">
-                    <dxi-column dataField="returnQuantity" caption="Return Quantity"></dxi-column>
-                    <dxi-column dataField="returnAmount" caption="Return Amount"></dxi-column>
-                    <dxi-column dataField="inventoryItem.itemCode" caption="ItemCode"></dxi-column>
-                    <dxi-column dataField="inventoryItem.description" caption="Description"></dxi-column>
-                    <dxi-column dataField="inventoryItem.packType.name" caption="PackType"></dxi-column>
-                    <dxi-column dataField="inventoryItem.packSize.size" caption="PackSize"></dxi-column>
-                    <dxi-column dataField="inventoryItem.unit.name" caption="PerUnit"></dxi-column>
-                    <!-- <dxi-column dataField="inventoryItem.rate" caption="Rate" ></dxi-column> -->
-                    <dxi-column dataField="returnQuantity" caption="ReturnQuantity"></dxi-column>
-                    <dxi-column dataField="returnAmount" caption="ReturnAmount"></dxi-column>
+                <!-- <div *dxTemplate="let order of 'detail'">
+                  <dx-data-grid [dataSource]="order.data.returnReason" showBorders="true">
+                    <dxi-column dataField="reason" caption="Return Reason"></dxi-column>
                   </dx-data-grid>
-                </div>
+                </div> -->
               </dx-data-grid>
             </div>
           </div>

@@ -29,18 +29,18 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 
 
-                <dxi-column dataField="monthStartDate" dataType="time" format="shortdate"></dxi-column>
-                <dxi-column dataField="monthEndDate" dataType="time" format="shortdate"></dxi-column>
+                <dxi-column dataField="monthStartDate" dataType="date" format="shortdate"></dxi-column>
+                <dxi-column dataField="monthEndDate" dataType="date" format="shortdate"></dxi-column>
                 <dxi-column dataField="totalWorkingDaysInMonth"></dxi-column>
                 <dxi-column dataField="presentDays"></dxi-column>
                 <dxi-column dataField="leaveDays"></dxi-column>
                 <dxi-column dataField="absentDays"></dxi-column>
                 <dxi-column dataField="overtimeHours"></dxi-column>
                 <dxi-column dataField="isStopped" dataType="boolean"></dxi-column>
-                <dxi-column dataField="stopFrom" dataType="time" format="shortdate"></dxi-column>
-                <dxi-column dataField="stopTill" dataType="time" format="shortdate"></dxi-column>
+                <dxi-column dataField="stopFrom" dataType="date" format="shortdate"></dxi-column>
+                <dxi-column dataField="stopTill" dataType="date" format="shortdate"></dxi-column>
 
-                <dxi-column dataField="stopSalaryId" caption="Stop Salry" [width]="250">
+                <!-- <dxi-column dataField="stopSalaryId" caption="Stop Salry" [width]="250">
                     <dxo-lookup [dataSource]="stopSalary" displayExpr="action" valueExpr="stopSalaryId">
                     </dxo-lookup>
                 </dxi-column>
@@ -59,7 +59,7 @@
                 <dxi-column dataField="payrollId" caption="Payroll" [width]="250">
                     <dxo-lookup [dataSource]="payroll" displayExpr="monthlySalary" valueExpr="payrollId">
                     </dxo-lookup>
-                </dxi-column>
+                </dxi-column> -->
 
                 <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">
@@ -69,12 +69,12 @@
                 </div>
 
                 <div *dxTemplate="let monthlysalary of 'detail'">
-                    <dx-data-grid [dataSource]="monthlysalary.data.userRosterAttendances" [showBorders]="true" [columnAutoWidth]="true">
+                    <dx-data-grid [dataSource]="monthlysalary.data.userRosterAttendances" [showBorders]="true">
 
-                        <dxi-column dataField="userId" caption="Employee">
+                        <!-- <dxi-column dataField="userId" caption="Employee">
                             <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                             </dxo-lookup>
-                        </dxi-column>
+                        </dxi-column> -->
                         <dxi-column dataField="attendanceDate" caption="Attendance Date" dataType="date" format="shortdate"></dxi-column>
                         <dxi-column dataField="isPresent" caption="Present" dataType="boolean"></dxi-column>
                         <dxi-column dataField="checkInTime" caption="Checkin Time" dataType="datetime" format="shorttime"></dxi-column>

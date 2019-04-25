@@ -11,7 +11,7 @@ export class PfPaymentComponent implements OnInit {
     public leavingReason: any;
     public employees: any;
     public fundSetup: any;
-    private updatingPF: any;
+    public updatingPF: any;
 
     constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 

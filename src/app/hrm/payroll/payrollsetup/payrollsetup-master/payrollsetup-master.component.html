@@ -1,0 +1,114 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+               Payroll Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+            
+            <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+              <div class="m-demo__preview">
+                <ul class="m-nav nav nav-tabs">
+                  <div class="m-scrollable" data-scrollable="true" data-max-height="465">
+                <li class="m-nav__item" *ngFor="let tab of tabs;">
+                  <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      {{tab}}
+                    </span>
+                  </a>
+                </li>
+              </div>
+              </ul>
+          </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+          <div class="tab-content">         
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
+                    <app-allowancearrear></app-allowancearrear>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[1]" id="{{selectedTab}}">
+                    <app-allowance-deduction-detail></app-allowance-deduction-detail>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[2]" id="{{selectedTab}}">
+                    <app-allowancerate></app-allowancerate>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[3]" id="{{selectedTab}}">
+                    <app-allowancecalculationtype></app-allowancecalculationtype>
+                  </div>
+        
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[4]" id="{{selectedTab}}">
+                    <app-bank-advice-template></app-bank-advice-template>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[5]" id="{{selectedTab}}">
+                    <app-benefit></app-benefit>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[6]" id="{{selectedTab}}">
+                    <app-cheque-template></app-cheque-template>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[7]" id="{{selectedTab}}">
+                    <app-compensation-transaction></app-compensation-transaction>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[8]" id="{{selectedTab}}">
+                    <app-currency></app-currency>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[9]" id="{{selectedTab}}">
+                    <app-frequency></app-frequency>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[10]" id="{{selectedTab}}">
+                    <app-viewfundsetup></app-viewfundsetup>
+                  </div>
+        
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[11]" id="{{selectedTab}}">
+                    <app-gratuitytype></app-gratuitytype>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[12]" id="{{selectedTab}}">
+                    <app-gratuityslab></app-gratuityslab>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[13]" id="{{selectedTab}}">
+                    <app-gratuity-slab-gratuity></app-gratuity-slab-gratuity>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[14]" id="{{selectedTab}}">
+                    <app-leavingreason></app-leavingreason>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[15]" id="{{selectedTab}}">
+                    <app-payrolltype></app-payrolltype>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[16]" id="{{selectedTab}}">
+                    <app-payrollyear></app-payrollyear>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[17]" id="{{selectedTab}}">
+                    <app-payrollbank></app-payrollbank>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[18]" id="{{selectedTab}}">
+                    <app-master-payroll-detail></app-master-payroll-detail>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[19]" id="{{selectedTab}}">
+                    <app-pf-payment></app-pf-payment>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[20]" id="{{selectedTab}}">
+                    <app-salarystructuredetail></app-salarystructuredetail>
+                  </div>
+                  <div class="tab-pane" *ngIf="selectedTab === tabs[21]" id="{{selectedTab}}">
+                    <app-salary-calculation-type></app-salary-calculation-type>
+                  </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

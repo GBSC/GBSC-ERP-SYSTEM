@@ -52,13 +52,17 @@ import { InventoryItem } from '../../Models/Inventory/Setup/InventoryItem';
 import { InventoryItemCategory } from '../../Models/Inventory/Setup/InventoryItemCategory';
 import { Supplier } from '../../Models/Inventory/Setup/Supplier';
 import { Unit } from '../../Models/Inventory/Setup/Unit';
+import { componentFactoryName } from '@angular/compiler';
+import { Transport } from '../../Models/Inventory/Setup/Transport';
+import { City } from '../../Models/HRM/city';
 
 
 @Injectable()
 export class InventorysystemService {
 
-    private readonly API_URL = 'inventory/api/';
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    public readonly API_URL = 'inventory/api/';
+    public readonly TerritoryApi_Url = 'etracker/api/';
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 
@@ -72,21 +76,40 @@ export class InventorysystemService {
         // return this.SalesIndent;
     }
 
-    AddSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+    GetSalesIndent(id : number): Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndent/' + id);
+    }
+
+    GetUnprocessedSalesIndents(): Observable<SalesIndent[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedSalesIndents');
+    }
+
+    UpdateSalesIndents(indents : SalesIndent[]): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents', indents);
+    }
+
+    GetSalesIndentsByCompany(companyid: number): Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByCompany/' + companyid);
+        //this.SalesIndent = await this.http.get<SalesIndent>(this.API_URL + 'Sales/GetSalesIndents').toPromise();
+        //console.log(this.SalesOrder);
+        // return this.SalesIndent;
+    }
+
+    AddSalesIndent(SalesIndent: SalesIndent): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Sales/AddSalesIndent', SalesIndent);
         // let x = await this.http.post(this.API_URL + "Sales/AddSalesIndent", SalesIndent).toPromise();
         // console.log(x);
         // return x;
     }
 
-    UpdateSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+    UpdateSalesIndent(SalesIndent: SalesIndent): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndent', SalesIndent);
         // let a = await this.http.put(this.API_URL + 'Sales/UpdateSalesIndent', SalesIndent).toPromise();
         // console.log(a);
         // return a;
     }
 
-    DeleteSalesIndent(id): Observable<SalesIndent> {
+    DeleteSalesIndent(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesIndent/' + id);
         // let c = await this.http.delete(this.API_URL + 'Sales/DeleteSalesIndent/' + id).toPromise();
         // console.log(c);
@@ -96,6 +119,12 @@ export class InventorysystemService {
     //SalesIndentItem
     GetSalesIndentItems(): Observable<SalesIndentItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentItems');
+        // this.SalesIndentItem = await this.http.get<SalesIndentItem>(this.API_URL + 'Sales/GetSalesIndentItems').toPromise();
+        //console.log(this.SalesIndentItem);
+    }
+
+    GetSalesIndentItemsByCompany(companyid: number): Observable<SalesIndentItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentItemsByCompany/' + companyid);
         // this.SalesIndentItem = await this.http.get<SalesIndentItem>(this.API_URL + 'Sales/GetSalesIndentItems').toPromise();
         //console.log(this.SalesIndentItem);
     }
@@ -129,7 +158,14 @@ export class InventorysystemService {
         // return this.SalesOrder;
     }
 
-    AddSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
+    GetSalesOrdersByCompany(companyid: number): Observable<SalesOrder> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByCompany/' + companyid);
+        //this.SalesOrder = await this.http.get<SalesOrder>(this.API_URL + 'Sales/GetSalesOrders').toPromise();
+        //console.log(this.SalesOrder);
+        // return this.SalesOrder;
+    }
+
+    AddSalesOrder(SalesOrder: SalesOrder): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Sales/AddSalesOrder', SalesOrder);
         //return await this.ApiService.post(this.API_URL + 'Sales/AddSalesOrder', SalesOrder).toPromise();
         // let x = await this.http.post(this.API_URL + "Sales/AddSalesOrder", SalesOrder).toPromise();
@@ -137,7 +173,11 @@ export class InventorysystemService {
         // return x;
     }
 
-    UpdateSalesOrder(SalesOrder: SalesOrder): Observable<SalesIndent> {
+    AddSalesOrders(SalesOrders: SalesOrder[]): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Sales/AddSalesOrders', SalesOrders);
+    }
+
+    UpdateSalesOrder(SalesOrder: SalesOrder): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder);
         // let a = await this.http.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder).toPromise();
         // console.log(a);
@@ -155,6 +195,12 @@ export class InventorysystemService {
 
     GetSalesOrderItems(): Observable<SalesOrderItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItems');
+        //console.log(this.SalesOrderItem);
+        // return this.SalesOrderItem;
+    }
+
+    GetSalesOrderItemsByCompany(companyId: number): Observable<SalesOrderItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsByCompany/' + companyId);
         //console.log(this.SalesOrderItem);
         // return this.SalesOrderItem;
     }
@@ -183,6 +229,13 @@ export class InventorysystemService {
     //DeliveryOrder
     GetDeliveryOrders(): Observable<DeliveryOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetDeliveryOrders');
+        // this.DeliveryOrder = await this.http.get<DeliveryOrder>(this.API_URL + 'Sales/GetDeliveryOrders').toPromise();
+        // //console.log(this.DeliveryOrder);
+        // return this.DeliveryOrder;
+    }
+
+    GetDeliveryOrdersByCompany(companyId: number): Observable<DeliveryOrder> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetDeliveryOrdersByCompany/' + companyId);
         // this.DeliveryOrder = await this.http.get<DeliveryOrder>(this.API_URL + 'Sales/GetDeliveryOrders').toPromise();
         // //console.log(this.DeliveryOrder);
         // return this.DeliveryOrder;
@@ -218,6 +271,13 @@ export class InventorysystemService {
         // return this.DeliveryOrderItem;
     }
 
+    GetDeliveryOrderItemsByCompany(companyId: number): Observable<DeliveryOrderItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetDeliveryOrderItemsByCompany/' + companyId);
+        // this.DeliveryOrderItem = await this.http.get<DeliveryOrderItem>(this.API_URL + 'Sales/GetDeliveryOrderItems').toPromise();
+        // //console.log(this.DeliveryOrderItem);
+        // return this.DeliveryOrderItem;
+    }
+
     AddDeliveryOrderItem(DeliveryOrderItem: DeliveryOrderItem): Observable<DeliveryOrderItem> {
         return this.ApiService.post(this.API_URL + "Sales/AddDevliveryOrderItem", DeliveryOrderItem);
         // let x = await this.http.post(this.API_URL + "Sales/AddDevliveryOrderItem", DeliveryOrderItem).toPromise();
@@ -242,6 +302,13 @@ export class InventorysystemService {
     //DeliveryNote
     GetDeliveryNotes(): Observable<DeliveryNote> {
         return this.ApiService.get(this.API_URL + 'Sales/GetDeliveryChallans');
+        // this.DeliveryOrder = await this.http.get<DeliveryNote>(this.API_URL + 'Sales/GetDeliveryChallans').toPromise();
+        // //console.log(this.DeliveryNote);
+        // return this.DeliveryNote;
+    }
+
+    GetDeliveryNotesByCompany(companyId: number): Observable<DeliveryNote> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetDeliveryChallansByCompany/' + companyId);
         // this.DeliveryOrder = await this.http.get<DeliveryNote>(this.API_URL + 'Sales/GetDeliveryChallans').toPromise();
         // //console.log(this.DeliveryNote);
         // return this.DeliveryNote;
@@ -276,6 +343,13 @@ export class InventorysystemService {
         // return this.SalesInvoice;
     }
 
+    GetSalesInvoicesByCompany(companyId: number): Observable<SalesInvoice> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesInvoicesByCompany/' + companyId);
+        // this.SalesInvoice = await this.http.get<SalesInvoice>(this.API_URL + 'Sales/GetSalesInvoices').toPromise();
+        // //console.log(this.SalesInvoice);
+        // return this.SalesInvoice;
+    }
+
     AddSalesInvoice(SalesInvoice: SalesInvoice): Observable<SalesInvoice> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesInvoice", SalesInvoice);
         // let x = await this.http.post(this.API_URL + "Sales/AddSalesInvoice", SalesInvoice).toPromise();
@@ -300,6 +374,13 @@ export class InventorysystemService {
     //SalesReturn
     GetSalesReturns(): Observable<SalesReturn> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturns');
+        // this.SalesReturn = await this.http.get<SalesReturn>(this.API_URL + 'Sales/GetSalesReturns').toPromise();
+        // //console.log(this.DeliveryOrder);
+        // return this.SalesReturn;
+    }
+
+    GetSalesReturnsByCompany(companyId: number): Observable<SalesReturn> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsByCompany/' + companyId);
         // this.SalesReturn = await this.http.get<SalesReturn>(this.API_URL + 'Sales/GetSalesReturns').toPromise();
         // //console.log(this.DeliveryOrder);
         // return this.SalesReturn;
@@ -330,6 +411,13 @@ export class InventorysystemService {
     //SalesReturnItem
     GetSalesReturnItems(): Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnItems');
+        // this.SalesReturnItem = await this.http.get<SalesReturnItem>(this.API_URL + 'Sales/GetSalesReturnItems').toPromise();
+        // //console.log(this.SalesReturnItem);
+        // return this.SalesReturnItem;
+    }
+
+    GetSalesReturnItemsByCompany(companyId: number): Observable<SalesReturnItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnItemsByCompany/' + companyId);
         // this.SalesReturnItem = await this.http.get<SalesReturnItem>(this.API_URL + 'Sales/GetSalesReturnItems').toPromise();
         // //console.log(this.SalesReturnItem);
         // return this.SalesReturnItem;
@@ -366,6 +454,13 @@ export class InventorysystemService {
         // return this.PurchaseIndent;
     }
 
+    GetPurchaseIndentsByCompany(companyId: number): Observable<PurchaseIndent> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseIndentsByCompany/' + companyId);
+        // this.PurchaseIndent = await this.http.get<PurchaseIndent>(this.API_URL + 'Purchase/GetPurchaseIndents').toPromise();
+        // //console.log(this.PurchaseIndent);
+        // return this.PurchaseIndent;
+    }
+
     AddPurchaseIndent(PurchaseIndent: PurchaseIndent): Observable<PurchaseIndent> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseIndent', PurchaseIndent);
         // let x = await this.http.post(this.API_URL + 'Purchase/AddPurchaseIndent', PurchaseIndent).toPromise();
@@ -390,6 +485,13 @@ export class InventorysystemService {
     //PurchaseIndentItem
     GetPurchaseIndentItems(): Observable<PurchaseIndentItem> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseIndentItems');
+        // this.PurchaseIndentItem = await this.http.get<PurchaseIndentItem>(this.API_URL + 'Purchase/GetPurchaseIndentItems').toPromise();
+        // //console.log(this.PurchaseIndentItem);
+        // return this.PurchaseOrderItem;
+    }
+
+    GetPurchaseIndentItemsByCompany(companyId: number): Observable<PurchaseIndentItem> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseIndentItemsByCompany/' + companyId);
         // this.PurchaseIndentItem = await this.http.get<PurchaseIndentItem>(this.API_URL + 'Purchase/GetPurchaseIndentItems').toPromise();
         // //console.log(this.PurchaseIndentItem);
         // return this.PurchaseOrderItem;
@@ -424,6 +526,13 @@ export class InventorysystemService {
         // return this.PurchaseOrder;
     }
 
+    GetPurchaseOrdersByCompany(companyId: number): Observable<PurchaseOrder> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByCompany/' + companyId);
+        // this.PurchaseOrder = await this.http.get<PurchaseOrder>(this.API_URL + 'Purchase/GetPurchaseOrders').toPromise();
+        // //console.log(this.PurchaseOrder);
+        // return this.PurchaseOrder;
+    }
+
     AddPurchaseOrder(PurchaseOrder: PurchaseOrder): Observable<PurchaseOrder> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseOrder', PurchaseOrder);
         // let x = await this.http.post(this.API_URL + 'Purchase/AddPurchaseOrder', PurchaseOrder).toPromise();
@@ -448,6 +557,13 @@ export class InventorysystemService {
     //PurchaseOrderItem
     GetPurchaseOrderItems(): Observable<PurchaseOrderItem> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderItems');
+        // this.PurchaseOrderItem = await this.http.get<PurchaseOrderItem>(this.API_URL + 'Purchase/GetPurchaseOrderItems').toPromise();
+        // //console.log(this.PurchaseOrderItem);
+        // return this.PurchaseOrderItem;
+    }
+
+    GetPurchaseOrderItemsByCompany(companyId: number): Observable<PurchaseOrderItem> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderItemsByCompany/' + companyId);
         // this.PurchaseOrderItem = await this.http.get<PurchaseOrderItem>(this.API_URL + 'Purchase/GetPurchaseOrderItems').toPromise();
         // //console.log(this.PurchaseOrderItem);
         // return this.PurchaseOrderItem;
@@ -482,6 +598,13 @@ export class InventorysystemService {
         // return this.PurchaseInvoice;
     }
 
+    GetPurchaseInvoicesByCompany(companyId: number): Observable<PurchaseInvoice> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByCompany/' + companyId);
+        // this.PurchaseInvoice = await this.http.get<PurchaseInvoice>(this.API_URL + 'Purchase/GetPurchaseInvoices').toPromise();
+        // //console.log(this.PurchaseInvoice);
+        // return this.PurchaseInvoice;
+    }
+
     AddPurchaseInvoice(PurchaseInvoice: PurchaseInvoice): Observable<PurchaseInvoice> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseInvoice', PurchaseInvoice);
         // let x = await this.http.post(this.API_URL + 'Purchase/AddPurchaseInvoice', PurchaseInvoice).toPromise();
@@ -506,6 +629,13 @@ export class InventorysystemService {
     //GRN
     GetGRN(): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNs');
+        // this.GRN = await this.http.get<GRN>(this.API_URL + 'Purchase/GetGRNs').toPromise();
+        // //console.log(this.GRN);
+        // return this.GRN;
+    }
+
+    GetGRNByCompany(companyId: number): Observable<GRN> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByCompany/' + companyId);
         // this.GRN = await this.http.get<GRN>(this.API_URL + 'Purchase/GetGRNs').toPromise();
         // //console.log(this.GRN);
         // return this.GRN;
@@ -540,6 +670,13 @@ export class InventorysystemService {
         // return this.PurchaseReturn;
     }
 
+    GetPurchaseReturnsByCompany(companyId: number): Observable<PurchaseReturn> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturnsByCompany/' + companyId);
+        // this.PurchaseReturn = await this.http.get<PurchaseReturn>(this.API_URL + 'Purchase/GetPurchaseReturns').toPromise();
+        // //console.log(this.PurchaseReturn);
+        // return this.PurchaseReturn;
+    }
+
     AddPurchaseReturn(PurchaseReturn: PurchaseReturn): Observable<PurchaseReturn> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseReturn', PurchaseReturn);
         // let x = await this.http.post(this.API_URL + 'Purchase/AddPurchaseReturn', PurchaseReturn).toPromise();
@@ -564,6 +701,13 @@ export class InventorysystemService {
     //PurchaseReturnItem
     GetPurchaseReturnItems(): Observable<PurchaseReturnItem> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturnItems');
+        // this.PurchaseReturnItem = await this.http.get<PurchaseReturnItem>(this.API_URL + 'Purchase/GetPurchaseReturnItems').toPromise();
+        // //console.log(this.PurchaseReturnItem);
+        // return this.PurchaseReturnItem;
+    }
+
+    GetPurchaseReturnItemsByCompany(companyId: number): Observable<PurchaseReturnItem> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturnItemsByCompany/' + companyId);
         // this.PurchaseReturnItem = await this.http.get<PurchaseReturnItem>(this.API_URL + 'Purchase/GetPurchaseReturnItems').toPromise();
         // //console.log(this.PurchaseReturnItem);
         // return this.PurchaseReturnItem;
@@ -600,6 +744,14 @@ export class InventorysystemService {
         // return this.Area;
     }
 
+    getAreasByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetAreasByCompany/' + companyId);
+    }
+
+    getAreasByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetAreasByUser/' + userId);
+    }
+
     AddArea(Area: Area): Observable<Area> {
         return this.ApiService.post(this.API_URL + 'Setup/AddArea', Area);
         // let x = await this.http.post(this.API_URL + 'Setup/AddArea', Area).toPromise();
@@ -624,6 +776,25 @@ export class InventorysystemService {
     //Brand
     GetBrands(): Observable<Brand> {
         return this.ApiService.get(this.API_URL + 'Setup/GetBrands');
+        // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
+        // //console.log(this.Brand);
+        // return this.Brand;
+    }
+
+    GetBrandsByCompany(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetBrandsByCompanyId/' + companyId);
+        // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
+        // //console.log(this.Brand);
+        // return this.Brand;
+    }
+
+    GetGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralBrands/' + companyId);
+
+    }
+
+    GetNonGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetNonGeneralBrands/' + companyId);
         // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
         // //console.log(this.Brand);
         // return this.Brand;
@@ -658,6 +829,13 @@ export class InventorysystemService {
         // return this.Comission;
     }
 
+    GetComissionsByCompany(companyId: number): Observable<Comission> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetComissionsByCompany/' + companyId);
+        // this.Comission = await this.http.get<Comission>(this.API_URL + 'Setup/GetComissions').toPromise();
+        // //console.log(this.Comission);
+        // return this.Comission;
+    }
+
     AddComission(Comission: Comission): Observable<Comission> {
         return this.ApiService.post(this.API_URL + 'Setup/AddComission', Comission);
         // let x = await this.http.post(this.API_URL + 'Setup/AddComission', Comission).toPromise();
@@ -682,6 +860,13 @@ export class InventorysystemService {
     //Customer
     GetCustomers(): Observable<Customer> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCustomers');
+        // this.Customer = await this.http.get<Customer>(this.API_URL + 'Setup/GetCustomers').toPromise();
+        // //console.log(this.Customer);
+        // return this.Customer;
+    }
+
+    GetCustomersByCompany(companyId: number): Observable<Customer> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomersByCompany/' + companyId);
         // this.Customer = await this.http.get<Customer>(this.API_URL + 'Setup/GetCustomers').toPromise();
         // //console.log(this.Customer);
         // return this.Customer;
@@ -716,6 +901,13 @@ export class InventorysystemService {
         // return this.CustomerAccount;
     }
 
+    GetCustomerAccountsByCompany(companyId: number): Observable<CustomerAccount> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomerAccountsByCompany/' + companyId);
+        // this.CustomerAccount = await this.http.get<CustomerAccount>(this.API_URL + 'Setup/GetCustomerAccounts').toPromise();
+        // //console.log(this.CustomerAccount);
+        // return this.CustomerAccount;
+    }
+
     AddCustomerAccount(CustomerAccount: CustomerAccount): Observable<CustomerAccount> {
         return this.ApiService.post(this.API_URL + 'Setup/AddCustomerAccount', CustomerAccount);
         // let x = await this.http.post(this.API_URL + 'Setup/AddCustomerAccount', CustomerAccount).toPromise();
@@ -740,6 +932,13 @@ export class InventorysystemService {
     //CustomerBank
     GetCustomerBanks(): Observable<CustomerBank> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCustomerBanks');
+        // this.CustomerBank = await this.http.get<CustomerBank>(this.API_URL + 'Setup/GetCustomerBanks').toPromise();
+        // //console.log(this.CustomerBank);
+        // return this.CustomerBank;
+    }
+
+    GetCustomerBanksByCompany(companyId: number): Observable<CustomerBank> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomerBanksByCompany/' + companyId);
         // this.CustomerBank = await this.http.get<CustomerBank>(this.API_URL + 'Setup/GetCustomerBanks').toPromise();
         // //console.log(this.CustomerBank);
         // return this.CustomerBank;
@@ -774,6 +973,13 @@ export class InventorysystemService {
         // return this.CustomerPricePickLevel;
     }
 
+    GetPricePickLevelsByCompany(companyId: number): Observable<CustomerPricePickLevel> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomerPricePickLevelsByCompany/' + companyId);
+        // this.CustomerPricePickLevel = await this.http.get<CustomerPricePickLevel>(this.API_URL + 'Setup/GetCustomerPricePickLevels').toPromise();
+        // //console.log(this.CustomerPricePickLevel);
+        // return this.CustomerPricePickLevel;
+    }
+
     AddCustomerPricePickLevel(CustomerPricePickLevel: CustomerPricePickLevel): Observable<CustomerPricePickLevel> {
         return this.ApiService.post(this.API_URL + 'Setup/AddCustomerPricePickLevel', CustomerPricePickLevel);
         // let x = await this.http.post(this.API_URL + 'Setup/AddCustomerPricePickLevel', CustomerPricePickLevel).toPromise();
@@ -798,6 +1004,13 @@ export class InventorysystemService {
     //CustomerType
     GetCustomerTypes(): Observable<CustomerType> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCustomerTypes');
+        // this.CustomerType = await this.http.get<CustomerType>(this.API_URL + 'Setup/GetCustomerTypes').toPromise();
+        // //console.log(this.CustomerType);
+        // return this.CustomerType;
+    }
+
+    GetCustomerTypesByCompany(companyId: number): Observable<CustomerType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomerTypesByCompany/' + companyId);
         // this.CustomerType = await this.http.get<CustomerType>(this.API_URL + 'Setup/GetCustomerTypes').toPromise();
         // //console.log(this.CustomerType);
         // return this.CustomerType;
@@ -832,6 +1045,13 @@ export class InventorysystemService {
         // return this.CustomerWarehouse;
     }
 
+    GetCustomerWarehousesByCompany(companyId: number): Observable<CustomerWarehouse> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomerWarehousesByCompany/' + companyId);
+        // this.CustomerWarehouse = await this.http.get<CustomerWarehouse>(this.API_URL + 'Setup/GetCustomerWarehouses').toPromise();
+        // //console.log(this.CustomerWarehouse);
+        // return this.CustomerWarehouse;
+    }
+
     AddCustomerWarehouse(CustomerWarehouse: CustomerWarehouse): Observable<CustomerWarehouse> {
         return this.ApiService.post(this.API_URL + 'Setup/AddCustomerWarehouse', CustomerWarehouse);
         // let x = await this.http.post(this.API_URL + 'Setup/AddCustomerWarehouse', CustomerWarehouse).toPromise();
@@ -854,11 +1074,23 @@ export class InventorysystemService {
     }
 
     //Distributor
+    GetDistributor(distributorId: any): Observable<Distributor> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributor/' + distributorId);
+    }
+
     GetDistributors(): Observable<Distributor> {
         return this.ApiService.get(this.API_URL + 'Setup/GetDistributors');
         // this.Distributor = await this.http.get<Distributor>(this.API_URL + 'Setup/GetDistributors').toPromise();
         // //console.log(this.Distributor);
         // return this.Distributor;
+    }
+
+    GetDistributorsByCompany(companyId: number): Observable<Distributor> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributorsByCompany/' + companyId);
+    }
+
+    getDistributorsByCompany(companyId: number): Observable<Distributor[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributorsByCompany/' + companyId);
     }
 
     AddDistributor(Distributor: Distributor): Observable<Distributor> {
@@ -868,11 +1100,23 @@ export class InventorysystemService {
         // return x;
     }
 
+    AddDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddDistributorWithTerritories', Distributor);
+    }
+
+    UpdateDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/UpdateDistributorWithTerritories', Distributor);
+    }
+
     UpdateDistributor(Distributor: Distributor): Observable<Distributor> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateDistributor', Distributor);
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateDistributor', Distributor).toPromise();
         // console.log(y);
         // return y;
+    }
+
+    deleteDistributor(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteDistributor/' + id);
     }
 
     DeleteDistributor(id): Observable<Distributor> {
@@ -885,6 +1129,33 @@ export class InventorysystemService {
     //Inventory
     GetInventories(): Observable<Inventory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventories');
+        // this.Inventory = await this.http.get<Inventory>(this.API_URL + 'Setup/GetInventories').toPromise();
+        // //console.log(this.Inventory);
+        // return this.Inventory;
+    }
+
+    GetInventoryList(ids : number[]): Observable<Inventory[]> {
+        return this.ApiService.post(this.API_URL + 'Setup/GetInventoryList', ids);
+    }
+
+    UpdateInventories(models : Inventory[]): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', models);
+    }
+
+    GetUnprocessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedInternalRequisitionRequestsByCompany/' + companyid);
+    }
+
+    GetCurrentMonthProcessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetCurrentMonthProcessedInternalRequisitionRequestsByCompany/' + companyid);
+    }
+
+    ProcessSalesIndentById(indentid : number) : Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Sales/ProcessSalesIndentById/' + indentid);
+    }
+
+    GetInventoriesByCompany(companyId: number): Observable<Inventory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoriesByCompany/' + companyId);
         // this.Inventory = await this.http.get<Inventory>(this.API_URL + 'Setup/GetInventories').toPromise();
         // //console.log(this.Inventory);
         // return this.Inventory;
@@ -919,6 +1190,13 @@ export class InventorysystemService {
         // return this.InventoryItem;
     }
 
+    GetInventoryItemsByCompany(companyId: number): Observable<InventoryItem> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItemsByCompany/' + companyId);
+        // this.InventoryItem = await this.http.get<InventoryItem>(this.API_URL + 'Setup/GetInventoryItems').toPromise();
+        // //console.log(this.InventoryItem);
+        // return this.InventoryItem;
+    }
+
     AddInventoryItem(InventoryItem: InventoryItem): Observable<InventoryItem> {
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem);
         // let x = await this.http.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem).toPromise();
@@ -943,6 +1221,13 @@ export class InventorysystemService {
     //InventoryItemCategory
     GetInventoryItemCategories(): Observable<InventoryItemCategory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCategories');
+        // this.InventoryItemCategory = await this.http.get<InventoryItemCategory>(this.API_URL + 'Setup/GetCategories').toPromise();
+        // //console.log(this.InventoryItemCategory);
+        // return this.InventoryItemCategory;
+    }
+
+    GetInventoryItemCategoriesByCompany(companyId: number): Observable<InventoryItemCategory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCategoriesByCompany/' + companyId);
         // this.InventoryItemCategory = await this.http.get<InventoryItemCategory>(this.API_URL + 'Setup/GetCategories').toPromise();
         // //console.log(this.InventoryItemCategory);
         // return this.InventoryItemCategory;
@@ -977,6 +1262,13 @@ export class InventorysystemService {
         // return this.ItemPriceStructure;
     }
 
+    GetItemPriceStructuresByCompany(companyId: number): Observable<ItemPriceStructure> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetItemPriceStructuresByCompany/' + companyId);
+        // this.ItemPriceStructure = await this.http.get<ItemPriceStructure>(this.API_URL + 'Setup/GetItemPriceStructures').toPromise();
+        // //console.log(this.ItemPriceStructure);
+        // return this.ItemPriceStructure;
+    }
+
     AddItemPriceStructure(ItemPriceStructure: ItemPriceStructure): Observable<ItemPriceStructure> {
         return this.ApiService.post(this.API_URL + 'Setup/AddItemPriceStructure', ItemPriceStructure);
         // let x = await this.http.post(this.API_URL + 'Setup/AddItemPriceStructure', ItemPriceStructure).toPromise();
@@ -1001,6 +1293,13 @@ export class InventorysystemService {
     //ModeOfPayment
     GetModeOfPayments(): Observable<ModeOfPayment> {
         return this.ApiService.get(this.API_URL + 'Setup/GetModeOfPayments');
+        // this.ModeOfPayment = await this.http.get<ModeOfPayment>(this.API_URL + 'Setup/GetModeOfPayments').toPromise();
+        // //console.log(this.ModeOfPayment);
+        // return this.ModeOfPayment;
+    }
+
+    GetModeOfPaymentsByCompany(companyId: number): Observable<ModeOfPayment> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetModeOfPaymentsByCompany/' + companyId);
         // this.ModeOfPayment = await this.http.get<ModeOfPayment>(this.API_URL + 'Setup/GetModeOfPayments').toPromise();
         // //console.log(this.ModeOfPayment);
         // return this.ModeOfPayment;
@@ -1035,6 +1334,13 @@ export class InventorysystemService {
         // return this.PackageType;
     }
 
+    GetPackageTypesByCompany(companyId: number): Observable<PackageType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackageTypesByCompany/' + companyId);
+        // this.PackageType = await this.http.get<PackageType>(this.API_URL + 'Setup/GetPackageTypes').toPromise();
+        // //console.log(this.PackageType);
+        // return this.PackageType;
+    }
+
     AddPackageType(PackageType: PackageType): Observable<PackageType> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackageType', PackageType);
         // let x = await this.http.post(this.API_URL + 'Setup/AddPackageType', PackageType).toPromise();
@@ -1059,6 +1365,13 @@ export class InventorysystemService {
     //PackCategory
     GetPackCategories(): Observable<PackCategory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackCategories');
+        // this.PackCategory = await this.http.get<PackCategory>(this.API_URL + 'Setup/GetPackCategories').toPromise();
+        // //console.log(this.PackCategory);
+        // return this.PackCategory;
+    }
+
+    GetPackCategoriesByCompany(companyId: number): Observable<PackCategory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackCategoriesByCompany/' + companyId);
         // this.PackCategory = await this.http.get<PackCategory>(this.API_URL + 'Setup/GetPackCategories').toPromise();
         // //console.log(this.PackCategory);
         // return this.PackCategory;
@@ -1093,6 +1406,13 @@ export class InventorysystemService {
         // return this.PackSize;
     }
 
+    GetPackSizesByCompany(companyId: number): Observable<PackSize> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackSizesByCompany/' + companyId);
+        // this.PackSize = await this.http.get<PackSize>(this.API_URL + 'Setup/GetPackSizes').toPromise();
+        // //console.log(this.PackSize);
+        // return this.PackSize;
+    }
+
     AddPackSize(PackSize: PackSize): Observable<PackSize> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackSize', PackSize);
         // let x = await this.http.post(this.API_URL + 'Setup/AddPackSize', PackSize).toPromise();
@@ -1117,6 +1437,13 @@ export class InventorysystemService {
     //PackType
     GetPackTypes(): Observable<PackType> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackTypes');
+        // this.PackType = await this.http.get<PackType>(this.API_URL + 'Setup/GetPackTypes').toPromise();
+        // //console.log(this.PackType);
+        // return this.PackType;
+    }
+
+    GetPackTypesByCompany(companyId: number): Observable<PackType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackTypesByCompany/' + companyId);
         // this.PackType = await this.http.get<PackType>(this.API_URL + 'Setup/GetPackTypes').toPromise();
         // //console.log(this.PackType);
         // return this.PackType;
@@ -1151,6 +1478,13 @@ export class InventorysystemService {
         // return this.ProductType;
     }
 
+    GetProductTypesByCompany(companyId: number): Observable<ProductType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetProductTypesByCompany/' + companyId);
+        // this.ProductType = await this.http.get<ProductType>(this.API_URL + 'Setup/GetProductTypes').toPromise();
+        // //console.log(this.ProductType);
+        // return this.ProductType;
+    }
+
     AddProductType(ProductType: ProductType): Observable<ProductType> {
         return this.ApiService.post(this.API_URL + 'Setup/AddProductType', ProductType);
         // let x = await this.http.post(this.API_URL + 'Setup/AddProductType', ProductType).toPromise();
@@ -1175,9 +1509,21 @@ export class InventorysystemService {
     //Region
     GetRegions(): Observable<Region> {
         return this.ApiService.get(this.API_URL + 'Setup/GetRegions');
+    }
+
+    GetRegionsByCompany(companyId: number): Observable<Region> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByCompany/' + companyId);
         // this.Region = await this.http.get<Region>(this.API_URL + 'Setup/GetRegions').toPromise();
         // //console.log(this.Region);
         // return this.Region;
+    }
+
+    getRegionsByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByCompany/' + companyId);
+    }
+
+    getRegionsByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByUser/' + userId);
     }
 
     AddRegion(Region: Region): Observable<Region> {
@@ -1201,9 +1547,91 @@ export class InventorysystemService {
         // return x;
     }
 
+    //City
+    getCities(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCities');
+    }
+
+    getCitiesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByCompany/' + companyId);
+    }
+
+    getCitiesByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByUser/' + userId);
+    }
+
+    addCity(City: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddCity', City);
+    }
+
+    updateCity(City: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateCity', City);
+    }
+
+    deleteCity(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteCity/' + id);
+    }
+
+    //Section
+    GetSections(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSections');
+    }
+
+    getSectionsByCompany(companyId: number) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByCompany/' + companyId);
+    }
+
+    getSectionsByTerritory(territoryId: number) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByTerritory/' + territoryId);
+    }
+
+    AddSection(Section: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddSection', Section);
+    }
+
+    UpdateSection(Section: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateSection', Section);
+    }
+
+    DeleteSection(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteSection/' + id);
+    }
+
+
+    //Subsection
+    GetSubsections(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSubsections');
+    }
+
+    getSubsectionsByCompany(companyId: number) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSubsectionsByCompany/' + companyId);
+    }
+
+    AddSubsection(Subsection: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddSubsection', Subsection);
+    }
+
+    UpdateSubsection(Subsection: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateSubsection', Subsection);
+    }
+
+    DeleteSubsection(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteSubsection/' + id);
+    }
+
+
+
+
     //ReturnReason
     GetReturnReasons(): Observable<ReturnReason> {
         return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasons');
+        // this.ReturnReason = await this.http.get<ReturnReason>(this.API_URL + 'Setup/GetReturnReasons').toPromise();
+        // //console.log(this.ReturnReason);
+        // return this.ReturnReason;
+    }
+
+    GetReturnReasonsByCompany(companyId: number): Observable<ReturnReason> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasonsByCompany/' + companyId);
         // this.ReturnReason = await this.http.get<ReturnReason>(this.API_URL + 'Setup/GetReturnReasons').toPromise();
         // //console.log(this.ReturnReason);
         // return this.ReturnReason;
@@ -1238,6 +1666,13 @@ export class InventorysystemService {
         // return this.SalesPerson;
     }
 
+    GetSalesPeopleByCompany(companyId: number): Observable<SalesPerson> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSalesPeopleByCompany/' + companyId);
+        // this.SalesPerson = await this.http.get<SalesPerson>(this.API_URL + 'Setup/GetSalesPeople').toPromise();
+        // //console.log(this.SalesPerson);
+        // return this.SalesPerson;
+    }
+
     AddSalesPerson(SalesPerson: SalesPerson): Observable<SalesPerson> {
         return this.ApiService.post(this.API_URL + 'Setup/AddSalesPerson', SalesPerson);
         // let x = await this.http.post(this.API_URL + 'Setup/AddSalesPerson', SalesPerson).toPromise();
@@ -1262,6 +1697,13 @@ export class InventorysystemService {
     //Supplier
     GetSuppliers(): Observable<Supplier> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
+        // this.Supplier = await this.http.get<Supplier>(this.API_URL + 'Setup/GetSuppliers').toPromise();
+        // //console.log(this.Supplier);
+        // return this.Supplier;
+    }
+
+    GetSuppliersByCompany(companyId: number): Observable<Supplier> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSuppliersByCompany/' + companyId);
         // this.Supplier = await this.http.get<Supplier>(this.API_URL + 'Setup/GetSuppliers').toPromise();
         // //console.log(this.Supplier);
         // return this.Supplier;
@@ -1296,6 +1738,13 @@ export class InventorysystemService {
         // return this.Tax;
     }
 
+    GetTaxesByCompany(companyId: number): Observable<Tax> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTaxesByCompany/' + companyId);
+        // this.Tax = await this.http.get<Tax>(this.API_URL + 'Setup/GetTaxes').toPromise();
+        // //console.log(this.Tax);
+        // return this.Tax;
+    }
+
     AddTax(Tax: Tax): Observable<Tax> {
         return this.ApiService.post(this.API_URL + 'Setup/AddTax', Tax);
         // let x = await this.http.post(this.API_URL + 'Setup/AddTax', Tax).toPromise();
@@ -1325,6 +1774,18 @@ export class InventorysystemService {
         // return this.Territory;
     }
 
+    getTerritoriesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByCompany/' + companyId);
+    }
+
+    getTerritoriesByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByUser/' + userId);
+    }
+
+    getTerritoriesByDistributorId(distributorId: any): Observable<Territory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByDistributor/' + distributorId);
+    }
+
     AddTerritory(Territory: Territory): Observable<Territory> {
         return this.ApiService.post(this.API_URL + 'Setup/AddTerritory', Territory);
         // let x = await this.http.post(this.API_URL + 'Setup/AddTerritory', Territory).toPromise();
@@ -1349,6 +1810,13 @@ export class InventorysystemService {
     //Transport
     GetTransports(): Observable<Transport> {
         return this.ApiService.get(this.API_URL + 'Setup/GetTransports');
+        // this.Transport = await this.http.get<Transport>(this.API_URL + 'Setup/GetTransports').toPromise();
+        // //console.log(this.Transport);
+        // return this.Transport;
+    }
+
+    GetTransportsByCompany(companyId: number): Observable<Transport> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTransportsByCompany/' + companyId);
         // this.Transport = await this.http.get<Transport>(this.API_URL + 'Setup/GetTransports').toPromise();
         // //console.log(this.Transport);
         // return this.Transport;
@@ -1383,6 +1851,13 @@ export class InventorysystemService {
         // return this.Unit;
     }
 
+    GetUnitsByCompany(companyId: number): Observable<Unit> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetUnitsByCompany/' + companyId);
+        // this.Unit = await this.http.get<Unit>(this.API_URL + 'Setup/GetUnits').toPromise();
+        // //console.log(this.Unit);
+        // return this.Unit;
+    }
+
     AddUnit(Unit: Unit): Observable<Unit> {
         return this.ApiService.post(this.API_URL + 'Setup/AddUnit', Unit);
         // let x = await this.http.post(this.API_URL + 'Setup/AddUnit', Unit).toPromise();
@@ -1402,5 +1877,75 @@ export class InventorysystemService {
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteUnit/' + id).toPromise();
         // console.log(x);
         // return x;
+    }
+
+    getGeneralSkus() : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUs');
+    }
+
+    getGeneralSkusByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUsByCompany/' + companyid);
+    }
+
+    addGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddGeneralSKU', model);
+    }
+
+    updateGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateGeneralSKU', model);
+    }
+
+    deleteGeneralSku(id : number) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteGeneralSKU/' + id);
+    }
+
+    /***************************************For eTracker Reporting **********************************/
+
+    getCitiesByUserAndRegion(regionid: number, userid: number) {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByUserAndRegion/' + regionid + '/' + userid);
+    }
+
+    getAreasByUserAndCity(cityid: number, userid: number): Observable<Area[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByUserAndCity/' + cityid + '/' + userid);
+    }
+
+    getDistributorsByUserAndArea(areaid: number, userid: number): Observable<Distributor[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByUserAndArea/' + areaid + '/' + userid);
+    }
+
+    getTerritoriesByUserAndDistributor(distributorId: number, userid: number): Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByUserAndDistributor/' + distributorId + '/' + userid);
+    }
+
+    getSectionsByUserAndTerritory(territoryId: number, userid: number): Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSectionsByUserAndTerritory/' + territoryId + '/' + userid);
+    }
+
+    getSubsectionsBySection(sectionid: number): Observable<any[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSubsectionsBySection/' + sectionid);
+    }
+
+    getRegionByCity(cityid: number): Observable<Region> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetRegionByCity/' + cityid);
+    }
+
+    getCityByArea(areaid: number): Observable<City> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCityByArea/' + areaid);
+    }
+
+    getCitiesByRegion(regionid: number) {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByRegion/' + regionid);
+    }
+
+    getAreasByCity(cityid: number): Observable<Area[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByCity/' + cityid);
+    }
+
+    getDistributorsByArea(areaid: number): Observable<Distributor[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByArea/' + areaid);
+    }
+
+    getTerritoriesByDistributor(distributorId: number): Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByDistributor/' + distributorId);
     }
 }

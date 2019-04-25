@@ -16,7 +16,7 @@ import { Reference } from '../../../core/Models/HIMS/reference';
 
 export class RegistrationComponent implements OnInit {
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
@@ -36,16 +36,16 @@ export class RegistrationComponent implements OnInit {
     public visitnature: any;
     id: number;
     public Patient: any = '';
-    private forevent: File = null;
-    private Documentupload: File;
-    private patientId: any;
+    public forevent: File = null;
+    public Documentupload: File;
+    public patientId: any;
     submitted = false;
     spousesubmitted = false;
     referencesubmitted = false;
     documentsumitted = false;
     public getreferncdata: any;
 
-    constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public Location: Location, public cd: ChangeDetectorRef, public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             //  'ReferredBy': [''],
@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
             'DOB': [''],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': [''],
+            'NIC': ['' ],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']
@@ -86,14 +86,14 @@ export class RegistrationComponent implements OnInit {
             'Occupation': [''],
             'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)]],
+            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] , Validators.pattern('[6-9]\\d{9}]')],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
             'OfficeTel': [''],
             'ForeignAddress': [''],
-            'Country': ['', Validators.required],
-            'City': ['', Validators.required],
+            'Country': ['Pakistan', Validators.required],
+            'City': ['Karachi', Validators.required],
             'State': [''],
             'PostalCode': [''],
             'Initial': [''],
@@ -144,8 +144,8 @@ export class RegistrationComponent implements OnInit {
                         State: Patient.state,
                         PostalCode: Patient.postalCode,
                         Initial: Patient.initial,
-                        PrivatePatientCons: Patient.privatePatientCons,
-                        PrivateHospital: Patient.privateHospital,
+                        PrivatePatientCons: Patient.publicPatientCons,
+                        PrivateHospital: Patient.publicHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                         patientReferenceId: Patient.patientReferenceId,
 
@@ -190,8 +190,13 @@ export class RegistrationComponent implements OnInit {
             console.log(this.getreferncdata);
         });
 
-        await this.PatientServiceobj.GetVisitNatures();
-        this.visitnature = this.PatientServiceobj.visitNatures;
+        // await this.PatientServiceobj.GetVisitNatures();
+        // this.visitnature = this.PatientServiceobj.visitNatures;
+
+        this.PatientServiceobj.getVisitNatures().subscribe(res =>{
+            this.visitnature = res;
+            console.log(this.visitnature);
+        });
     }
 
     async addreference(value) {
@@ -263,7 +268,7 @@ export class RegistrationComponent implements OnInit {
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
-        this.patientId = await this.PatientServiceobj.addPatient(value);
+         this.patientId = await this.PatientServiceobj.addPatient(value);
         //  console.log(this.patientId);
         this.displayToastSuccess("Patient Registered");
         //  this.patientForm.reset();
@@ -430,7 +435,6 @@ export class RegistrationComponent implements OnInit {
         await this.PatientServiceobj.addDocument(f, this.id).toPromise();
 
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe(resp => this.documents = resp);
-
     }
     // <end work for image uploading
 
@@ -458,10 +462,19 @@ export class RegistrationComponent implements OnInit {
     }
 
 
-    async deleteDocument(id, i) {
-        //    console.log(i)
-        await this.PatientServiceobj.deleteDocument(id);
-        this.documents.splice(i, 1)
+    // async deleteDocument(id, i) {
+    //          console.log(i)
+    //     await this.PatientServiceobj.deleteDocument(id);
+    //     this.documents.splice(i, 1)
+    // }
+    
+    deleteDocument(id , i ){
+        console.log(id);
+        this.PatientServiceobj.deletePatientDocument(id).subscribe(res=>{
+            console.log(res);
+ 
+              this.documents.splice(i, 1)
+        });
     }
 
 
@@ -490,8 +503,8 @@ export class RegistrationComponent implements OnInit {
         this.toastr.error(message);
     }
 
-    private Other: string = 'NoOther';
-    private disable: boolean = true;
+    public Other: string = 'NoOther';
+    public disable: boolean = true;
 
     // valueChanged(e){
     //     console.log(e);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../../../core';
+import { SetupService, PayrollSetupService } from '../../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-salarystructuredetail',
@@ -8,37 +9,68 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class SalarystructuredetailComponent implements OnInit {
 
+    public salaryStructureId: any;
     public salaryStructureDetail: any;
     public salaryCalculationtype: any;
     public benefit: any;
     public allowance: any;
-    public salarystructure: any;
+    public payrollTypes: any;
+    public groups: any;
+    public salarystructures: any;
 
-    constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public setupservice: SetupService,public activatedRoute: ActivatedRoute, public router: Router, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
+
+        this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
+
+        this.groups = await this.setupservice.getAllGroups();
+
         this.salaryStructureDetail = await this.payrollsetupservice.getSalaryStructureDetails();
 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
         this.benefit = await this.payrollsetupservice.getBenefits();
 
-        this.allowance = await this.payrollsetupservice.getAllowances();
+        this.allowance = await this.payrollsetupservice.getAllowanceDeductions();
 
-        this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
+        this.salarystructures = await this.payrollsetupservice.getSalaryStructures();
     }
 
-    async addSalaryStructureDetail(value) {
-        await this.payrollsetupservice.addSalaryStructureDetail(value.data);
-        this.salaryStructureDetail = await this.payrollsetupservice.getSalaryStructureDetails();
+    onToolbarPreparing(e) {
+        e.toolbarOptions.items.unshift(
+            {
+                location: 'after',
+                widget: 'dxButton',
+                options: {
+                    icon: 'add',
+                    onClick: this.addsalarystructure.bind(this)
+                }
+            });
     }
 
-    async updateSalaryStructureDetail(value) {
-        await this.payrollsetupservice.updateSalaryStructureDetail(value);
+
+    contentReady(e) {
+        if (!e.component.getSelectedRowKeys().length)
+            e.component.selectRowsByIndexes(-1);
     }
 
-    async deleteSalaryStructureDetail(value) {
-        await this.payrollsetupservice.deleteSalaryStructureDetail(value.key);
+    public dataToUpdate: any = null;
+
+    selectionChanged(e) {
+        e.component.collapseAll(-0);
+        e.component.expandRow(e.currentSelectedRowKeys[0]);
+        console.log(e);
     }
 
+
+    addsalarystructure() {
+        this.router.navigate(['/hrm/payroll/salarystructure']); 
+    }
+
+
+    getData(d) {
+        this.salaryStructureId = d.key;
+        this.router.navigate(['hrm/payroll/update-salarystrucrure/' + this.salaryStructureId]);
+    }
 }

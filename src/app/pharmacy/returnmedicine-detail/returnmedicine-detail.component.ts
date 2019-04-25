@@ -8,11 +8,11 @@ import { PharmacyService } from '../../core';
 })
 export class ReturnmedicineDetailComponent implements OnInit {
 
-    private SalesReturn: any;
-    private Inventory: any;
-    private SalesReturnItem: any;
+    public SalesReturn: any;
+    public Inventory: any;
+    public SalesReturnItem: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

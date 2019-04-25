@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { PatientService } from '../../../../app/core';
 
@@ -12,14 +12,14 @@ export class ClinicalRecordsListComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
 
-    private clinicalRecords: any;
+    public clinicalRecords: any;
 
-    constructor(private clinicalRecordService: PatientclinicalrecordService,
-        private patientService: PatientService) {
+    constructor(public clinicalRecordService: PatientclinicalrecordService,
+        public patientService: PatientService) {
 
     }
 

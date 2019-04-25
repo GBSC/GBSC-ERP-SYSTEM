@@ -13,15 +13,15 @@ import { Router } from '@angular/router';
     styleUrls: ['./purhcaseorder-view.component.scss']
 })
 export class PurhcaseorderViewComponent implements OnInit {
-    private PurchaseOrders: PurchaseOrder;
-    private DetailPO: PurchaseOrder;
-    private PurchaseOrder: any;
+    public PurchaseOrders: any;
+    public DetailPO: any;
+    public PurchaseOrder: any;
 
-    private PurchaseOrderViewForm: FormGroup;
+    public PurchaseOrderViewForm: FormGroup;
 
     public date: any;
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public router: Router) {
 
         this.PurchaseOrderViewForm = this.formBuilder.group({
             orderDate: ['']
@@ -32,9 +32,9 @@ export class PurhcaseorderViewComponent implements OnInit {
     ngOnInit() {
         // this.PharmacyService.GetPurchaseOrders().subscribe((res: PurchaseOrder) => this.PurchaseOrders = res);
         this.date = this.formatDate(new Date());
-        this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res: PurchaseOrder) => {
+        this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res: any) => {
             this.PurchaseOrder = res;
-            // console.log(this.PurchaseOrder);
+              console.log(this.PurchaseOrder);
             // console.log(this.formatDate(new Date()));
         });
 
@@ -65,7 +65,7 @@ export class PurhcaseorderViewComponent implements OnInit {
 
     async onsubmit(value) {
         // console.log(value)
-        this.PharmacyService.GetPurchaseOrdersByMonth(value.orderDate).subscribe((res: PurchaseOrder) => {
+        this.PharmacyService.GetPurchaseOrdersByMonth(value.orderDate).subscribe((res: any) => {
             this.PurchaseOrder = res;
         });
     }

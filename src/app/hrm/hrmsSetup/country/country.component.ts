@@ -19,9 +19,9 @@ export class CountryComponent implements OnInit {
     }
 
 
-    addNewCountry(Country) {
-        this.hrmService.addCountry(Country.data)
-        this.countries = this.hrmService.getAllCountries();
+    async addNewCountry(Country) {
+        await this.hrmService.addCountry(Country.data)
+        this.countries = await this.hrmService.getAllCountries();
     }
 
     UpdatingCountry(value) {
@@ -29,12 +29,12 @@ export class CountryComponent implements OnInit {
         this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    UpdateCountry() {
-        this.hrmService.updateCountry(this.updatingModel);
+    async UpdateCountry() {
+        await this.hrmService.updateCountry(this.updatingModel);
     }
 
-    deleteCountry(countr) {
-        this.hrmService.DeleteCountry(countr.key);
+    async deleteCountry(countr) {
+        await this.hrmService.DeleteCountry(countr.key);
     }
 
 

@@ -8,6 +8,7 @@ import { AttendancesetupService } from '../../../../core';
 })
 export class AttendanceflagComponent implements OnInit {
 
+    public updatingModel: any;
     public attendanceflag: any;
     public flagcategory: any;
     public flagEffecttypes: any;
@@ -17,22 +18,34 @@ export class AttendanceflagComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+         this.attendancesetupservice.getAttendanceFlags().subscribe(rsp => {
+            this.attendanceflag = rsp
+            
+        });
 
         this.flagcategory = await this.attendancesetupservice.getFlagCategories();
 
         this.flagEffecttypes = await this.attendancesetupservice.getFlagEffectTypes();
 
-        this.flagvalue = await this.attendancesetupservice.getFlagValues();
+        this.attendancesetupservice.getFlagValues().subscribe(res => {
+            this.flagvalue = res
+            
+        });
     }
 
-    async addattendanceflag(value) {
-        await this.attendancesetupservice.addAttendanceFlag(value.data);
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+     addattendanceflag(value) {
+         this.attendancesetupservice.addAttendanceFlag(value.data).subscribe(rs => { console.log(rs);});
+        this.attendancesetupservice.getAttendanceFlags().subscribe(resp => {
+            this.attendanceflag = resp 
+        });   
+     }
+
+    updatingattendanceflag(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    async updateattendanceflag(value) {
-        await this.attendancesetupservice.updateAttendanceFlag(value);
+    async updateattendanceflag() {
+        await this.attendancesetupservice.updateAttendanceFlag(this.updatingModel);
     }
 
     async deleteattendanceflag(value) {

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -79,7 +80,6 @@ import { DepartmentComponent } from '../hrm/department/department.component';
 import { CompanyComponent } from '../hrm/company/company.component';
 import { FeatureComponent } from '../hrm/feature/feature.component';
 import { ModuleComponent } from '../hrm/module/module.component';
-import { RoleComponent } from '../hrm/role/role.component';
 import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
 import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
 import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
@@ -132,15 +132,71 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
+import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
+import { ReportviewerComponent } from './reportviewer/reportviewer.component';
+import { EmployeeDetailComponent } from './Reports/employee-detail/employee-detail.component';
+import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
+import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
+import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component'; 
+import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
+import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component'; 
+import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
+import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
+import { MonthlyOvertimeComponent } from './Reports/monthly-overtime/monthly-overtime.component';
+import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
+import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
+import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
+import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
+import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/dependantsrelation.component';
+import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
+import { AttendanceapproveComponent } from './attendance/attendanceapprove/attendanceapprove.component';
+import { CalendarComponent } from './attendance/calendar/calendar.component';
+import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance.component';
+import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
+import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+import { LeaveDetailComponent } from './Reports/Leave/leave-detail/leave-detail.component';
+import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
+import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component';
+import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
+import { DepartmentWiseAttendanceComponent } from './Reports/department-wise-attendance/department-wise-attendance.component';
+import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-attendance.component';
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
+import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
+import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
+import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DxChartModule } from 'devextreme-angular/ui/chart';
+import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+// import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        DevExtremeModule,
+        DxButtonModule,
+        DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         HttpClientModule,
+        DxChartModule,
+        DxPieChartModule,
         routing
     ],
     declarations: [
@@ -152,7 +208,6 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         CompanyComponent,
         FeatureComponent,
         ModuleComponent,
-        RoleComponent,
         RolesandprivilegesComponent,
 
         HrmSetupHomeComponent,
@@ -218,6 +273,8 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         ProratematrixComponent,
         LeaveclosingComponent,
         LeaveapprovalComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent,
 
         /* Employee Registration */
 
@@ -287,9 +344,56 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
         GratuitydetailComponent,
-
+        AttendanceRuleDetailComponent,
+        ReportviewerComponent,
+        EmployeeDetailComponent,
+        EmployeecardComponent,
+        ListOfJoinnersComponent,
+        ListOfLeaversComponent,
+         InOutDurationComponent,
+        SalarypaymentComponent,
+         CreateAttendancerequestComponent,
+        EmployeelistComponent,
+        MonthlyOvertimeComponent,
+        UserrosterattendanceComponent,
+        ViewShiftComponent,
+        GrossSalaryComponent,
+        LoansummaryComponent,
+        DependantsrelationComponent,
+        BanksComponent,
+        AttendanceapproveComponent,
+        CalendarComponent,
+        LeavebalanceComponent,
+        LeaveledgerComponent,
+        UpdateassignrosterComponent,
+        AssignRosterExcelsheetComponent,
+        MissingEntriesComponent,
+        DailyattendanceandleaveComponent,
+        DepartmentWiseAttendanceComponent,
+        DailyAttendanceComponent,
+        LeavesetupMasterComponent,
+        AttendancesetupMasterComponent,
+        HrsetupMasterComponent,
+        StopsalarydetailComponent,
+        PayrollsetupMasterComponent,
+        TaxsetupMasterComponent,
+        LoansetupMasterComponent,
+        OvertimesetupMasterComponent,
+        CompanysetupMasterComponent,
+        ViewfundsetupComponent,
+        AllowanceDeductionDetailComponent,
+        IncometaxRuleDetailComponent,
+        MonthlySalaryProcessComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent,
+        MonthlyPayrollProcessComponent,
+        DashboardComponent
     ],
-    exports: []
+
+    // providers: [IgxExcelExporterService],
+
+    exports: [],
+
 
 })
 export class HrmModule { }

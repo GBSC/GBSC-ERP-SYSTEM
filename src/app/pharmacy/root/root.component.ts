@@ -16,7 +16,7 @@ declare let mUtil: any;
 })
 export class RootComponent implements OnInit {
 
-    constructor(private _script: ScriptLoaderService, private _router: Router) { }
+    constructor(public _script: ScriptLoaderService, public _router: Router) { }
 
     ngOnInit() {
         this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/demo7/base/scripts.bundle.js'], true)

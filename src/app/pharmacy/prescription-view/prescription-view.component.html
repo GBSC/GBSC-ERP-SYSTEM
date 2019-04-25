@@ -11,7 +11,7 @@
     
         </div>
         <div class="m-portlet__body">
-            <form class="m-form m-form--label-align-left- m-form--state-"  [formGroup]="PresciptionForm">
+            <!-- <form class="m-form m-form--label-align-left- m-form--state-"  > -->
               <div class="m-portlet__body">
                   <div  class="row">
                       <div class="col-md-3">
@@ -19,7 +19,7 @@
                               <label for="exampleInputEmail1">
                                Date :
                               </label>
-                              <input type="date" #Date formControlName="Date" [value]="date || ''" class="form-control m-input">
+                              <input type="date" #Date [value]="date || ''" class="form-control m-input">
                             </div>
                       </div>
                       <div class="col-md-7"></div>
@@ -30,7 +30,7 @@
                       </div>
                   </div>
               </div>
-            </form>
+            <!-- </form> -->
           <div class="row">
             <div class="col-md-12">
               <dx-data-grid [dataSource]="PrescriptionsViews" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
@@ -46,7 +46,7 @@
                 <dxo-selection mode="single"></dxo-selection>
                 <dxi-column dataField="salesIndentNumber" caption="Prescription Code"></dxi-column>
                 <dxi-column dataField="consultantName" caption="Consultant" [width]="'auto'"></dxi-column>
-                <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
+                <dxi-column dataField="issueDate"  dataType="date" caption="Issue Date"></dxi-column>
                 <dxi-column dataField="customerCode" caption="MRN"></dxi-column>
                 <dxi-column dataField="customerName" caption="Patient"></dxi-column>
                 <dxi-column dataField="customerSecondName" caption="Spouse"></dxi-column>
@@ -68,9 +68,9 @@
                     <dxi-column dataField="totalTradeOfferPerItem" caption="totalTradeOfferPerItem"></dxi-column>
                     <dxi-column dataField="totalTradePricePerItem" caption="totalTradePricePerItem"></dxi-column>
                     <dxi-column dataField="tradeOfferPricePerUnit" caption="tradeOfferPricePerUnit"></dxi-column>
-                    <dxi-column dataField="treatmentStart" dataType="date" caption="treatmentStart"></dxi-column>
+                    <dxi-column dataField="treatmentStart"  dataType="date" caption="treatmentStart"></dxi-column>
                     <dxi-column dataField="treatmentTimeInDays" caption="treatmentTimeInDays"></dxi-column>
-                    <dxi-column dataField="treatmentEnd" dataType="date" caption="treatmentEnd"></dxi-column>
+                    <dxi-column dataField="treatmentEnd"  dataType="date" caption="treatmentEnd"></dxi-column>
                   </dx-data-grid>
                 </div>
               </dx-data-grid>

@@ -10,9 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProcedureComponent implements OnInit {
 
-    private procedure: any;
+    public procedure: any;
 
-    constructor(public toastr: ToastrService, private PatientServiceobj: PatientService) { }
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService) { }
 
     ngOnInit() {
 

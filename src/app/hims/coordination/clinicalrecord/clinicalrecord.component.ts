@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent, DxLookupComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { PatientService, ConsultantService } from '../../../../app/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
@@ -18,29 +18,29 @@ export class ClinicalrecordComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private protocols: any;
-    private medicines: any;
-    private id: number;
-    private drugs: any[];
-    private clinicalRecord: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public protocols: any;
+    public medicines: any;
+    public id: number;
+    public drugs: any[];
+    public clinicalRecord: any;
 
-    private clinicalrecordform: FormGroup;
+    public clinicalrecordform: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private medicineService: MedicineService,
-        private protocolService: ProtocolService,
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public medicineService: MedicineService,
+        public protocolService: ProtocolService,
         public router: Router,
-        private route: ActivatedRoute,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.clinicalrecordform = this.formBuilder.group({
             'CycleNumber': ['', Validators.required],

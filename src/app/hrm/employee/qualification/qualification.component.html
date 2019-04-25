@@ -1,26 +1,18 @@
-<!--  -->
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
 
-<div class="row">
-    <div class="col-xl-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Education Detail</h3>
-            </div>
-          </div>
-        </div>
+              <h4>Education Detail</h4>
+            
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
                [dataSource]="qualifications"
                keyExpr="universityId" 
+               [showBorders]="true"
                (onRowInserted)="addQualification($event)"
-               (onRowUpdated)="updateQualification()"
-               (onRowUpdating)="updatingQualification($event)">
+               (onRowUpdated)="updateQualification($event)">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Education Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Education Detail" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,21 +22,20 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="name"></dxi-column> 
-                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="grade"></dxi-column>
-                <dxi-column dataField="courses"></dxi-column>
-                <dxi-column dataField="description"></dxi-column>
+                <dxi-column dataField="name" caption="Institute"></dxi-column> 
                 <dxi-column dataField="degreeId" caption="Degree">
                     <dxo-lookup [dataSource]="degrees" displayExpr="name" valueExpr="degreeId">
                     </dxo-lookup> 
               </dxi-column> 
+              <dxi-column dataField="grade"></dxi-column>
+                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="courses" caption="Faculty"></dxi-column>
+                <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+ 
  

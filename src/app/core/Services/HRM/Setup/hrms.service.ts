@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
+import { Observable, observable } from 'rxjs';
+import { City } from '../../../../core/Models/HRM/city';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 
 export class HrmsService {
 
-    private setupUrl: string = "SystemAdmin/api/Setup";
-
-    constructor(private ApiService: ApiService) {
+    public setupUrl: string = "SystemAdmin/api/Setup";
+    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup";
+    constructor(public ApiService: ApiService,public httpService : HttpClient) {
     }
 
     async getAllCountries() {
@@ -17,18 +20,23 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
 
-    // DEMO ONLY, you can find working methods below
+    getCountriesByCompanyId(compid : number) : Observable<any[]> {
+
+        return this.ApiService.get(this.setupUrl + '/GetCountriesByCompanyId/' + compid);
+    }
+ 
     async addCountry(data) {
-        return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
+        // return await this.httpService.post('http://localhost:58090/api/setup/AddCountry', data).toPromise();
+        return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
 
     }
 
     async updateCountry(data) {
-        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
+        return await this.httpService.put(this.setupUrl2 + '/UpdateCountry', data).toPromise();
     }
 
     async DeleteCountry(countryId) {
-        return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
+        return await this.httpService.delete(this.setupUrl2 + '/DeleteCountry/' + countryId).toPromise();
     }
 
     async getAllCities() {
@@ -36,17 +44,26 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
-    async addCity(data) {
-        return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
+    getCitiesByCompanyId(companyId: any) {
+
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
+    GetCitiesByCompanyId(companyId: any): Observable<City[]> {
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
+    async addCity(data) { 
+        return await this.httpService.post(this.setupUrl2 + '/AddCity', data).toPromise();
 
     }
 
-    async updateCity(data) {
-        return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
+    updateCity(data) {
+        return this.httpService.put(this.setupUrl2 + '/UpdateCity', data);
     }
 
-    async deleteCity(cityId) {
-        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
+    deleteCity(cityId) {
+        return this.httpService.delete(this.setupUrl2 + '/DeleteCity/'+ cityId);
     }
 
 
@@ -55,18 +72,21 @@ export class HrmsService {
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
 
-    // DEMO ONLY, you can find working methods below
-    async addDepartment(data) {
+    GetAllDepartments() : Observable<any[]> {
 
-        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data).toPromise();
+        return this.ApiService.get(`${this.setupUrl}/GetDepartments`)
     }
 
-    async updateDepartment(data) {
-        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data.key).toPromise();
+    GetAllDepartmentsByCompany(companyid : number) : Observable<any[]> {
+
+        return this.ApiService.get(`${this.setupUrl}/GetDepartmentsByCompanyId/` + companyid)
     }
 
-    async DeleteDepartment(data) {
+    GetBranchesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranchesByCompanyId/` + companyid)
+    }
 
-        return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
+    GetBranches() : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranches`)
     }
 }

@@ -51,6 +51,7 @@ import { FcConsultationMovementSummaryComponent } from './Reports/fc-consultatio
 import { SemenConsultationMovementSummaryComponent } from './Reports/semen-consultation-movement-summary/semen-consultation-movement-summary.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { DailyProcedureComponent } from './daily-procedure/daily-procedure.component';
+import { DailySemenAnalysisViewComponent } from './daily-semen-analysis-view/daily-semen-analysis-view.component';
 import { BloodConsultationMovementSummaryComponent } from './Reports/blood-consultation-movement-summary/blood-consultation-movement-summary.component';
 
 
@@ -64,6 +65,7 @@ import { SemenPatientReferenceSummaryComponent } from './Reports/semen-patient-r
 import { BloodTestReferenceSummaryComponent } from './Reports/blood-test-reference-summary/blood-test-reference-summary.component';
 import { FcPatientReferenceSummaryComponent } from './Reports/fc-patient-reference-summary/fc-patient-reference-summary.component';
 import { NewFcClinicPatientSummaryComponent } from './Reports/new-fc-clinic-patient-summary/new-fc-clinic-patient-summary.component';
+import { DailySemenAnalysisSheetComponent } from './Reports/daily-semen-analysis-sheet/daily-semen-analysis-sheet.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -101,10 +103,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
             { path: 'dailysemenanalysis', component: DailySemenAnalysisComponent },
             { path: 'dailyprocedure', component: DailyProcedureComponent },
+            { path: 'dailysemenanalysisview', component: DailySemenAnalysisViewComponent },
+
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
-                path: 'patient',
+                path: 'setup',
                 children: [
                     { path: 'testcategory', component: TestCategoryComponent },
                     { path: 'testtype', component: TestTypeComponent },
@@ -138,6 +142,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'fcpatientreferencesummary', component: FcPatientReferenceSummaryComponent },
                     { path: 'bloodtestreferencesummary', component: BloodTestReferenceSummaryComponent },
                     { path: 'newfcclinicpatientsummary', component: NewFcClinicPatientSummaryComponent },
+                    { path: 'dailysemenanalysissheet', component: DailySemenAnalysisSheetComponent },
                     { path: 'fcproceduremovementsummary', component: FcProcedureMovementSummaryComponent }
 
 

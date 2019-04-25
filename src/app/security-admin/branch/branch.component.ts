@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService, HrmsService } from '../../core';
+import { Branch } from '../../core/Models/HRM/branch';
+import { City } from '../../core/Models/HRM/city';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
     selector: 'app-branch',
@@ -8,32 +11,52 @@ import { SystemAdministrationService } from '../../core';
 })
 export class BranchComponent implements OnInit {
     pattern: any = /^\d{3}-\d{8}$/i;
-    public com: any;
-    public branches: any;
+    public cities: any[] = [];
+    public branches: any[] = [];
+    public updatingModel: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public hrmService: HrmsService, public authService : AuthService) { }
 
     async ngOnInit() {
 
-        this.branches = await this.SystemAdministrationServiceobj.getBranches();
+        this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
 
-        this.com = await this.SystemAdministrationServiceobj.getCompanies();
+        this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
+            this.cities = res;
+        });
     }
 
     async addBranches(value) {
-        await this.SystemAdministrationServiceobj.addBranches(value.key);
-        this.branches = await this.SystemAdministrationServiceobj.getBranches();
+        // console.log(value);
+        
+        value.data.companyId = this.authService.getUserCompanyId(); 
+        await this.SystemAdministrationServiceobj.addBranch(value.data).subscribe(res => {
+            
+            this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+                this.branches = res;
+            });
+        }); 
     }
 
-    async updateBranch(value) {
-        await this.SystemAdministrationServiceobj.updateBranch(value.key);
+    async updatingBranch(value) {
+        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel.companyId = this.authService.getUserCompanyId();
     }
 
-    async deletBranch(value) {
-        await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
+    async updateBranch() {
+        await this.SystemAdministrationServiceobj.updateBranch(this.updatingModel).subscribe(r => {
+            console.log(r);
+            
+        });
     }
 
-
-
-
+     deletBranch(value) {
+        console.log(value)
+         this.SystemAdministrationServiceobj.deletBranch(value.key).subscribe(res => {
+            console.log(res);
+            
+        });
+    }
 }

@@ -2,6 +2,7 @@
     <div class="m-portlet__head">
       <div class="m-portlet__head-caption">
         <div class="m-portlet__head-title">
+            <span class="m-portlet__head-icon"><i class="flaticon-share"></i></span> 
           <h3 class="m-portlet__head-text">Region</h3>
         </div>
       </div>
@@ -11,9 +12,9 @@
   <div class="m-portlet__body">
   <div class="row">
     <div class="col-md-12"> 
-        <dx-data-grid id="gridContainer" [dataSource]="Regions" keyExpr="regionId" (onRowUpdating)="UpdateModel($event)" (onRowInserted)="AddRegion($event)" (onRowUpdated)="UpdateRegion()" (onRowRemoved)="DeleteRegion($event)"> 
-            <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-              <dxo-popup title="Add Region" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+        <dx-data-grid id="gridContainer" [dataSource]="Regions" keyExpr="regionId" (onRowUpdating)="UpdateModel($event)" (onRowInserted)="AddRegion($event)" (onRowUpdated)="UpdateRegion($event)" (onRowRemoved)="DeleteRegion($event)"> 
+            <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
+              <dxo-popup title="Add Region" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>

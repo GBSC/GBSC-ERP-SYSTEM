@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { Supplier } from '../../../core/Models/Pharmacy/Supplier';
 
 
@@ -14,7 +14,7 @@ export class SupplierComponent implements OnInit {
     public Suppliers: any;
     public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
@@ -23,6 +23,7 @@ export class SupplierComponent implements OnInit {
     }
 
     async AddSupplier(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddSupplier(value.data).toPromise();
         this.PharmacyService.GetSuppliers().subscribe((res: Supplier) => this.Suppliers = res);
     }

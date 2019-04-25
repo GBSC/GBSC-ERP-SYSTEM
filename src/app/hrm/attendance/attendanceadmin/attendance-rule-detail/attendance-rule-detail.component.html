@@ -1,0 +1,70 @@
+
+<div class="m-content">
+
+  <div class="m-portlet">
+      <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Attendance Rule Detail
+                  </h3>
+              </div>
+          </div>
+      </div>
+      <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer"
+          keyExpr="attendanceRuleId" 
+          [dataSource]="attendancerule" 
+          (onSelectionChanged)="selectionChanged($event)"
+          (onContentReady)="contentReady($event)"
+          (onToolbarPreparing)="onToolbarPreparing($event)"
+          [masterDetail]="{ enabled: true, template: 'detail' }"
+          [columnAutoWidth]="true" 
+           [showBorders]="true">
+              
+          <dxo-selection mode="single"></dxo-selection> 
+              <dxo-paging [pageSize]="6"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+              </dxo-pager>                
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+
+              <dxi-column dataField="groupId" caption="Group" [width]="450">
+                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
+                  </dxo-lookup> 
+              </dxi-column>
+              <dxi-column dataField="attendanceFlagId" caption="Attendance Flag" [width]="450">
+                  <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                  </dxo-lookup> 
+              </dxi-column>
+              <dxi-column dataField="flagCount"></dxi-column>
+              <dxi-column dataField="exemptFlagCount"></dxi-column>
+              <dxi-column dataField="exemptMinutes"></dxi-column>
+              <dxi-column dataField="conditionalExemption"></dxi-column>
+              <dxi-column dataField="effectQuantity"></dxi-column>
+              <dxi-column dataField="effectType"></dxi-column>
+              <dxi-column dataField="effectFrequency"></dxi-column>
+              <dxi-column dataField="action"></dxi-column>
+             
+              <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+              <div *dxTemplate="let d of 'chartCellTemplate'">
+                <div class="chart-cell">
+                    <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
+                </div>
+            </div>
+
+              <div *dxTemplate="let ruledetail of 'detail'">
+                  <dx-data-grid [dataSource]="ruledetail.data.attendanceRuleLeaveTypes" [showBorders]="true">
+
+                      <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                          <dxo-lookup [dataSource]="LeaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+                          </dxo-lookup>
+                        </dxi-column>
+                      </dx-data-grid>
+              </div>
+          </dx-data-grid>
+      </div>
+  </div>
+</div>

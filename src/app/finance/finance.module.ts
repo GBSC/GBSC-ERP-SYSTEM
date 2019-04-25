@@ -6,7 +6,8 @@ import { RootComponent } from './root/root.component';
 import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompanysetupComponent } from './companysetup/companysetup.component';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { FinanceSetupService } from '../core/Services/Finance/financeSetup.service';
 import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
 import { FinancialyearComponent } from './financialSetups/financialyear/financialyear.component';
@@ -25,9 +26,15 @@ import { PurchasereturndetailComponent } from './purchasereturndetail/purchasere
 import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
+import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
+
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
-import { ReportViewerComponent } from './report-viewer/report-viewer.component';
+import { FinanceAccountComponent } from './finance-account/finance-account.component';
+import { CompanyFinanceConfigurationComponent } from './company-finance-configuration/company-finance-configuration.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 @NgModule({
     imports: [
@@ -35,8 +42,10 @@ import { ReportViewerComponent } from './report-viewer/report-viewer.component';
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         routing
 
     ],
@@ -62,9 +71,12 @@ import { ReportViewerComponent } from './report-viewer/report-viewer.component';
         SalesInvoiceDetailComponent,
         SalesReturnDetailComponent,
         VoucherDetailComponent,
+        CurrentTrailBalanceViewComponent,
+
         DemoComponent,
         UpdateVoucherComponent,
-        ReportViewerComponent
+        FinanceAccountComponent,
+        CompanyFinanceConfigurationComponent
     ],
     providers: [FinanceSetupService, FinanceService]
 })

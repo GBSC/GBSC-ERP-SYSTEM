@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SuperadminserviceService } from '../../core';
+import { SuperadminserviceService } from '../../core/Services/SuperAdmin/superadminservice.service';
 import { ActivatedRoute } from '@angular/router';
+import { SystemAdministrationService } from '../../../app/core';
 
 
 @Component({
@@ -11,31 +12,48 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SetupcompanyComponent implements OnInit {
 
-    private companyForm: FormGroup;
+    public companyForm: FormGroup;
 
-    private systemAdminForm: FormGroup;
+    public systemAdminForm: FormGroup;
 
-    private company: any;
+    public company: any;
 
-    private companyId: number;
+    public companyId: number;
 
-    private HimsInstalled: boolean;
+    public HimsInstalled: boolean;
 
-    private HrmInstalled: boolean;
+    public HrmInstalled: boolean;
 
-    private ImsInstalled: boolean;
+    public PmsInstalled: boolean;
 
-    private PmsInstalled: boolean;
+    public AccountingSystemInstalled: boolean;
 
-    private AccountingSystemInstalled: boolean;
+    public LisInstalled: boolean;
 
-    private LisInstalled: boolean;
+    public InventoryInstalled: boolean;
 
-    private InventoryInstalled: boolean;
+    public eTrackerInstalled: boolean;
 
-    private eTrackerInstalled: boolean;
+    public eTrackerMobileInstalled: boolean;
 
-    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
+    public OTInstalled: boolean;
+
+    public PharmacyInstalled: boolean;
+
+    public Ultrasound: boolean;
+
+    public Finance: boolean;
+
+    public features: any;
+
+    public modules: any;
+
+
+
+    constructor(public route: ActivatedRoute,
+        public formBuilder: FormBuilder,
+        public superAdminService: SuperadminserviceService,
+        public systemAdminService: SystemAdministrationService) {
 
         this.companyForm = this.formBuilder.group({
             'name': ['', Validators.required],
@@ -51,12 +69,14 @@ export class SetupcompanyComponent implements OnInit {
             'LastName': ['', Validators.required],
             'Phone': ['', Validators.required],
             'DOB': [new Date()]
-        })
+        });
+
+
 
 
     }
 
-    ngOnInit() {
+    async  ngOnInit() {
 
 
         this.route.params.subscribe((params) => {
@@ -64,19 +84,38 @@ export class SetupcompanyComponent implements OnInit {
         });
 
         if (this.companyId) {
+
             this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
                 this.company = company;
-
-                for (let module of company.modules) {
-                    this.checkModulesInstalled(module);
+                for (let modul of company.modules) {
+                    this.checkModulesInstalled(modul);
                 }
+            });
 
+            this.systemAdminService.getfeaturesByCompany(this.companyId).subscribe(resp => {
+                this.features = resp;
+            });
+
+            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp => {
+                this.modules = resp;
             })
         }
-
     }
 
+
+
+    async addFeature(value) {
+        value.data.companyId = this.companyId;
+        let response = await this.systemAdminService.addFeature(value.data);
+    }
+
+    deleteFeature(value) {
+        console.log(value)
+    }
+
+
     async onAddCompany(value) {
+        // console.log(value);
         this.superAdminService.addCompany(value).subscribe(resp => {
             console.log("Company Added");
             this.companyId = resp.companyID;
@@ -87,23 +126,21 @@ export class SetupcompanyComponent implements OnInit {
 
     async onAddModule(value) {
 
-        var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
+        var modue = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
-        this.superAdminService.addModule(module).subscribe(s => {
+        this.superAdminService.addModule(modue).subscribe(s => {
 
             this.checkModulesInstalled(value);
-        })
+        });
     }
 
     checkModulesInstalled(value) {
+        
         if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
         else if (value == "Human Resource Management") {
             this.HrmInstalled = true;
-        }
-        else if (value == "Inventory Management System") {
-            this.ImsInstalled = true;
         }
         else if (value == "Payroll Management System") {
             this.PmsInstalled = true;
@@ -119,6 +156,21 @@ export class SetupcompanyComponent implements OnInit {
         }
         else if (value == "eTracker") {
             this.eTrackerInstalled = true;
+        }
+        else if (value == "eTrackerMobile") {
+            this.eTrackerMobileInstalled = true;
+        }
+        else if (value == "OT") {
+            this.OTInstalled = true;
+        }
+        else if (value == "Ultrasound") {
+            this.Ultrasound = true;
+        }
+        else if (value == "Pharmacy") {
+            this.PharmacyInstalled = true;
+        }
+        else if (value == "Finance") {
+            this.Finance = true;
         }
     }
 

@@ -8,20 +8,25 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class PayrollyearComponent implements OnInit {
 
-    public payrollYear: any;
-    private updatingYear: any;
+    public payrollYears: any;
+    public updatingYear: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
 
-        this.payrollYear = await this.payrollsetupservice.getPayrollYears();
+        this.payrollsetupservice.getPayrollYears().subscribe(resp => {
+            this.payrollYears = resp;
+           console.log(this.payrollYears);
+         })
     }
 
-    async addpayrollyear(value) {
-        await this.payrollsetupservice.addPayrollYear(value.data);
-        this.payrollYear = await this.payrollsetupservice.getPayrollYears();
-    }
+     addpayrollyear(value) {
+         
+         this.payrollsetupservice.addPayrollYear(value.data).subscribe(resp => {console.log(resp); })
+
+        this.payrollsetupservice.getPayrollYears().subscribe(resp => {this.payrollYears = resp; })
+     }
 
     updatingpayrollyear(value) {
         this.updatingYear = { ...value.oldData, ...value.newData };

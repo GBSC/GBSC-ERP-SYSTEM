@@ -11,11 +11,16 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="managlevel" keyExpr="managementLevelId" (onRowInserted)="addNewManagementLevels($event)"
-                (onRowUpdated)="EditManagementLevel($event)" (onRowRemoved)="deleteManagementLevel($event)">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="managlevel" 
+               keyExpr="managementLevelId"
+                (onRowInserted)="addNewManagementLevels($event)"
+                (onRowUpdating)="updatingMngLevel($event)" 
+                (onRowUpdated)="EditManagementLevel()" 
+                (onRowRemoved)="deleteManagementLevel($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Management Level" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Management Level" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

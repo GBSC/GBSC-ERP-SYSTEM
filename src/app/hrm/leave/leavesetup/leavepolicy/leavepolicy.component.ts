@@ -16,10 +16,10 @@ export class LeavepolicyComponent implements OnInit {
     public leaveEligibility: any;
     public leaveYears: any;
     public leaveTypes: any;
-    private updatingleavePolicy: any;
-    private LeavePolicies: any;
+    public updatingleavePolicy: any;
+    public LeavePolicies: any;
 
-    constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService,
+    constructor(public fb: FormBuilder, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {
@@ -66,9 +66,7 @@ export class LeavepolicyComponent implements OnInit {
 
 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
-
-        this.leaveYears = await this.leavesetupservice.getLeaveYears();
-
+        
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
         this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();

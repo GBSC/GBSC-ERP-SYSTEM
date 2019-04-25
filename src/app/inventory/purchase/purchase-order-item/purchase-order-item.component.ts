@@ -7,12 +7,12 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./purchase-order-item.component.scss']
 })
 export class PurchaseOrderItemComponent implements OnInit {
-    private InventoryItem: any;
-    private Inventory: any;
-    private PurchaseOrder: any;
-    private PurchaseOrderItem: any;
+    public InventoryItem: any;
+    public Inventory: any;
+    public PurchaseOrder: any;
+    public PurchaseOrderItem: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

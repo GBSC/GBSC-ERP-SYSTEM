@@ -13,14 +13,14 @@ export class BiochemistrytestComponent implements OnInit {
 
     public Editor = ClassicEditor;
 
-    private tests: BioChemistryTest[];
-    private bioChemistryTestId: number;
-    private TestName: string;
-    private TestDescription: string;
-    private ReferenceRange: string = "";
-    private formVisible: boolean = false;
+    public tests: BioChemistryTest[];
+    public bioChemistryTestId: number;
+    public TestName: string;
+    public TestDescription: string;
+    public ReferenceRange: string = "";
+    public formVisible: boolean = false;
 
-    constructor(private bioChemistryServie: BioChemistryService, private _script: ScriptLoaderService) {
+    constructor(public bioChemistryServie: BioChemistryService, public _script: ScriptLoaderService) {
 
     }
 

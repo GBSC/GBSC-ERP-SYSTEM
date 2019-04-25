@@ -62,21 +62,49 @@
         <!--begin::Form-->
         <div class="m-portlet__body">
           <form class="m-form" [formGroup]="companyForm">
-            <div class="form-group m-form__group row">
-              <label for="example-search-input" class="col-2 col-form-label">
-                Company Name
-              </label>
-              <div class="col-3">
-                <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="exampleInputEmail1">
+                  Company Logo
+                </label>
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label>
+                  </div>
+                  <div class="avatar-preview">
+                    <div id="imagePreview" style="background-image: url(./assets/demo/demo7/media/img/logo/logo.png);">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <label for="example-search-input" class="col-2 col-form-label">
-                No of Employees
-              </label>
-              <div class="col-2">
-                <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
+              <div class="col-sm-4">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Company Name
+                  </label>
+                  <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
+                </div>
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Company Address
+                  </label>
+                  <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees"
+                    formControlName="numberOfEmployees">
+                </div>
               </div>
-              <div class="col-3">
-                <button type="submit" *ngIf="!companyId" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
+              <div class="col-sm-3">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    No of Employees
+                  </label>
+                  <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees"
+                    formControlName="numberOfEmployees">
+                </div>
+              </div>
+              <div class="col-2" style="padding-top: 27px;">
+                <button type="submit" *ngIf="!companyId" class="btn btn-brand"
+                  (click)="onAddCompany(companyForm.value)">
                   Submit
                 </button>
                 <div *ngIf="companyId" class="m-demo-icon">
@@ -90,6 +118,7 @@
 
               </div>
             </div>
+
           </form>
           <hr>
           <div class="row">
@@ -98,6 +127,8 @@
               <h3 class="m-section__heading">
                 System Modules
               </h3>
+
+
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
                   Human Resource Managment
@@ -111,7 +142,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -119,12 +151,13 @@
                   </button>
                 </div>
               </div>
+
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
-                  Hospital Managment System
+                  Human Resource Managment
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HimsInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HrmInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -132,7 +165,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!HimsInstalled"  (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -140,12 +174,14 @@
                   </button>
                 </div>
               </div>
+
+
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
-                  Inventory Managment System
+                  Pharmacy
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="PharmacyInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -153,7 +189,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!ImsInstalled"  (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!PharmacyInstalled" (click)="onAddModule('Pharmacy')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -161,6 +198,80 @@
                   </button>
                 </div>
               </div>
+
+
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Finance
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" >
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button (click)="onAddModule('Finance')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  OT
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="OTInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!OTInstalled" (click)="onAddModule('OT')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+
+              
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Ultrasounds
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button (click)="onAddModule('Ulstrasound')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
                   Payroll Managment System
@@ -174,7 +285,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!PmsInstalled"  (click)="onAddModule('Payroll Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!PmsInstalled" (click)="onAddModule('Payroll Management System')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -195,7 +307,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!AccountingSystemInstalled"  (click)="onAddModule('Accounting System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!AccountingSystemInstalled" (click)="onAddModule('Accounting System')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -216,7 +329,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!LisInstalled" (click)="onAddModule('Lab Information System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!LisInstalled" (click)="onAddModule('Lab Information System')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -229,7 +343,7 @@
                   Inventory
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="InventoryInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -237,7 +351,8 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!InventoryInstalled" (click)="onAddModule('Inventory')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!InventoryInstalled" (click)="onAddModule('Inventory')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -258,7 +373,30 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  e-Tracker Mobile
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="eTrackerMobileInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!eTrackerMobileInstalled" (click)="onAddModule('eTrackerMobile')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -269,6 +407,42 @@
             </div>
           </div>
           <hr>
+          <div class="m-content">
+            <div *ngIf="companyId" class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Installed Features</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer" [dataSource]="features" (onRowInserted)="addFeature($event)"
+                          (onRowRemoved)="deleteFeature($event)">
+                          <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-paging [pageSize]="5"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true">
+                          </dxo-pager>
+                          <dxi-column dataField="name" caption="Feature"></dxi-column>
+                          <dxi-column dataField="moduleId" caption="Module">
+                            <dxo-lookup [dataSource]="modules" displayExpr="name" valueExpr="moduleId">
+                            </dxo-lookup>
+                          </dxi-column>
+                        </dx-data-grid>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-sm-12">
               <h3 class="m-section__heading">
@@ -281,7 +455,8 @@
                       <label for="exampleInputEmail1">
                         First Name
                       </label>
-                      <input type="text" class="form-control m-input" placeholder="First Name" formControlName="FirstName">
+                      <input type="text" class="form-control m-input" placeholder="First Name"
+                        formControlName="FirstName">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -289,7 +464,8 @@
                       <label for="exampleInputEmail1">
                         Last Name
                       </label>
-                      <input type="text" class="form-control m-input" id="Lname1" placeholder="Last Name" formControlName="LastName">
+                      <input type="text" class="form-control m-input" id="Lname1" placeholder="Last Name"
+                        formControlName="LastName">
                     </div>
                   </div>
                 </div>
@@ -299,8 +475,8 @@
                       <label for="exampleInputEmail1">
                         Date Of Birth
                       </label>
-                      <dx-date-box [value]="bioChemistry?.collectionDate" formControlName="DOB">
-                      </dx-date-box>                                         
+                      <dx-date-box formControlName="DOB">
+                      </dx-date-box>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -308,7 +484,8 @@
                       <label for="exampleInputEmail1">
                         CNIC
                       </label>
-                      <input type="text" class="form-control m-input" id="CNIC" placeholder="CNIC" formControlName="CNIC">
+                      <input type="text" class="form-control m-input" id="CNIC" placeholder="CNIC"
+                        formControlName="CNIC">
                     </div>
                   </div>
                 </div>
@@ -326,7 +503,8 @@
                       <label for="exampleInputEmail1">
                         Phone No
                       </label>
-                      <input type="text" class="form-control m-input" id="Phne" placeholder="Phone No" formControlName="Phone">
+                      <input type="text" class="form-control m-input" id="Phne" placeholder="Phone No"
+                        formControlName="Phone">
                     </div>
                   </div>
                 </div>
@@ -336,7 +514,8 @@
                       <label for="exampleInputEmail1">
                         User Name
                       </label>
-                      <input type="text" class="form-control m-input" id="UName" placeholder="User Name" formControlName="UserName">
+                      <input type="text" class="form-control m-input" id="UName" placeholder="User Name"
+                        formControlName="UserName">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -344,14 +523,16 @@
                       <label for="exampleInputEmail1">
                         Password
                       </label>
-                      <input type="text" class="form-control m-input" id="Password" placeholder="Password" formControlName="Password">
+                      <input type="text" class="form-control m-input" id="Password" placeholder="Password"
+                        formControlName="Password">
                     </div>
                   </div>
                 </div>
               </form>
 
               <div class="col-lg-12 m--align-right">
-                <button (click)="onSubmitRegistration(systemAdminForm.value)" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                <button (click)="onSubmitRegistration(systemAdminForm.value)"
+                  class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                   Submit
                 </button>
               </div>

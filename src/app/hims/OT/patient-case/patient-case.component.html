@@ -1,0 +1,204 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Patient Case Registration</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="patientCaseForm">
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Document #
+                      </label>
+                      <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="patientCaseById?.otPatientCaseId || ''">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <input type="date" class="form-control m-input" formControlName="OtPatientCaseDate" [value]="patientCaseById?.otPatientCaseDate |  date : 'yyyy-MM-dd' || ''">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Data Nature
+                      </label>
+                      <select class="form-control m-input" formControlName="DateNature">
+                        <option value="New">New</option>
+                        <option value="Previous">Previous</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient
+                      </label>
+                      <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                      </dx-select-box>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Gender
+                            </label>
+                            <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.gender || ''">
+                          </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              File No
+                            </label>
+                            <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.mrn || ''">
+                          </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Procedure
+                          </label>
+                          <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
+                          </dx-select-box>
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Time Start
+                          </label>
+                          <input type="time" class="form-control m-input" formControlName="TimeStart"  [value]="patientCaseById?.timeStart | date : 'hh:mm:ss' || ''">
+                        </div>
+                      </div>
+                </div>
+                <div class="row">
+            
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Time End
+                      </label>
+                      <input type="time" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'HH:mm:ss' || ''">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Surgeon
+                      </label>
+                      <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="SurgeonId" > 
+                        </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Done By
+                      </label>
+                      <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="DoneById"> 
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Other
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="Other">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Anesthesia Type
+                      </label>
+                      <select class="form-control m-input" formControlName="AnesthesiaType">
+                          <option value="General">General</option>
+                          <option value="Local">Local</option>
+                          <option value="Spinal">Spinal</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Anesthetic
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="Anestetic">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Scrub Assistant
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="ScrubAssistant">
+                    </div>
+                  </div>
+                
+                </div>
+           
+         
+                <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            OT Assistant
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="OtAssistant">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Nurse
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="Nurse">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Remarks
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="Remarks">
+                          </div>
+                        </div>
+                </div>
+              
+                <div class="row">
+                  <div class="col-sm-2">
+                      <button class="btn btn-primary" *ngIf="router.url === '/ot/patientcase/'+id"    (click)="updatePatientCase(patientCaseForm.value)">
+                        Update
+                      </button>
+                    <button class="btn btn-primary"  *ngIf="router.url === '/ot/patientcase'" (click)="addPatientCase(patientCaseForm.value)">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

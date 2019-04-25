@@ -1,43 +1,249 @@
- 
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Assign Roster</h3>
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Assign Roster</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="m-section">
+      <div class="m-section__content">
+        <dx-data-grid id="gridContainer" [dataSource]="assignrosters" keyExpr="assignRosterId" (onRowInserted)="addassignroster($event)"
+          [masterDetail]="{ enabled: true, template: 'detail' }" [masterDetail]="{ enabled: true, template: 'sub-detail' }"    
+          [columnAutoWidth]="true" 
+          [showBorders]="true"
+          (onRowRemoved)="deleteassignroster($event)">
+          <dxo-selection mode="multiple"></dxo-selection>
+          <dxo-group-panel [visible]="true"></dxo-group-panel>
+          <dxo-editing mode="row" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="7"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+          <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+          <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column>
+          <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column>
+          <dxi-column dataType="boolean" dataField="isDefaultRoster" caption="Default Roster"></dxi-column>
+          <dxi-column dataField="rosterId" caption="Roster">
+            <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="shiftsId" caption="Shift">
+            <dxo-lookup [dataSource]="shifts" displayExpr="shiftTitle" valueExpr="shiftsId">
+            </dxo-lookup>
+          </dxi-column>
+          <dxi-column caption="Employee" [minWidth]="225" cellTemplate="chartCellTemplate"></dxi-column>
+          <div *dxTemplate="let d of 'chartCellTemplate'">
+            <div class="chart-cell">
+              <dx-button text="Off Days" (click)="openOffDayModel()" data-toggle="modal" data-target="#m_modal_3"></dx-button>
+              <dx-button text="Select User" (onClick)="showInfo(employee)"></dx-button>
             </div>
           </div>
-        </div>
-        <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
-              <dx-data-grid id="gridContainer"
-               [dataSource]="assignroster"
-               keyExpr="assignRosterId"
-               (onRowInserted)="addassignroster($event)"
-               (onRowUpdating)="updatingAssignroster($event)"
-               (onRowUpdated)="updateassignroster()"
-               (onRowRemoved)="deleteassignroster($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                </dxo-editing>
+          <dxi-column caption="Export" cellTemplate="chartCellTemplateExport"></dxi-column>
+          <div *dxTemplate="let d of 'chartCellTemplateExport'">
+            <div class="chart-cell">
+              <dx-button text="Export" (click)="onClickMe(d)"></dx-button>
+            </div>
+
+          </div>
+          <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"></dxi-column>
+          <div *dxTemplate="let u of 'chartCellTemplateupdate'">
+            <div class="chart-cell">
+              <dx-button text="Update" (click)="routeForUpdateAssignroster(u)"></dx-button>
+            </div>
+          </div>
+          <div *dxTemplate="let x of 'detail'">
+            <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true">
+              <dxo-paging [pageSize]="5"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+              <dxi-column dataField="userId" caption="Users">
+                <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
+                </dxo-lookup>
+              </dxi-column>
+            </dx-data-grid>
+            <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true">
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="7"></dxo-paging>
+                <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager> 
-                <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
-                <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column> 
-                <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column> 
-                <dxi-column dataType="boolean" dataField="isDefaultRoster" caption ="Default Roster"></dxi-column> 
-                <dxi-column dataField="rosterId" caption="Roster">
-                    <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
-                    </dxo-lookup> 
-                    </dxi-column>  
-                
-              </dx-data-grid>
+                </dxo-pager>
+              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="shortDate"></dxi-column>
+              <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+            </dx-data-grid>
+          </div>
+        </dx-data-grid>
+        <dx-popup class="popup" [width]="1100" [height]="550" [showTitle]="true" title="Select Employees" [dragEnabled]="false" [closeOnOutsideClick]="true"
+          [(visible)]="popupVisible">
+
+          <div *dxTemplate="let data of 'content'">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group m-form__group">
+                  <label>
+                    Department
+                  </label>
+                  <select #Department class="form-control m-input" (change)="onDepartmentChange(Department.value)">
+                    <option class='option' disabled selected>Select Department</option>
+                    <option class='option' *ngFor="let dprt of departments" [value]="dprt.departmentId">{{dprt.name}}</option>
+                  </select>
+                </div>
+              </div>
             </div>
+            <dx-data-grid id="gridContainer" [dataSource]="employee" keyExpr="userId" [(selectedRowKeys)]="selectedRows" (onSelectionChanged)="selectionChangedHandler($event)">
+              <dxo-selection mode="multiple"></dxo-selection>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-paging [pageSize]="7"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+              <dxi-column dataField="fullName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+            </dx-data-grid>
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                    <button class="btn btn-success" (click)="addselecteduser()">
+                      Submit
+                    </button>
+                  </div>
+                  <div class="col-lg-4"></div>
+                </div>
+              </div>
             </div>
           </div>
+        </dx-popup>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="m-nav__link-icon flaticon-share"></i>
+        <span class="m-nav__link-text">
+          Set Off Days
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
+                    <div class="m-portlet__body">
+                      <div class="form-group row">
+                        <div class="form-group col-lg-5">
+                          <label for="exampleSelect1"> Date </label>
+                          <input class="form-control m-input m-input--solid" formControlName="Dayoff" type="date">
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <label for="exampleSelect1"> Remarks </label>
+                            <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
+                          </div>
+                        <div class="form-group col-lg-2 margin">
+                          <button type="button" (click)="addrange()" class="btn btn-info blankinput">
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div class="m-section">
+                        <div class="m-section__content">
+                          <table class="table m-table m-table--head-separator-primary">
+                            <thead>
+                              <tr>
+                                <th>
+                                  Off Days
+                                </th>
+                                <th>
+                                    Remarks
+                                  </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let offDaysDateLists of offDaysDateList ; let i = index" >
+                                <td>{{offDaysDateLists.Dayoff}}</td>
+                                <td>{{offDaysDateLists.Remarks}}</td>
+                                <td>
+                                    <button type="button" (click)="remove(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                                        <i class="la la-trash-o"></i>
+                                      </button>
+                                 </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" (click)="addOffDaysList(offDaysDateList)" data-dismiss="modal"  class="btn btn-primary">
+                        Submit
+                      </button>
+                      <button type="button" data-dismiss="modal" class="btn btn-secondary">
+                        Cancel
+                      </button>
+                    </div>
+                  </form> -->
+        <div class="form-group row">
+          <div class="form-group col-lg-5">
+            <label for="exampleInputEmail1"> From Date </label>
+            <input class="form-control m-input m-input--solid" type="date" #fromdate>
+          </div>
+          <div class="form-group col-lg-5">
+            <label for="exampleInputEmail1"> To Date </label>
+            <input class="form-control m-input m-input--solid" type="date" #todate>
+          </div>
+          <div class="form-group col-lg-2">
+            <button type="button" (click)="click(fromdate , todate)" class="btn btn-primary">
+              Click
+            </button>
+          </div>
         </div>
-      
+        <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
+          <table class="table table-bordered m-table m-table--border-success">
+            <thead>
+              <tr>
+
+                <th>
+                  Days
+                </th>
+                <th>
+                  Remarks
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let day of inputvaluelist ;let i = index ">
+                <td>
+                  <input type="text" [value]="day.Dayoff" formControlName="Dayoff">
+                </td>
+                <td>
+                  <input type="text" [value]="day.Remarks" value="off" placeholder="on" formControlName="Remarks" (change)="changeremarks($event , i)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="modal-footer">
+            <button type="button" (click)="addOffDaysList(inputvaluelist)" data-dismiss="modal" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./sales-invoice.component.scss']
 })
 export class SalesInvoiceComponent implements OnInit {
-    private DeliveryNote: any;
-    private SalesReturn: any;
-    private SalesInvoice: any;
+    public DeliveryNote: any;
+    public SalesReturn: any;
+    public SalesInvoice: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

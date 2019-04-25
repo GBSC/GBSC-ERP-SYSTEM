@@ -71,7 +71,8 @@
                     <label for="exampleInputEmail1">
                       Patient Type
                     </label>
-                    <select (change)="selectNewOrPrevious($event)" class="form-control m-input m-input--solid" formControlName="PatientType">
+                    <!-- (change)="selectNewOrPrevious($event)"  -->
+                    <select class="form-control m-input m-input--solid" formControlName="PatientType">
                        <option value="Pervious"> Pervious</option>
                       <option value="new">New</option>
                     </select>
@@ -82,28 +83,18 @@
                   <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> </label>
                     Patient Name
-                   <!-- <dx-lookup class="field-customization" [items]="PatientServiceobj?.patients" displayExpr="fullName" valueExpr="patientId" [value]="PatientServiceobj?.patients[0].patientId"  formControlName="PatientId" title="Select Patient" fieldTemplate="field">
-                      <div *dxTemplate="let item of 'field'">
-                          <div class="custom-field">
-                                <div> {{item.firstName }} {{item.lastName}}</div>  
-                          </div>
-                      </div>
-                  </dx-lookup>   -->
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
+                     formControlName="PatientId" placeholder="" style="margin-top: 7px;">
+                  </dx-select-box> 
+                  
+                    <!-- <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
                       *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="" style="margin-top: 7px;">
-                    </dx-select-box> 
+                    </dx-select-box>  -->
+
+                 <!-- <input [value]="patientById?.fullName  || ''"  style="margin-top: 2%;" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>   -->
 
 
-                 <input [value]="patientById?.fullName  || ''"  style="margin-top: 2%;" *ngIf="newOrPrevious === 'new'? true : false"
-                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>  
-
-
-                    <!-- <select  *ngIf="newOrPrevious === 'new'? true : false" class="form-control m-input m-input--solid" formControlName="PatientId">
-                      <option  [value]="patientById?.patientId" selected disabled >{{patientById?.fullName  || ''}}</option>
-                    </select>
-  -->
-                    <!-- <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
-                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled> -->
                   </div>
                   <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1"> Visit Nature </label>
@@ -174,7 +165,7 @@
           <div class="tab-content">
             <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
               <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="tentativeAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -217,7 +208,7 @@
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
               <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
-                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345"  ></dxo-popup>
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

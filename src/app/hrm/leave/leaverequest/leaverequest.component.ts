@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LeaveRequestDetail } from '../../../core/Models/HRM/leaveRequestDetail';
 import { LeaveRequest } from '../../../core/Models/HRM/leaveRequest';
 import { ToastrService } from 'ngx-toastr';
+import { Loginform } from '../../../core/Models/Auth/loginform';
 
 @Component({
     selector: 'app-leaverequest',
@@ -15,24 +16,36 @@ export class LeaverequestComponent implements OnInit {
 
     public leaveDetail: any[] = [];
     public leaveRequestForm: FormGroup;
-    public leaverequestdetail: any;
     public leaveYear: any;
     public employees: any;
     public leaveType: any;
     public leaveRequest: any;
+    public leaveTypeBalances: any;
     public leaveApprovr: any;
     public leaverequest: any;
     public updatingRequest: any;
     public leaveOpening: any;
-    public leaveRequestId;
-    private requestDetail: LeaveRequestDetail[];
+    public requestDetail: LeaveRequestDetail[];
+    public totalleave: any;
+    public leavePolicy: any;
+    public empleavePolicy: any;
+
+    public getleavedata: any;
+    public selectedLeaveTypes: any;
+    public empId: any = null;
+    public leaveBBB: any = null;
+    public data: any;
 
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr: ToastrService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
-        public router: Router, public leaveservice: LeaveService) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+        public router: Router, public leaveservice: LeaveService) {
+
+        this.onSetCellValue = this.onSetCellValue.bind(this);
+    }
 
     async ngOnInit() {
+
 
         this.requestDetail = [];
 
@@ -57,6 +70,10 @@ export class LeaverequestComponent implements OnInit {
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
+        this.empleavePolicy = await this.leaveservice.getLeavePolicyEmployee();
+
+        this.leavePolicy = await this.leavesetupservice.getLeavePolicies();
+
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
         });
@@ -69,22 +86,23 @@ export class LeaverequestComponent implements OnInit {
                     delete b.leaveRequestId;
                     return b;
                 });
+                this.getLeaveBalance(this.leaveRequest.userId);
                 this.patchValues(this.leaveRequest);
             });
         }
+        this.data = this.leaveservice.prepareLeaveData(this.employees, this.leaveType, this.empleavePolicy, this.leavePolicy);
     }
 
     async leaveRequestDetail(value) {
+        console.log(value);
+
         let data = value.data;
+        data.leaveTypeId = this.leaveBBB.leaveTypeId;
+        data.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
+        data.totalleave = this.leaveBBB.entitledQuantity;
+        console.log(data);
+
         this.requestDetail.push(data);
-    }
-
-    async updatingRequestDetail(value) {
-        this.updatingRequest = { ...value.oldData, ...value.newData };
-    }
-
-    async updateRequestDetail() {
-        await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
 
     async addLeaveRequest(value) {
@@ -95,9 +113,7 @@ export class LeaverequestComponent implements OnInit {
         this.leaveRequestForm.reset();
         this.toastr.success("Leave Request Added");
         this.router.navigate(['/hrm/leave/leaverequests']);
-
-    }
-
+    } 
 
     isUpdate(): boolean {
 
@@ -112,7 +128,7 @@ export class LeaverequestComponent implements OnInit {
         console.log(value);
     }
 
-    async update(value) {
+     update(value) {
         value.leaveRequestId = this.id;
         value.LeaveRequestDetails = this.leaveDetail;
         this.leaveservice.updateLeaveRequest(value).subscribe(resp => {
@@ -120,12 +136,31 @@ export class LeaverequestComponent implements OnInit {
             this.router.navigate(['/hrm/leave/leaverequests']);
 
         });
+    } 
+
+    getLeaveBalance(userId) { 
+        this.empId = userId;
+    } 
+    onSetCellValue(x, abc) {
+        console.log(abc);
+        console.log(this.employees); 
+        console.log(this.empId); 
+        console.log(this.leaveservice.data); 
+        this.leaveservice.data.forEach(e => {
+            if (e.userId == this.empId) {
+                console.log("first condition", e);
+
+                if (e.leaveTypeId == abc) {
+                    this.leaveBBB = e;
+                }
+            }
+        });
+        console.log(this.leaveBBB);  
     }
 
     patchValues(request: any) {
 
         this.leaveRequestForm.patchValue({
-
             UserId: request.userId,
             IsApproved: request.isApproved,
             RequestDate: request.requestDate

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 import { Unit } from '../../../core/Models/Pharmacy/Unit';
 import { PackType } from '../../../core/Models/Pharmacy/PackType';
@@ -23,17 +23,17 @@ export class InventoryItemComponent implements OnInit {
 
     @ViewChild(InventoryComponent) InventoryComponent: InventoryComponent;
 
-    private InventoryItems: InventoryItem;
-    private Units: Unit;
-    private PackTypes: PackType;
-    private PackSizes: PackSize;
-    private PackCategories: PackCategory;
-    private ProductTypes: ProductType;
-    private InventoryItemCategories: InventoryItemCategory;
-    private PackageTypes: PackageType;
-    private UpdatedModel: InventoryItem;
+    public InventoryItems: InventoryItem;
+    public Units: Unit;
+    public PackTypes: PackType;
+    public PackSizes: PackSize;
+    public PackCategories: PackCategory;
+    public ProductTypes: ProductType;
+    public InventoryItemCategories: InventoryItemCategory;
+    public PackageTypes: PackageType;
+    public UpdatedModel: InventoryItem;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth: AuthService) {
 
     }
 
@@ -49,7 +49,7 @@ export class InventoryItemComponent implements OnInit {
     }
 
     async AddInventoryItem(value) {
-        console.log(value);
+        value.data.companyId = this.Auth.getUserCompanyId();
         let a: any = await this.PharmacyService.AddInventoryItem(value.data).toPromise();
         this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => {
             this.InventoryItems = res;

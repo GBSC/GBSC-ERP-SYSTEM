@@ -35,7 +35,6 @@
                         <dxi-column dataField="userId" caption="Employee" [width]="450">
                             <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                             </dxo-lookup>
-                            <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
                         </dxi-column>
                         <dxi-column dataField="leaveYearId" caption="Leave Year" [width]="450">
                             <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
@@ -45,7 +44,7 @@
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                           <div class="chart-cell">
-                              <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
+                              <dx-button (click)="addleaveopening(d)" icon="edit"></dx-button>
                           </div>
                       </div>
 

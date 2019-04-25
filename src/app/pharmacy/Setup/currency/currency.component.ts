@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { Currency } from '../../../core/Models/Pharmacy/Currency';
 
 @Component({
@@ -8,9 +8,9 @@ import { Currency } from '../../../core/Models/Pharmacy/Currency';
     styleUrls: ['./currency.component.scss']
 })
 export class CurrencyComponent implements OnInit {
-    private Currencies: Currency[];
-    private UpdatedModel: Currency;
-    constructor(private PharmacyService: PharmacyService) {
+    public Currencies: Currency[];
+    public UpdatedModel: Currency;
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
@@ -22,6 +22,7 @@ export class CurrencyComponent implements OnInit {
     }
 
     async AddCurrency(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddCurrency(value.data).toPromise();
         this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => this.Currencies = res);
     }

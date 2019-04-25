@@ -1,25 +1,19 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
            
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Working Experience</h3>
-              </div>
-            </div>
-          </div>
+ 
+                <h4>Working Experience</h4>
+ 
           <div class="m-portlet__body">
             <div class="m-section">
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
                  [dataSource]="experiences"
-                 keyExpr="workExperienceId" 
+                 keyExpr="workExperienceId"
+                 [showBorders]="true" 
                  (onRowInserted)="addWorkExperience($event)"
                 (onRowUpdated)="updateWorkExperience($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                    <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -39,9 +33,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>  
-</div>
+ 
 
 
 

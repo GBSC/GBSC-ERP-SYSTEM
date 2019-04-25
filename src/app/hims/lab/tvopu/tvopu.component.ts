@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../../app/core';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
@@ -19,28 +19,28 @@ export class TvopuComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private embryologists: any;
-    private id: number;
-    private clinicalRecord: any;
-    private tvopu: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public embryologists: any;
+    public id: number;
+    public clinicalRecord: any;
+    public tvopu: any;
 
-    private tvopuform: FormGroup;
+    public tvopuform: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologistService,
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologistService,
         public router: Router,
-        private toastr: ToastrService,
-        private route: ActivatedRoute,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public toastr: ToastrService,
+        public route: ActivatedRoute,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.tvopuform = this.formBuilder.group({
             'TimeStart': ['', Validators.required],

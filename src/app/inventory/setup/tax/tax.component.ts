@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { Tax } from '../../../core/Models/Inventory/Setup/Tax';
 
 @Component({
     selector: 'app-tax',
@@ -7,31 +8,40 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./tax.component.scss']
 })
 export class TaxComponent implements OnInit {
-    private Taxes: any;
-    private UpdatedModel: any;
+    public Taxes: any;
+    public UpdatedModel: any;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.Taxes = await this.InventoryService.GetTaxes();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetTaxesByCompany(this.CompanyId).subscribe((res: Tax) => {
+            this.Taxes = res;
+        });
     }
 
-    async AddTax(value) {
-        await this.InventoryService.AddTax(value.data);
+    AddTax(value) {
+        this.InventoryService.AddTax(value.data).subscribe(res => {
+            this.InventoryService.GetTaxesByCompany(this.CompanyId).subscribe((res: Tax) => {
+                this.Taxes = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateTax() {
-        return await this.InventoryService.UpdateTax(this.UpdatedModel);
+    UpdateTax() {
+        return this.InventoryService.UpdateTax(this.UpdatedModel).subscribe();
     }
 
-    async Deletetax(value) {
-        return await this.InventoryService.DeleteTax(value.key);
+    Deletetax(value) {
+        return this.InventoryService.DeleteTax(value.key).subscribe();
     }
 
 }

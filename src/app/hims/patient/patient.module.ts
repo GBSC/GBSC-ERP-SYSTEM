@@ -27,7 +27,8 @@ import { FindPatientComponent } from './find-patient/find-patient.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { HimsSetupTestComponent } from './hims-setup-test/hims-setup-test.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from './visitdetail/visitdetail.component';
@@ -43,7 +44,7 @@ import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
-import { DxDateBoxModule } from 'devextreme-angular';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 import { PatientpackageComponent } from './patientpackage/patientpackage.component';
 import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-invoice-return.component';
@@ -69,21 +70,24 @@ import { SubsiquentSemenFreezingListComponent } from './Reports/subsiquent-semen
 import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
 import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
 import { DailySemenAnalysisComponent } from './daily-semen-analysis/daily-semen-analysis.component';
+import { DailySemenAnalysisSheetComponent } from './Reports/daily-semen-analysis-sheet/daily-semen-analysis-sheet.component';
+import { DailySemenAnalysisViewComponent } from './daily-semen-analysis-view/daily-semen-analysis-view.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
-        DevExtremeModule,
         DxDataGridModule,
         DxButtonModule,
+        DxSelectBoxModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         routing,
-        //SharedModule,
         DxDateBoxModule,
-
+        DxPopupModule,
         HttpClientModule
     ],
     declarations: [
@@ -152,6 +156,8 @@ import { DailySemenAnalysisComponent } from './daily-semen-analysis/daily-semen-
         MedicineDetailsComponent,
         ConsultantActivityDetailsComponent,
         DailySemenAnalysisComponent,
+        DailySemenAnalysisSheetComponent,
+        DailySemenAnalysisViewComponent,
     ]
 })
 export class PatientModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService } from '../../core';
+import { Department } from '../../core/Models/HRM/department';
+import { Branch } from '../../core/Models/HRM/branch';
 @Component({
     selector: 'app-department',
     templateUrl: './department.component.html',
@@ -8,27 +10,55 @@ import { SystemAdministrationService } from '../../core';
 export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
+    public updatingModel: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public authService : AuthService) { }
 
     async ngOnInit() {
 
-        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
+        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.deprt = res;
+        });
 
-        this.branch = await this.SystemAdministrationServiceobj.getBranches();
+        this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branch = res;
+        });
     }
 
 
-    async addDepartment(value) {
-        await this.SystemAdministrationServiceobj.addDepartment(value.key);
-        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
+     addDepartment(value) {
+        console.log(value);
+        value.data.companyId = this.authService.getUserCompanyId();
+         this.SystemAdministrationServiceobj.addDepartment(value.data);
+        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.deprt = res; 
+            console.log(res);
+            
+        });
+        console.log(value.data);
     }
 
-    async updateDepartment(value) {
-        await this.SystemAdministrationServiceobj.updateDepartment(value.key);
+    updatingDepartment(value){
+        console.log(value.oldData);
+        console.log(value.newData);
+
+        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel.companyId = this.authService.getUserCompanyId(); 
     }
-    async deletDepartment(value) {
-        await this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId);
+
+     updateDepartment() { 
+        console.log(this.updatingModel);
+        
+         this.SystemAdministrationServiceobj.updateDepartment(this.updatingModel).subscribe(r => {
+            console.log(r);
+            
+        });
+    }
+     deletDepartment(value) {
+        console.log(value); 
+           this.SystemAdministrationServiceobj.deletDepartment(value.key).subscribe(rep => {
+              console.log(rep); 
+          });
     }
 
 }

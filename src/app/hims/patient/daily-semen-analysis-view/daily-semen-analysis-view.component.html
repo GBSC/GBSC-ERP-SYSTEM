@@ -1,0 +1,54 @@
+<div class="m-content">
+    <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+
+               <h3 class="m-portlet__head-text">Daily Semen Analysis</h3>
+              </div>
+              
+           </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+              <dx-data-grid [dataSource]="dailySemenAnalysis" [remoteOperations]="true" showBorders="true"
+              [masterDetail]="{ enabled: true, template: 'detail' }"
+               [columnAutoWidth]="true" [showBorders]="true">
+               <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+               <dxo-filter-row [visible]="false"></dxo-filter-row>
+               <dxo-header-filter [visible]="false"></dxo-header-filter>
+               <dxo-paging [pageSize]="5"></dxo-paging>
+               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+               <dxo-group-panel [visible]="true"></dxo-group-panel>
+                <!-- <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+               </dxo-editing> -->
+               <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+               <dxo-selection mode="single"></dxo-selection>
+               <dxi-column dataField="consultantId" caption="Consultant" [width]="125 "  [allowEditing]="false" [formItem]="{visible: false}">
+                <dxo-lookup [dataSource]="consultants" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="patientId" caption="Patient" [width]="125 "  [allowEditing]="false" [formItem]="{visible: false}">
+                <dxo-lookup [dataSource]="patients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+              </dxi-column>
+               <dxi-column dataField="payment" caption="Payment"></dxi-column>
+               <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+               <dxi-column dataField="timein"  caption="Time In"></dxi-column>
+               <dxi-column dataField="timeout"  caption="Time Out"></dxi-column>
+               <div *dxTemplate="let order of 'detail'">
+                 <dx-data-grid [dataSource]="order.data.dailySemenAnalysisProcedures" showBorders="true">
+                  <dxi-column dataField="procedureId" caption="Procedure" >
+                    <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
+                  </dxi-column>
+                 </dx-data-grid>
+               </div>
+             </dx-data-grid>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>

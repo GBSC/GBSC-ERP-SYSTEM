@@ -43,6 +43,7 @@ import { BiopsyReportviewerComponent } from './report-components/biopsy-reportvi
 import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
 import { BiochemistryOntreatmentReportviewerComponent } from './report-components/biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
 import { SemenAnalysisOutsiderReportviewerComponent } from './report-components/semen-analysis-outsider-reportviewer/semen-analysis-outsider-reportviewer.component';
+import { InternalRequisitionRequestComponent } from './internal-requisition-request/internal-requisition-request.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -51,7 +52,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: '',
         component: RootComponent,
-        canActivate: [AuthGuardService, ModuleGuardService],
+        canActivate: [AuthGuardService],
         children: [
             { path: 'clinical-records', component: ClinicalrecordsComponent },
             { path: 'test-unit', component: TestunitComponent },
@@ -100,6 +101,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'freeze-prep-records', component: FreezePrepRecordsComponent },
             { path: 'freeze-prep', component: FreezepreparationComponent },
             { path: 'freeze-prep/:id', component: FreezepreparationComponent },
+            { path: 'internalrequisitionrequest', component: InternalRequisitionRequestComponent },
 
             //Reports
             {

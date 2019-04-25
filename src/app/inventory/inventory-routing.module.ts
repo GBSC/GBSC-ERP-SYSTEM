@@ -48,11 +48,16 @@ import { PurchaseOrderItemComponent } from './purchase/purchase-order-item/purch
 import { PurchaseReturnComponent } from './purchase/purchase-return/purchase-return.component';
 import { PurchaseReturnItemComponent } from './purchase/purchase-return-item/purchase-return-item.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
+import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 
 const routes: Routes = [
 
     {
-        path: '',
+        path: 'inventory',
         component: RootComponent,
 
         children: [
@@ -61,7 +66,6 @@ const routes: Routes = [
                 path: "setup",
                 children: [
                     { path: 'area', component: AreaComponent },
-                    { path: 'brand', component: BrandComponent },
                     { path: 'comission', component: ComissionComponent },
                     { path: 'customeraccount', component: CustomerAccountComponent },
                     { path: 'customerbank', component: CustomerBankComponent },
@@ -70,16 +74,8 @@ const routes: Routes = [
                     { path: 'customertype', component: CustomerTypeComponent },
                     { path: 'customerwarehouse', component: CustomerWarehouseComponent },
                     { path: 'distributor', component: DistributorComponent },
-                    { path: 'inventorystock', component: InventoryComponent },
-                    { path: 'inventoryitem', component: InventoryItemComponent },
-                    { path: 'inventoryitemcategory', component: InventoryItemCategoryComponent },
                     { path: 'itempricestructure', component: ItemPriceStructureComponent },
                     { path: 'modeofpayment', component: ModeOfPaymentComponent },
-                    { path: 'packagetype', component: PackageTypeComponent },
-                    { path: 'productpackcategory', component: ProductPackCategoryComponent },
-                    { path: 'packsize', component: ProductPackSizeComponent },
-                    { path: 'packtype', component: ProductPackTypeComponent },
-                    { path: 'producttype', component: ProductTypeComponent },
                     { path: 'region', component: RegionComponent },
                     { path: 'returnreason', component: ReturnReasonComponent },
                     { path: 'salesperson', component: SalesPersonComponent },
@@ -87,17 +83,20 @@ const routes: Routes = [
                     { path: 'tax', component: TaxComponent },
                     { path: 'territory', component: TerritoryComponent },
                     { path: 'transport', component: TransportComponent },
-                    { path: 'unit', component: UnitComponent }
+                    { path: 'unit', component: UnitComponent },
+                    { path: 'inventory-master', component: InventoryMasterComponent },
+                    { path: 'generalsku', component: GeneralSkuComponent }
                 ]
             },
             {
                 path: "sales",
                 children: [
                     { path: 'dispatchnote', component: DeliveryNoteComponent },
-                    { path: 'deliveryOrder', component: DeliveryOrderComponent },
+                    { path: 'deliveryorder', component: DeliveryOrderComponent },
                     { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
                     { path: 'salesindent', component: SalesIndentComponent },
                     { path: 'salesindentitem', component: SalesIndentItemComponent },
+                    { path: 'salesindentprocess', component: IndentProcessComponent},
                     { path: 'salesinvoice', component: SalesInvoiceComponent },
                     { path: 'salesorder', component: SalesOrderComponent },
                     { path: 'salesorderitem', component: SalesOrderItemComponent },
@@ -109,13 +108,20 @@ const routes: Routes = [
                 path: "purchase",
                 children: [
                     { path: 'grn', component: GoodsreceiptComponent },
-                    { path: 'purchaseIndent', component: PurchaseIndentComponent },
-                    { path: 'purchaseIndentItem', component: PurchaseIndentItemComponent },
+                    { path: 'purchaseindent', component: PurchaseIndentComponent },
+                    { path: 'purchaseindentitem', component: PurchaseIndentItemComponent },
                     { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
                     { path: 'purchaseorder', component: PurchaseOrderComponent },
-                    { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
-                    { path: 'purchaseReturn', component: PurchaseReturnComponent },
-                    { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
+                    { path: 'purchaseorderitem', component: PurchaseOrderItemComponent },
+                    { path: 'purchasereturn', component: PurchaseReturnComponent },
+                    { path: 'purchasereturnitem', component: PurchaseReturnItemComponent }
+                ]
+            },
+            {
+                path: "reports",
+                children: [
+                    { path: 'order-detail', component: OrderDetailComponent },
+                    { path: 'order-summary', component: OrderSummaryComponent },
                 ]
             }
         ]

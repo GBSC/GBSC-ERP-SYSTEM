@@ -1,0 +1,110 @@
+.card1 {
+    display: block;
+    position: relative;
+    height: 100%;
+}
+.card-left {
+    width: 60%;
+    height: 100%;
+    display: inline-grid;
+    position: relative;
+}
+.card-right {
+    width: 40%;
+    height: 100%;
+    display: inline-grid;
+    position: absolute;
+    background: #2e2e2e;
+    padding-top: 10px;
+}
+h4.card1-title {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 25px;
+    color: white;
+}
+i.card-icon.flaticon-support {
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    color: white;
+    line-height: 18px;
+    margin: auto;
+    width: fit-content;
+    background: #4b4b4b;
+    border-radius: 20px;
+    padding: 7px;
+}
+h4.card1-token {
+    font-size: 28px;
+    color: #e37125;
+    display: block;
+    text-align: center;
+}
+
+h4.card2-title {
+    font-size: 16px;
+    line-height: 25px;
+    color: white;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+}
+
+.card-head {
+    background: #002050;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.card2-top-1 {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 46% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 73% 100%, 0% 100%);
+    position: absolute;
+    background: #333;
+    width: 54%;
+    display: inline-grid;
+    height: 70px;
+}
+.card2-top-2 {
+    background: #333;
+    width: 74%;
+    -webkit-clip-path: polygon(75% 0, 100% 0, 100% 100%, 34% 100%);
+    clip-path: polygon(47% 0, 100% 0, 100% 100%, 25% 100%);
+    display: inline-grid;
+    position: inherit;
+    height: 70px;
+    float: right;
+}
+
+span.to-name {
+    padding: 0px 0px 0px 15px;
+    color: white;
+    margin: 15px 0px -15px 0px;
+}
+
+h4.card2-token {
+    font-size: 24px;
+    color: #e37125;
+    padding: 0px 0px 0px 15px;
+    margin: 0 0 0 0;
+}
+
+h4.card2-patient {
+    display: inline-grid;
+    font-size: 20px;
+    margin: 0px -5px 6px 15px;
+    text-align: left;
+    padding: 0px 0px 0px 0px;
+}
+
+i.card-icon2.fa.fa-user-circle-o {
+    font-size: 40px;
+    padding: 0px 0px 0px 15px;
+    display: inline-grid;
+}
+
+.card2 {
+    display: flex;
+    position: inherit;
+    margin-top: 100px;
+    padding-bottom: 12px;
+}

@@ -15,10 +15,12 @@
 						 (onRowInserted)="addUserLoan($event)"
 							(onRowUpdated)="updateUserLoan()" 
 							(onRowUpdating)="Updatingloan($event)" 
-							(onRowRemoved)="deleteUserLoan($event)"> 
+							(onRowRemoved)="deleteUserLoan($event)"
+							 [columnAutoWidth]="true" 
+							[showBorders]="true"> 
 
-							<dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">	
-								<dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+							<dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">	
+								<dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="500"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
 							<dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -27,7 +29,7 @@
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 				
 							<dxi-column dataField="userId" caption="Employee">
-									<dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId">
+									<dxo-lookup [dataSource]="users" displayExpr="fullName" valueExpr="userId">
 									</dxo-lookup>
 								</dxi-column>
 								<dxi-column dataField="loanTypeId" caption="Loan Type">
@@ -45,6 +47,9 @@
 							<dxi-column dataField="endMonth" caption="End Month" dataType="date" format="month"></dxi-column> 
 							<dxi-column dataField="lastPaymentDate" caption="Last Payment Date" dataType="date" format="shortdate"></dxi-column> 
 							<dxi-column dataField="isPaid" caption="Paid" dataType="boolean"></dxi-column> 
+							<dxi-column dataField="isLoanStop" caption="Stop" dataType="boolean"></dxi-column> 
+							<dxi-column dataField="loanStopFrom" caption="Stop From" dataType="date" format="shortdate"> </dxi-column> 
+							<dxi-column dataField="loanStopTill" caption="Stop Till" dataType="date" format="shortdate"> </dxi-column> 
 						</dx-data-grid> 
 					</div>
 					</div>

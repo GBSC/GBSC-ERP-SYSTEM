@@ -14,7 +14,7 @@ export class FundsetupComponent implements OnInit {
     public payrollYears: any;
     public updatingfundSetup: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
+    constructor(public fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
 
@@ -43,7 +43,10 @@ export class FundsetupComponent implements OnInit {
 
         this.fundSetup = await this.payrollsetupservice.getFundSetups();
 
-        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+        this.payrollsetupservice.getPayrollYears().subscribe(resp => {
+            this.payrollYears = resp;
+           console.log(this.payrollYears);
+         })
     }
 
     async addFundSetup() {

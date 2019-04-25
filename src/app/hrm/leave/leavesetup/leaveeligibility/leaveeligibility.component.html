@@ -13,10 +13,11 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="leaveeligibility"
                keyExpr="leaveEligibilityId"
+               [showBorders]="true"
                (onRowInserted)="addleaveeligibility($event)" 
               (onRowUpdated)="updateleaveeligibility($event)"
                 (onRowRemoved)="deleteleaveeligibility($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

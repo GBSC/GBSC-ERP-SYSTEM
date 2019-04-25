@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
 import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
@@ -14,18 +14,22 @@ export class ProductTypeComponent implements OnInit {
 
     @Output() UpdateProductTypeInInventoryItemComponent = new EventEmitter<any>()
 
-    private ProductTypes: ProductType;
-    private UpdatedModel: any;
+    public ProductTypes: ProductType;
+    public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => {
+            this.ProductTypes = res;
+            console.log(this.ProductTypes);
+        });
     }
 
     async AddProductType(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddProductType(value.data).toPromise();
         this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => {
             this.ProductTypes = res;

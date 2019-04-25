@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
-import { DxDataGridModule, DxPopupModule } from "devextreme-angular";
+import { InventorysystemService, AuthService } from '../../../core';
+import { Territory } from '../../../core/Models/Inventory/Setup/Territory';
+import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
 
 
 @Component({
@@ -9,36 +10,45 @@ import { DxDataGridModule, DxPopupModule } from "devextreme-angular";
     styleUrls: ['./distributor.component.scss']
 })
 export class DistributorComponent implements OnInit {
-    private Distributors: any;
-    private Territories: any;
-    private UnassignedTerritories: any;
-    private UpdatedModel: any;
-    private DataSource: any;
+    public Distributors: any;
+    public Territories: any;
+    public UnassignedTerritories: any;
+    public UpdatedModel: any;
+    public DataSource: any;
+    public CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }
 
-    async onPopupShown() {
-        await this.CheckUnassignedTerritories();
+    onPopupShown() {
+        this.CheckUnassignedTerritories();
         this.DataSource = this.UnassignedTerritories;
     }
 
-    async onPopupHide() {
+    onPopupHide() {
         this.DataSource = this.Territories;
     }
 
-    async ngOnInit() {
-        this.Distributors = await this.InventoryService.GetDistributors();
-        await this.CheckUnassignedTerritories();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetDistributorsByCompany(this.CompanyId).subscribe((res: Distributor) => {
+            this.Distributors = res;
+            this.CheckUnassignedTerritories();
+        });
     }
 
-    async AddDistributor(value) {
+    AddDistributor(value) {
         //console.log(this.DataSource);
-        await this.InventoryService.AddDistributor(value.data);
-        this.Distributors = await this.InventoryService.GetDistributors();
-        await this.CheckUnassignedTerritories();
+        this.InventoryService.AddDistributor(value.data).subscribe(res => {
+            this.InventoryService.GetDistributorsByCompany(this.CompanyId).subscribe((res: Distributor) => {
+                this.Distributors = res;
+                this.CheckUnassignedTerritories();
+            });
+        });
+
     }
 
     UpdateModel(value) {
@@ -47,22 +57,24 @@ export class DistributorComponent implements OnInit {
         //console.log(this.UpdatedModel);
     }
 
-    async UpdateDistributor() {
+    UpdateDistributor() {
         //console.log(this.DataSource);
-        await this.InventoryService.UpdateDistributor(this.UpdatedModel);
-        await this.CheckUnassignedTerritories();
+        this.InventoryService.UpdateDistributor(this.UpdatedModel).subscribe(res => this.CheckUnassignedTerritories());
+
     }
 
-    async DeleteDistributor(value) {
+    DeleteDistributor(value) {
         //console.log(this.DataSource);
-        await this.InventoryService.DeleteDistributor(value.key);
-        await this.CheckUnassignedTerritories();
+        this.InventoryService.DeleteDistributor(value.key).subscribe(res => this.CheckUnassignedTerritories());
     }
 
-    async CheckUnassignedTerritories() {
-        this.Territories = await this.InventoryService.GetTerritories();
-        this.DataSource = this.Territories;
-        this.UnassignedTerritories = this.Territories.filter(a => a.distributor === null);
+    CheckUnassignedTerritories() {
+        this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe((res: Territory) => {
+            this.Territories = res;
+            this.DataSource = this.Territories;
+            this.UnassignedTerritories = this.Territories.filter(a => a.distributor === null);
+        });
+
         //console.log(this.UnassignedTerritories);
     }
 }

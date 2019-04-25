@@ -1,5 +1,10 @@
-export class UserRosterAttendanceAttendanceFlag {
+export class ShiftAttendanceFlag {
 
-    attendanceFlagId: number;
-    userRosterAttendanceId: number;
+    FromTime: Date
+    ToTime: Date
+    NoOfHours: string
+    ShiftId: number
+    AttendanceFlagId: number
+    FlagTypeId: number
+
 }

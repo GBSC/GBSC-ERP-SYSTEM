@@ -6,134 +6,123 @@
 	<!-- BEGIN: Brand -->
 	<div class="m-brand  m-brand--skin-light">
 		<a routerLink="/index" class="m-brand__logo">
-			<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png" />
+			<img alt="" src="./assets/images/logo.png" />
 		</a>
 	</div>
 	<!-- END: Brand -->
 	<!-- BEGIN: Aside Menu -->
-	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light" data-menu-vertical="true"
-	 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light"
+	 data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
 
-				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-						<a  routerLink="/etracker/locator" class="m-menu__link m-menu__toggle">
-							<i class="m-menu__link-icon flaticon-search"></i>
-							<span class="m-menu__link-text">Locater
-							</span>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-					</li>
-					<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-							<a  routerLink="/etracker/sales-users" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-search"></i>
-								<span class="m-menu__link-text">Sales Users
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-								<a  routerLink="/etracker/section-management" class="m-menu__link m-menu__toggle">
-									<i class="m-menu__link-icon flaticon-search"></i>
-									<span class="m-menu__link-text">
-											Sections
-									</span>
-									<i class="m-menu__ver-arrow la la-angle-right"></i>
-								</a>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Locator')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/locator" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-route"></i>
+					<span class="m-menu__link-text">Locater
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Users')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/users" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-users"></i>
+					<span class="m-menu__link-text">Users
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Stores')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/stores" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-profile"></i>
+					<span class="m-menu__link-text">
+						Stores
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Territory Management')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/territory-management" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-map"></i>
+					<span class="m-menu__link-text">
+						Territory
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Visit Reason')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/reasons" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-information"></i>
+					<span class="m-menu__link-text">
+						Visit Reason
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li class="m-menu__item m-menu__item--submenu m-menu__item--submenu-fullheight m-menu__item--open-dropdown m-menu__item--hover"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a href="#" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-time-3"></i>
+					<span class="m-menu__link-text">
+						Reports
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+					<div class="m-menu__wrapper m-scroller ps ps--active-y" style="height: 341px; overflow: hidden;">
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" aria-haspopup="true">
+								<span class="m-menu__link"><span class="m-menu__link-text">eTracker Reports</span></span>
 							</li>
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-									<a  routerLink="/etracker/stores" class="m-menu__link m-menu__toggle">
-										<i class="m-menu__link-icon flaticon-search"></i>
-										<span class="m-menu__link-text">
-												Stores
-										</span>
-										<i class="m-menu__ver-arrow la la-angle-right"></i>
-									</a>
-								</li>
-								<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-										<a  routerLink="/etracker/stores" class="m-menu__link m-menu__toggle">
-											<i class="m-menu__link-icon flaticon-search"></i>
-											<span class="m-menu__link-text">
-													Territory
-											</span>
-											<i class="m-menu__ver-arrow la la-angle-right"></i>
-										</a>
-									</li>
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
-			aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
-			   <a href="#" class="m-menu__link m-menu__toggle">
-				   <i class="m-menu__link-icon flaticon-menu"></i>
-				   <span class="m-menu__link-text">
-					  Reports
-				   </span>
-				   <i class="m-menu__ver-arrow la la-angle-right"></i>
-			   </a>
-			   <div class="m-menu__submenu">
-				   <span class="m-menu__arrow"></span>
-				   <div class="m-menu__wrapper">
-					   <ul class="m-menu__subnav">
-						   <li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
-							aria-haspopup="true">
-							   <span class="m-menu__link">
-								   <span class="m-menu__link-text">
-									 eTracker Reports
-								   </span>
-							   </span>
-						   </li>
-					
+							<!-- <li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item ">
+								<a routerLink="/etracker/reports/location-report" class="m-menu__link "><span class="m-menu__link-text">Location
+										Report</span></a>
+							</li> -->
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Census Detail')" class="m-menu__item ">
+								<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link "><span class="m-menu__link-text">Shop
+										Census Detail</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Census Summary')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link "><span class="m-menu__link-text">Shop
+										Census Summary</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Status Detail')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/shop-status-detail" class="m-menu__link "><span class="m-menu__link-text">Shop
+										Status Detail</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Status Summary')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/shop-status-summary" class="m-menu__link "><span class="m-menu__link-text">Shop
+										Status Summary</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Detail')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/visit-detail" class="m-menu__link "><span class="m-menu__link-text">Visit
+										Detail</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Summary')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/etracker/reports/visit-summary" class="m-menu__link "><span class="m-menu__link-text">Visit
+										Summary</span></a>
+							</li>
 
-						   <!-- BEGIN: Company Setup -->
-						   <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
-							aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
-							   <a href="#" class="m-menu__link m-menu__toggle">
-								   <span class="m-menu__link-text">
-									Setup Forms
-								   </span>
-								   <i class="m-menu__ver-arrow la la-angle-right"></i>
-							   </a>
-							   <div class="m-menu__submenu">
-								   <span class="m-menu__arrow"></span>
-								   <ul class="m-menu__subnav">
-									    <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-										   <a routerLink="#" class="m-menu__link">
-											   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												   <span></span>
-											   </i>
-											   <span class="m-menu__link-text">
-													Shop Registration Report
-													
-											   </span>
-										   </a>
-									   </li>
-									   <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-										<a routerLink="#" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-													Shop Registration Summary Report
-													
-											</span>
-										</a>
-										</li>
-										<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-											<a routerLink="#" class="m-menu__link">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
-														Mileage Report
-												</span>
-											</a>
-											</li>
-									    
-								
-								   </ul>
-							   </div>
-						   </li>
-					   </ul>
-				   </div>
-			   </div>
-		   </li>
+						</ul>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; height: 341px; right: 4px;">
+							<div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 150px;"></div>
+						</div>
+					</div>
+				</div>
+			</li>
 		</ul>
 	</div>
 	<!-- END: Aside Menu -->

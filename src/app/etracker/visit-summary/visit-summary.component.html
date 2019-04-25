@@ -1,134 +1,177 @@
+<div class="row">
 <div class="m-content">
   <div class="row">
     <div class="col-lg-3">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Visit Summary
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body" style="padding: 0px !important;">
-
-
+      <div class="m-portlet m-portlet--full-height  ">
+        <div class="m-portlet__body">
           <div class="m-card-profile">
+            <!-- <div class="m-card-profile__title">
+              Your Profile
+            </div> -->
             <div class="m-card-profile__pic">
-                <div class="m-card-profile__pic-wrapper">
-                        <img src="http://evasalesforceprod.azurewebsites.net/service//StoreImages\Store_3782\1536132286696.jpg" alt="">
-                </div>
+              <div class="m-card-profile__pic-wrapper" style="margin: 0rem auto;">
+                <img src="../assets/app/media/img/users/user4.jpg" alt="">
+              </div>
             </div>
-            <div class="m-card-profile__details">
-                <span class="m-card-profile__name">
-                    Nizam store
-                </span>
-                <div class="m-card-profile__email">
-                    03151003342
-                </div>
-                <div class="m-card-profile__email" style="padding: 0px 10px;">
-                  111 A Shahrah-e-Faisal Rd, Block A 
-                  (SMCHS), Karachi
-                </div>
-                
-            </div>
-        </div>
-
-
-
-          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-            <div class="m-demo__preview">
-              <ul class="m-nav nav nav-tabs">
-              
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Inventory" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Inventory Taking
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#order" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Order Taking
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Currency" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Gift Order
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Market Survey
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Merchandising
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Shop Query
-                    </span>
-                  </a>
-                </li>
-              </ul>
+             <div class="m-card-profile__details">
+              <span class="m-card-profile__name" style="padding-bottom: 15px;">
+                <!-- New store Name -->
+              </span>
+              <div class="visit-lable">Visit Start: <span>{{storeVisit?.startTime | date:'short' }}</span></div>
+              <div class="visit-lable">Visit End: <span>{{storeVisit?.endTime | date:'short' }}</span></div>
             </div>
           </div>
+          <div class="m-portlet__body-separator" style="margin: 15px -2.2rem; border-bottom: 3px solid #e37125;"></div>
+          <ul class="m-nav nav nav-tabs">
+
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#order" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Order Taking
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Inventory" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Inventory Taking
+                </span>
+              </a>
+            </li>
+            <!-- <li class="m-nav__item">
+              <a class="m-nav__link" href="#Currency" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Gift Order
+                </span>
+              </a>
+            </li> -->
+            <!-- <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Market Survey
+                </span>
+              </a>
+            </li> -->
+            <!-- <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Merchandising
+                </span>
+              </a>
+            </li> -->
+            <!-- <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Shop Query
+                </span>
+              </a>
+            </li> -->
+          </ul>
+
+
         </div>
       </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" style="padding-left:0px;">
       <!-- Tab panes -->
       <div class="m-portlet">
         <div class="">
           <div class="tab-content">
-            
 
-            <div class="tab-pane  active" id="Inventory">
+
+            <div class="tab-pane  active" id="order">
               <div class="m-portlet">
                 <div class="m-portlet__head">
                   <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
-                      <h3 class="m-portlet__head-text">Sales Representative Visits</h3>
+                        <span class="m-portlet__head-icon"><i class="flaticon-cart"></i></span>
+                      <h3 class="m-portlet__head-text">Order Taking</h3>
                     </div>
                   </div>
                 </div>
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                      <dx-data-grid
-    id="gridContainer"
-    [dataSource]="customers"
-    [columns]="['Date','Start Time', 'End Time', 'Visit detail']"
-    [showBorders]="true">
-</dx-data-grid>
+                      <div *ngIf="Storevisitdetails.length">
+                        <dx-data-grid id="gridContainer" [dataSource]="Storevisitdetails" [showBorders]="true"
+                          [masterDetail]="{ enabled: true, template: 'detail' }">
+                          <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+                          <dxi-column dataField="productType" caption="Product Type"></dxi-column>
+                          <div *dxTemplate="let orderitems of 'detail'">
+                            <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                              <dxi-column dataField="name" caption="Product"></dxi-column>
+                              <dxi-column dataField="unitPrice" caption="Price"></dxi-column>
+                              <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                            </dx-data-grid>
+                          </div>
+                        </dx-data-grid>
+                      </div>
+
+                      <div *ngIf="!Storevisitdetails.length">
+                        {{StoreNoOrderReason.reason}}
+                      </div>
+                      <!-- <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                        <dxo-paging [pageSize]="6"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                        </dxo-pager>
+                        <dxi-column dataField="createdAt"></dxi-column>
+                        <dxi-column dataField="startTime"></dxi-column>
+                        <dxi-column dataField="endtime"></dxi-column>
+                        <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                          <a title="Visit Details" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                            <i class="flaticon-layers"></i>
+                          </a>
+                        </div>
+                      </dx-data-grid> -->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="tab-pane" id="order">
-                <app-order-taking></app-order-taking>
-            
+            <div class="tab-pane" id="Inventory">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="flaticon-cart"></i></span>
+                      <h3 class="m-portlet__head-text">Inventory Taking</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <dx-data-grid id="gridContainer" [dataSource]="StoreVisitInventories" [showBorders]="true"
+                        [masterDetail]="{ enabled: true, template: 'detail' }">
+                        <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+                        <dxi-column dataField="brand" caption="Brand Name  "></dxi-column>
+                        <div *dxTemplate="let orderitems of 'detail'">
+                          <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                            <dxi-column dataField="skuItem" caption="Items"></dxi-column>
+                          </dx-data-grid>
+                        </div>
+                      </dx-data-grid>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -136,4 +179,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

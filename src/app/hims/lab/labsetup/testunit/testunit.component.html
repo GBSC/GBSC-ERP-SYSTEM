@@ -14,12 +14,12 @@
               <div class="m-section__content">
   
                 <dx-data-grid id="gridContainer" [dataSource]="units" keyExpr="testUnitId" 
-                (onRowInserted)="addNewTest($event)"
-                 (onRowUpdated)="UpdateTest($event)">
+                (onRowInserted)="addNewTest($event)">
   
                   <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                      <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
   
-                    <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                    <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>

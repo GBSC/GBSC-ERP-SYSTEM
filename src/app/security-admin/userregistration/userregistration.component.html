@@ -1,0 +1,148 @@
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                User Registration
+
+              </h3>
+            </div>
+          </div>
+        </div>
+        <form class="signup-form" [formGroup]="userForm">
+          <div class="m-portlet__body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label class="control-label">
+                    First Name <em class="required_label">*</em>
+                  </label>
+                  <input type="text" formControlName="FirstName" [value]="user?.firstName"
+                    class="form-control m-input m-input--solid">
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label class="control-label">
+                    Last Name <em class="required_label">*</em>
+                  </label>
+                  <input type="text" formControlName="LastName" [value]="user?.lastName"
+                    class="form-control m-input m-input--solid">
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="City" class="control-label">City</label>
+                  <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="user?.name">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                    <option *ngFor="let cty of cities" [value]="cty?.cityId">{{cty.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
+                  <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone"
+                    [value]="user?.phone" aria-describedby="Contact_Number" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="m--space-07"></div>
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="City" class="control-label">Role</label>
+                  <select class="form-control m-input m-input--solid" formControlName="RoleId" [value]="user?.roleId">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                    <option *ngFor="let role of roles" [value]="role?.roleId">{{role.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="City" class="control-label">User Type</label>
+                  <select class="form-control m-input m-input--solid" formControlName="UserType"
+                    [value]="user?.userType">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                    <option *ngFor="let usertype of userTypes" [value]="usertype">{{usertype}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="email" class="control-label">Email</label>
+                  <input type="email" class="form-control m-input m-input--solid" formControlName="Email"
+                    [value]="user?.email" name="email" aria-describedby="emailHelp">
+                </div>
+              </div>
+            </div>
+            <div class="m--space-10"></div>
+            <div>
+              <h4 *ngIf="!user">Account Registration</h4>
+              <h4 *ngIf="user">Update Password</h4>
+              <div class="m--space-10"></div>
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="form-group m-form__group">
+                    <label class="control-label">User Name</label>
+                    <input type="text" formControlName="Username" class="form-control m-input m-input--solid"
+                      id="UserName" name="Username" aria-describedby="emailHelp" [value]="username">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group m-form__group">
+                    <label for="employee_id">Password</label>
+                    <input class="form-control m-input m-input--solid" formControlName="Password" placeholder="Password"
+                      aria-describedby="Password" type="password">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!username" class="row">
+                <div class="col-md-6">
+                  <div class="form-group m-form__group">
+                    <label for="employee_id">Confirm Password</label>
+                    <input class="form-control m-input m-input--solid" formControlName="ConfirmPassword"
+                      placeholder="Confirm Password" aria-describedby="Password" type="password">
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-10"></div>
+            </div>
+          </div>
+
+          <div class="m-portlet__foot">
+            <div class="row align-items-center">
+              <div class="col-lg-6 m--valign-middle">
+
+              </div>
+              <div class="col-lg-6 m--align-right">
+                <button *ngIf="!user" type="submit" class="btn btn-brand" (click)="submit(userForm.value)">
+                  Submit
+                </button>
+                <button *ngIf="user" type="submit" class="btn btn-success" (click)="update(userForm.value)">
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

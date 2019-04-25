@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { SetupService } from '../../../core';
+import { SetupService, AuthService } from '../../../core';
 
 @Component({
     selector: 'app-costcenters',
@@ -9,28 +9,30 @@ import { SetupService } from '../../../core';
     styleUrls: ['./costcenters.component.css']
 })
 export class CostCenterComponent implements OnInit {
-    public ccenter: any;
 
-    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
+    public costCenter: any;
+    public modelUpdating: any;
 
-
+    constructor(public httpClient: HttpClient, public dataService: SetupService, public auth : AuthService) { }
 
     async ngOnInit() {
-        this.ccenter = await this.dataService.getAllCostCenter();
+        this.costCenter = await this.dataService.getAllCostCenter();
     }
 
-    addNewCostCenter(cc) {
-        this.dataService.addCostCenter(cc.data);
-        this.ccenter = this.dataService.getAllCostCenter();
-
+    async addNewCostCenter(cc) {
+        await this.dataService.addCostCenter(cc.data);
+        this.costCenter = await this.dataService.getAllCostCenter();
     }
 
-    EditCost(costcntr) {
-        this.dataService.updateCostCenter(costcntr);
+    costcntrUpdating(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteCost(costcnter) {
+    async editCostCenter() {
+        await this.dataService.updateCostCenter(this.modelUpdating);
+    }
 
-        this.dataService.DeleteCostCenter(costcnter.key);
+    async deleteCost(costcnter) {
+        await this.dataService.DeleteCostCenter(costcnter.key);
     }
 }

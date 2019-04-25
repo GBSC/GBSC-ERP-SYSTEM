@@ -9,7 +9,8 @@ import { FileRecordComponent } from './file-record/file-record.component';
 import { ProceduresortestComponent } from './proceduresortest/proceduresortest.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
@@ -46,6 +47,10 @@ import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-co
 import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
 import { LabsummaryReportviewerComponent } from './report-components/labsummary-reportviewer/labsummary-reportviewer.component';
 import { BiopsyReportviewerComponent } from './report-components/biopsy-reportviewer/biopsy-reportviewer.component';
+import { InternalRequisitionRequestComponent } from './internal-requisition-request/internal-requisition-request.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 
 
@@ -55,8 +60,10 @@ import { BiopsyReportviewerComponent } from './report-components/biopsy-reportvi
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         CKEditorModule,
         routing,
 
@@ -105,6 +112,7 @@ import { BiopsyReportviewerComponent } from './report-components/biopsy-reportvi
         BiochemistryOutsiderReportviewerComponent,
         LabsummaryReportviewerComponent,
         BiopsyReportviewerComponent,
+        InternalRequisitionRequestComponent,
     ]
 })
 export class LabModule { }

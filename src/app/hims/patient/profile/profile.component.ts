@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     public Patient: any = {};
 
     public visitnature: any;
-    public vistnatr = [];
+    public vistnatr: any = [];
     public PatientPackage: any = {};
     public patientpackagebypatientid: any = {};
     public patientpackagedetail: any;
@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     public patientref: any;
     public patientreferenc: any;
 
-    constructor(private PatientServiceobj: PatientService, private Router: Router, private route: ActivatedRoute) { }
+    constructor(public PatientServiceobj: PatientService, public Router: Router, public route: ActivatedRoute) { }
 
 
     async ngOnInit() {
@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
             this.id = +params['id'];
             let x = this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
+                console.log(this.Patient)
                 // console.log(this.visitnature)
 
                 this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);

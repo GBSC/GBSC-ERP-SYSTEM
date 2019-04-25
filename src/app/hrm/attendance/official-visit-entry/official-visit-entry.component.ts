@@ -13,7 +13,7 @@ export class OfficialVisitEntryComponent implements OnInit {
     public officialVisitentry: any;
     public updatingOfficialEntry: any;
 
-    constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
+    constructor(public sysAdminService: SystemAdministrationService,public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -22,25 +22,28 @@ export class OfficialVisitEntryComponent implements OnInit {
 
         this.employee = await this.empservice.GetAllEmployees();
 
-        this.branches = await this.companyservice.getBranches();
+        this.sysAdminService.getBranches().subscribe(resp => {
+            this.branches = resp
+        });
     }
 
     async addofficialVisitentry(value) {
 
-        this.attendanceservice.addOfficialVisitEntry(value.data);
+        await this.attendanceservice.addOfficialVisitEntry(value.data);
+        await this.attendanceservice.addAttendanceRequest(value.data);
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
     }
 
-    async updatingVisitentry(value) {
+     updatingVisitentry(value) {
         this.updatingOfficialEntry = { ...value.oldData, ...value.newData };
     }
 
     async updateVisitentry() {
-        this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
+        await this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
     }
 
     async deleteofficialVisitentry(value) {
-        this.attendanceservice.DeleteOfficialVisitEntry(value.key);
+        await this.attendanceservice.DeleteOfficialVisitEntry(value.key);
     }
 
 }

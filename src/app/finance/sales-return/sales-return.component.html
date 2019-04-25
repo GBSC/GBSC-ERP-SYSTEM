@@ -148,7 +148,7 @@
                       </label>
                       <select class="form-control m-input" formControlName="FinanceSalesInvoiceId">
                         <option value="" disabled selected>-- Select Sales Invoice --</option>
-                        <option *ngFor="let invoicesale of salesInvoice" [value]="invoicesale.FinanceSalesInvoiceId">{{invoicesale.totalAmount}}</option>
+                        <option *ngFor="let invoicesale of SalesInvoice" [value]="invoicesale.FinanceSalesInvoiceId">{{invoicesale.totalAmount}}</option>
                       </select>
                     </div>
                   </div>
@@ -193,7 +193,7 @@
                 <h3>Sales Return Detail</h3>
                 <dx-data-grid id="gridContainer" [dataSource]="ReturnDetail" (onRowInserted)="addsalesReturnDetail($event)" (onRowUpdated)="updatesalesReturnDetail($event)">
 
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                   <dxo-header-filter [visible]="true"></dxo-header-filter>

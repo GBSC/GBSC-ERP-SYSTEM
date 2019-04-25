@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../../app/core';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
@@ -19,33 +19,33 @@ export class EmbryologyComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private clinicalRecord: any;
-    private embryology: any;
-    private tvopu: any;
-    private embryologists: any;
-    private embryologydetails: any;
-    private eggNumber: any = "";
-    private fateOptions: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public clinicalRecord: any;
+    public embryology: any;
+    public tvopu: any;
+    public embryologists: any;
+    public embryologydetails: any;
+    public eggNumber: any = "";
+    public fateOptions: any;
 
-    private embryologyForm: FormGroup;
+    public embryologyForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologyService,
-        private embryologistService: EmbryologistService,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public route: ActivatedRoute,
+        public router: Router,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologyService,
+        public embryologistService: EmbryologistService,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.fateOptions = [{ name: "Stored" }, { name: "Replaced" }, { name: "Discarded" }, { name: "None" }];
 

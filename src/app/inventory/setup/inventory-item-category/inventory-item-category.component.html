@@ -2,6 +2,7 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
+          <span class="m-portlet__head-icon"><i class="flaticon-share"></i></span> 
         <h3 class="m-portlet__head-text">Product Category</h3>
       </div>
     </div>
@@ -13,13 +14,14 @@
   <div class="col-md-12"> 
     <dx-data-grid id="gridContainer" [dataSource]="ItemCategories" keyExpr="inventoryItemCategoryId" (onRowInserted)="AddItemCategory($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateItemCategory()" (onRowRemoved)="DeleteItemCategory($event)"> 
       <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-        <dxo-popup title="Add Product Category" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+        <dxo-popup title="Add Product Category" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" ></dxo-popup>
       </dxo-editing>
       <dxo-filter-row [visible]="true"></dxo-filter-row>
       <dxo-header-filter [visible]="true"></dxo-header-filter>
       <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
       <dxo-paging [pageSize]="8"></dxo-paging>
       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+      <dxi-column dataField="inventoryItemCategoryCode" dataType="number" caption="Code"></dxi-column> 
       <dxi-column dataField="name" caption="Name"></dxi-column> 
       </dx-data-grid> 
    </div>

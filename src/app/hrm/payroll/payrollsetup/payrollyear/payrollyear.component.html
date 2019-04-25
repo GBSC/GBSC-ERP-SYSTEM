@@ -10,20 +10,20 @@
 					<div class="m-portlet__body">
 					  <div class="m-section">
 						<div class="m-section__content" >
-							<dx-data-grid id="gridContainer" [dataSource]="payrollYear"
+							<dx-data-grid id="gridContainer" [dataSource]="payrollYears"
 							 (onRowInserted)="addpayrollyear($event)"
 								(onRowUpdated)="updatepayrollyear()" 
 								(onRowUpdating)="updatingpayrollyear($event)" 
 								(onRowRemoved)="deletepayrollyear($event)"> 
 								<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
-									<dxo-popup title="Payroll Year" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+									<dxo-popup title="Payroll Year" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
 								</dxo-editing>
 								<dxo-filter-row [visible]="true"></dxo-filter-row>
 								<dxo-header-filter [visible]="true"></dxo-header-filter>
 								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 								<dxo-paging [pageSize]="8"></dxo-paging>
 								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-								<dxi-column dataField="name" caption="Name"></dxi-column>
+								<dxi-column dataField="name" caption="Payroll Year" [allowEditing]="false"></dxi-column>
 								<dxi-column dataField="from" caption="Start Date" dataType="date" format="shortDate" ></dxi-column>
 								<dxi-column dataField="till"caption="End Date" dataType="date" format="shortDate"></dxi-column>
 								<dxi-column dataField="isCurrent"caption="Is Current Payroll Year" dataType="boolean"></dxi-column>

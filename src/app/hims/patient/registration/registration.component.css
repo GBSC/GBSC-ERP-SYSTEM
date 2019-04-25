@@ -85,3 +85,7 @@ div.bhoechie-tab-container{
 
 }
  
+
+.capitalize {
+  text-transform: capitalize;
+  }

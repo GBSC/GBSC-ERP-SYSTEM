@@ -9,6 +9,9 @@ import { Department } from '../../Models/HRM/department';
 import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
+import { Observable } from 'rxjs/Observable';
+import { compileNgModule } from '@angular/core/src/render3/jit/module';
+
 
 export class Product {
     id: string;
@@ -18,40 +21,51 @@ export class Product {
     items?: Product[];
 }
 
+    
+
+
+
 @Injectable()
 export class SystemAdministrationService {
 
-    private readonly API_URL = "systemadmin/api/setup/";
+
+    public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
+    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
 
 
-    constructor(private ApiService: ApiService) {
+
+    constructor(public ApiService: ApiService, public httpService: HttpClient) {
     }
 
     async saveNewRoleData(data) {
+        console.log(data);
         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
-    async getData() {
+    async getModulesByCompanyId(companyId: any) {
 
-        let params = new HttpParams().set('companyId', '164');
+        let params = new HttpParams().set('companyId', companyId);
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
 
+        console.log(response);
+        // localStorage.setItem('modulesFromApi', JSON.stringify(response));
+
         for (let m of response) {
             this.modules.push({
-                ModuleId: m.moduleId,
+                moduleId: m.moduleId,
                 name: m.name,
                 expanded: false,
                 features: m.features.map(f => {
                     return {
-                        FeatureId: f.featureId,
+                        featureId: f.featureId,
                         name: f.name,
-                        ModuleId: f.moduleId,
+                        moduleId: f.moduleId,
                         permissions: f.permissions.map(p => {
                             return {
-                                Attribute: p.attribute,
-                                FeatureId: p.featureId
+                                permissionName: p.attribute,
+                                featureId: p.featureId
                             }
                         })
                     }
@@ -61,6 +75,14 @@ export class SystemAdministrationService {
 
     }
 
+    getfeaturesByCompany(companyId: number) {
+        return this.ApiService.get(this.API_URL + 'GetFeaturesByCompany/' + companyId);
+    }
+
+    getFeaturePermission(featureName, moduleName, roleId) {
+        return this.ApiService
+            .get(this.API_URL + 'getFeaturePermission?feature=' + featureName + '&module=' + moduleName + '&roleId=' + roleId);
+    }
 
     async getPermissions() {
         let response = await this.ApiService.get(this.API_URL + 'getpermissions').toPromise();
@@ -84,42 +106,66 @@ export class SystemAdministrationService {
     }
 
 
-    async getBranches() {
-        return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
+    getBranches(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetBranches');
     }
 
-    async addBranches(branch: Branch) {
-        return await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
+    getBranchesByComapnyId(compid: number): Observable<Branch[]> {
+        return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
     }
 
-    async updateBranch(branch: Branch) {
-        return await this.ApiService.put(this.API_URL + 'UpdateBranch', branch).toPromise();
+    addBranch(branch: Branch): Observable<any> {
+        return this.httpService.post(this.setupUrl2 + 'AddBranch', branch);
     }
 
-    async deletBranch(id) {
-        return await this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id).toPromise();
+    updateBranch(branch: Branch): Observable<any> {
+        return this.httpService.put(this.setupUrl2 + 'UpdateBranch', branch);
+    }
+
+    deletBranch(id): Observable<any> {
+        return this.httpService.delete(this.setupUrl2 + 'DeleteBranch/' + id);
     }
 
     async getDepartments() {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
     }
 
-    async addDepartment(department: Department) {
-        return await this.ApiService.post(this.API_URL + 'AddDepartment', department).toPromise();
+    getDepartmentsByCompanyId(compid: number): Observable<Department[]> {
+        return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
-    async updateDepartment(department: Department) {
-        return await this.ApiService.put(this.API_URL + 'UpdateDepartment', department).toPromise();
+    addDepartment(department): Observable<any> {
+        return this.httpService.post(this.setupUrl2 + 'AddDepartment', department);
     }
 
-    async deletDepartment(id) {
-        return await this.ApiService.delete(this.API_URL + 'DeleteDepartment/' + id).toPromise();
+    updateDepartment(department): Observable<any> {
+        return this.httpService.put('http://localhost:58090/api/setup/UpdateDepartment', department);
+    }
+
+    deletDepartment(id) {
+        return this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id);
     }
 
 
     async getRoles() {
         return await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
     }
+
+    getDropdownRolesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'GetDropdownRolesByCompany/' + companyId);
+    }
+
+    getRolesByCompanyId(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'GetRolesByCompany/' + companyId);
+    }
+
+    async getRolesByCompanyIdAsync(companyId: any) {
+        return await this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId).toPromise();
+    }
+
+    // GetRolesByCompanyId(companyId: number) : Observable<Role[]> {
+    //     return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
+    // }
 
     async addRole(role: Role) {
         return this.ApiService.post(this.API_URL + 'AddRole', role).toPromise();
@@ -183,3 +229,6 @@ export class SystemAdministrationService {
     }
 
 }
+
+
+

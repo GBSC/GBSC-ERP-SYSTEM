@@ -1,4 +1,4 @@
- 
+<div class="m-content"> 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -14,44 +14,34 @@
           <form [formGroup]="MasterPayrollForm">
 
             <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Employee:
-                </label>
-                <select class="form-control m-input" formControlName="UserId">
+              <div class="col-lg-3">
+                <label>Employee: </label>
+                 <select class="form-control m-input" formControlName="PayrollYearId">
+                  <option value="" disabled selected>-- Select Payroll Year --</option>
+                  <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
+                </select>
+              </div>
+              <div class="col-lg-3">
+                <label>Employee: </label>
+                 <select #s class="form-control m-input" (change)="getAllowance(s.value)" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.fullName}}</option>
                 </select>
               </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Bank Transfer Code:
-                </label>
-                <input type="number" class="form-control m-input" formControlName="BankTransferCode" placeholder="0">
+              <div class="col-lg-3">
+                <label>Basic Salary: </label>
+                <input type="number" #totalsalary [value]="totalAllowanceAndDeduction" class="form-control m-input" formControlName="Salary" >
+              </div>
+              <div class="col-lg-3">
+                  <label></label>
+                <button type="button" (click)="updateSalary(totalsalary.value, s.value)" class="btn btn-primary button_get">
+                  Update
+                </button> 
               </div>
             </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Currency:
-                </label>
-                <select class="form-control m-input" formControlName="CurrencyId">
-                  <option value="" disabled selected>-- Select Currency --</option>
-                  <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                 Payroll Bank:
-                </label>
-                <select class="form-control m-input" formControlName="PayrollBankId">
-                  <option value="" disabled>-- Select Payroll Bank --</option>
-                  <option *ngFor="let pb of banksPayroll" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
-                </select>
-              </div>
-            </div>
+            
           </form>
+        
  
             <div class="m--space-30"></div>
             <div class="row">
@@ -60,7 +50,7 @@
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                       <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">Master Payroll Detail</h3>
+                        <h3 class="m-portlet__head-text">Allowance</h3>
                       </div>
                     </div>
                   </div>
@@ -68,12 +58,10 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="masterDetail"
+                        [dataSource]="allowance2"
+                        [showBorders]="true"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
-                         (onRowUpdated)="updateMasterpayrollDetail()"
-                          (onRowRemoved)="deleteleavetypebalance($event)">
-                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                          </dxo-editing>
+                         (onRowUpdated)="updateMasterpayrollDetail($event)"> 
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
           
@@ -81,28 +69,78 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager> 
-                          <dxi-column dataField="value"></dxi-column>
-                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
-                          <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
-                   
-                          <dxi-column dataField="allowanceId" caption="Allowance">
-                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
-                            </dxo-lookup> 
-                            </dxi-column>
-                          <dxi-column dataField="frequencyId" caption="Frequency">
-                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
-                            </dxo-lookup> 
-                            </dxi-column>
-                          <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                            <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
-                            </dxo-lookup> 
-                            </dxi-column>
-                 
+
+                          <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                          </dxi-column>
+            
+                          <dxi-column dataField="benefitId" caption="Benefit">
+                            <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                          </dxi-column>
+          
+                          <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                          </dxi-column>
+
+                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                          <dxo-summary> 
+                            <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
+                        </dxo-summary>
+                          <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
+
                         </dx-data-grid>
-                      
+                        
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">Deduction</h3>
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body">
+              <div class="m-section">
+                <div class="m-section__content">
+                  <dx-data-grid id="gridContainerallowance"
+                  [dataSource]="deduction2"
+                  [showBorders]="true"
+                   (onRowInserted)="addMasterPayrolldetail($event)" 
+                   (onRowUpdated)="updateMasterpayrollDetail($event)"> 
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="6"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager> 
+
+                    <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                      <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                    </dxi-column>
+      
+                    <dxi-column dataField="benefitId" caption="Benefit">
+                      <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                    </dxi-column>
+    
+                    <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                      <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                    <dxo-summary> 
+                      <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
+                  </dxo-summary>
+                    <dxi-column dataField="formula" caption="Formula"></dxi-column>
+
+                  </dx-data-grid>
+                  
               </div>
             </div>
           </div>
@@ -112,26 +150,24 @@
             <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
-                  <div class="col-lg-2"></div>
-                <div class="col-lg-6">
+                  <div class="col-lg-4"></div>
+                <div class="col-lg-4">
                     <div *ngIf="isUpdate(); else create">
-                      <button class="btn btn-primary" (click)="update(submitForm.value)">
+                      <button class="btn btn-primary" (click)="update(MasterPayrollForm.value)">
                           Update
                         </button>        
                   </div> 
                   <ng-template #create>
-                    <button class="btn btn-Success" (click)="submitForm(submitForm.value)">
+                    <button class="btn btn-Success" (click)="submitForm(MasterPayrollForm.value ,totalsalary.value)">
                       Submit
                     </button>  
-                  </ng-template> 
-                  <button type="reset" class="btn btn-secondary">
-                      Reset
-                    </button>
+                  </ng-template>  
                   </div>
+                  <div class="col-lg-4"></div>
               </div>
             </div>  
         </div>
       </div>
-  
+    </div>
  
  

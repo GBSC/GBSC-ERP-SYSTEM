@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../../app/core';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
@@ -17,27 +17,27 @@ export class BiopsyComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private patientid: number;
-    private biopsyid: number;
-    private clinicalRecord: any;
-    private biopsy: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public patientid: number;
+    public biopsyid: number;
+    public clinicalRecord: any;
+    public biopsy: any;
 
-    private biopsyForm: FormGroup;
+    public biopsyForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private biopsyService: BiopsyService,
-        private route: ActivatedRoute,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public biopsyService: BiopsyService,
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.biopsyForm = formBuilder.group({
 

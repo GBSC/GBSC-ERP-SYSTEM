@@ -10,11 +10,17 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="func" keyExpr="functionId" (onRowInserted)="addNewfunction($event)" (onRowUpdated)="Editfunction($event)"
+              <dx-data-grid id="gridContainer" 
+              [dataSource]="func"
+               keyExpr="functionId"
+               [showBorders]="true"
+                (onRowInserted)="addNewfunction($event)" 
+                (onRowUpdating)="functionEditing($event)"
+                (onRowUpdated)="Editfunction()"
                 (onRowRemoved)="deletefunc($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
 
-                  <dxo-popup title="Function" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Function" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

@@ -4187,8 +4187,8 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
-//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
+//	3. Use the same single mechanism to support "public" and "user" data.
+//	4. _Never_ expose "public" data to user code (TODO: Drop _data, _removeData)
 //	5. Avoid exposing implementation details on user objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
 
@@ -5665,7 +5665,7 @@ function cloneCopyEvent( src, dest ) {
 		return;
 	}
 
-	// 1. Copy private data: events, handlers, etc.
+	// 1. Copy public data: events, handlers, etc.
 	if ( dataPriv.hasData( src ) ) {
 		pdataOld = dataPriv.access( src );
 		pdataCur = dataPriv.set( dest, pdataOld );
@@ -7336,7 +7336,7 @@ jQuery.fn.extend( {
 				timers = jQuery.timers,
 				length = queue ? queue.length : 0;
 
-			// Enable finishing flag on private data
+			// Enable finishing flag on public data
 			data.finish = true;
 
 			// Empty the queue first
@@ -11232,7 +11232,7 @@ function attachToScrollParents(scrollParent, event, callback, scrollParents) {
  * Setup needed event listeners used to update the popper position
  * @method
  * @memberof Popper.Utils
- * @private
+ * @public
  */
 function setupEventListeners(reference, options, state, updateBound) {
   // Resize event listener on window
@@ -11264,7 +11264,7 @@ function enableEventListeners() {
  * Remove event listeners used to update the popper position
  * @method
  * @memberof Popper.Utils
- * @private
+ * @public
  */
 function removeEventListeners(reference, state) {
   // Remove resize event listener on window
@@ -11805,7 +11805,7 @@ function keepTogether(data) {
  * Converts a string containing value + unit into a px value number
  * @function
  * @memberof {modifiers~offset}
- * @private
+ * @public
  * @argument {String} str - Value + unit string
  * @argument {String} measurement - `height` or `width`
  * @argument {Object} popperOffsets
@@ -11858,7 +11858,7 @@ function toValue(str, measurement, popperOffsets, referenceOffsets) {
  * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
  * @function
  * @memberof {modifiers~offset}
- * @private
+ * @public
  * @argument {String} offset
  * @argument {Object} popperOffsets
  * @argument {Object} referenceOffsets
@@ -12657,7 +12657,7 @@ var Popper = function () {
      * Due to the high instability of the methods contained in Utils, we can't
      * guarantee them to follow semver. Use them at your own risk!
      * @static
-     * @private
+     * @public
      * @type {Object}
      * @deprecated since version 1.8
      * @member Utils
@@ -16968,7 +16968,7 @@ and dependencies (minified).
 			ignoreIfBlocked: false
 		};
 
-		// private data and functions follow...
+		// public data and functions follow...
 
 		var pageBlock = null;
 		var pageBlockEls = [];
@@ -18473,7 +18473,7 @@ $.fn.timepicker.defaults = $.extend(true, {}, $.fn.timepicker.defaults, {
         show: function(e) {
             if (this.isShowing) return;
 
-            // Create a click proxy that is private to this instance of datepicker, for unbinding
+            // Create a click proxy that is public to this instance of datepicker, for unbinding
             this._outsideClickProxy = $.proxy(function(e) { this.outsideClick(e); }, this);
 
             // Bind global datepicker mousedown for hiding and
@@ -21247,7 +21247,7 @@ $.fn.timepicker.defaults = $.extend(true, {}, $.fn.timepicker.defaults, {
 
   /**
    * Remove all diatrics from the given text.
-   * @access private
+   * @access public
    * @param {String} text
    * @returns {String}
    */
@@ -24966,7 +24966,7 @@ S2.define('select2/selection/search',[
    * selection to the search box. This allows for the search box to be used as
    * the primary focus instead of the selection container.
    *
-   * @private
+   * @public
    */
   Search.prototype._transferTabIndex = function (decorated) {
     this.$search.attr('tabindex', this.$selection.attr('tabindex'));
@@ -35816,7 +35816,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	(function () {
-	  var reservedWords = ('break else new var' + ' case finally return void' + ' catch for switch while' + ' continue function this with' + ' default if throw' + ' delete in try' + ' do instanceof typeof' + ' abstract enum int short' + ' boolean export interface static' + ' byte extends long super' + ' char final native synchronized' + ' class float package throws' + ' const goto private transient' + ' debugger implements protected volatile' + ' double import public let yield await' + ' null true false').split(' ');
+	  var reservedWords = ('break else new var' + ' case finally return void' + ' catch for switch while' + ' continue function this with' + ' default if throw' + ' delete in try' + ' do instanceof typeof' + ' abstract enum int short' + ' boolean export interface static' + ' byte extends long super' + ' char final native synchronized' + ' class float package throws' + ' const goto public transient' + ' debugger implements protected volatile' + ' double import public let yield await' + ' null true false').split(' ');
 
 	  var compilerWords = JavaScriptCompiler.RESERVED_WORDS = {};
 
@@ -51282,7 +51282,7 @@ var Style = /** @class */ (function () {
      * will result in an object of property-value pairs.
      * (compability with version < 1.9)
      *
-     * @private
+     * @public
      * @param  {jQuery} $obj
      * @param  {Array} propertyNames - An array of one or more CSS properties.
      * @return {Object}
@@ -61862,7 +61862,7 @@ $.notifyDefaults({
 	};
 	/**
 	 * the jstree class constructor, used only internally
-	 * @private
+	 * @public
 	 * @name $.jstree.core(id)
 	 * @param {Number} id this instance's index
 	 */
@@ -62191,7 +62191,7 @@ $.notifyDefaults({
 	$.jstree.core.prototype = {
 		/**
 		 * used to decorate an instance with a plugin. Used internally.
-		 * @private
+		 * @public
 		 * @name plugin(deco [, opts])
 		 * @param  {String} deco the plugin to decorate with
 		 * @param  {Object} opts options for the plugin
@@ -62208,7 +62208,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * initialize the instance. Used internally.
-		 * @private
+		 * @public
 		 * @name init(el, optons)
 		 * @param {DOMElement|jQuery|String} el the element we are transforming
 		 * @param {Object} options options for this instance
@@ -62325,7 +62325,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * part of the destroying of an instance. Used internally.
-		 * @private
+		 * @public
 		 * @name teardown()
 		 */
 		teardown : function () {
@@ -62340,7 +62340,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * bind all events. Used internally.
-		 * @private
+		 * @public
 		 * @name bind()
 		 */
 		bind : function () {
@@ -62615,7 +62615,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * part of the destroying of an instance. Used internally.
-		 * @private
+		 * @public
 		 * @name unbind()
 		 */
 		unbind : function () {
@@ -62624,7 +62624,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * trigger an event. Used internally.
-		 * @private
+		 * @public
 		 * @name trigger(ev [, data])
 		 * @param  {String} ev the name of the event to trigger
 		 * @param  {Object} data additional data to pass with the event
@@ -62646,7 +62646,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * returns the jQuery extended main UL node inside the instance container. Used internally.
-		 * @private
+		 * @public
 		 * @name get_container_ul()
 		 * @return {jQuery}
 		 */
@@ -62655,7 +62655,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * gets string replacements (localization). Used internally.
-		 * @private
+		 * @public
 		 * @name get_string(key)
 		 * @param  {String} key
 		 * @return {String}
@@ -62668,7 +62668,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * gets the first child of a DOM node. Used internally.
-		 * @private
+		 * @public
 		 * @name _firstChild(dom)
 		 * @param  {DOMElement} dom
 		 * @return {DOMElement}
@@ -62682,7 +62682,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * gets the next sibling of a DOM node. Used internally.
-		 * @private
+		 * @public
 		 * @name _nextSibling(dom)
 		 * @param  {DOMElement} dom
 		 * @return {DOMElement}
@@ -62696,7 +62696,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * gets the previous sibling of a DOM node. Used internally.
-		 * @private
+		 * @public
 		 * @name _previousSibling(dom)
 		 * @param  {DOMElement} dom
 		 * @return {DOMElement}
@@ -63028,7 +63028,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * load an array of nodes (will also load unavailable nodes as soon as the appear in the structure). Used internally.
-		 * @private
+		 * @public
 		 * @name _load_nodes(nodes [, callback])
 		 * @param  {array} nodes
 		 * @param  {function} callback a function to be executed once loading is complete, the function is executed in the instance's scope and receives one argument - the array passed to _load_nodes
@@ -63098,7 +63098,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * handles the actual loading of a node. Used only internally.
-		 * @private
+		 * @public
 		 * @name _load_node(obj [, callback])
 		 * @param  {mixed} obj
 		 * @param  {function} callback a function to be executed once loading is complete, the function is executed in the instance's scope and receives one argument - a boolean status
@@ -63200,7 +63200,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * adds a node to the list of nodes to redraw. Used only internally.
-		 * @private
+		 * @public
 		 * @name _node_changed(obj [, callback])
 		 * @param  {mixed} obj
 		 */
@@ -63212,7 +63212,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * appends HTML content to the tree. Used internally.
-		 * @private
+		 * @public
 		 * @name _append_html_data(obj, data)
 		 * @param  {mixed} obj the node to append to
 		 * @param  {String} data the HTML string to parse and append
@@ -63268,7 +63268,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * appends JSON content to the tree. Used internally.
-		 * @private
+		 * @public
 		 * @name _append_json_data(obj, data)
 		 * @param  {mixed} obj the node to append to
 		 * @param  {String} data the JSON object to parse and append
@@ -63673,7 +63673,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * parses a node from a jQuery object and appends them to the in memory tree model. Used internally.
-		 * @private
+		 * @public
 		 * @name _parse_model_from_html(d [, p, ps])
 		 * @param  {jQuery} d the jQuery object to parse
 		 * @param  {String} p the parent ID
@@ -63785,7 +63785,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * parses a node from a JSON object (used when dealing with flat data, which has no nesting of children, but has id and parent properties) and appends it to the in memory tree model. Used internally.
-		 * @private
+		 * @public
 		 * @name _parse_model_from_flat_json(d [, p, ps])
 		 * @param  {Object} d the JSON object to parse
 		 * @param  {String} p the parent ID
@@ -63883,7 +63883,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * parses a node from a JSON object and appends it to the in memory tree model. Used internally.
-		 * @private
+		 * @public
 		 * @name _parse_model_from_json(d [, p, ps])
 		 * @param  {Object} d the JSON object to parse
 		 * @param  {String} p the parent ID
@@ -63993,7 +63993,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * redraws all nodes that need to be redrawn. Used internally.
-		 * @private
+		 * @public
 		 * @name _redraw()
 		 * @trigger redraw.jstree
 		 */
@@ -64048,7 +64048,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * redraws a single node's children. Used internally.
-		 * @private
+		 * @public
 		 * @name draw_children(node)
 		 * @param {mixed} node the node whose children will be redrawn
 		 */
@@ -64077,7 +64077,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * redraws a single node. Used internally.
-		 * @private
+		 * @public
 		 * @name redraw_node(node, deep, is_callback, force_render)
 		 * @param {mixed} node the node to redraw
 		 * @param {Boolean} deep should child nodes be redrawn too
@@ -64395,7 +64395,7 @@ $.notifyDefaults({
 		 * opens every parent of a node (node should be loaded)
 		 * @name _open_to(obj)
 		 * @param {mixed} obj the node to reveal
-		 * @private
+		 * @public
 		 */
 		_open_to : function (obj) {
 			obj = this.get_node(obj);
@@ -64771,7 +64771,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * called when a node is selected by the user. Used internally.
-		 * @private
+		 * @public
 		 * @name activate_node(obj, e)
 		 * @param {mixed} obj the node
 		 * @param {Object} e the related event
@@ -64846,7 +64846,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * applies the hover state on a node, called when a node is hovered by the user. Used internally.
-		 * @private
+		 * @public
 		 * @name hover_node(obj)
 		 * @param {mixed} obj
 		 * @trigger hover_node.jstree
@@ -64871,7 +64871,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * removes the hover state from a nodecalled when a node is no longer hovered by the user. Used internally.
-		 * @private
+		 * @public
 		 * @name dehover_node(obj)
 		 * @param {mixed} obj
 		 * @trigger dehover_node.jstree
@@ -65106,7 +65106,7 @@ $.notifyDefaults({
 		/**
 		 * gets the current state of the tree so that it can be restored later with `set_state(state)`. Used internally.
 		 * @name get_state()
-		 * @private
+		 * @public
 		 * @return {Object}
 		 */
 		get_state : function () {
@@ -65144,7 +65144,7 @@ $.notifyDefaults({
 		/**
 		 * sets the state of the tree. Used internally.
 		 * @name set_state(state [, callback])
-		 * @private
+		 * @public
 		 * @param {Object} state the state to restore. Keep in mind this object is passed by reference and jstree will modify it.
 		 * @param {Function} callback an optional function to execute once the state is restored.
 		 * @trigger set_state.jstree
@@ -65356,7 +65356,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * set the text value of a node. Used internally, please use `rename_node(obj, val)`.
-		 * @private
+		 * @public
 		 * @name set_text(obj, val)
 		 * @param  {mixed} obj the node, you can pass an array to set the text on multiple nodes
 		 * @param  {String} val the new text value
@@ -65671,7 +65671,7 @@ $.notifyDefaults({
 		},
 		/**
 		 * check if an operation is premitted on the tree. Used internally.
-		 * @private
+		 * @public
 		 * @name check(chk, obj, par, pos)
 		 * @param  {String} chk the operation to check, can be "create_node", "rename_node", "delete_node", "copy_node" or "move_node"
 		 * @param  {mixed} obj the node
@@ -67014,7 +67014,7 @@ $.notifyDefaults({
 
 		/**
 		 * set the undetermined state where and if necessary. Used internally.
-		 * @private
+		 * @public
 		 * @name _undetermined()
 		 * @plugin checkbox
 		 */
@@ -67883,7 +67883,7 @@ $.notifyDefaults({
 		 * @param {Number} i the object of items to show
 		 * @plugin contextmenu
 		 * @trigger show_contextmenu.jstree
-		 * @private
+		 * @public
 		 */
 		this._show_contextmenu = function (obj, x, y, i) {
 			var d = this.get_node(obj, true),
@@ -68618,7 +68618,7 @@ $.notifyDefaults({
 				return $.vakata.html.div.empty().append($.parseHTML(str)).text();
 			}
 		};
-		// private variable
+		// public variable
 		var vakata_dnd = {
 			element	: false,
 			target	: false,
@@ -69447,7 +69447,7 @@ $.notifyDefaults({
 		};
 		/**
 		 * used to sort a node's children
-		 * @private
+		 * @public
 		 * @name sort(obj [, deep])
 		 * @param  {mixed} obj the node
 		 * @param {Boolean} deep if set to `true` nodes are sorted recursively.
@@ -91116,7 +91116,7 @@ if (typeof window !== 'undefined') {
  * @namespace Chart.canvasHelpers
  * @deprecated since version 2.6.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 Chart.canvasHelpers = Chart.helpers.canvas;
 
@@ -91362,7 +91362,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		updateElementGeometry: function(rectangle, index, reset) {
 			var me = this;
@@ -91383,28 +91383,28 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getValueScaleId: function() {
 			return this.getMeta().yAxisID;
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getIndexScaleId: function() {
 			return this.getMeta().xAxisID;
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getValueScale: function() {
 			return this.getScaleForId(this.getValueScaleId());
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getIndexScale: function() {
 			return this.getScaleForId(this.getIndexScaleId());
@@ -91412,7 +91412,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Returns the effective number of stacks based on groups and bar visibility.
-		 * @private
+		 * @public
 		 */
 		getStackCount: function(last) {
 			var me = this;
@@ -91438,14 +91438,14 @@ module.exports = function(Chart) {
 
 		/**
 		 * Returns the stack index for the given dataset based on groups and bar visibility.
-		 * @private
+		 * @public
 		 */
 		getStackIndex: function(datasetIndex) {
 			return this.getStackCount(datasetIndex) - 1;
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getRuler: function() {
 			var me = this;
@@ -91473,7 +91473,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Note: pixel values are not clamped to the scale area.
-		 * @private
+		 * @public
 		 */
 		calculateBarValuePixels: function(datasetIndex, index) {
 			var me = this;
@@ -91517,7 +91517,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		calculateBarIndexPixels: function(datasetIndex, index, ruler) {
 			var me = this;
@@ -91615,14 +91615,14 @@ module.exports = function(Chart) {
 
 	Chart.controllers.horizontalBar = Chart.controllers.bar.extend({
 		/**
-		 * @private
+		 * @public
 		 */
 		getValueScaleId: function() {
 			return this.getMeta().xAxisID;
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getIndexScaleId: function() {
 			return this.getMeta().yAxisID;
@@ -91756,7 +91756,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		_resolveElementOptions: function(point, index) {
 			var me = this;
@@ -92978,7 +92978,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		startDigest: function() {
 			var me = this;
@@ -93003,7 +93003,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		advance: function(count) {
 			var animations = this.animations;
@@ -93127,7 +93127,7 @@ module.exports = function(Chart) {
 
 	helpers.extend(Chart.prototype, /** @lends Chart */ {
 		/**
-		 * @private
+		 * @public
 		 */
 		construct: function(item, config) {
 			var me = this;
@@ -93155,7 +93155,7 @@ module.exports = function(Chart) {
 			 * @prop Chart#chart
 			 * @deprecated since version 2.6.0
 			 * @todo remove at version 3
-			 * @private
+			 * @public
 			 */
 			me.chart = me;
 			me.controller = me; // chart.chart.controller #inception
@@ -93187,7 +93187,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		initialize: function() {
 			var me = this;
@@ -93380,7 +93380,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Reset the elements of all datasets
-		 * @private
+		 * @public
 		 */
 		resetElements: function() {
 			var me = this;
@@ -93459,7 +93459,7 @@ module.exports = function(Chart) {
 		/**
 		 * Updates the chart layout unless a plugin returns `false` to the `beforeLayout`
 		 * hook, in which case, plugins will not be called on `afterLayout`.
-		 * @private
+		 * @public
 		 */
 		updateLayout: function() {
 			var me = this;
@@ -93475,7 +93475,7 @@ module.exports = function(Chart) {
 			 * @method IPlugin#afterScaleUpdate
 			 * @deprecated since version 2.5.0
 			 * @todo remove at version 3
-			 * @private
+			 * @public
 			 */
 			plugins.notify(me, 'afterScaleUpdate');
 			plugins.notify(me, 'afterLayout');
@@ -93484,7 +93484,7 @@ module.exports = function(Chart) {
 		/**
 		 * Updates all datasets unless a plugin returns `false` to the `beforeDatasetsUpdate`
 		 * hook, in which case, plugins will not be called on `afterDatasetsUpdate`.
-		 * @private
+		 * @public
 		 */
 		updateDatasets: function() {
 			var me = this;
@@ -93503,7 +93503,7 @@ module.exports = function(Chart) {
 		/**
 		 * Updates dataset at index unless a plugin returns `false` to the `beforeDatasetUpdate`
 		 * hook, in which case, plugins will not be called on `afterDatasetUpdate`.
-		 * @private
+		 * @public
 		 */
 		updateDataset: function(index) {
 			var me = this;
@@ -93605,7 +93605,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		transition: function(easingValue) {
 			var me = this;
@@ -93622,7 +93622,7 @@ module.exports = function(Chart) {
 		/**
 		 * Draws all datasets unless a plugin returns `false` to the `beforeDatasetsDraw`
 		 * hook, in which case, plugins will not be called on `afterDatasetsDraw`.
-		 * @private
+		 * @public
 		 */
 		drawDatasets: function(easingValue) {
 			var me = this;
@@ -93644,7 +93644,7 @@ module.exports = function(Chart) {
 		/**
 		 * Draws dataset at index unless a plugin returns `false` to the `beforeDatasetDraw`
 		 * hook, in which case, plugins will not be called on `afterDatasetDraw`.
-		 * @private
+		 * @public
 		 */
 		drawDataset: function(index, easingValue) {
 			var me = this;
@@ -93667,7 +93667,7 @@ module.exports = function(Chart) {
 		/**
 		 * Draws tooltip unless a plugin returns `false` to the `beforeTooltipDraw`
 		 * hook, in which case, plugins will not be called on `afterTooltipDraw`.
-		 * @private
+		 * @public
 		 */
 		_drawTooltip: function(easingValue) {
 			var me = this;
@@ -93759,7 +93759,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		destroyDatasetMeta: function(datasetIndex) {
 			var id = this.id;
@@ -93812,7 +93812,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		bindEvents: function() {
 			var me = this;
@@ -93839,7 +93839,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		unbindEvents: function() {
 			var me = this;
@@ -93867,7 +93867,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		eventHandler: function(e) {
 			var me = this;
@@ -93907,7 +93907,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Handle an event
-		 * @private
+		 * @public
 		 * @param {IEvent} event the event to handle
 		 * @return {Boolean} true if the chart needs to re-render
 		 */
@@ -93961,7 +93961,7 @@ module.exports = function(Chart) {
 	 * @class Chart.Controller
 	 * @deprecated since version 2.6.0
 	 * @todo remove at version 3
-	 * @private
+	 * @public
 	 */
 	Chart.Controller = Chart;
 };
@@ -94105,7 +94105,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		destroy: function() {
 			if (this._data) {
@@ -94233,7 +94233,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		resyncElements: function() {
 			var me = this;
@@ -94250,7 +94250,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		insertElements: function(start, count) {
 			for (var i = 0; i < count; ++i) {
@@ -94259,28 +94259,28 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		onDataPush: function() {
 			this.insertElements(this.getDataset().data.length - 1, arguments.length);
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		onDataPop: function() {
 			this.getMeta().data.pop();
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		onDataShift: function() {
 			this.getMeta().data.shift();
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		onDataSplice: function(start, count) {
 			this.getMeta().data.splice(start, count);
@@ -94288,7 +94288,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		onDataUnshift: function() {
 			this.insertElements(0, arguments.length);
@@ -94305,7 +94305,7 @@ var helpers = require(45);
 
 module.exports = {
 	/**
-	 * @private
+	 * @public
 	 */
 	_set: function(scope, values) {
 		return helpers.merge(this[scope] || (this[scope] = {}), values);
@@ -94862,7 +94862,7 @@ module.exports = function(Chart) {
 
 	/**
 	 * Returns if the given value contains an effective constraint.
-	 * @private
+	 * @public
 	 */
 	function isConstrainedValue(value) {
 		return value !== undefined && value !== null && value !== 'none';
@@ -95207,7 +95207,7 @@ module.exports = {
 		 * @function Chart.Interaction.modes.label
 		 * @deprecated since version 2.4.0
 		 * @todo remove at version 3
-		 * @private
+		 * @public
 		 */
 		label: indexMode,
 
@@ -95249,7 +95249,7 @@ module.exports = {
 		 * @function Chart.Interaction.modes.x-axis
 		 * @deprecated since version 2.4.0. Use index mode and intersect == true
 		 * @todo remove at version 3
-		 * @private
+		 * @public
 		 */
 		'x-axis': function(chart, e) {
 			return indexMode(chart, e, {intersect: false});
@@ -95862,7 +95862,7 @@ module.exports = function(Chart) {
 	Chart.plugins = {
 		/**
 		 * Globally registered plugins.
-		 * @private
+		 * @public
 		 */
 		_plugins: [],
 
@@ -95870,7 +95870,7 @@ module.exports = function(Chart) {
 		 * This identifier is used to invalidate the descriptors cache attached to each chart
 		 * when a global plugin is registered or unregistered. In this case, the cache ID is
 		 * incremented and descriptors are regenerated during following API calls.
-		 * @private
+		 * @public
 		 */
 		_cacheId: 0,
 
@@ -95965,7 +95965,7 @@ module.exports = function(Chart) {
 		/**
 		 * Returns descriptors of enabled plugins for the given chart.
 		 * @returns {Array} [{ plugin, options }]
-		 * @private
+		 * @public
 		 */
 		descriptors: function(chart) {
 			var cache = chart._plugins || (chart._plugins = {});
@@ -96223,7 +96223,7 @@ module.exports = function(Chart) {
 	 * @namespace Chart.pluginService
 	 * @deprecated since version 2.1.5
 	 * @todo remove at version 3
-	 * @private
+	 * @public
 	 */
 	Chart.pluginService = Chart.plugins;
 
@@ -96233,7 +96233,7 @@ module.exports = function(Chart) {
 	 * @interface Chart.PluginBase
 	 * @deprecated since version 2.5.0
 	 * @todo remove at version 3
-	 * @private
+	 * @public
 	 */
 	Chart.PluginBase = Element.extend({});
 };
@@ -96363,7 +96363,7 @@ module.exports = function(Chart) {
 		/**
 		 * Get the padding needed for the scale
 		 * @method getPadding
-		 * @private
+		 * @public
 		 * @returns {Padding} the necessary padding
 		 */
 		getPadding: function() {
@@ -96445,7 +96445,7 @@ module.exports = function(Chart) {
 			// Ticks - `this.ticks` is now DEPRECATED!
 			// Internal ticks are now stored as objects in the PRIVATE `this._ticks` member
 			// and must not be accessed directly from outside this class. `this.ticks` being
-			// around for long time and not marked as private, we can't change its structure
+			// around for long time and not marked as public, we can't change its structure
 			// without unexpected breaking changes. If you need to access the scale ticks,
 			// use scale.getTicks() instead.
 
@@ -96730,7 +96730,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Handle margins and padding interactions
-		 * @private
+		 * @public
 		 */
 		handleMargins: function() {
 			var me = this;
@@ -96864,7 +96864,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Returns a subset of ticks to be plotted to avoid overlapping labels.
-		 * @private
+		 * @public
 		 */
 		_autoSkip: function(ticks) {
 			var skipRatio;
@@ -98252,7 +98252,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Handle an event
-		 * @private
+		 * @public
 		 * @param {IEvent} event - The event to handle
 		 * @returns {Boolean} true if the tooltip changed
 		 */
@@ -98709,7 +98709,7 @@ function isVertical(bar) {
  * Helper function to get the bounds of the bar regardless of the orientation
  * @param bar {Chart.Element.Rectangle} the bar
  * @return {Bounds} bounds of the bar
- * @private
+ * @public
  */
 function getBarBounds(bar) {
 	var vm = bar._view;
@@ -99111,7 +99111,7 @@ var exports = module.exports = {
  * @namespace Chart.helpers.clear
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.clear = exports.clear;
 
@@ -99120,7 +99120,7 @@ helpers.clear = exports.clear;
  * @namespace Chart.helpers.drawRoundedRectangle
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.drawRoundedRectangle = function(ctx) {
 	ctx.beginPath();
@@ -99308,7 +99308,7 @@ var helpers = {
 	/**
 	 * The default merger when Chart.helpers.merge is called without merger option.
 	 * Note(SB): this method is also used by configMerge and scaleMerge as fallback.
-	 * @private
+	 * @public
 	 */
 	_merger: function(key, target, source, options) {
 		var tval = target[key];
@@ -99323,7 +99323,7 @@ var helpers = {
 
 	/**
 	 * Merges source[key] in target[key] only if target[key] is undefined.
-	 * @private
+	 * @public
 	 */
 	_mergerIf: function(key, target, source) {
 		var tval = target[key];
@@ -99435,7 +99435,7 @@ module.exports = helpers;
  * @function Chart.helpers.callCallback
  * @deprecated since version 2.6.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.callCallback = helpers.callback;
 
@@ -99445,7 +99445,7 @@ helpers.callCallback = helpers.callback;
  * @function Chart.helpers.indexOf
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.indexOf = function(array, item, fromIndex) {
 	return Array.prototype.indexOf.call(array, item, fromIndex);
@@ -99456,7 +99456,7 @@ helpers.indexOf = function(array, item, fromIndex) {
  * @function Chart.helpers.getValueOrDefault
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.getValueOrDefault = helpers.valueOrDefault;
 
@@ -99465,7 +99465,7 @@ helpers.getValueOrDefault = helpers.valueOrDefault;
  * @function Chart.helpers.getValueAtIndexOrDefault
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
 
@@ -99717,7 +99717,7 @@ module.exports = {
  * @function Chart.helpers.easingEffects
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.easingEffects = effects;
 
@@ -99949,7 +99949,7 @@ function initCanvas(canvas, config) {
 /**
  * Detects support for options object argument in addEventListener.
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
- * @private
+ * @public
  */
 var supportsEventListenerOptions = (function() {
 	var supports = false;
@@ -100162,7 +100162,7 @@ module.exports = {
 	/**
 	 * This property holds whether this platform is enabled for the current environment.
 	 * Currently used by platform.js to select the proper implementation.
-	 * @private
+	 * @public
 	 */
 	_enabled: typeof window !== 'undefined' && typeof document !== 'undefined',
 
@@ -100288,7 +100288,7 @@ module.exports = {
  * @function Chart.helpers.addEvent
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.addEvent = addEventListener;
 
@@ -100299,7 +100299,7 @@ helpers.addEvent = addEventListener;
  * @function Chart.helpers.removeEvent
  * @deprecated since version 2.7.0
  * @todo remove at version 3
- * @private
+ * @public
  */
 helpers.removeEvent = removeEventListener;
 
@@ -101167,7 +101167,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Handle an event
-		 * @private
+		 * @public
 		 * @param {IEvent} event - The event to handle
 		 * @return {Boolean} true if a change occured
 		 */
@@ -101530,7 +101530,7 @@ module.exports = function(Chart) {
 		/**
 		* Internal function to get the correct labels. If data.xLabels or data.yLabels are defined, use those
 		* else fall back to data.labels
-		* @private
+		* @public
 		*/
 		getLabels: function() {
 			var data = this.chart.data;
@@ -102613,7 +102613,7 @@ module.exports = function(Chart) {
 		},
 		/**
 		 * Set radius reductions and determine new radius and center point
-		 * @private
+		 * @public
 		 */
 		setReductions: function(largestPossibleRadius, furthestLimits, furthestAngles) {
 			var me = this;
@@ -103403,7 +103403,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Function to format an individual tick mark
-		 * @private
+		 * @public
 		 */
 		tickFormatFunction: function(tick, index, ticks, formatOverride) {
 			var me = this;
@@ -103435,7 +103435,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getPixelForOffset: function(time) {
 			var me = this;
@@ -103482,7 +103482,7 @@ module.exports = function(Chart) {
 
 		/**
 		 * Crude approximation of what the label width might be
-		 * @private
+		 * @public
 		 */
 		getLabelWidth: function(label) {
 			var me = this;
@@ -103497,7 +103497,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
+		 * @public
 		 */
 		getLabelCapacity: function(exampleTime) {
 			var me = this;

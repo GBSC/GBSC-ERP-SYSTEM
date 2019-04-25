@@ -1,66 +1,116 @@
 <div class="m-content">
-
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
             <div class="m-portlet">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                               Voucher Detail
+                                Voucher Detail
                             </h3>
+                            <button (click)="AddVoucher()">New Voucher</button>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <dx-data-grid id="gridContainer"
-                    (onToolbarPreparing)="onToolbarPreparing($event)"
-                     keyExpr="voucherId" 
-                    [dataSource]="voucher" 
-                    columnWidth="auto"
-                    [columnAutoWidth]="true"
-                    [showBorders]="true"    
-                    (onSelectionChanged)="selectionChanged($event)"
-                    (onContentReady)="contentReady($event)"
-                     [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
-
-                     <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
-                        <dxo-paging [pageSize]="7"></dxo-paging>
-                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
-                        </dxo-pager>                
-                        <dxo-filter-row [visible]="true"></dxo-filter-row>
-                        <dxo-header-filter [visible]="true"></dxo-header-filter>
-                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                        <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>   
-                        <dxi-column dataField="voucherTypeId" caption="Voucher Type">
-                            <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
-                            </dxo-lookup>
-                          </dxi-column>
-                        <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
-                        <dxi-column dataField="chequeNumber"></dxi-column>
-                        <dxi-column dataField="description"></dxi-column>
-                        <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
-                        <div *dxTemplate="let d of 'chartCellTemplate'">
-                          <div class="chart-cell">
-                              <dx-button (click)="getCurrentRowData(d)" icon="edit">
-                          </dx-button>
-                          </div>
-                      </div>
-
-                        <div *dxTemplate="let voucherDetail of 'detail'">
-                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true" [columnAutoWidth]="true">
-
-                                <dxi-column dataField="detailAccountId" caption="Detail Account">
-                                    <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
-                                    </dxo-lookup>
-                                  </dxi-column>
-                                  <dxi-column dataField="departmentName" caption="Department"></dxi-column>
-                                  <dxi-column dataField="uniqueName" caption="Refrence"></dxi-column>                               
-                                  <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
-                                <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
-                                </dx-data-grid>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_3">
+                                Unposted
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#m_tabs_3_1">
+                                Posted
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="m_tabs_3_3" role="tabpanel">
+                            <dx-button id="postButton" text="Post selected vouchers" type="default" (onClick)="PostSelectedVouchers()"></dx-button>
+                            <dx-data-grid id="UnpostedVoucherGrid" keyExpr="unpostedVoucherId" [dataSource]="UnpostedVouchers" columnWidth="auto"
+                                [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
+                                [showBorders]="true">
+                                <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple" [deferred]="true"></dxo-selection>
+                                <dxo-scrolling columnRenderingMode="virtuals"></dxo-scrolling>
+                                <dxo-paging [pageSize]="7"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>
+                                <dxi-column dataField="financialYear.name" caption="Financial Year"></dxi-column>
+                                <dxi-column dataField="voucherType.voucherCode" caption="Voucher Type"></dxi-column>
+                                <dxi-column dataField="date" dataType="date" format="shortdate" caption="Date"></dxi-column>
+                                <dxi-column dataField="totalCreditAmount" caption="Credit Amount"></dxi-column>
+                                <dxi-column dataField="totalDebitAmount" caption="Debit Amount"></dxi-column>
+                                <dxi-column dataField="description" caption="Description"></dxi-column>
+                                <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                                <div *dxTemplate="let d of 'chartCellTemplate'">
+                                    <div class="chart-cell">
+                                        <dx-button icon="edit" (onClick)="EditVoucher(d.data)"></dx-button> <!-- For Edit -->
+                                        <dx-button icon="delete" (onClick)="DeleteVoucher(d.data)"></dx-button> <!-- For Delete -->
+                                        <dx-button icon="add" (onClick)="PostVoucher(d.data)"></dx-button> <!-- For Post -->
+                                        <dx-button icon="plus" (onClick)="PrintVoucher(d.data)"></dx-button> <!-- For Print -->
+                                    </div>
+                                </div>
+                                <div *dxTemplate="let voucherDetail of 'detail'">
+                                    <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true"
+                                        [columnAutoWidth]="true">
+                                        <dxi-column dataField="account.accountCode" caption="Account"></dxi-column>
+                                        <dxi-column dataField="departmentName" caption="DepartmentName"> </dxi-column>
+                                        <dxi-column dataField="uniqueName" dataType="number" caption="Code"> </dxi-column>
+                                        <!-- <dxi-column dataField="description" caption="Description"> </dxi-column> -->
+                                        <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                        <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                        <dxi-column dataField="chequeNumber" caption="Cheque Number"></dxi-column>
+                                    </dx-data-grid>
+                                </div>
+                            </dx-data-grid>
                         </div>
-                    </dx-data-grid>
+
+                        <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
+                                <dx-button id="getPostButton" text="Search" type="default"></dx-button>
+                                <dx-data-grid id="PostedVoucherGrid" keyExpr="postedVoucherId" [dataSource]="PostedVouchers" columnWidth="auto"
+                                [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
+                                [showBorders]="true">
+                                <dxo-scrolling columnRenderingMode="virtuals"></dxo-scrolling>
+                                <dxo-paging [pageSize]="7"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                                </dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>
+                                <dxi-column dataField="financialYear.name" caption="Financial Year"></dxi-column>
+                                <dxi-column dataField="voucherType.voucherCode" caption="Voucher Type"></dxi-column>
+                                <dxi-column dataField="date" dataType="date" format="shortdate" caption="Date"></dxi-column>
+                                <dxi-column dataField="totalCreditAmount" caption="Credit Amount"></dxi-column>
+                                <dxi-column dataField="totalDebitAmount" caption="Debit Amount"></dxi-column>
+                                <dxi-column dataField="description" caption="Description"></dxi-column>
+                                <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                                <div *dxTemplate="let d of 'chartCellTemplate'">
+                                    <div class="chart-cell">
+                                        <dx-button icon="edit" (onClick)="PrintVoucher(d.data)"></dx-button> <!-- For Print -->
+                                    </div>
+                                </div>
+                                <div *dxTemplate="let voucherDetail of 'detail'">
+                                    <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true"
+                                        [columnAutoWidth]="true">
+                                        <dxi-column dataField="account.accountCode" caption="Account"></dxi-column>
+                                        <dxi-column dataField="departmentName" caption="DepartmentName"> </dxi-column>
+                                        <dxi-column dataField="uniqueName" dataType="number" caption="Code"> </dxi-column>
+                                        <!-- <dxi-column dataField="description" caption="Description"> </dxi-column> -->
+                                        <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                        <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                        <dxi-column dataField="chequeNumber" caption="Cheque Number"></dxi-column>
+                                    </dx-data-grid>
+                                </div>
+                            </dx-data-grid>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

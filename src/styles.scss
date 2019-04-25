@@ -3,3 +3,14 @@
 // @import url("../node_modules/devextreme/dist/css/dx.common.css");
 // @import url("../node_modules/devextreme/dist/css/dx.light.css");
 // @import url("../node_modules/devexpress-reporting/css/web-document-viewer-light.min.css");
+@import "~igniteui-angular/lib/core/styles/themes/index";
+// Uncomment the following lines if you want to add a custom palette:
+// $primary: #731963 !default;
+// $secondary: #ce5712 !default;
+// $app-palette: igx-palette($primary, $secondary);
+
+@include igx-core();
+@include igx-theme($default-palette);
+
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";

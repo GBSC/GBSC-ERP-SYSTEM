@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
+import { PayrollService, EmployeeService, PayrollSetupService, AttendanceService, AttendancesetupService } from '../../../core';
 import { UserRosterAttendance } from '../../../core/Models/HRM/userRosterAttendance';
 import { MonthlyUserSalary } from '../../../core/Models/HRM/monthlyUserSalary';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,9 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MonthlyUserSalaryComponent implements OnInit {
 
-    private MonthlyUserSalaryForm: any
-    private rosterAttendance: UserRosterAttendance[];
+    public MonthlyUserSalaryForm: any
+    public rosterAttendance: UserRosterAttendance[];
     public rosterattendance: any[] = [];
+    public roster: any;
     public stopSalary: any;
     public paySlip: any;
     public monthlysalary: any;
@@ -25,32 +26,34 @@ export class MonthlyUserSalaryComponent implements OnInit {
     public monthlyUserSalary: any;
     public pfPayment: any;
     public payroll: any;
+    public isDisabled = true;
 
     @Input('monthlyUserSalaryId') id: number;
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
-        public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(public fb: FormBuilder, public attendanceService: AttendanceService, public attendanceSetupService: AttendancesetupService, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
+        public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 
         this.rosterAttendance = [];
 
         this.MonthlyUserSalaryForm = this.fb.group({
-            MonthStartDate: ['', Validators],
-            MonthEndDate: ['', Validators],
-            TotalWorkingDaysInMonth: ['', Validators],
-            PresentDays: ['', Validators],
-            LeaveDays: ['', Validators],
-            AbsentDays: ['', Validators],
-            OvertimeHours: ['', Validators],
-            IsStopped: ['', Validators],
-            StopFrom: ['', Validators],
-            StopTill: ['', Validators],
-            StopSalaryId: ['', Validators],
-            UserSalaryId: ['', Validators],
-            PfPaymentId: ['', Validators],
-            PaySlipId: ['', Validators],
-            PayrollId: ['', Validators]
+            MonthStartDate: [''],
+            MonthEndDate: [''],
+            TotalWorkingDaysInMonth: [''],
+            PresentDays: [''],
+            LeaveDays: [''],
+            AbsentDays: [''],
+            OvertimeHours: [''],
+            IsStopped: [''],
+            StopFrom: [''],
+            StopTill: [''],
+            StopSalaryId: [''],
+            UserSalaryId: [''],
+            PfPaymentId: [''],
+            PaySlipId: [''],
+            PayrollId: [''],
+            UserId: ['']
         });
 
         this.stopSalary = await this.payrollservice.getStopSalaries();
@@ -59,13 +62,13 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
         this.monthlySalary = await this.payrollservice.getMonthlySalaries();
 
-        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+        this.userSalary = await this.payrollservice.getUserSalaries();
 
-        this.pfPayment = await this.payrollsetupservice.getPfPayments();
+        this.attendanceSetupService.GetAsignRosters().subscribe(resp => {
+            this.roster = resp;
+            console.log(this.roster);
 
-        this.payroll = await this.payrollsetupservice.getPayrolls();
-
-        this.paySlip = await this.payrollservice.getPayslips();
+        })
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
@@ -85,6 +88,10 @@ export class MonthlyUserSalaryComponent implements OnInit {
         }
     }
 
+    check() {
+        this.isDisabled = !this.isDisabled;
+        return;
+    }
     async RosterAttendance(value) {
         let data = value.data;
         this.rosterAttendance.push(data);
@@ -119,6 +126,32 @@ export class MonthlyUserSalaryComponent implements OnInit {
         this.payrollservice.updateMonthlySalary(value).subscribe(resp => {
             this.toastr.success("Monthly Salary Updated");
             this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
+
+        });
+    }
+
+
+    public employeeData: any = [];
+
+    formatDate(date: Date) {
+        return (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+    }
+
+    getattendancerequest(value) {
+        this.MonthlyUserSalaryForm.value.MonthStartDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthStartDate))
+        this.MonthlyUserSalaryForm.value.MonthEndDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthEndDate))
+        this.attendanceService.getUserAttendancesbyIddate(value.UserId, value.MonthStartDate, value.MonthEndDate).subscribe(res => {
+            this.employeeData = res;
+            console.log(this.employeeData);
+        });
+
+        this.attendanceSetupService.getAssignRosterByUser(value.UserId, value.MonthStartDate, value.MonthEndDate).subscribe(r => {
+            console.log(r);
+            // console.log( r.assignRoster); 
+            
+            console.log( r.assignRoster);
+            console.log(r.daysoffs);
+            this.roster = r.assignRoster
 
         });
     }

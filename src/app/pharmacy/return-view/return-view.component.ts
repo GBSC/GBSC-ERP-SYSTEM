@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
     styleUrls: ['./return-view.component.scss']
 })
 export class ReturnViewComponent implements OnInit {
-    private SalesReturns: any;
-    private DetailSR: any;
+    public SalesReturns: any;
+    public DetailSR: any;
 
-    private returnViewForm: FormGroup;
+    public returnViewForm: FormGroup;
     public date: any;
 
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public router: Router) {
 
         this.returnViewForm = this.formBuilder.group({
             returnViewdate: ['']
@@ -37,6 +37,7 @@ export class ReturnViewComponent implements OnInit {
         this.date = this.formatDate(new Date());
         this.PharmacyService.GetSalesReturnsByMonth(this.formatDate(new Date())).subscribe((res: SalesReturn) => {
             this.SalesReturns = res;
+            console.log(this.SalesReturns);
         });
         // console.log(this.formatDate(new Date()));
     }

@@ -24,12 +24,25 @@ import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
+import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
+import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
+import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
+import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
+import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
+import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales-report.component';
+import { CreditSalesComponent } from './Reports/credit-sales/credit-sales.component';
+import { GoodsReceiveNoteComponent } from './Reports/goods-receive-note/goods-receive-note.component';
+import { GrnTabularComponent } from './Reports/grn-tabular/grn-tabular.component';
+import { MonthlyCashSaleReportComponent } from './Reports/monthly-cash-sale-report/monthly-cash-sale-report.component';
+import { SupplierWisePurchaseComponent } from './Reports/supplier-wise-purchase/supplier-wise-purchase.component';
+
 
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: '',
+        path: 'pharmacy',
         component: RootComponent,
         children: [
             { path: '', component: HomeComponent },
@@ -43,6 +56,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'return', component: ReturnmedicineComponent },
             { path: 'returnview', component: ReturnViewComponent },
             { path: 'prescriptionview', component: PrescriptionViewComponent },
+            { path: 'requisitionfulfilment', component: InternalRequisitionComponent },
+            { path: 'requisitionfulfilment/:id', component: InternalRequisitionComponent },
+            { path: 'requisitionview', component: InternalRequisitionViewComponent },
+            { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
+            { path: 'purchaseinvoiceview', component: PurchaseInvoiceViewComponent },
+            { path: 'purchasereturn', component: PharmacyPurchaseReturnComponent },
+            { path: 'purchasereturnview', component: PurchaseReturnViewComponent },
 
             {
                 path: "setup",
@@ -59,6 +79,18 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'supplier', component: SupplierComponent },
                     { path: 'unit', component: UnitComponent },
                     { path: 'currency', component: CurrencyComponent }
+                ]
+            },
+            {
+                path: "report",
+                children: [
+                    { path: 'cashsale', component: CashSalesReportComponent }, 
+                    { path: 'creditsales', component: CreditSalesComponent },
+                    { path: 'grn', component: GoodsReceiveNoteComponent },
+                    { path: 'grntabular', component: GrnTabularComponent },
+                    { path: 'mcs', component: MonthlyCashSaleReportComponent },
+                    { path: 'swp', component: SupplierWisePurchaseComponent },
+
                 ]
             }
         ]

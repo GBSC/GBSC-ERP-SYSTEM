@@ -64,7 +64,7 @@ export class VisitsComponent implements OnInit {
             'TentativeTime': ['', Validators.required],
             'IsFinalAppointment': [false],
             'IsCancelled': [false],
-            'VisitStatus': ['Pending'],
+            'VisitStatus': ['pendding'],
             'VisitId': ['', Validators.required],
             'AppointmentDate': ['']
         });
@@ -165,11 +165,11 @@ export class VisitsComponent implements OnInit {
         // console.log(value);
         let y = this.visitid;
         this.PatientVisitNoteForm.value.VisitId = y;
-        let x = await this.PatientServiceobj.addVisitNote(value);
-        // console.log(x);
-        this.displayToastSuccess("Saved");
-        // this.visitid = this.PatientServiceobj.visitid;
-        // console.log(this.visitid);
+        console.log(value);
+          let x = await this.PatientServiceobj.addVisitNote(value);
+           this.displayToastSuccess("Saved");
+       // // this.visitid = this.PatientServiceobj.visitid;
+          console.log(this.visitid);
     }
 
     async addappointment(value) {
@@ -177,7 +177,7 @@ export class VisitsComponent implements OnInit {
         this.PatientAppointmentForm.value.VisitId = this.visitid;
         this.PatientAppointmentForm.value.AppointmentDate = value.TentativeTime;
         console.log(value);
-        await this.PatientServiceobj.addAppointment(value);
+         await this.PatientServiceobj.addAppointment(value);
 
         console.log(value);
         // console.log(this.visitid);

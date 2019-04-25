@@ -18,19 +18,12 @@
             <div class="form-group m-form__group row">
               <div class="col-lg-3">
                 <label>Payroll Year:</label>
-                <select #s class="form-control m-input" formControlName="PayrollYearId">
-                  <option value="" disabled selected>-- Select Payroll Year --</option>
-                  <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
-                </select>
+                <input #month type="month" formControlName="SalaryDate">
               </div>
-
-              <div class="col-lg-3">
-                <label>Month:</label>
-                <dx-date-box formControlName="SalaryMonth" displayFormat="month" type="date" maxZoomLevel="year" width="100%"></dx-date-box>
-              </div> 
+ 
               <div class="col-lg-3">
                 <label></label>
-                <button type="button"  class="btn btn-primary button_get">
+                <button type="button" (click)="onProcess(SalaryProcessForm.value,month.value)"  class="btn btn-primary button_get">
                   Process  
                 </button>
               </div> 

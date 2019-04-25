@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="leaveeligibility"
                keyExpr="leaveEligibilityId"
+               [showBorders]="true"
                (onRowInserted)="addleaveeligibility($event)" 
               (onRowUpdated)="updateleaveeligibility($event)"
                 (onRowRemoved)="deleteleaveeligibility($event)">

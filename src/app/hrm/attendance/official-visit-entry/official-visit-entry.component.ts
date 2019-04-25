@@ -22,7 +22,9 @@ export class OfficialVisitEntryComponent implements OnInit {
 
         this.employee = await this.empservice.GetAllEmployees();
 
-        this.branches = await this.companyservice.getBranches();
+        this.companyservice.getBranches().subscribe(resp => {
+            this.branches = resp
+        });
     }
 
     async addofficialVisitentry(value) {

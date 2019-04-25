@@ -4,6 +4,7 @@ import { PatientService } from '../../../core';
 import { UltraSoundService } from '../../../core/Services/HIMS/ultra-sound.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ultra-sound-master',
@@ -13,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UltraSoundMasterComponent implements OnInit {
 
   constructor(public patientserviceobj : PatientService, 
-    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router) {
+    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router, public Toast: ToastrService) {
 
       this.ultraSoundMasterForm = this.formBuilder.group({
         UltraSoundMasterId:[''],
@@ -126,7 +127,13 @@ export class UltraSoundMasterComponent implements OnInit {
   updateUltraSoundMaster(value){
     console.log(value);
     this.ultraSoundServiceobj.updateUltraSoundMaster(value).subscribe(res =>{
-      console.log(res);
+      if(res != null){
+        console.log(value);
+        this.Toast.success('Saved');
+       }
+      else{
+        this.Toast.error('            ')
+      }    
     });
   }
 
@@ -134,7 +141,14 @@ export class UltraSoundMasterComponent implements OnInit {
     console.log(value)
     delete this.ultraSoundMasterForm.value.UltraSoundMasterId;
     this.ultraSoundServiceobj.addUltraSoundMaster(value).subscribe(res =>{
-      console.log(value)
+      if(res != null){
+        console.log(value);
+        this.Toast.success('Saved');
+        this.ultraSoundMasterForm.reset(); 
+      }
+      else{
+        this.Toast.error('            ')
+      }
     });
   }
 }

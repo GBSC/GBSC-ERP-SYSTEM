@@ -28,7 +28,7 @@
                       <label for="exampleInputEmail1">
                         Patient
                       </label>
-                      <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                      <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                   </div>
                   <div class="col-sm-1"></div>
                   <div class="col-sm-2">
-                      <div class="m-section__content">
+                      <!-- <div class="m-section__content">
                           <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                             <div class="m-demo__preview m-demo__preview--btn">
                               <a href="#" class="btn btn-accent m-btn m-btn--icon m-btn--icon-only">
@@ -54,7 +54,7 @@
                               </a>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                   </div>
 
                 </div>
@@ -78,9 +78,9 @@
                     <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
-                          File No
+                          Patient Name
                         </label>
-                        <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.mrn  || ''" >
+                        <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.fullName  || ''" >
                       </div>
                     </div>
                     <!-- <div class="col-sm-2">
@@ -393,7 +393,7 @@
                               </div>
                                
                               <div class="col-sm-2">
-                                  <div class="m-section__content">
+                                  <!-- <div class="m-section__content">
                                       <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                         <div class="m-demo__preview m-demo__preview--btn">
                                             <a href="#" class="btn btn-outline-success m-btn m-btn--icon">
@@ -414,7 +414,7 @@
                                                 </a>
                                         </div>
                                       </div>
-                                    </div>
+                                    </div> -->
                               </div>
                           
                       </div>

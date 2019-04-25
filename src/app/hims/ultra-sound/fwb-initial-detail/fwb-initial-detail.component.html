@@ -40,7 +40,8 @@
                 <dxi-column dataField="treatmentTypeId" caption="Treatment Type">
                   <dxo-lookup [dataSource]="treatmentType" displayExpr="name" valueExpr="treatmentTypeId"></dxo-lookup>
                 </dxi-column>
-
+                
+                <dxi-column dataField="fwbInitialDate" caption="Date" dataType="date"></dxi-column>
                 <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"  [width]="90"></dxi-column>
                 <div *dxTemplate="let x of 'chartCellTemplateupdate'">
                 <div class="chart-cell">

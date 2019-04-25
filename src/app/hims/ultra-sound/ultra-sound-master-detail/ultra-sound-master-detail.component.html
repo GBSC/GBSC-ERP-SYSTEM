@@ -37,7 +37,8 @@
                   <dxi-column dataField="consultantId" caption="Consultant">
                     <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
                   </dxi-column>
- 
+             
+                  <dxi-column dataField="ultraSoundMasterDate" caption="Date" dataType="date"></dxi-column>
                   <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"  [width]="90"></dxi-column>
                   <div *dxTemplate="let x of 'chartCellTemplateupdate'">
                   <div class="chart-cell">

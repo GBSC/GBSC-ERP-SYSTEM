@@ -5,6 +5,7 @@ import { UltraSoundService } from '../../../core/Services/HIMS/ultra-sound.servi
 import { TreatmentService } from '../../../core/Services/HIMS/treatment.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -30,7 +31,7 @@ export class UltraSoundPelvisComponent implements OnInit {
   public ultraSoundPelvisById : any;
   public patientDob : any;
   constructor(public treatmentServiceobj : TreatmentService, public patientserviceobj : PatientService, 
-    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router) { 
+    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router , public Toast: ToastrService) { 
 
     this.ultraSoundPelvisForm = this.formBuilder.group({
       LMP :[''],
@@ -151,14 +152,27 @@ this.id = +params['id'];
   addUltraSoundPelvis(value){
     delete this.ultraSoundPelvisForm.value.UltraSoundPelvisId;
     this.ultraSoundServiceobj.addUltraSoundPelvis(value).subscribe(res=>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+        this.Toast.success('Saved');
+        this.ultraSoundPelvisForm.reset();
+      }
+      else{
+        this.Toast.error('        ')
+      }
     })
    }
 
    updateUltraSoundPelvis(value){
 
     this.ultraSoundServiceobj.updateUltraSoundPelvis(value).subscribe(res=>{
-      console.log(res);
+      if(res != null){
+        console.log(res);
+        this.Toast.success('Saved');
+       }
+      else{
+        this.Toast.error('        ')
+      }
     });
    }
 

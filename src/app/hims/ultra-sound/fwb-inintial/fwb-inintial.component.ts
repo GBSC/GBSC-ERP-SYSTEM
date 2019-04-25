@@ -4,6 +4,7 @@ import { UltraSoundService } from '../../../core/Services/HIMS/ultra-sound.servi
 import { TreatmentService } from '../../../core/Services/HIMS/treatment.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fwb-inintial',
@@ -28,7 +29,7 @@ export class FWBInintialComponent implements OnInit {
 
 
   constructor(public treatmentServiceobj : TreatmentService, public patientserviceobj : PatientService, 
-    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router ) { 
+    public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router, public Toast: ToastrService ) { 
 
       this.fwbInitialForm = this.formBuilder.group({
         FwbInitialId:[''],
@@ -124,14 +125,27 @@ export class FWBInintialComponent implements OnInit {
     delete this.fwbInitialForm.value.FwbInitialId;
     console.log(value);
     this.ultraSoundServiceobj.addFwbInitial(value).subscribe(res=> {
-      console.log(res);
+      if(res != null){
+        console.log(res);
+        this.Toast.success('Saved');
+        this.fwbInitialForm.reset();
+      }
+      else{
+        this.Toast.error('        ')
+      }
     });
    }
 
    updatefwbInitial(value){
      console.log(value);
      this.ultraSoundServiceobj.updateFwbInitial(value).subscribe(res=>{
-       console.log(res);
+      if(res != null){
+        console.log(res);
+        this.Toast.success('Saved');
+       }
+      else{
+        this.Toast.error('        ')
+      }
      })
    }
 }

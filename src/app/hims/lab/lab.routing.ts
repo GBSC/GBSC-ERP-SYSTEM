@@ -60,6 +60,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'daily-procedure', component: DailyProcedureComponent },
             { path: 'file-record', component: FileRecordComponent },
             { path: 'proceduresortest', component: ProceduresortestComponent },
+            { path: 'treatmenttype', component: TreatmenttypeComponent},
             { path: 'semen-analysis', component: SemenanalysisComponent },
             { path: 'semen-analysis/:id', component: SemenanalysisComponent },
             { path: 'semen-analysis-list', component: SemensanalysislistComponent },

@@ -39,7 +39,6 @@ export class FindPatientComponent implements OnInit {
 
 
     async SearchPatient(value) {
-
         this.PatientServiceobj.SearchPatient(value).subscribe(resp => {
             this.patients = resp;
         })

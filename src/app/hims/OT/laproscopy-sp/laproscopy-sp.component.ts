@@ -29,7 +29,7 @@ export class LaproscopySpComponent implements OnInit {
       this.laproscopyspForm = this.formBuilder.group({
 
         LaproscopySpId :[''],
-        LaproscopySpDate :[''],
+        LaproscopySpDate :['', Validators.required],
         Heading :[''],
         Diagnosis :[''],
         Indications  :[''],
@@ -47,9 +47,9 @@ export class LaproscopySpComponent implements OnInit {
         UterovesicalPouch :[''],
         OtherFindings :[''],
         Comments :[''],
-        PatientId :[''],
-        OtProcedureId :[''],
-        SurgeonId :[''],
+        PatientId :['', Validators.required],
+        OtProcedureId :['', Validators.required],
+        SurgeonId :['', Validators.required],
 
 
       });

@@ -59,6 +59,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                        RO Date
+                       <em class="required_label">*</em>
                       </label>
                       <input type="date" class="form-control m-input" formControlName="RoDate">
                     </div>
@@ -67,6 +68,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                        Request Date
+                       <em class="required_label">*</em>
                       </label>
                       <input type="date" class="form-control m-input" formControlName="RequestDate">
                     </div>
@@ -75,6 +77,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                           Status
+                          <em class="required_label">*</em>
                       </label>
                       <select class="form-control m-input" formControlName="Status">
                           <option value="UnCleared">UnCleared</option>
@@ -89,6 +92,7 @@
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                               Department
+                              <em class="required_label">*</em>
                             </label>
                             <dx-select-box [items]="departments" displayExpr="name" valueExpr="departmentId"[searchEnabled]="true" formControlName="DepartmentId"> 
                               </dx-select-box>
@@ -98,6 +102,7 @@
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                             User
+                            <em class="required_label">*</em>
                             </label>
                             <dx-select-box [items]="users" displayExpr="fullName" valueExpr="userId"[searchEnabled]="true" formControlName="UserId"> 
                               </dx-select-box>
@@ -110,6 +115,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                        Remarks
+                       <em class="required_label">*</em>
                       </label>
                       <input type="text" class="form-control m-input" formControlName="Remarks">
                     </div>
@@ -168,7 +174,7 @@
     
                               <div class="row">
                                 <div class="col-sm-2">
-                                  <button class="btn btn-primary" (click)="addMedicineRequest(MedicineRequestForm.value , totalOrderQty.value , totalDispatchQty.value )">
+                                  <button class="btn btn-primary" [disabled]="MedicineRequestForm.invalid"  (click)="addMedicineRequest(MedicineRequestForm.value , totalOrderQty.value , totalDispatchQty.value )">
                                     Submit
                                   </button>
                                 </div>

@@ -20,7 +20,9 @@
                  <dxo-header-filter [visible]="true"></dxo-header-filter>
                  <dxo-paging [pageSize]="5"></dxo-paging>
                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                 <dxi-column dataField="name" caption="Name"></dxi-column>
+                 <dxi-column dataField="name" caption="Name">
+                  <dxi-validation-rule type="required" message="Required"></dxi-validation-rule>
+                 </dxi-column>
                  <!-- <dxi-column dataField="abbr" caption="Abbr"></dxi-column>  -->
                </dx-data-grid>
              </div>

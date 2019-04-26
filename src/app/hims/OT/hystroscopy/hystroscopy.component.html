@@ -26,6 +26,7 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Date
+                          <em class="required_label">*</em>
                         </label>
                         <input type="date" class="form-control m-input" formControlName="HystroscopyDate" [value]="hystroscopyById?.hystroscopyDate |  date : 'yyyy-MM-dd' || ''">
                       </div>
@@ -35,6 +36,7 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Patient
+                          <em class="required_label">*</em>
                         </label>
                         <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                         </dx-select-box>
@@ -56,6 +58,7 @@
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                               Procedure
+                              <em class="required_label">*</em>
                             </label>
                             <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
                               </dx-select-box>
@@ -65,6 +68,7 @@
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                               Surgeon
+                              <em class="required_label">*</em>
                             </label>
                             <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId" > 
                               </dx-select-box>
@@ -75,6 +79,7 @@
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                               LMP Date
+                              <em class="required_label">*</em>
                             </label>
                             <input type="date" class="form-control m-input" formControlName="LmpDate" [value]="hystroscopyById?.lmpDate |  date : 'yyyy-MM-dd' || ''"> 
                           </div>
@@ -197,7 +202,7 @@
                         <button class="btn btn-primary" *ngIf="router.url === '/ot/hystroscopy/'+id"    (click)="updatehystroscopy(hystroscopyForm.value)">
                           Update
                         </button>
-                      <button class="btn btn-primary"  *ngIf="router.url === '/ot/hystroscopy'" (click)="addhystroscopy(hystroscopyForm.value)">
+                      <button class="btn btn-primary" [disabled]="hystroscopyForm.invalid" *ngIf="router.url === '/ot/hystroscopy'" (click)="addhystroscopy(hystroscopyForm.value)">
                         Submit
                       </button>
                     </div>

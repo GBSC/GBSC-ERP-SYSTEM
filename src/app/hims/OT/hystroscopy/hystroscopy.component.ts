@@ -28,9 +28,9 @@ export class HystroscopyComponent implements OnInit {
 
       this.hystroscopyForm = this.formBuilder.group({
         HystroscopyId:[''],
-        HystroscopyDate:[''],
+        HystroscopyDate:['' , Validators.required],
         Type:[''],
-        LmpDate:[''],
+        LmpDate:['' , Validators.required],
         Anesthetic:[''],
         Indications:[''],
         OperationsNote1:[''],
@@ -41,9 +41,9 @@ export class HystroscopyComponent implements OnInit {
         OperationsNote6:[''],
         Findings:[''],
         Comments:[''],
-        PatientId:[''],
-        OtProcedureId:[''],
-        ConsultantId:['']
+        PatientId:['', Validators.required],
+        OtProcedureId:['', Validators.required],
+        ConsultantId:['', Validators.required]
       });
 
     }

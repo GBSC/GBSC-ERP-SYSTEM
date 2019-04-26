@@ -28,9 +28,9 @@ export class LaproscopyFsComponent implements OnInit {
     public otServiceobj : OTService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router, public Toast: ToastrService) { 
       this.laproscopyfsForm = this.formBuilder.group({
         LaproscopyFSId:[''],
-        LaproscopyFsDate :[''],
+        LaproscopyFsDate :['' , Validators.required],
         Type:[''],
-        LMPDate :[''],
+        LMPDate :['' , Validators.required],
         Anesthetic :[''],
         Diagnosis:[''],
         Indications:[''],
@@ -42,10 +42,10 @@ export class LaproscopyFsComponent implements OnInit {
         OperationsNote3:[''],
         OperationsNote4:[''],
         Comments:[''],
-        PatientId:[''],
-        OtProcedureId:[''],
-        SurgeonId:[''],
-        Surgeon2Id:['']
+        PatientId:['', Validators.required],
+        OtProcedureId:['', Validators.required],
+        SurgeonId:['', Validators.required],
+        Surgeon2Id:['', Validators.required]
       });
     }
 

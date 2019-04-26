@@ -34,12 +34,12 @@ export class MedicineRequestComponent implements OnInit {
     , public objPharmacyService : PharmacyService , public Toast: ToastrService) {
 
     this.MedicineRequestForm = this.formBuilder.group({
-      RoDate : [''],
-      RequestDate:[''],
-      Status:[''],
-      Remarks:[''],
-      DepartmentId:[''],
-      UserId:[''],
+      RoDate : ['' ,  Validators.required],
+      RequestDate:['' ,  Validators.required],
+      Status:['',  Validators.required],
+      Remarks:['',  Validators.required],
+      DepartmentId:['',  Validators.required],
+      UserId:['',  Validators.required],
       TotalOrderQty:[''],
       TotalDispatchQty:[''],
       MedicineRequestDetails:this.formBuilder.array([]),
@@ -116,8 +116,9 @@ export class MedicineRequestComponent implements OnInit {
     })
     this.MedicineRequestForm.value.MedicineRequestDetails = this.arraydata;
     console.log(this.arraydata);
-
-    this.otServiceobj.addInvMedicineRequest(value).subscribe(res=> {
+console.log(value)
+if(value.MedicineRequestDetails.length){
+  this.otServiceobj.addInvMedicineRequest(value).subscribe(res=> {
       if(res){
         console.log(res);
         this.MedicineRequestForm.reset();
@@ -129,6 +130,11 @@ export class MedicineRequestComponent implements OnInit {
         this.Toast.success('Select All');
       }
     })
+}
+else{
+  this.Toast.error('Please Add Some Medicine Request')
+}
+    
     
   }
 

@@ -26,6 +26,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Date
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="date" class="form-control m-input" formControlName="OtPatientCaseDate" [value]="patientCaseById?.otPatientCaseDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
@@ -45,6 +46,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Patient
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
@@ -79,6 +81,7 @@
                         <div class="form-group m-form__group">
                           <label for="exampleInputEmail1">
                             Procedure
+                            <em class="required_label">*</em> 
                           </label>
                           <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
                           </dx-select-box>
@@ -91,6 +94,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Time Start
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="time" class="form-control m-input" formControlName="TimeStart"  [value]="patientCaseById?.timeStart | date : 'hh:mm:ss' || ''">
                     </div>
@@ -99,6 +103,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Time End
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="time" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'HH:mm:ss' || ''">
                     </div>
@@ -107,6 +112,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Surgeon
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="SurgeonId" > 
                         </dx-select-box>
@@ -116,6 +122,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Done By
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="DoneById"> 
                       </dx-select-box>
@@ -195,7 +202,7 @@
                       <button class="btn btn-primary" *ngIf="router.url === '/ot/patientcase/'+id"    (click)="updatePatientCase(patientCaseForm.value)">
                         Update
                       </button>
-                    <button class="btn btn-primary"  *ngIf="router.url === '/ot/patientcase'" (click)="addPatientCase(patientCaseForm.value)">
+                    <button class="btn btn-primary" [disabled]="patientCaseForm.invalid"  *ngIf="router.url === '/ot/patientcase'" (click)="addPatientCase(patientCaseForm.value)">
                       Submit
                     </button>
                   </div>

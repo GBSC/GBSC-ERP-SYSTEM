@@ -27,15 +27,26 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Patient
+                        <em class="required_label">*</em> 
                       </label>
-                      <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                      
+                      <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" 
+                      [searchEnabled]="true" formControlName="PatientId" required> 
+                        <dx-validator>
+                          <dxi-validation-rule type="required" message="Country is required"></dxi-validation-rule>
+                      </dx-validator>
                       </dx-select-box>
+                      <div *ngIf="ultraSoundPelvisForm.controls['PatientId'].errors && !ultraSoundPelvisForm.controls['PatientId'].pristine" class="error-msg">
+                        <div [hidden]="!ultraSoundPelvisForm.controls['PatientId'].errors.required">PatientId is required.</div>
+                      </div>
+
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Consultant 
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
                       </dx-select-box>
@@ -111,6 +122,7 @@
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                                 Treatment Type
+                                <em class="required_label">*</em> 
                             </label>
                             <dx-select-box [items]="treatmentType" displayExpr="name" valueExpr="treatmentTypeId" [searchEnabled]="true" formControlName="TreatmentTypeId"> 
                             </dx-select-box>
@@ -136,16 +148,22 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           LMP Date
+                          <em class="required_label">*</em> 
                         </label>
                         <input type="date" class="form-control m-input" formControlName="LMP" [value]="ultraSoundPelvisById?.lmp | date : 'yyyy-MM-dd' || ''">
+                      
+                      
                       </div>
                     </div>
                     <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           ET On
+                          <em class="required_label">*</em> 
                         </label>
                         <input type="date" class="form-control m-input" formControlName="EtOn" [value]="ultraSoundPelvisById?.etOn | date : 'yyyy-MM-dd' || ''">
+                  
+                      
                       </div>
                     </div>
   
@@ -179,8 +197,9 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           US Date
+                          <em class="required_label">*</em> 
                         </label>
-                        <input type="date" class="form-control m-input" formControlName="UltrasoundDate"  [value]="ultraSoundPelvisById?.ultrasoundDate | date : 'yyyy-MM-dd' || ''" >
+                        <input type="date" class="form-control m-input" formControlName="UltrasoundDate"  [value]="ultraSoundPelvisById?.ultrasoundDate | date : 'yyyy-MM-dd' || ''">
                       </div>
                     </div>
                     <div class="col-sm-2">
@@ -195,6 +214,7 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                          Sonologist
+                         <em class="required_label">*</em> 
                         </label>
                         <dx-select-box [items]="sonologists" displayExpr="name" valueExpr="sonologistId" [searchEnabled]="true" formControlName="SonologistId"> 
                         </dx-select-box>
@@ -424,7 +444,7 @@
                     <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundpelvis/'+id" (click)="updateUltraSoundPelvis(ultraSoundPelvisForm.value)">
                       Update
                     </button>
-                    <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundpelvis'" (click)="addUltraSoundPelvis(ultraSoundPelvisForm.value)">
+                    <button class="btn btn-primary" type="button" [disabled]="ultraSoundPelvisForm.invalid"  *ngIf="router.url === '/ultrasound/ultrasoundpelvis'" (click)="addUltraSoundPelvis(ultraSoundPelvisForm.value)">
                       Save
                     </button>
                   </div>

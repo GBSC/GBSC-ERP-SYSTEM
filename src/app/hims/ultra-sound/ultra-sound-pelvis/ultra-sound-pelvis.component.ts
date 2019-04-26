@@ -30,14 +30,16 @@ export class UltraSoundPelvisComponent implements OnInit {
   public id : any;
   public ultraSoundPelvisById : any;
   public patientDob : any;
+  public submitted = false;
+
   constructor(public treatmentServiceobj : TreatmentService, public patientserviceobj : PatientService, 
     public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router , public Toast: ToastrService) { 
 
     this.ultraSoundPelvisForm = this.formBuilder.group({
-      LMP :[''],
-      EtOn :[''],
+      LMP :['' , Validators.required],
+      EtOn :['', Validators.required],
       TreatmentDay :[''],
-      UltrasoundDate :[''],
+      UltrasoundDate :['', Validators.required],
       CycleDay :[''],
       AreaScanned:[''],
       Findings:[''],
@@ -59,10 +61,10 @@ export class UltraSoundPelvisComponent implements OnInit {
       FluidPelvis:[''],
       FluidAbdomen:[''],
       Comments:[''],
-      PatientId:[''],
-      ConsultantId:[''],
-      TreatmentTypeId:[''],
-      SonologistId:[''],
+      PatientId:['', Validators.required ],
+      ConsultantId:['' , Validators.required],
+      TreatmentTypeId:['' , Validators.required],
+      SonologistId:['' , Validators.required],
       UltraSoundPelvisId:['']
 
     });
@@ -148,9 +150,19 @@ this.id = +params['id'];
     });
   }
 
+  // get f() { return this.ultraSoundPelvisForm.controls; }
 
   addUltraSoundPelvis(value){
+    
+  //  this.submitted = true;
+
     delete this.ultraSoundPelvisForm.value.UltraSoundPelvisId;
+    console.log(value)
+
+    // if (this.ultraSoundPelvisForm.invalid) {
+    //    this.Toast.error('Please Select All Required Fields');
+    // }
+  //  else{
     this.ultraSoundServiceobj.addUltraSoundPelvis(value).subscribe(res=>{
       if(res != null){
         console.log(res);
@@ -161,6 +173,8 @@ this.id = +params['id'];
         this.Toast.error('        ')
       }
     })
+    //  }
+
    }
 
    updateUltraSoundPelvis(value){

@@ -27,6 +27,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Date
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="date" class="form-control m-input" formControlName="UltraSoundMasterDate" [value]="ultraSoundMasterById?.ultraSoundMasterDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
@@ -43,6 +44,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Patient
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
@@ -87,6 +89,7 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           LMP
+                          <em class="required_label">*</em> 
                         </label>
                         <input type="date" class="form-control m-input" formControlName="LMP" [value]="ultraSoundMasterById?.lmp |  date : 'yyyy-MM-dd' || ''">
                       </div>
@@ -111,6 +114,7 @@
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                                 ET Date
+                                <em class="required_label">*</em> 
                             </label>
                             <input type="date" class="form-control m-input" formControlName="EtDate" [value]="ultraSoundMasterById?.etDate |  date : 'yyyy-MM-dd' || ''"> 
                           </div>
@@ -119,6 +123,7 @@
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Consultant 
+                          <em class="required_label">*</em> 
                         </label>
                         <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
                         </dx-select-box>
@@ -127,7 +132,8 @@
                     <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
-                         Sonologist
+                         Sonologist 
+                         <em class="required_label">*</em> 
                         </label>
                         <dx-select-box [items]="sonologists" displayExpr="name" valueExpr="sonologistId" [searchEnabled]="true" formControlName="SonologistId"> 
                         </dx-select-box>
@@ -305,7 +311,7 @@
                     <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundmaster/'+id" (click)="updateUltraSoundMaster(ultraSoundMasterForm.value)">
                       Update
                     </button>
-                    <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundmaster'" (click)="addUltraSoundMaster(ultraSoundMasterForm.value)">
+                    <button class="btn btn-primary" type="button"  [disabled]="ultraSoundMasterForm.invalid" *ngIf="router.url === '/ultrasound/ultrasoundmaster'" (click)="addUltraSoundMaster(ultraSoundMasterForm.value)">
                       Save
                     </button>
                   </div>

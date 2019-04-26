@@ -33,12 +33,12 @@ export class FWBInintialComponent implements OnInit {
 
       this.fwbInitialForm = this.formBuilder.group({
         FwbInitialId:[''],
-        FwbInitialDate : [''],
+        FwbInitialDate : ['', Validators.required],
         TreatmentNo : [''],
         CycleNo:[''],
-        ETDate :[''],
+        ETDate :['' , Validators.required],
         GestAge :[''],
-        LMPDate :[''],
+        LMPDate :['' , Validators.required],
         CFacts :[''],
         NoofFoetus :[''],
         FoetalHeartBeat:[''],
@@ -48,10 +48,10 @@ export class FWBInintialComponent implements OnInit {
         PlacnetalLocallisation :[''],
         GSac :[''],
         Comments :[''],
-        PatientId :[''],
-        ConsultantId :[''],
-        SonologistId :[''],
-        TreatmentTypeId :['']
+        PatientId :['' , Validators.required],
+        ConsultantId :['' , Validators.required],
+        SonologistId :['' , Validators.required],
+        TreatmentTypeId :['' , Validators.required]
       });
   }
 

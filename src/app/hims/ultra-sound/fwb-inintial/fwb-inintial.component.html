@@ -26,6 +26,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Date
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="date" class="form-control m-input"  formControlName="FwbInitialDate"  [value]="fwbInitialById?.fwbInitialDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
@@ -42,6 +43,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Patient
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="patients" displayExpr="mrn" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
@@ -67,6 +69,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Doctor
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
                       </dx-select-box>
@@ -94,6 +97,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Treatment Type
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="treatmentType" displayExpr="name" valueExpr="treatmentTypeId" [searchEnabled]="true" formControlName="TreatmentTypeId"> 
                       </dx-select-box>
@@ -103,6 +107,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Sonologist
+                        <em class="required_label">*</em> 
                       </label>
                       <dx-select-box [items]="sonologists" displayExpr="name" valueExpr="sonologistId" [searchEnabled]="true" formControlName="SonologistId"> 
                       </dx-select-box>
@@ -112,6 +117,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         ET Date
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="date" class="form-control m-input" formControlName="ETDate" [value]="fwbInitialById?.etDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
@@ -120,6 +126,7 @@
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         LMP Date
+                        <em class="required_label">*</em> 
                       </label>
                       <input type="date" class="form-control m-input" formControlName="LMPDate" [value]="fwbInitialById?.lmpDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
@@ -224,7 +231,7 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-2">
-                    <button class="btn btn-primary"  *ngIf="router.url === '/ultrasound/fwbinitial'" (click)="addfwbInitial(fwbInitialForm.value)">
+                    <button class="btn btn-primary"  [disabled]="fwbInitialForm.invalid"  *ngIf="router.url === '/ultrasound/fwbinitial'" (click)="addfwbInitial(fwbInitialForm.value)">
                       Submit
                     </button>
                     <button class="btn btn-primary"  *ngIf="router.url === '/ultrasound/fwbinitial/'+id" (click)="updatefwbInitial(fwbInitialForm.value)">

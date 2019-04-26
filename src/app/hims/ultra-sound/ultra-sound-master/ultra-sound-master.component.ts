@@ -18,11 +18,11 @@ export class UltraSoundMasterComponent implements OnInit {
 
       this.ultraSoundMasterForm = this.formBuilder.group({
         UltraSoundMasterId:[''],
-        UltraSoundMasterDate : [''],
+        UltraSoundMasterDate : [''  , Validators.required],
         CFacts :[''],
-        LMP :[''],
+        LMP :[''  , Validators.required] ,
         GeatAge : [''],
-        EtDate : [''],
+        EtDate : [''  , Validators.required],
         NoofFoetus : [''],
         FoetalHeartBeat : [''],
         FoetalMovement : [''],
@@ -40,9 +40,9 @@ export class UltraSoundMasterComponent implements OnInit {
         Crl:[''],
         Ebw : [''],
         Comments :[''],
-        PatientId:[''],
-        ConsultantId:[''],
-        SonologistId :['']
+        PatientId:[''  , Validators.required],
+        ConsultantId:[''  , Validators.required],
+        SonologistId :[''  , Validators.required]
       });
 
      }

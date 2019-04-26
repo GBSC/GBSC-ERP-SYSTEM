@@ -36,7 +36,7 @@ export class AuthService {
             localStorage.setItem('user', JSON.stringify(userData));
             this.loggedInUser = JSON.parse(localStorage.getItem('user'));
             this.router.navigate(['employee/dashboard']);
-        } else if (response.status === false || response.message === 'Invalid username or passowrd') {
+        } else if (response.status === false || response.message === 'Invalid username or password') {
             alert(response.message);
         }
     }
@@ -86,6 +86,7 @@ export class AuthService {
 
     getProfileInfo() {
         let user = JSON.parse(localStorage.getItem('user'));
+
         return {
             Username: user.fullName,
             UserLevel: user.userLevel

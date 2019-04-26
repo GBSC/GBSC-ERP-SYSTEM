@@ -20,11 +20,16 @@ import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-
 import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-census-detail.component';
 import { ShopCensusSummaryComponent } from './reports/shop-census-summary/shop-census-summary.component';
 import { ShopStatusDetailComponent } from './reports/shop-status-detail/shop-status-detail.component';
+import { ShopCensusDeatilReportComponent } from './reports/shop-census-deatil-report/shop-census-deatil-report.component';
+import { ShopCensusSummaryReportComponent } from './reports/shop-census-summary-report/shop-census-summary-report.component';
 import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-status-summary.component';
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
 import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
-import { NewtestreportComponent } from './reports/newtestreport/newtestreport.component';
+import { TestReportComponent } from "./reports/test-report/test-report.component";
+import { OrderSummaryDetailComponent } from "./reports/order-summary-detail/order-summary-detail.component";
+import { ShopEditComponent } from './shop-edit/shop-edit.component';
+
 
 const routes: Routes = [
     {
@@ -34,6 +39,7 @@ const routes: Routes = [
             { path: 'locator', component: LocatorComponent },
             { path: 'users', component: SalesusersComponent },
             { path: 'stores', component: StoresComponent },
+            { path: 'shop-edit/:id', component: ShopEditComponent },
             { path: 'store-profile/:id', component: StoresProfileComponent },
             { path: 'visit-summary/:id', component: VisitSummaryComponent },
             { path: 'area', component: AreaComponent },
@@ -52,12 +58,13 @@ const routes: Routes = [
                     { path: 'shop-census-detail', component: ShopCensusDetailComponent },
                     { path: 'shop-census-summary', component: ShopCensusSummaryComponent },
                     { path: 'shop-status-detail', component: ShopStatusDetailComponent },
+                    { path: 'shop-status-detail-report/:id/:fdate/:tdate', component: ShopCensusDeatilReportComponent },
+                    { path: 'shop-census-summary-report/:id/:fdate/:tdate', component: ShopCensusSummaryReportComponent },
                     { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
                     { path: 'visit-detail', component: VisitDetailComponent },
                     { path: 'visit-summary', component: VisitSummaryReportComponent },
-                    { path: 'test-report', component: NewtestreportComponent },
-
-
+                    { path: 'testrepo', component: TestReportComponent},
+                    { path: 'ordersummary', component: OrderSummaryDetailComponent}
                 ]
             }
         ]

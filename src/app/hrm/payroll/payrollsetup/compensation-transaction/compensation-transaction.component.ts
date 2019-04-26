@@ -33,7 +33,7 @@ export class CompensationTransactionComponent implements OnInit {
 
         this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
 
-        this.allowances = await this.payrollsetupservice.getAllowances();
+        this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
     }
 
     async addCompensationTransaction(value) {

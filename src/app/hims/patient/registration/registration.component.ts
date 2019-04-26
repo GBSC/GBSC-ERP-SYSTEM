@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
             'DOB': [''],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': [''],
+            'NIC': ['' ],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']
@@ -86,14 +86,14 @@ export class RegistrationComponent implements OnInit {
             'Occupation': [''],
             'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)]],
+            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] , Validators.pattern('[6-9]\\d{9}]')],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
             'OfficeTel': [''],
             'ForeignAddress': [''],
-            'Country': ['', Validators.required],
-            'City': ['', Validators.required],
+            'Country': ['Pakistan', Validators.required],
+            'City': ['Karachi', Validators.required],
             'State': [''],
             'PostalCode': [''],
             'Initial': [''],
@@ -190,8 +190,13 @@ export class RegistrationComponent implements OnInit {
             console.log(this.getreferncdata);
         });
 
-        await this.PatientServiceobj.GetVisitNatures();
-        this.visitnature = this.PatientServiceobj.visitNatures;
+        // await this.PatientServiceobj.GetVisitNatures();
+        // this.visitnature = this.PatientServiceobj.visitNatures;
+
+        this.PatientServiceobj.getVisitNatures().subscribe(res =>{
+            this.visitnature = res;
+            console.log(this.visitnature);
+        });
     }
 
     async addreference(value) {
@@ -263,7 +268,7 @@ export class RegistrationComponent implements OnInit {
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
-        this.patientId = await this.PatientServiceobj.addPatient(value);
+         this.patientId = await this.PatientServiceobj.addPatient(value);
         //  console.log(this.patientId);
         this.displayToastSuccess("Patient Registered");
         //  this.patientForm.reset();
@@ -457,10 +462,19 @@ export class RegistrationComponent implements OnInit {
     }
 
 
-    async deleteDocument(id, i) {
-        //    console.log(i)
-        await this.PatientServiceobj.deleteDocument(id);
-        this.documents.splice(i, 1)
+    // async deleteDocument(id, i) {
+    //          console.log(i)
+    //     await this.PatientServiceobj.deleteDocument(id);
+    //     this.documents.splice(i, 1)
+    // }
+    
+    deleteDocument(id , i ){
+        console.log(id);
+        this.PatientServiceobj.deletePatientDocument(id).subscribe(res=>{
+            console.log(res);
+ 
+              this.documents.splice(i, 1)
+        });
     }
 
 

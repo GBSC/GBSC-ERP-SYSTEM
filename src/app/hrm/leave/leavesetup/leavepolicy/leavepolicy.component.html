@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
+          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" [showBorders]="true" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
             (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
             <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">
@@ -26,10 +26,6 @@
 
             <dxi-column dataField="groupId" caption="Group">
               <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveYearId" caption="Leave Year">
-              <dxo-lookup [dataSource]="leaveYears" displayExpr="name" valueExpr="leaveYearId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveTypeId" caption="Leave Policy">
@@ -58,9 +54,7 @@
             <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
             <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
-            <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
-            <dxi-column dataField="isFileAttachmentRequired" dataType="boolean" [visible]="false"></dxi-column>
-            <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
+            <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column> 
             <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
             <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>

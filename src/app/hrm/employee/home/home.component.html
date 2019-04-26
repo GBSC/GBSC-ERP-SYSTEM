@@ -18,77 +18,15 @@
             <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
               <div class="m-demo__preview">
                 <ul class="m-nav nav nav-tabs">
-                  <li  class="m-nav__item">
-                    <a class="m-nav__link" href="#BInformation" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-share"></i>
-                      <span class="m-nav__link-text">
-                        Basic Information</span>
-                    </a>
-                  </li>
-                  <!-- <li class="m-nav__item" *ngIf="id">
-                    <a class="m-nav__link" href="#PPicture" data-toggle="tab">
+                  <li  class="m-nav__item" *ngFor="let tab of tabs;">
+                    <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
                       <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                       <span class="m-nav__link-text">
-                        Profile Picture
-                      </span>
-                    </a>
-                  </li> -->
-                  <li class="m-nav__item" *ngIf="id">
-                    <a class="m-nav__link" href="#EmployeeCInfo" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-info"></i>
-                      <span class="m-nav__link-text">
-                        Employee Company Information
+                        {{tab}}
                       </span>
                     </a>
                   </li>
-                  <li class="m-nav__item" *ngIf="id">
-                    <a class="m-nav__link" href="#EDependants" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Employee Dependants
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item" *ngIf="id">
-                      <a class="m-nav__link" href="#Social" data-toggle="tab">
-                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                        <span class="m-nav__link-text">
-                            Social Networking
-                        </span>
-                      </a>
-                    </li>
-                    <li class="m-nav__item" *ngIf="id">
-                      <a class="m-nav__link" href="#EQualification" data-toggle="tab">
-                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                        <span class="m-nav__link-text">
-                            Employee Qualification
-                        </span>
-                      </a>
-                    </li>
-                    <li class="m-nav__item" *ngIf="id">
-                        <a class="m-nav__link" href="#WExperience" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Work Experience
-                          </span>
-                        </a>
-                      </li>
-                      <li class="m-nav__item" *ngIf="id">
-                        <a class="m-nav__link" href="#EBankAc" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Employee Bank Account
-                          </span>
-                        </a>
-                      </li>
-                      <!-- <li class="m-nav__item" *ngIf="id">
-                        <a class="m-nav__link" href="#Documents" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Documents
-                          </span>
-                        </a>
-                      </li> -->
+                
                 </ul>
               </div>
             </div>
@@ -103,14 +41,28 @@
         <div class="m-portlet">
           <div class="m-portlet__body">
             <div class="tab-content">
-            <div class="tab-pane active" id="BInformation"><app-basicinformation [employeeId]="id" (updateMessage)='displayToast($event)'></app-basicinformation> </div>
+            <div class="tab-pane active" id="BInformation" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
+              <app-basicinformation [employeeId]="id" (updateMessage)='displayToast($event)'></app-basicinformation>
+             </div>
             <!-- <div class="tab-pane" id="PPicture" *ngIf="id"><app-profilepic [employeeId]="id"></app-profilepic></div> -->
-              <div class="tab-pane" id="EmployeeCInfo" *ngIf="id"><app-employeecompany [employeeId]="id" (updateMessage)='displayToast($event)'></app-employeecompany></div>
-              <div class="tab-pane" id="EDependants" *ngIf="id"><app-emergencycontact [employeeId]="id"></app-emergencycontact></div>
-              <div class="tab-pane" id="Social" *ngIf="id"><app-social [employeeId]="id" (updateMessage)='displayToast($event)'></app-social></div>
-              <div class="tab-pane" id="EQualification" *ngIf="id"><app-employeequalification [employeeId]="id"></app-employeequalification></div>
-              <div class="tab-pane" id="WExperience" *ngIf="id"><app-experience [employeeId]="id"></app-experience></div>
-              <div class="tab-pane" id="EBankAc" *ngIf="id"><app-employeebank [employeeId]="id"></app-employeebank></div>
+              <div class="tab-pane" id="EmployeeCInfo" *ngIf="selectedTab === tabs[1]" id="{{selectedTab}}">
+                <app-employeecompany [employeeId]="id" (updateMessage)='displayToast($event)'></app-employeecompany>
+              </div>
+              <div class="tab-pane" id="EQualification" *ngIf="selectedTab === tabs[2]" id="{{selectedTab}}">
+                  <app-employeequalification [employeeId]="id"></app-employeequalification>
+                </div>
+                <div class="tab-pane" id="WExperience"*ngIf="selectedTab === tabs[3]" id="{{selectedTab}}">
+                    <app-experience [employeeId]="id"></app-experience>
+                  </div>
+              <div class="tab-pane" id="EDependants" *ngIf="selectedTab === tabs[4]" id="{{selectedTab}}">
+                <app-emergencycontact [employeeId]="id"></app-emergencycontact>
+              </div>
+              <div class="tab-pane" id="EBankAc" *ngIf="selectedTab === tabs[5]" id="{{selectedTab}}">
+                <app-employeebank [employeeId]="id"></app-employeebank>
+              </div>
+              <div class="tab-pane" id="Social" *ngIf="selectedTab === tabs[6]" id="{{selectedTab}}">
+                  <app-social [employeeId]="id" (updateMessage)='displayToast($event)'></app-social>
+                </div>
               <!-- <div class="tab-pane" id="Documents" *ngIf="id"><app-document [employeeId]="id"></app-document></div> -->
             </div>
           </div>

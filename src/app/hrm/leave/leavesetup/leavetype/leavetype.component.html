@@ -13,6 +13,7 @@
                       <dx-data-grid id="gridContainer"
                        [dataSource]="levetype"
                        keyExpr="leaveTypeId"
+                       [showBorders]="true"
                        (onRowInserted)="addleavetype($event)" 
                       (onRowUpdated)="updateleavetype($event)"
                         (onRowRemoved)="deleteleavetype($event)">

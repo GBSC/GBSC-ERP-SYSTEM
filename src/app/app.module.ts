@@ -63,11 +63,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         CoreModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
-        // AngularFireAuthModule,
-        // AgmCoreModule.forRoot({
-        //     apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
-        // }),
-        // AgmSnazzyInfoWindowModule,
         SecurityAdminModule,
         EtrackerModule,
         PharmacyModule,
@@ -80,7 +75,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         DashboardModule,
         HrmModule,
         InventoryModule,
-        CoordinationRoutingModule
+        CoordinationRoutingModule,
+        
     ],
     providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
     { provide: LocationStrategy, useClass: HashLocationStrategy },

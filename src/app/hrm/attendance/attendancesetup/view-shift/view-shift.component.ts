@@ -21,7 +21,9 @@ export class ViewShiftComponent implements OnInit {
 
         this.shift = await this.attendancesetupservice.getShifts();
 
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+        this.attendancesetupservice.getAttendanceFlags().subscribe(rep => {
+            this.attendanceflag = rep
+        });
 
         this.flagType = await this.attendancesetupservice.getFlagTypes();
 

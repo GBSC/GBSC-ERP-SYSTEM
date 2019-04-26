@@ -32,11 +32,11 @@
                         <div class="form-group row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    CRN No
+                                    MRN No
                                 </label>
                                 <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(IssuanceForm.value.CRN)"
                                     formControlName="CRN">
-                                    <option *ngFor="let x of AllCustomers" [value]="x?.crn">{{x?.crn}} </option>
+                                    <option *ngFor="let x of AllCustomers" [value]="x?.mrn">{{x?.mrn}} </option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
@@ -69,14 +69,14 @@
                                     P. Name
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName"
-                                    [value]="customerdata?.name || ''" disabled>
+                                    [value]="customerdata?.fullName || ''" disabled>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     S. Name
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName"
-                                    [value]="customerdata?.shortName || ''" disabled>
+                                    [value]="customerdata?.partner?.display || ''" disabled>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
@@ -84,11 +84,19 @@
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
                             </div>
-                            <div class="form-group col-lg-3">
+                            <!-- <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Department
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                            </div> -->
+                            <div class="form-group col-lg-3">
+                                <label for="exampleInputEmail1">
+                                    Department
+                                </label>
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" formControlName="Department">
+                                    <option *ngFor="let x of AllDepartments" [value]="x?.name">{{x?.name}} </option>
+                                </select>
                             </div>
                         </div>
                         <!-- <div class="modal-footer">
@@ -99,20 +107,12 @@
                                 Save
                             </button>
                         </div> -->
-
-
-
-
                     </div>
-
                 </form>
-
-
                 <div class="row">
                     <div class="m-portlet__body">
                         <div class="m-section">
                             <div class="m-section__content">
-
                                 <div>
                                     <button type="button" data-toggle="modal" data-target="#m_modal_6" class="btn btn-success pull-right margin"><i
                                             class="fa fa-plus"></i></button>
@@ -135,7 +135,6 @@
                                                 <dxi-column dataField="UnitPrice" caption="Unit Price"></dxi-column>
                                                 <dxi-column dataField="ItemTotalAmount" caption="Item Total Amount"></dxi-column>
                                             </dx-data-grid>
-
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -190,7 +189,7 @@
                                 </label>
                                 <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
                                     formControlName="InventoryItemId">
-                                    <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
+                                    <option *ngFor="let x of FilteredItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
                                     </option>
                                 </select>
                             </div>
@@ -210,8 +209,7 @@
                                 <label for="exampleInputEmail1">
                                     Pack Type
                                 </label>
-                                <input class="form-control m-input m-input--solid" formControlName="PackType" [value]="data.packType?.name || ''"
-                                    disabled>
+                                <input class="form-control m-input m-input--solid" formControlName="PackType" [value]="packType?.name || ''" disabled>
 
                             </div>
                         </div>

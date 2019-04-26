@@ -29,7 +29,7 @@ export class StoresProfileComponent implements OnInit {
             this.storeId = +params['id'];
 
 
-            this.storeService.getStore(this.storeId, this.companyId).subscribe(s => {
+            this.storeService.getStore(this.storeId).subscribe(s => {
                 this.store = s;
                 console.log(this.store)
             });

@@ -1,8 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EmployeeService, SetupService, HrmsService } from '../../../core';
+import { EmployeeService, SetupService, HrmsService, SystemAdministrationService, AuthService } from '../../../core';
 import { Employee } from '../../../core/Models/HRM/employee';
+import { City } from '../../../core/Models/HRM/city';
+import { Branch } from '../../../core/Models/HRM/branch';
+import { Department } from '../../../core/Models/HRM/department';
 
 @Component({
     selector: 'app-basicinformation',
@@ -15,10 +18,13 @@ export class BasicinformationComponent implements OnInit {
     public basic: any;
     public religion: any;
     public language: any;
-    public city: any;
+    public cities: any;
     public Employee: any;
     public groups: any;
     public departments: any;
+    public branches: any;
+    public companies: any;
+    public countries: any;
 
     @Input('employeeId') id: number;
 
@@ -27,8 +33,8 @@ export class BasicinformationComponent implements OnInit {
 
     public EmpbasicForm: FormGroup;
 
-    constructor(public employeeService: EmployeeService, public fb: FormBuilder, public hrmService: HrmsService,
-        public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
+    constructor(public employeeService: EmployeeService, public sysAdminService: SystemAdministrationService,public authService : AuthService,
+        public fb: FormBuilder, public hrmService: HrmsService,public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpbasicForm = this.fb.group({
             FirstName: [''],
@@ -44,7 +50,9 @@ export class BasicinformationComponent implements OnInit {
             BloodGroup: [''],
             MaritalStatus: [''],
             Gender: [''],
+            CompanyId: [''],
             CountryId: [''],
+            BranchId: [''],
             CityId: [''],
             ReligionId: [''],
             GroupId: [''],
@@ -57,37 +65,47 @@ export class BasicinformationComponent implements OnInit {
     }
 
     update(value) {
-
-        value.UserId = this.id;
+        console.log(value); 
+        value.UserId = this.id; 
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
+            console.log(resp); 
             this.showSuccess("Basic Information Updated");
-        });
-
+        }); 
+        
     }
 
     async ngOnInit() {
 
         this.religion = await this.SetupServiceobj.getAllReligions();
         
-        this.departments = await this.hrmService.getAllDepartments();
-
-        this.language = await this.SetupServiceobj.getAllLanguages();
+        this.sysAdminService.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.departments = res;
+        }); 
 
         this.groups = await this.SetupServiceobj.getAllGroups();
 
-        this.city = await this.hrmService.getAllCities();
+        this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
+            this.cities = res;
+        }); 
+       
+        this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
+            this.countries = res;
+        });
+
+        this.companies = await this.sysAdminService.getCompanies();
+        
+        this.sysAdminService.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
 
         if (this.id) {
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
-                this.Employee = resp;
-
+                this.Employee = resp; 
                 this.patchValues(resp);
-
+                console.log(resp);
             });
-        }
-
-
+        }  
     }
 
     showSuccess(message) {
@@ -120,7 +138,10 @@ export class BasicinformationComponent implements OnInit {
             MaritalStatus: employee.maritalStatus,
             Gender: employee.gender,
             GroupId: employee.groupId,
+            CompanyId: employee.companyId,
+            CountryId: employee.countryId,
             CityId: employee.cityId,
+            BranchId: employee.branchId,
             ReligionId: employee.religionId,
             DepartmentId: employee.departmentId,
             Address: employee.address,

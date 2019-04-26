@@ -30,7 +30,7 @@ export class MonthlyUserSalaryDetailComponent implements OnInit {
 
         this.employees = await this.Employeeservice.GetAllEmployees();
 
-        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+        this.userSalary = await this.payrollservice.getUserSalaries();
 
         this.pfPayment = await this.payrollsetupservice.getPfPayments();
 

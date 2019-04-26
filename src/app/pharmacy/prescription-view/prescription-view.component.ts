@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PharmacyService } from '../../core';
+import { PharmacyService, AuthService } from '../../core';
 import { SalesIndent } from '../../core/Models/Pharmacy/SalesIndent';
 import { SalesIndentViewModel } from '../../core/Models/Pharmacy/IndentViewModel';
 import { FormGroup , FormBuilder} from '@angular/forms';
@@ -17,7 +17,7 @@ export class PrescriptionViewComponent implements OnInit {
 
     public date : any ;
 
-    constructor(public PharmacyService: PharmacyService, public FormBuilder : FormBuilder) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder : FormBuilder, public Auth : AuthService) {
         // this.PresciptionForm = this.FormBuilder.group({
         //     Date : [''],
 
@@ -46,6 +46,7 @@ export class PrescriptionViewComponent implements OnInit {
 
         this.Prescriptions.forEach(element => {
             var a: any = {
+                companyId : this.Auth.getUserCompanyId(),
                 salesIndentId: element.salesIndentId,
                 salesIndentNumber: element.salesIndentNumber,
                 customerCode: element.customerCode,
@@ -76,6 +77,7 @@ export class PrescriptionViewComponent implements OnInit {
 
         this.Prescriptions.forEach(element => {
             var a: any = {
+                companyId : this.Auth.getUserCompanyId(),
                 salesIndentId: element.salesIndentId,
                 salesIndentNumber: element.salesIndentNumber,
                 customerCode: element.customerCode,

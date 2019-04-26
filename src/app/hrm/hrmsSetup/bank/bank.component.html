@@ -14,6 +14,7 @@
                       <dx-data-grid id="gridContainer" 
                       [dataSource]="bank" 
                       keyExpr="bankId" 
+                      [showBorders]="true"
                       (onRowInserted)="addNewbank($event)" 
                       (onRowUpdating)="bankUpdating($event)"
                       (onRowUpdated)="UpdateBank()"

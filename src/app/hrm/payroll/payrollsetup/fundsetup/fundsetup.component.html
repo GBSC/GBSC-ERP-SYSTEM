@@ -309,18 +309,19 @@
                   <input type="text" class="form-control m-input" formControlName="IessiEmployeeContribution" id="" aria-describedby="emailHelp"
                     placeholder="Minimum Salary">
                 </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions">
+                    <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
+                      Save
+                    </button> |
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="m-portlet__foot m-portlet__foot--fit">
-              <div class="m-form__actions">
-                <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
-                  Save
-                </button> |
-                <button type="reset" class="btn btn-secondary">
-                  Cancel
-                </button>
-              </div>
-            </div>
+      
           </form>
         </div>
 

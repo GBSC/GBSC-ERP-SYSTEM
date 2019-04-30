@@ -41,6 +41,7 @@ export class ApiService {
 
         if (this.user && params.keys().length == 0) {
             params = new HttpParams()
+
                 .set("companyId", this.user.assignedId.companyId)
         }
 

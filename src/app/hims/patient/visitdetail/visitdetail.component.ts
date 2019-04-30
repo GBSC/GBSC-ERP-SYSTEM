@@ -450,6 +450,7 @@ export class VisitdetailComponent implements OnInit {
     removeTest(index) {
         //   this.vitalUpdadddddteFieldsEnabled = false;
         this.getvisitTestbyId.splice(index, 1);
+        
     }
 
 

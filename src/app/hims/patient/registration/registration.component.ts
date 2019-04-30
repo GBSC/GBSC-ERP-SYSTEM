@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
             'Occupation': [''],
             'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] , Validators.pattern('[6-9]\\d{9}]')],
+            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] ],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
@@ -123,7 +123,7 @@ export class RegistrationComponent implements OnInit {
                     console.log(Patient)
                 if (Patient) {
                     this.patientForm.patchValue({
-                        RegCity: Patient.regCity,
+                        RegCity : Patient.regCity,
                         visitNatureId: Patient.visitNatureId,
                         FirstName: Patient.firstName,
                         MiddleName: Patient.middleName,
@@ -144,8 +144,8 @@ export class RegistrationComponent implements OnInit {
                         State: Patient.state,
                         PostalCode: Patient.postalCode,
                         Initial: Patient.initial,
-                        PrivatePatientCons: Patient.publicPatientCons,
-                        PrivateHospital: Patient.publicHospital,
+                        PrivatePatientCons: Patient.privatePatientCons,
+                        PrivateHospital: Patient.privateHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                         patientReferenceId: Patient.patientReferenceId,
 
@@ -171,6 +171,10 @@ export class RegistrationComponent implements OnInit {
                     //     RefAddress: Patient.patientReference.refAddress,
                     //     ReferenceTel: Patient.patientReference.referenceTel,
                     // });
+                    
+                    console.log(this.patientForm.value)
+                    console.log(this.partnerForm.value)
+
                 }
             });
         });
@@ -197,8 +201,12 @@ export class RegistrationComponent implements OnInit {
         this.PatientServiceobj.getVisitNatures().subscribe(res =>{
             this.visitnature = res;
             console.log(this.visitnature);
+    
         });
+
+    
     }
+
 
     async addreference(value) {
         console.log(value)
@@ -400,6 +408,9 @@ export class RegistrationComponent implements OnInit {
 
 
     async  updatePatient(value) {
+        console.log(value);
+        console.log(this.patientForm.value);
+        
         this.patientForm.value.patientId = this.id;
         this.patientForm.value.mrn = this.Patient.mrn;
         this.patientForm.value.date = this.Patient.date;
@@ -413,9 +424,7 @@ export class RegistrationComponent implements OnInit {
         value.display = value.FirstName + ' ' + value.LastName + ' ' + value.mrn
         value.fullName = value.FirstName + ' ' + value.LastName
         console.log(value)
-        let x = await this.PatientServiceobj.updatePatient(value);
-        //  console.log(x);
-        //   console.log(value);
+        await this.PatientServiceobj.updatePatient(value);
         let updatedpatientId = this.id;
         this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
         this.displayToastSuccess("Updated");

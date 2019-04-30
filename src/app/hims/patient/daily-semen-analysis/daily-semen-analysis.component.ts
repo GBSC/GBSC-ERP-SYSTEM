@@ -73,13 +73,17 @@ export class DailySemenAnalysisComponent implements OnInit {
  
         });
 
-        // this.DailySemenAnalysisForm.reset();
-        // this.router.navigate(['/hims/patient/dailysemenanalysisview']);
+        this.DailySemenAnalysisForm.reset();
+        this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }
 
     addProcedure(value) {
-        let x = value.key;
-        this.Procedurearray.push(x);
+        console.log(value)
+        let x = value.key.ProcedureId;
+        let y ={
+            ProcedureId: x
+        }
+        this.Procedurearray.push(y);
         console.log(this.Procedurearray)
     }
 

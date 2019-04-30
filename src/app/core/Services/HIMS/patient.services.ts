@@ -292,12 +292,12 @@ export class PatientService {
     }
 
     async GetAppointmentByConsultantNameAndDate(id, date) {
-        return await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
 
     public AppointmentByDate: any;
     async getAppointmentByDate(date) {
-        return await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
     }
 
     GetConsultants(): Observable<Consultant[]> {

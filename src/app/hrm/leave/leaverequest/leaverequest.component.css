@@ -1,3 +1,10 @@
 .label_visiblity{
     visibility: hidden;
 }
+.required_label {
+    content:"*";
+    color:red;
+  }
+  .btn_days{
+    margin-top: 26px;
+  }

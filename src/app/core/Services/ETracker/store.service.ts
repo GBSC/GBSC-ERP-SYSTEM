@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class StoreService {
 
     public Url = "etracker/api/";
-
+    public Ur2l = "localhost:44360/api/";
     constructor(public http: HttpClient, public ApiService: ApiService) {
     }
 
@@ -15,8 +15,22 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'Store/GetStoresWithChildren/' + companyId);
     }
 
-    getStore(storeId: any, companyId: any) {
-        return this.ApiService.get(this.Url + 'Store/GetStore/' + storeId + "/" + companyId);
+    getStore(storeId: any) {
+        return this.ApiService.get(this.Url + 'Store/GetStore/' + storeId);
+    }
+
+    updateStore(store) {
+
+        return this.ApiService.put(this.Url + 'store/updatestore', store);
+    }
+
+    getStorePjp(storeId): Observable<any> {
+
+        return this.ApiService.get(this.Url + 'Store/GetPjpByStoreId/' + storeId);
+    }
+
+    updatePjp(pjp, storeId: any) {
+        return this.ApiService.put(this.Url + 'store/updatepjp/' + storeId, pjp);
     }
 
     deleteStore(storeId: any) {
@@ -60,8 +74,27 @@ export class StoreService {
         return this.ApiService.delete(this.Url + 'StoreVisit/DeleteNonproductiveVisitReason/' + id);
     }
 
-    //Reports
-    shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
-        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
+    Reports
+    shopCensusDetailReport(companyId: number, userId: number , fromDate , todate ): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}/${fromDate}/${todate}`);
     }
+
+    shopCensusSummary(companyId: number, userId: number, fromDate , todate ): Observable<any> {
+       // return     this.http.get(this.Ur2l + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+         return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}/${fromDate}/${todate}`);
+    }
+
+    shopStatusDetail(companyId: number, userId: number, fromdate ,todate): Observable<any> {
+          return this.ApiService.get(this.Url + `Report/GetShopStatusDetail/${companyId}/${userId}/${fromdate}/${todate}`);
+     }
+
+
+     orderSummaryDetail(companyId: number, userId: number): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetOrderSummaryDetail/${companyId}/${userId}`);
+     }
+    
+     visitSummaryDetail(companyId: number, userId: number ,fromdate ,todate): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetVisitSummaryDetail/${companyId}/${userId}/${fromdate}/${todate}`);
+     }
+
 }

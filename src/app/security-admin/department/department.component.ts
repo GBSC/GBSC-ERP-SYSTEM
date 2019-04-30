@@ -10,6 +10,7 @@ import { Branch } from '../../core/Models/HRM/branch';
 export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
+    public updatingModel: any;
 
     constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public authService : AuthService) { }
 
@@ -25,21 +26,36 @@ export class DepartmentComponent implements OnInit {
     }
 
 
-    async addDepartment(value) {
-        // console.log(value);
-        value.key.companyId = this.authService.getUserCompanyId();
-        await this.SystemAdministrationServiceobj.addDepartment(value.key);
-        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
-            this.deprt = res;
-        });
+     addDepartment(value) {
+        value.data.companyId = this.authService.getUserCompanyId();
+         this.SystemAdministrationServiceobj.addDepartment(value.data).subscribe(rp => {
+             this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+                 this.deprt = res;   
+             });
+         });
+         console.log(value);
+
+     }
+
+    updatingDepartment(value){ 
+
+        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel.companyId = this.authService.getUserCompanyId(); 
     }
 
-    async updateDepartment(value) {
-        value.key.companyId = this.authService.getUserCompanyId();
-        await this.SystemAdministrationServiceobj.updateDepartment(value.key);
+     updateDepartment() { 
+        console.log(this.updatingModel);
+        
+         this.SystemAdministrationServiceobj.updateDepartment(this.updatingModel).subscribe(r => {
+            console.log(r);
+            
+        });
     }
-    async deletDepartment(value) {
-        await this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId);
+     deletDepartment(value) {
+        console.log(value); 
+           this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId).subscribe(rep => {
+              console.log(rep); 
+          });
     }
 
 }

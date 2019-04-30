@@ -34,7 +34,7 @@
       <div class="m-portlet">
         <div class="tab-content">
 
-          <div class="tab-pane" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
+          <div class="tab-pane active" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
             <app-groups></app-groups>
           </div>
                 <div class="tab-pane" *ngIf="selectedTab === tabs[1]" id="{{selectedTab}}">
@@ -55,16 +55,16 @@
           <div class="tab-pane" *ngIf="selectedTab === tabs[6]" id="{{selectedTab}}">
             <app-designations></app-designations>
           </div>
-          <div class="tab-pane" *ngIf="selectedTab === tabs[7]" id="{{selectedTab}}">
+          <!-- <div class="tab-pane" *ngIf="selectedTab === tabs[7]" id="{{selectedTab}}">
             <app-gazettedholidays></app-gazettedholidays>
           </div>
           <div class="tab-pane" *ngIf="selectedTab === tabs[8]" id="{{selectedTab}}">
             <app-costcenters></app-costcenters>
-          </div>
-          <div class="tab-pane" *ngIf="selectedTab === tabs[9]" id="{{selectedTab}}">
+          </div> -->
+          <div class="tab-pane" *ngIf="selectedTab === tabs[7]" id="{{selectedTab}}">
             <app-managementlevels></app-managementlevels>
           </div>
-          <div class="tab-pane" *ngIf="selectedTab === tabs[10]" id="{{selectedTab}}">
+          <div class="tab-pane" *ngIf="selectedTab === tabs[8]" id="{{selectedTab}}">
             <app-dependantsrelation></app-dependantsrelation>
           </div>
         </div>

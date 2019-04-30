@@ -19,11 +19,12 @@ export class ConsultantComponent implements OnInit {
         //    console.log(x);
     }
 
-    async addConsultant(value) {
-        //    console.log(value.key);
-        await this.PatientServiceobj.addConsultant(value.key);
-        await this.PatientServiceobj.getConsultant();
-        this.PatientServiceobj.consultant;
+    async  addConsultant(value) {
+        console.log(value)
+             console.log(value.key);
+          await this.PatientServiceobj.addConsultant(value.key);
+          await this.PatientServiceobj.getConsultant();
+          this.PatientServiceobj.consultant;
 
     }
 

@@ -107,8 +107,7 @@
 
             </form>
             <div class="m--space-30"></div>
-            <div class="row">
-              <div class="col-md-12">
+   
                 <div class="m-portlet">
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -120,9 +119,8 @@
                     </div>
                   </div>
   
-                  <div class="m-section">
-                      <div class="m-section__content">
-                        <dx-data-grid id="gridContainer" [dataSource]="Detail" 
+                  <div class="m-content">
+                        <dx-data-grid id="gridContainer" [dataSource]="Detail" [showBorders]="true"
                          (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)">
                           <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
@@ -135,8 +133,9 @@
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager>
           
-                          <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                          <dxi-column dataField="salaryCalculationType" caption="Salary Calculation">
+                            <dxo-lookup [dataSource]="dataSource"></dxo-lookup>
+                            <dxi-validation-rule type="required" message="Salary Calculation Type is required"></dxi-validation-rule>
                           </dxi-column>
             
                           <dxi-column dataField="benefitId" caption="Benefit">
@@ -145,17 +144,17 @@
           
                           <dxi-column dataField="allowanceDeductionId" caption="Allowance">
                             <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                            <dxi-validation-rule type="required" message="Allowance/Deduction is required"></dxi-validation-rule>
                           </dxi-column>
 
-                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
-                          <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                          <dxi-column dataField="value" caption="Value/Percentage">
+                            <dxi-validation-rule type="required" message="Percentage or Value is required"></dxi-validation-rule>
+                          </dxi-column>
+                          <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
                         </dx-data-grid>
-                      </div>
-                    </div>
-
                 </div>
-              </div>
-            </div>
+
+                </div> 
             <div class="m--space-50"></div>
             <div class="row">
               <div class="col-md-12">

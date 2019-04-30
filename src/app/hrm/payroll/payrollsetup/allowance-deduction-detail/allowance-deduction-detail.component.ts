@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-allowance-deduction-detail',
@@ -9,45 +10,40 @@ import { Router } from '@angular/router';
 })
 export class AllowanceDeductionDetailComponent implements OnInit {
 
-  lookupDataSource = ["allowance", "deduction"];
+  lookupDataSource = ["Allowance", "Deduction"];
   public allowancededuction: any;
   public allowanceCalculationTypes: any;
   public updatingdeduction: any;
 
-  constructor(public payrollSetupService: PayrollSetupService, public router: Router) { }
+  constructor(public toaster: ToastrService, public payrollSetupService: PayrollSetupService, public router: Router) { }
 
   async ngOnInit() {
 
-    this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
+    this.payrollSetupService.getAllowanceDeductions().subscribe(rep => {
+      this.allowancededuction = rep;
+    });
 
-    this.allowanceCalculationTypes = await this.payrollSetupService.getAllowanceCalculationTypes();
   }
 
-  onToolbarPreparing(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          icon: 'add',
-          onClick: this.addallowanceordeduction.bind(this)
-        }
+  addAllowanceDeduction(value) {
+
+    this.payrollSetupService.addAllowanceDeduction(value.data).subscribe(resp => {
+      console.log(resp);
+      this.payrollSetupService.getAllowanceDeductions().subscribe(rs => {
+        this.allowancededuction = rs;
       });
-
+    });
+    this.toaster.success("Successfully! Added");
   }
-  addallowanceordeduction() {
-    this.router.navigate(['/hrm/payroll/allowancededuction']);
-  }
-
   updatingAllowanceDeduction(value) {
     this.updatingdeduction = { ...value.oldData, ...value.newData };
   }
   async updateAllowanceDeduction() {
     await this.payrollSetupService.updateAllowanceDeduction(this.updatingdeduction);
   }
-    
+
   async deleteAllowanceDeduction(value) {
     await this.payrollSetupService.DeleteAllowanceDeduction(value.key);
-}
+  }
 
 }

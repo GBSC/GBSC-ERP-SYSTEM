@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeavesetupMasterComponent implements OnInit {
 
-  tabs: string[] = ['Leave Year', 'Leave Purpose', 'Leave Subtype', 'Leave Type','Leave Daytype', 'Leave Eligibility', 
-  'Leave Policy', 'Leave Approver'];
+  tabs: string[] = ['Leave Year', 'Leave Purpose', 'Leave Type', 'Leave Policy', 'Leave Approver'];
  selectedTab = this.tabs[0];
  
   constructor() { }

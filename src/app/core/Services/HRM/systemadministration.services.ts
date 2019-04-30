@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { HttpClient, HttpParams } from '@angular/common/http';
+ import 'rxjs/add/operator/map';
 import { ApiService } from '../api.service';
 import { Company } from '../../Models/HRM/company';
 import { Branch } from '../../Models/HRM/branch';
@@ -10,7 +9,8 @@ import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
 import { Observable } from 'rxjs/Observable';
-import { compileNgModule } from '@angular/core/src/render3/jit/module';
+ import { environment } from '../../../../environments/environment.prod';
+
 
 export class Product {
     id: string;
@@ -19,15 +19,17 @@ export class Product {
     selected?: boolean;
     items?: Product[];
 }
-
+ 
 @Injectable()
 export class SystemAdministrationService {
 
+
     public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
+    public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup/";
 
 
-    constructor(public ApiService: ApiService) {
+    constructor(public ApiService: ApiService, public httpService: HttpClient) {
     }
 
     async saveNewRoleData(data) {
@@ -98,7 +100,7 @@ export class SystemAdministrationService {
     }
 
 
-     getBranches(): Observable<any> {
+    getBranches(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'GetBranches');
     }
 
@@ -106,16 +108,16 @@ export class SystemAdministrationService {
         return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
     }
 
-     addBranches(branch: Branch): Observable<any> {
-        return this.ApiService.post(this.API_URL + 'AddBranch', branch);
+    addBranch(branch: Branch): Observable<any> {
+        return this.httpService.post(this.setupUrl2 + 'AddBranch', branch);
     }
 
-    updateBranch(branch: Branch):Observable<any> {
-        return this.ApiService.put(this.API_URL + 'UpdateBranch', branch);
+    updateBranch(branch: Branch): Observable<any> {
+        return this.httpService.put(this.setupUrl2 + 'UpdateBranch', branch);
     }
 
-     deletBranch(id): Observable<any> {
-        return this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id);
+    deletBranch(id): Observable<any> {
+        return this.httpService.delete(this.setupUrl2 + 'DeleteBranch/' + id);
     }
 
     async getDepartments() {
@@ -126,16 +128,16 @@ export class SystemAdministrationService {
         return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
-    async addDepartment(department: Department) {
-        return await this.ApiService.post(this.API_URL + 'AddDepartment', department).toPromise();
+    addDepartment(department): Observable<any> {
+        return this.httpService.post(this.setupUrl2 + 'AddDepartment', department);
     }
 
-    async updateDepartment(department: Department) {
-        return await this.ApiService.put(this.API_URL + 'UpdateDepartment', department).toPromise();
+    updateDepartment(department): Observable<any> {
+        return this.httpService.put(this.setupUrl2 + 'UpdateDepartment', department);
     }
 
-    async deletDepartment(id) {
-        return await this.ApiService.delete(this.API_URL + 'DeleteDepartment/' + id).toPromise();
+    deletDepartment(id) {
+        return this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id);
     }
 
 
@@ -221,3 +223,6 @@ export class SystemAdministrationService {
     }
 
 }
+
+
+

@@ -1,8 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { SetupService, EmployeeService, HrmsService } from '../../../core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { SetupService, EmployeeService, HrmsService, SystemAdministrationService, AuthService } from '../../../core';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { Department } from '../../../core/Models/HRM/department';
+import { Branch } from '../../../core/Models/HRM/branch';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-employeecompany',
@@ -21,7 +24,10 @@ export class EmployeeCompanyComponent implements OnInit {
     public employeestatus: any;
     public employees: any;
     public manager: any;
+    public branches: any;
+    public departments: any;
     public filterdemplyoee: any;
+    submitted = false;
 
     @Input('employeeId') id: number;
 
@@ -30,27 +36,26 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, public toster : ToastrService, public sysAdminService : SystemAdministrationService, public authService : AuthService, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
-            ManagementLevelId: [''],
-            FunctionId: [''],
-            EmployeeStatusId: [''],
-            EmployeeTypeId: [''],
-            DesignationId: [''],
+            ManagementLevelId: ['',Validators.required],
+            FunctionId: ['',Validators.required],
+            EmployeeStatusId: ['',Validators.required],
+            EmployeeTypeId: ['',Validators.required],
+            DesignationId: ['',Validators.required],
             ContractStartDate: [''],
             ContractEndDate: [''],
-            AppointmentDate: [''],
+            AppointmentDate: ['',Validators.required],
             NextAppraisalDate: [''],
             ConfirmationDueDate: [''],
             ConfirmationDate: [''],
             LeavingDate: [''],
             ResignDate: [''],
-            Approver: [''],
-            CountryId: [''],
-            CityId: [''],
-            BranchId: [''],
-            UserId: [this.id]
+            Approver: ['',Validators.required], 
+            DepartmentId: ['',Validators.required], 
+            BranchId: ['',Validators.required],
+            userId: [this.id]
 
         });
 
@@ -68,15 +73,17 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
 
+        this.sysAdminService.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
+
+        this.sysAdminService.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.departments = res;
+        }); 
+
         this.employees = await this.employeeService.GetAllEmployees();
 
         this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
-
-
-        this.employeeService.getManagers().subscribe(res => {
-            this.manager = res;
-            // this.filterdemplyoee = this.employes.fil
-        })
 
         await this.SetupServiceobj.getEmployeeStatus();
 
@@ -87,8 +94,9 @@ export class EmployeeCompanyComponent implements OnInit {
             this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
 
                 this.EmployeeCompany = resp                
-
-                this.patchValues(resp);
+                console.log(resp);
+                
+                this.patchValues(resp); 
             });
 
 
@@ -106,44 +114,145 @@ export class EmployeeCompanyComponent implements OnInit {
         this.updateMessage.emit(message);
     }
 
+    get f() { return this.EmpCompanyForm.controls; }
 
-    async update(value) {
+    update(value) { 
+        console.log(value);  
 
-        value.UserId = this.id;
+        this.submitted = true;
+        if (this.EmpCompanyForm.invalid) { 
+            this.toster.error("Fill All Required Fields");  
+        } 
 
-        if (this.EmployeeCompany.userCompanyId > 0) {
-
-            value.UserCompanyId = this.EmployeeCompany.userCompanyId;
-
-            this.employeeService.updateUserCompany(value).subscribe(c => {
-
-                this.showSuccess("Company Information Updated");
-
-            })
+        else{  
+        if (this.EmployeeCompany.userCompanyId > 0) { 
+            value.UserCompanyId = this.EmployeeCompany.userCompanyId; 
+       if( 
+           this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ConfirmationDueDate == null
+              ) 
+              {
+                if(  
+                    this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate)) || value.ConfirmationDueDate == null || value.ConfirmationDate == null               
+                    ) 
+                    {                        
+                        if( 
+                            this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) || value.ContractStartDate == null || value.ConfirmationDate == null
+                            ) 
+                            {
+                                if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
+                                { 
+                                    if( 
+                                        this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))|| value.LeavingDate == null )
+                                        {    
+                                            if( 
+                                                this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
+                                                {     
+                                                            value.userId = this.id;
+                                                            value.CompanyId = this.authService.getUserCompanyId();  
+                                                            this.employeeService.updateUserCompany(value).subscribe(c => { 
+                                                            this.showSuccess("Company Information Updated"); 
+                                                            }) 
+    
+                                                }
+                                                else{
+                                                    this.toster.info("Resign Date not valid");  
+                                                }
+                                        }
+                                        else{
+                                            this.toster.info("Leaving Date not valid");  
+                                        }
+                                }
+                                    else{
+                                        this.toster.info("Contract End Date not valid");  
+                                    }
+                            }
+                            else{
+                                this.toster.info("Contract Start Date not valid");  
+                            }
+                    }
+                    else{
+                        this.toster.info("Confirmation Date not valid");  
+                    }
+              }
+  
+            else{
+                this.toster.info("Confirmation Due Date not valid");  
+            }
         }
+        
         else {
+         
+            if( 
+                this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ConfirmationDueDate == null
+                   ) 
+                   {
+                     if(  
+                         this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate)) || value.ConfirmationDueDate == null || value.ConfirmationDate == null               
+                         ) 
+                         {                        
+                             if( 
+                                 this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) || value.ContractStartDate == null || value.ConfirmationDate == null
+                                 ) 
+                                 {
+                                     if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
+                                     { 
+                                         if( 
+                                             this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))|| value.LeavingDate == null )
+                                             {    
+                                                 if( 
+                                                     this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
+                                                     {     
+                                                        value.CompanyId = this.authService.getUserCompanyId();  
+                                                        this.employeeService.addUserCompany(value).subscribe(c => {this.showSuccess("Company Information Added");  
+                                                        }) 
+         
+                                                     }
+                                                     else{
+                                                         this.toster.info("Resign Date not valid");  
+                                                     }
+                                             }
+                                             else{
+                                                 this.toster.info("Leaving Date not valid");  
+                                             }
+                                     }
+                                         else{
+                                             this.toster.info("Contract End Date not valid");  
+                                         }
+                                 }
+                                 else{
+                                     this.toster.info("Contract Start Date not valid");  
+                                 }
+                         }
+                         else{
+                             this.toster.info("Confirmation Date not valid");  
+                         }
+                   }
+       
+                 else{
+                     this.toster.info("Confirmation Due Date not valid");  
+                 } 
 
-            this.employeeService.addUserCompany(value).subscribe(c => {
-
-                this.showSuccess("Company Information Added");
-
-            })
-
+                     }
+            }
         }
-    }
 
+    formatDate(date: Date) {
+        return  date.getFullYear() +"-" +( date.getMonth() +1)   + "-" + date.getDate();
+      }
 
     patchValues(company: any) {
 
         this.EmpCompanyForm.patchValue({
 
             DesignationId: company.designationId,
-            ManagementLevelId: company.managementlevelId,
+            ManagementLevelId: company.managementLevelId,
             FunctionId: company.functionId,
             EmployeeStatusId: company.employeeStatusId,
             EmployeeTypeId: company.employeeTypeId,
+            DepartmentId: company.departmentId,
+            BranchId: company.branchId,
             ShiftId: company.shiftId,
-            ContractStartDate: company.ContractStartDate,
+            ContractStartDate: company.contractStartDate,
             ContractEndDate: company.contractEndDate,
             AppointmentDate: company.appointmentDate,
             NextAppraisalDate: company.nextAppraisalDate,

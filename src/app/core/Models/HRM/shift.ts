@@ -14,7 +14,7 @@ export class Shift {
     graceTime: Date;
     isMultiple: number;
     overTimeStartTime: Date;
-    minimumOverTime: Date;
+    minimumOverTime: number;
     inTimeShiftThreshold: Date;
     outTimeShiftThreshold: Date;
     shiftHours: number;

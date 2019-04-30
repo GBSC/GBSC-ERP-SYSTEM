@@ -66,6 +66,10 @@ export class LeaveService {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployees`).toPromise();
     }
 
+    getEmpPolicyById(id): Observable<any> {
+        return this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployee/` + id);
+    }
+ 
     async addLeavePolicyEmployee(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeavePolicyEmployee`, data).toPromise();
@@ -94,11 +98,11 @@ export class LeaveService {
 
     }
 
-    async addLeaveRequest(data) {
-        return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data).toPromise();
+    addLeaveRequest(data): Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data);
     }
 
-    updateLeaveRequest(data: LeaveRequest): Observable<any> {
+    updateLeaveRequest(data): Observable<any> {
 
         return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
     }
@@ -108,6 +112,32 @@ export class LeaveService {
     async DeleteLeaveRequest(leaverequestId) {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`).toPromise();
     }
+
+    
+    getLeaveDays() {
+        return this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveDays`);
+
+    }
+
+    getLeaveDaysById(id): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl + '/Leave/GetLeaveDays/' + id);
+
+    }
+
+     addLeaveDay(data): Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveDay`, data);
+    }
+
+    updateLeaveDay(data): Observable<any> {
+
+        return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
+    }
+ 
+    DeleteLeaveDay(leaverequestId): Observable<any> {
+        return this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`);
+    }
+
 
     async getLeaveRequestDetails() {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();
@@ -183,13 +213,17 @@ export class LeaveService {
         employees.forEach(u => {
 
             empleavepolicy.forEach(emplp => {
-                if (u.userId == emplp.userId) {
+                let et = LeaveType.find(lt =>lt.leaveTypeId === emplp.leaveTypeId)
+                if (u.userId == emplp.userId) { 
 
                     fromEmp.push({
                         userId: emplp.userId,
+                        gender: u.gender,
                         fullName: u.fullName,
                         leaveTypeId: emplp.leaveTypeId,
-                        title: LeaveType.find(lt => lt.leaveTypeId === emplp.leaveTypeId).title,
+                        isMale: emplp.isMale,
+                        isFemale: emplp.isFemale,
+                        title: et? et.title:'',
                         entitledQuantity: emplp.entitledQuantity,
                         employeeLeavePolicy: true
                     });
@@ -197,12 +231,16 @@ export class LeaveService {
             })
 
             LeavePolicies.forEach(lp => {
+                let t = LeaveType.find(lt => lt.leaveTypeId === lp.leaveTypeId);
                 if (u.groupId === lp.groupId) {
                     fromGroup.push({
                         userId: u.userId,
                         fullName: u.fullName,
+                        gender: u.gender,
                         leaveTypeId: lp.leaveTypeId,
-                        title: LeaveType.find(lt => lt.leaveTypeId === lp.leaveTypeId).title,
+                        isMale: lp.isMale,
+                        isFemale: lp.isFemale,
+                        title: t? t.title:'',
                         entitledQuantity: lp.entitledQuantity,
                         employeeLeavePolicy: false
                     });
@@ -214,9 +252,14 @@ export class LeaveService {
         });
         let abc = []
         fromGroup = fromGroup.filter(g => {
+            console.log("G", g);
+            
             let y = fromEmp.find((em: any) => {
+                console.log("emfrom", em);
+                
                 if (g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
                     console.log(g);
+                    // if(em.gender === 'Male')
                     return em;
                 }
             });

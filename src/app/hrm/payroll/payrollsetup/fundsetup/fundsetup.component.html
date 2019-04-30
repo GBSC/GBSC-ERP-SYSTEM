@@ -189,7 +189,7 @@
                 </h3>
                 <div class="form-group m-form__group">
                   <label for="exampleInputEmail1">
-                    Minimum Salary
+                    EOBI Minimum Salary
                   </label>
                   <input type="number" class="form-control m-input" formControlName="EobiMinimumSalary" id="" aria-describedby="emailHelp"
                     placeholder="Minimum Salary">
@@ -232,7 +232,7 @@
                 </h3>
                 <div class="form-group m-form__group">
                   <label for="exampleInputEmail1">
-                    Minimum Salary
+                    SSI Minimum Salary
                   </label>
                   <input type="number" class="form-control m-input" formControlName="SessiMinimumSalary" id="" aria-describedby="emailHelp"
                     placeholder="Minimum Salary">
@@ -243,7 +243,7 @@
                     Employeer Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="SessiEmployerContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employeer Contribution (%)">
                 </div>
 
                 <div class="form-group m-form__group">
@@ -251,7 +251,7 @@
                     Employee Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="SessiEmployeeContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employee Contribution (%)">
                 </div>
 
 
@@ -261,7 +261,7 @@
 
                 <div class="form-group m-form__group">
                   <label for="exampleInputEmail1">
-                    Minimum Salary
+                    PESSI Minimum Salary
                   </label>
                   <input type="number" class="form-control m-input" formControlName="PessiMinimumSalary" id="" aria-describedby="emailHelp"
                     placeholder="Minimum Salary">
@@ -272,7 +272,7 @@
                     Employeer Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="PessiEmployerContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employeer Contribution (%)">
                 </div>
 
                 <div class="form-group m-form__group">
@@ -280,7 +280,7 @@
                     Employee Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="PessiEmployeeContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employee Contribution (%)">
                 </div>
               </div>
               <div class="tab-pane" id="IESSI">
@@ -289,7 +289,7 @@
                 </h3>
                 <div class="form-group m-form__group">
                   <label for="exampleInputEmail1">
-                    Minimum Salary
+                    IESSI Minimum Salary
                   </label>
                   <input type="text" class="form-control m-input" formControlName="IessiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                 </div>
@@ -299,7 +299,7 @@
                     Employeer Contribution (%)
                   </label>
                   <input type="text" class="form-control m-input" formControlName="IessiEmployerContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employeer Contribution (%)">
                 </div>
 
                 <div class="form-group m-form__group">
@@ -307,20 +307,21 @@
                     Employee Contribution (%)
                   </label>
                   <input type="text" class="form-control m-input" formControlName="IessiEmployeeContribution" id="" aria-describedby="emailHelp"
-                    placeholder="Minimum Salary">
+                    placeholder="Employee Contribution (%)">
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions">
+                    <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
+                      Save
+                    </button> |
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="m-portlet__foot m-portlet__foot--fit">
-              <div class="m-form__actions">
-                <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
-                  Save
-                </button> |
-                <button type="reset" class="btn btn-secondary">
-                  Cancel
-                </button>
-              </div>
-            </div>
+      
           </form>
         </div>
 

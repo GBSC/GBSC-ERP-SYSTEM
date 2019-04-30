@@ -1,0 +1,135 @@
+<div class="m-content">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Shop Census Detail
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <a (click)="btn()" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                                    data-toggle="m-tooltip" data-placement="bottom" data-original-title="Print">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </li>
+                            <!-- <li class="m-portlet__nav-item">
+                                <a (click)="export()" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                                    data-toggle="m-tooltip" data-placement="bottom" data-original-title="Export Excel">
+                                    <i class="fa fa-file-excel-o"></i>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="table-responsive" id="printTable">
+
+
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td width="33%"> <img class="img" src="./assets/images/logo.png" /></td>
+                                      <td width="33%"><h2 class="name">Shop Census Detail</h2></td>
+                                      <td width="33%" style="text-align: right; padding-bottom: 30px;"><div><strong>User Name:</strong> {{usr?.fullName}}</div>
+                                        <div><strong>From Date:</strong>{{frmDate}}</div>
+                                        <div><strong>To Date:</strong>{{toDate}}</div></td>
+                                    </tr>
+                                  </table>
+
+
+                        
+                        <!-- <p style="margin-top: 0;
+                                text-align: center;
+                                color: #e07026;
+                                font-family: fantasy;
+                                font-size: 22px;
+                                margin-bottom: 1rem;">Eva</p>
+                        <p style="margin-top: 0;
+                                text-align: center;
+                                color: #e07026;
+                                font-family: fantasy;
+                                font-size: 20;
+                                margin-bottom: 1rem;">Shop
+                            Census Detail</p>
+                        <p style="margin-top: 0;
+                                text-align: center;
+                                color: #e07026;
+                                font-family: fantasy;
+                                font-size: 17;
+                                margin-bottom: 1rem;">Report</p> -->
+                        <table class="table table-bordered" border="1" cellpadding="3">
+                            <thead style="     font-size: 13px;
+                            background-color: #868282;
+                            color: #000000;">
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <!-- <th>Active</th> -->
+                                    <th>ShopName</th>
+                                    <th>ShopKeeperName</th>
+                                    <th>Contact</th>
+                                    <th>Address</th>
+                                    <th>CNIC</th>
+                                    <th>Distributor</th>
+                                    <th>Section</th>
+                                    <th>SubSection</th>
+                                    <th>DSF</th>
+                                    <th>VisitDay</th>
+                                    <th>CreateDate</th>
+                                    <th>ShopMode</th>
+                                    <th>Active</th>
+                                    <th>Close</th>
+                                    <th>TotalShop</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let data of Data" style="font-size: 11px;
+                            
+                            color: black;">
+                                <tr>
+                                    <td style="font-weight: bold;">{{data.Group}}</td>
+                                    <td >{{data.subGroup}}</td>                          
+                                    <!-- <td style="font-weight: bold;" colspan="2">{{ data.TotalActive}}</td> -->
+                                    <td>{{data.storeName}}</td>
+                                    <td>{{data.shopkeeperName}}</td>
+                                    <td>{{data.contactNumber}}</td>
+                                    <td>{{data.address}}</td>
+                                    <td>{{data.cnic}}</td>
+                                    <td>{{data.distributor}}</td>
+                                    <td>{{data.section}}</td>
+                                    <td>{{data.subsection}}</td>
+                                    <td>{{data.dsf}}</td>
+                                    <td>{{data.day}}</td>
+                                    <td>{{data.startTime}}</td>
+                                    <td>{{data.shopMode}}</td>  
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{ data.TotalActive}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalClosed}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalShop}}</td>
+                                         </tr>
+                            </tbody>
+                        </table>
+                        <table width="100%" border="1" style="font-weight: bold; width: 100% !important; min-width: 100% !important;">
+                            <tr class="table">
+                                <td class="mytd">Total Shop</td>
+                                <td>{{TShop}}</td>
+                                 <!-- <td>Total Active</td> -->
+                                 <td>Total Active</td>
+                                <td>{{totalActiveshop}}</td>
+                                 <td>Total Closed</td>
+                                <td>{{totalCloseshop}}</td>
+                                 <td>Active Percent %</td>
+                                <td>{{ActivePersent}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

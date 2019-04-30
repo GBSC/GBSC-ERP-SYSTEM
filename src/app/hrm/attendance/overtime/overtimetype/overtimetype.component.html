@@ -31,8 +31,11 @@
                   <dxi-column dataField="overtimeFlagId" caption="Overtime Flag">
                     <dxo-lookup [dataSource]="overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
                     </dxo-lookup> 
+                    <dxi-validation-rule type="required" message="Select Overtime Flag"></dxi-validation-rule>
                   </dxi-column>
-                  <dxi-column dataField="title"></dxi-column> 
+                  <dxi-column dataField="title">
+                    <dxi-validation-rule type="required" message="Overtime Type Title is required"></dxi-validation-rule>
+                  </dxi-column> 
                   <dxi-column dataType="boolean" dataField="active" caption="Active"></dxi-column> 
                 </dx-data-grid>
               </div>

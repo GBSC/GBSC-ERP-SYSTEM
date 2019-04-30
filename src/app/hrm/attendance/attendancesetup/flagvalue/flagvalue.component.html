@@ -14,7 +14,8 @@
                  [dataSource]="flagvalue"
                  keyExpr="flagValueId"
                  (onRowInserted)="addflagvalue($event)" 
-                 (onRowUpdated)="updateflagvalue($event)"
+                 (onRowUpdating)="updatingflagvalue($event)"
+                 (onRowUpdated)="updateflagvalue()"
                  (onRowRemoved)="deleteflagvalue($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   </dxo-editing>

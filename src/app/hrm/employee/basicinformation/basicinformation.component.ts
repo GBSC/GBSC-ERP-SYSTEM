@@ -1,8 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EmployeeService, SetupService, HrmsService, SystemAdministrationService } from '../../../core';
+import { EmployeeService, SetupService, HrmsService, SystemAdministrationService, AuthService } from '../../../core';
 import { Employee } from '../../../core/Models/HRM/employee';
+import { City } from '../../../core/Models/HRM/city';
+import { Branch } from '../../../core/Models/HRM/branch';
+import { Department } from '../../../core/Models/HRM/department';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-basicinformation',
@@ -17,11 +21,11 @@ export class BasicinformationComponent implements OnInit {
     public language: any;
     public cities: any;
     public Employee: any;
-    public groups: any;
-    public departments: any;
+    public groups: any; 
     public branches: any;
     public companies: any;
     public countries: any;
+    submitted = false;
 
     @Input('employeeId') id: number;
 
@@ -30,18 +34,18 @@ export class BasicinformationComponent implements OnInit {
 
     public EmpbasicForm: FormGroup;
 
-    constructor(public employeeService: EmployeeService, public sysAdminService: SystemAdministrationService, public fb: FormBuilder, public hrmService: HrmsService,
-        public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
+    constructor(public employeeService: EmployeeService, public sysAdminService: SystemAdministrationService,public authService : AuthService,
+        public fb: FormBuilder, public toster: ToastrService, public hrmService: HrmsService,public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpbasicForm = this.fb.group({
-            FirstName: [''],
-            LastName: [''],
+            FirstName: ['',Validators.required],
+            LastName: ['',Validators.required],
             FatherName: [''],
-            Email: [''],
-            Cnic: [''],
+            Email: ['',  Validators.email],
+            Cnic: ['', [Validators.required, Validators.minLength(13)]],
             CnicExpiry: [''],
-            Phone: [''],
-            HomePhone: [''],
+            Phone: ['', [Validators.required, Validators.minLength(11)]],
+            HomePhone: ['', Validators.minLength(12)],
             DOB: [''],
             POB: [''],
             BloodGroup: [''],
@@ -52,7 +56,7 @@ export class BasicinformationComponent implements OnInit {
             BranchId: [''],
             CityId: [''],
             ReligionId: [''],
-            GroupId: [''],
+            GroupId: ['', Validators.required],
             DepartmentId: [''],
             Address: [''],
             PermanentAddress: [''],
@@ -62,30 +66,42 @@ export class BasicinformationComponent implements OnInit {
     }
 
     update(value) {
-
+        console.log(value); 
+        this.submitted = true;
+        if (this.EmpbasicForm.invalid) { 
+            this.toster.error("Fill All Required Fields");  
+        }
+        else{ 
         value.UserId = this.id; 
+        value.CompanyId = this.authService.getUserCompanyId(); 
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
+            console.log(resp); 
             this.showSuccess("Basic Information Updated");
-        });
-
+        }); 
+        console.log(value); 
+        }
     }
 
     async ngOnInit() {
 
-        this.religion = await this.SetupServiceobj.getAllReligions();
-        
-        this.departments = await this.hrmService.getAllDepartments(); 
-
+        this.SetupServiceobj.getReligions().subscribe(rp =>{
+            this.religion = rp;  
+        }); 
+ 
         this.groups = await this.SetupServiceobj.getAllGroups();
-
-        this.cities = await this.hrmService.getAllCities();
+          
+        this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
+            this.cities = res;
+        }); 
        
-        this.countries = await this.hrmService.getAllCountries();
+        this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
+            this.countries = res;
+        });
 
         this.companies = await this.sysAdminService.getCompanies();
         
-        this.sysAdminService.getBranches().subscribe(resp=>{
-            this.branches = resp
+        this.sysAdminService.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
         });
 
         if (this.id) {
@@ -93,11 +109,9 @@ export class BasicinformationComponent implements OnInit {
 
                 this.Employee = resp; 
                 this.patchValues(resp);
-
+                console.log(resp);
             });
-        }
-
-
+        }  
     }
 
     showSuccess(message) {
@@ -129,8 +143,7 @@ export class BasicinformationComponent implements OnInit {
             BloodGroup: employee.bloodGroup,
             MaritalStatus: employee.maritalStatus,
             Gender: employee.gender,
-            GroupId: employee.groupId,
-            CompanyId: employee.companyId,
+            GroupId: employee.groupId, 
             CountryId: employee.countryId,
             CityId: employee.cityId,
             BranchId: employee.branchId,
@@ -141,11 +154,18 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
+    get f() { return this.EmpbasicForm.controls; }
+
     async Formsubmit(value) {
-
-        this.employeeService.addEmployee(value).subscribe(resp => {
-
+        this.submitted = true;
+        if (this.EmpbasicForm.invalid) { 
+            this.toster.error("Fill All Required Fields");  
+        } 
+        else{
+        value.CompanyId = this.authService.getUserCompanyId(); 
+        this.employeeService.addEmployee(value).subscribe(resp => { 
             this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
         })
-    }
+    } 
+}
 }

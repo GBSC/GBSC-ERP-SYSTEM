@@ -18,7 +18,9 @@ export class AllowancerateComponent implements OnInit {
 
         this.allowancerate = await this.payrollsetupservice.getAllowanceRates();
         
-        this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
+        this.payrollsetupservice.getAllowanceDeductions().subscribe(res => {
+            this.allowances = res;
+        });
 
         this.allowance = await this.allowances.filter(a => (a.type === "Allowance"));
     }

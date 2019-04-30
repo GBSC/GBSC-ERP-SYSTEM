@@ -9,26 +9,42 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class AllowancearrearComponent implements OnInit {
 
+    public updatingModel: any;
     public allowancearrear: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
-    async ngOnInit() {
+    ngOnInit() {
 
-        this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
+        this.payrollsetupservice.getAllowanceArrears().subscribe(rp => {
+            this.allowancearrear = rp; 
+        });
     }
 
-    async addallowancearrear(value) {
-        await this.payrollsetupservice.addAllowanceArrear(value.data);
-        this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
+     addallowancearrear(value) {
+         this.payrollsetupservice.addAllowanceArrear(value.data).subscribe(res => {
+            console.log(res);
+            this.payrollsetupservice.getAllowanceArrears().subscribe(resp => {
+                this.allowancearrear = resp;
+            });
+        });
     }
 
-    async updateallowancearrear(value) {
-        await this.payrollsetupservice.updateAllowanceArrear(value);
+    updatingAllowanceArrear(value) {
+        this.updatingModel = {...value.oldData, ...value.newData};
     }
 
-    async deleteallowancearrear(value) {
-        await this.payrollsetupservice.deleteAllowanceArrear(value.key);
+    updateallowancearrear() {
+         this.payrollsetupservice.updateAllowanceArrear(this.updatingModel).subscribe(rep => {
+             console.log(rep);
+             
+         });
+    }
+
+    deleteallowancearrear(value) {
+         this.payrollsetupservice.deleteAllowanceArrear(value.key).subscribe(del => {
+             console.log(del); 
+         });
     }
 
 }

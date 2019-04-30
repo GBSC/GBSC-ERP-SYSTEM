@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ViewemployeeleaveopeningComponent implements OnInit {
 
+    public leaveOpeningId: any;
     public leaveopening: any;
     public leveopeningdetail: any;
     public employees: any;
@@ -54,7 +55,8 @@ export class ViewemployeeleaveopeningComponent implements OnInit {
         e.component.expandRow(e.currentSelectedRowKeys[0]);
     }
 
-    addleaveopening() {
-        this.router.navigate(['/hrm/leave/leaveadmin/createleaveopening']);
+    addleaveopening(d) {
+        this.leaveOpeningId = d.key;
+        this.router.navigate(['/hrm/leave/leaveadmin/update-leaveopening/' + this.leaveOpeningId ]);
     }
 }

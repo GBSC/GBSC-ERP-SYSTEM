@@ -43,7 +43,7 @@
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                        <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                        <dxi-column dataField="requestDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                             <div class="chart-cell">
@@ -51,6 +51,7 @@
                             </div>
                         </div>
                         <div *dxTemplate="let leaveRequest of 'detail'">
+                            
                             <dx-data-grid [dataSource]="leaveRequest.data.leaveRequestDetails" [showBorders]="true">
 
                                 <dxi-column dataField="leaveYearId" caption="Leave Year">
@@ -63,19 +64,38 @@
                                 </dxi-column>
                                 <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
                                 <dxi-column dataField="description" caption="Description"></dxi-column>
-                                <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                                <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                <!-- <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
+                                <!-- <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="dd/MM/yyyy"></dxi-column> -->
                                 <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
-                                <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
-                                <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
+                                <dxi-column dataField="totalLeaveDetailValue"> </dxi-column> 
                             </dx-data-grid>
-                        </div>
+                            <div class="master-detail-caption">
+                                Leave Days
+                            </div>
+                            <dx-data-grid [dataSource]="leaveDays" [showBorders]="true">
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                    <dxo-paging [pageSize]="3"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                    </dxo-pager> 
+                                    <dxi-column dataField="leaveDate" dataType="date" format="EEEE, dd/MM/yyyy"> </dxi-column>
+                                    <dxi-column dataField="status"> </dxi-column>
+                                    </dx-data-grid>
+                        </div> 
+
                     </dx-data-grid>
                 </div>
                 <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
-                        <dx-data-grid id="gridContainer" [dataSource]="approvedLeaves" [repaintChangesOnly]="true" keyExpr="leaveRequestId" (onRowUpdated)="updateLeaveRequest($event)"
-                            (onSelectionChanged)="selectionChanged($event)" (onContentReady)="contentReady($event)" (onToolbarPreparing)="onToolbarPreparing($event)"
-                            [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+                        <dx-data-grid id="gridContainer" [dataSource]="approvedLeaves" 
+                            [repaintChangesOnly]="true" 
+                            keyExpr="leaveRequestId" 
+                            (onRowUpdated)="updateLeaveRequest($event)"
+                            (onSelectionChanged)="selectionChanged($event)" 
+                            (onContentReady)="contentReady($event)"
+                            [masterDetail]="{ enabled: true, template: 'detail' }" 
+                            [masterDetail]="{ enabled: true, template: 'sub-detail' }" 
+                            [columnAutoWidth]="true"
+                             [showBorders]="true">
 
                             <dxo-selection mode="single"></dxo-selection>
                             <dxo-paging [pageSize]="8"></dxo-paging>
@@ -91,10 +111,14 @@
                                 </dxo-lookup>
                             </dxi-column>
                             <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                            <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
-                            <div *dxTemplate="let leaveRequest of 'detail'">
+                            <dxi-column dataField="requestDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                            <div *dxTemplate="let leaveRequest of 'detail'"> 
                                 <dx-data-grid [dataSource]="leaveRequest.data.leaveRequestDetails" [showBorders]="true">
-
+                                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                        <dxo-paging [pageSize]="4"></dxo-paging>
+                                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                        </dxo-pager> 
                                     <dxi-column dataField="leaveYearId" caption="Leave Year">
                                         <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                                         </dxo-lookup>
@@ -104,14 +128,26 @@
                                         </dxo-lookup>
                                     </dxi-column>
                                     <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
-                                    <dxi-column dataField="description" caption="Description"></dxi-column>
-                                    <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                                    <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                    <dxi-column dataField="description" caption="Description"></dxi-column> 
                                     <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
                                     <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
                                     <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
                                 </dx-data-grid>
-                            </div>
+                                <div class="master-detail-caption">
+                                    Leave Days
+                                </div>
+                                <dx-data-grid 
+                                [dataSource]="leaveRequest?.leaveDays" 
+                                [showBorders]="true">
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                <dxo-paging [pageSize]="3"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                </dxo-pager> 
+                                <dxi-column dataField="leaveDate" dataType="date" format="EEEE, dd/MM/yyyy"> </dxi-column>
+                                <dxi-column dataField="status"> </dxi-column>
+                                </dx-data-grid>
+                            </div> 
                         </dx-data-grid>
                 </div>
             </div>

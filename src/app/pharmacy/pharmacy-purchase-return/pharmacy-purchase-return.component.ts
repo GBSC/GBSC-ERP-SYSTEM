@@ -68,6 +68,7 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
     if (event.key === "Enter") {
       this.ResetWholeForm();
       this.PharmacyService.GetGrnDetailsWithSupplierByCode(code).subscribe((res : any) => {
+        console.log(res);
       // this.PharmacyService.GetGrnDetailsWithSupplierByCodeAndCompany(code, this.Auth.getUserCompanyId()).subscribe((res : any) => {
         if(res != null) {
           this.SelectedGRN = res.grn;
@@ -86,7 +87,9 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
               refundAmount : 0
             };
             this.Datasource.push(a);
+            
           });
+          console.log(this.Datasource);
         } else {
           this.Toastr.error('Inavlid GRN Number OR Return already exists for selected GRN!', 'Error!');
         }

@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AttendancesetupService, EmployeeService ,HrmsService} from '../../../../core';
+import { AttendancesetupService, EmployeeService ,HrmsService, AuthService, UserService} from '../../../../core';
 import { Employee } from '../../../../core/Models/HRM/employee';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DefaultKeyValueDiffer } from '@angular/core/src/change_detection/differs/default_keyvalue_differ';
  
-// import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-assignroster',
     templateUrl: './assignroster.component.html',
@@ -34,11 +32,11 @@ export class AssignrosterComponent implements OnInit {
     public Daysoffs: any;
 
     public departments : any;
-    public departmentId : any;
+    public departmentId : any; 
 
 
 
-    constructor(public attendancesetupservice: AttendancesetupService,
+    constructor(public userService : UserService, public authService: AuthService, public attendancesetupservice: AttendancesetupService,
         public empservice: EmployeeService, public hrmsServiceobj : HrmsService , private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({
             Dayoff: [''],
@@ -80,48 +78,23 @@ export class AssignrosterComponent implements OnInit {
             console.log(this.employee);
         });
 
+
         this.hrmsServiceobj.GetAllDepartments().subscribe(res=>{
             this.departments = res ;
             console.log(this.departments);
         });
 
-
-
-
     }
-
-    // onClickMe(args: any) {
-    //       console.log(this);
-    //       const self : any = this;
-    //       console.log(self)
-    //       const filename = 'exportExcel.xlsx';
-    //        const json = JSON.stringify(self.spread.toJSON());
-    //       self.excelIO.save(json, function (blob) {
-    //       saveAs(blob, filename);
-    //   }, function (e) {
-    //       console.log(e);
-    //   });
-    //   }
-
-
- 
-
+    
     addOffDaysList(value) {
         this.calendarForm.value.Daysoffs = value;
         delete this.calendarForm.value.Dayoff;
         delete this.calendarForm.value.Remarks;
-        this.Daysoffs = this.calendarForm.value;
-        // // this.offdays =  this.offdays.Daysoffs.map(d => d);
+        this.Daysoffs = this.calendarForm.value; 
         console.log(this.Daysoffs);
 
-    }
-
-
-
-
-
-    public inputvaluelist: any = [];
-
+    } 
+    public inputvaluelist: any = []; 
 
     changeremarks(e, i) {
         this.inputvaluelist[i].Remarks = e.target.value
@@ -211,6 +184,7 @@ export class AssignrosterComponent implements OnInit {
     addselecteduser() {
         this.popupVisible = false;
     }
+    
 
     async addassignroster(value) {
         this.rosterData = { ...this.rosterData, ...value.data };

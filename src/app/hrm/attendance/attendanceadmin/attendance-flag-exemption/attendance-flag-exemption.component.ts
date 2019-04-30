@@ -24,7 +24,9 @@ export class AttendanceFlagExemptionComponent implements OnInit {
     async ngOnInit() {
         this.attendanceflagExemption = await this.attendanceservice.getAttendanceFlagExemptions();
 
-        this.attendanceFlag = await this.attendancesetupservice.getAttendanceFlags();
+        this.attendancesetupservice.getAttendanceFlags().subscribe(rep => {
+            this.attendanceFlag = rep
+        });
 
         this.employee = await this.empservice.GetAllEmployees();
 
@@ -56,8 +58,7 @@ export class AttendanceFlagExemptionComponent implements OnInit {
 
     async addflagExemption(value) {
         this.attendanceExemption = { ...this.attendanceExemption, ...value.data };
-        console.log(this.attendanceExemption);
-
+        console.log(this.attendanceExemption); 
         await this.attendanceservice.addAttendanceFlagExemption(this.attendanceExemption);
         this.attendanceflagExemption = await this.attendanceservice.getAttendanceFlagExemptions();
     }

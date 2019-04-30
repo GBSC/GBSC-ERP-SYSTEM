@@ -42,8 +42,8 @@
                 </dxi-column>
                 <dxi-column dataField="minimumSalary"></dxi-column>
                 <dxi-column dataField="maximumSalary"></dxi-column>
-                <dxi-column dataField="IsHourlyPay" dataType="boolean"></dxi-column>
-                <dxi-column dataField="PerHourPay"></dxi-column>
+                <dxi-column dataField="isHourlyPay" dataType="boolean"></dxi-column>
+                <dxi-column dataField="perHourPay"></dxi-column>
                 <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">
                   <div class="chart-cell">
@@ -54,9 +54,7 @@
                 <div *dxTemplate="let structure of 'detail'">
                     <dx-data-grid [dataSource]="structure.data.salaryStructureDetails" [showBorders]="true">
 
-                        <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
-                          </dxi-column>
+                        <dxi-column dataField="salaryCalculationType" caption="Salary Calculation"></dxi-column>
                           <dxi-column dataField="benefitId" caption="Benefit">
                             <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                           </dxi-column>
@@ -64,7 +62,7 @@
                             <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                           </dxi-column>
                           <dxi-column dataField="value" caption="Value"></dxi-column>
-                          <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                          <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
                         </dx-data-grid>
                 </div>
             </dx-data-grid>

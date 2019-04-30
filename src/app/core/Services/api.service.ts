@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable } from 'rxjs'; 
 import { _throw } from 'rxjs/observable/throw';
 import { catchError } from 'rxjs/operators';
 
@@ -17,7 +16,8 @@ export class ApiService {
         // public jwtService: JwtService
     ) {
         this.user = JSON.parse(localStorage.getItem('user'));
-     }
+       
+    }
 
     public formatErrors(error: any) {
         return _throw(error.error);
@@ -32,6 +32,17 @@ export class ApiService {
                 .set("branchId", this.user.assignedId.branchId)
                 .set("cityId", this.user.assignedId.cityId)
                 .set("countryId", this.user.assignedId.countryId)
+        }
+
+        return this.http.get(`${environment.api_url}${path}`, { params })
+            .pipe(catchError(this.formatErrors));
+    }
+    
+    Get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+
+        if (this.user && params.keys().length == 0) {
+            params = new HttpParams()
+                .set("companyId", this.user.assignedId.companyId)
         }
 
         return this.http.get(`${environment.api_url}${path}`, { params })

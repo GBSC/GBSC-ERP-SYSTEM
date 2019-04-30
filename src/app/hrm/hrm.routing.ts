@@ -151,6 +151,10 @@ import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/vie
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
+import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LeavepolicydetailComponent } from './leave/leavesetup/leavepolicydetail/leavepolicydetail.component';
+import { EmployeeLeavepolicyDetailComponent } from './leave/leaveadmin/employee-leavepolicy-detail/employee-leavepolicy-detail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -170,6 +174,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'department', component: DepartmentComponent },
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
+            
 
             {
                 path: 'employee',
@@ -206,6 +211,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
                             { path: 'leavepolicy', component: LeavepolicyComponent },
+                            { path: 'update-leavepolicy/:id', component: LeavepolicyComponent },
+                            { path: 'leavepolicydetail', component: LeavepolicydetailComponent },
                             { path: 'leavetype', component: LeavetypeComponent },
                             { path: 'leavedaytype', component: LeavedaytypeComponent },
                             { path: 'leaveeligibility', component: LeaveeligibilityComponent },
@@ -219,6 +226,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'createleaveopening', component: EmployeeleaveopeningComponent },
                             { path: 'update-leaveopening/:id', component: EmployeeleaveopeningComponent },
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
+                            { path: 'update-employeeleavepolicy/:id', component: EmpleavepolicyComponent },
+                            { path: 'employeeleavepolicydetail', component: EmployeeLeavepolicyDetailComponent },
                         ]
                     },
                     { path: 'leavetypebalance', component: LeavetypebalanceComponent },
@@ -295,7 +304,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'rostermapping', component: RostermappingComponent },
                 ]
             },
-
+            
+            { path: 'dashboard', component: DashboardComponent },
 
             {
                 path: 'payroll',
@@ -385,9 +395,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'dailyattendance', component: DailyAttendanceComponent }, 
                     { path: 'salarypayment', component: SalarypaymentComponent },
                     { path: 'gross-salary', component: GrossSalaryComponent },
-                    { path: 'loansummary', component: LoansummaryComponent }
+                    { path: 'loansummary', component: LoansummaryComponent },
+                    { path: 'payrollprocess', component: MonthlyPayrollProcessComponent }
                 ]
             }
+
+            
         ]
     }
 ])

@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../../environments/environment';
+import { PatientService } from '../../../../core';
 
 
 @Component({
@@ -14,10 +15,22 @@ export class AppointmentSheetComponent implements AfterViewInit {
     @ViewChild('scripts')
     scripts: ElementRef;
 
+
+    public consultant: any;
+    
     @ViewChild("control")
     control: ElementRef
 
-    constructor(public renderer: Renderer2) { }
+    constructor(public renderer: Renderer2 , public PatientServiceobj: PatientService) { }
+
+
+    async  ngOnInit() {
+        
+        await this.PatientServiceobj.getConsultant();
+        this.consultant = this.PatientServiceobj.consultant;
+        console.log(this.consultant);
+
+    }
 
     ngAfterViewInit() {
 
@@ -37,5 +50,16 @@ export class AppointmentSheetComponent implements AfterViewInit {
             }
         }, this.control.nativeElement);
     }
+    formatDate(date: Date) {
+        return  (date.getMonth() + 1) + "/" +   date.getDate() + "/" +   date.getFullYear() ;
+    }
+    itemsend(cid,type,from,to) {
+         console.log(cid.value)
+         console.log(type.value)
+ 
+         console.log(this.formatDate(new Date(from.value)))
+      
+         console.log(this.formatDate(new Date(to.value)))
+     }
 
 }

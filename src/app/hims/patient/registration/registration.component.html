@@ -63,6 +63,14 @@
 									<div *ngIf="f.Gender.errors.required">Please Select Gender</div>
 								</div>
 							</div>
+							<div class="form-group col-lg-3">
+								<label for="exampleInputEmail1"> Date of Birth </label>
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob | date : 'yyyy-MM-dd' || ''" formControlName="DOB"
+								 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
+								<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+									<div *ngIf="f.DOB.errors.required">Date of Birth is required</div>
+								</div>
+							</div>
 						</div>
 						<div class="form-group row">
 							<div class="form-group col-lg-3">
@@ -87,34 +95,20 @@
 								</div>
 							</div>
 							<div class="form-group col-lg-3">
-								<label for="exampleInputEmail1"> Date of Birth </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob | date : 'yyyy-MM-dd' || ''" formControlName="DOB"
-								 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
-								<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-									<div *ngIf="f.DOB.errors.required">Date of Birth is required</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Place of Birth </label>
 								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth || ''" formControlName="PlaceOfBirth"
 								 type="text">
 							</div>
+							
+						</div>
+						<div class="form-group row">
+							
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Occupation </label>
 								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.occupation || ''" formControlName="Occupation"
 								 type="text">
 							</div>
-							<div class="form-group col-lg-3">
-								<label for="exampleInputEmail1"> CNIC </label>
-								<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic || ''"
-								 formControlName="NIC" (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
-								<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
-									<div *ngIf="f.NIC.errors.required">CNIC is required</div>
-									<div *ngIf="f.NIC.errors.minlength">CNIC must be at least 13 characters</div>
-								 </div>
-							</div>
+						
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Phone Number </label>
 								<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" (keypress)="keyPress($event)"
@@ -124,8 +118,27 @@
 									<div *ngIf="f.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
 								</div>
 							</div>
+							<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Phone Sec </label>
+									<input class="form-control m-input m-input--solid" [value]="Patient?.phoneNumberSecond  || ''" formControlName="PhoneNumberSecond" type="text"  maxlength="11">
+									 
+								</div>
+								<div class="form-group col-lg-3">
+										<label for="exampleInputEmail1"> Phone Third </label>
+										<input class="form-control m-input m-input--solid" [value]="Patient?.phoneNumberThird  || ''" formControlName="PhoneNumberThird" type="text"  maxlength="11" >
+										 
+									</div>
 						</div>
 						<div class="form-group row">
+								<div class="form-group col-lg-3">
+										<label for="exampleInputEmail1"> CNIC </label>
+										<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic || ''"
+										 formControlName="NIC" (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
+										<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
+											<div *ngIf="f.NIC.errors.required">CNIC is required</div>
+											<div *ngIf="f.NIC.errors.minlength">CNIC must be at least 13 characters</div>
+										 </div>
+									</div>
 							<!-- <div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Remarks </label>
 								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks || ''" formControlName="Remarks"
@@ -136,6 +149,7 @@
 								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.residenceAddress || ''"
 								 formControlName="ResidenceAddress" type="text">
 							</div>
+							
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Office Telephone </label>
 								<input class="form-control m-input m-input--solid" [value]="Patient?.officeTel  || ''" formControlName="OfficeTel" type="text"  maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.OfficeTel.errors }">
@@ -223,6 +237,15 @@
 									</button>
 								</div> -->
 							</div>
+							<div class="form-group row">
+
+							<div class="form-group col-lg-6">
+									<label for="exampleInputEmail1"> Email </label>
+									<input class="form-control m-input m-input--solid" [value]="Patient?.patientEmail  || ''" formControlName="PatientEmail" type="email" >
+									 
+								</div>
+							</div>
+
 
 
 							<div class="form-group row">
@@ -343,6 +366,11 @@
 																			<label for="exampleInputEmail1"> Place of Birth </label>
 																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.placeOfBirth   || ''"  formControlName="PlaceOfBirth" type="text">
 																		</div>
+																		<div class="form-group col-lg-4">
+																				<label for="exampleInputEmail1"> Email </label>
+																				<input class="form-control m-input m-input--solid" [value]="Patient?.partner?.partnerEmail  || ''" formControlName="PartnerEmail" type="email" >
+																				 
+																			</div>
 																	</div>
 																</div>
 																<div class="modal-footer">

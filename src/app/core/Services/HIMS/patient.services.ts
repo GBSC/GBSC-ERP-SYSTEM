@@ -83,6 +83,9 @@ export class PatientService {
 
     public readonly API_URL = 'hims/api/';
 
+    public readonly API_URL_HRM = "SystemAdmin/api/Setup";
+
+
     dialogData: any;
 
     constructor(public http1: HttpClient, public ApiService: ApiService) {
@@ -114,6 +117,7 @@ export class PatientService {
     }
 
     async addPatient(patient: Patient) {
+        console.log(patient);
         this.patientID = await this.ApiService.post(this.API_URL + 'patients/AddPatient', patient).toPromise();
         return this.patientID.patientId;
     }
@@ -853,7 +857,9 @@ export class PatientService {
 
 
 
-
+    //  getCityList (): Observable<any>{
+    //     return   this.ApiService.get(this.API_URL_HRM + 'GetCities');
+    // }
     /*********************************Patient Invoice Return Item **********************************/
 
     GetPatientInvoiceReturnItems(): Observable<PatientInvoiceReturnItem[]> {

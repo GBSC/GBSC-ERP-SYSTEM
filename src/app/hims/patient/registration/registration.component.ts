@@ -71,6 +71,7 @@ export class RegistrationComponent implements OnInit {
             'PlaceOfBirth': [''],
             'Occupation': [''],
             'NIC': ['' ],
+            'PartnerEmail': ['' ],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']
@@ -87,6 +88,9 @@ export class RegistrationComponent implements OnInit {
             'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
             'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] ],
+            'PhoneNumberSecond': [''],
+            'PhoneNumberThird': [''],
+            'PatientEmail': [''],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
@@ -113,6 +117,11 @@ export class RegistrationComponent implements OnInit {
     }
 
       ngOnInit() {
+          console.log("da")
+
+        // this.PatientServiceobj.getCityList().subscribe((data) => {
+        //     console.log("mydata",data)
+        // });
 
         //  console.log(this.router.url);
 
@@ -120,7 +129,8 @@ export class RegistrationComponent implements OnInit {
             this.id = +params['id'];
             this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                    console.log(Patient)
+                console.log("H")
+                    console.log("Patient",Patient)
                 if (Patient) {
                     this.patientForm.patchValue({
                         RegCity : Patient.regCity,
@@ -134,6 +144,9 @@ export class RegistrationComponent implements OnInit {
                         NIC: Patient.nic,
                         Gender: Patient.gender,
                         PhoneNumber: Patient.phoneNumber,
+                        PhoneNumberSecond: Patient.phoneNumberSecond,
+                        PhoneNumberThird: Patient.phoneNumberThird,
+                        PatientrEmail: Patient.patientrEmail,
                         OfficeAddress: Patient.officeAddress,
                         ResidenceAddress: Patient.residenceAddress,
                         Remarks: Patient.remarks,
@@ -151,7 +164,7 @@ export class RegistrationComponent implements OnInit {
 
                     });
                     if (Patient.partner) {
-                        console.log(Patient.partner)
+                        console.log("Patient.partner",Patient.partner)
                         this.partnerForm.patchValue({
                             FirstName: Patient.partner.firstName,
                             MiddleName: Patient.partner.middleName,
@@ -160,6 +173,7 @@ export class RegistrationComponent implements OnInit {
                             PlaceOfBirth: Patient.partner.placeOfBirth,
                             Occupation: Patient.partner.occupation,
                             NIC: Patient.partner.nic,
+                            PartnerEmail: Patient.partner.partnerEmail,
                             PhoneNumber: Patient.partner.phoneNumber,
                         });
                     }
@@ -173,7 +187,6 @@ export class RegistrationComponent implements OnInit {
                     // });
                     
                     console.log(this.patientForm.value)
-                    console.log(this.partnerForm.value)
 
                 }
             });

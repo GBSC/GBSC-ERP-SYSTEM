@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
+ 
 import { Pipe, PipeTransform } from '@angular/core'
 import { DatePipe } from '@angular/common';
 
@@ -191,9 +192,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     
     FullDateAndTime(date: Date) {
-         var   year =     date.getFullYear()
-         var   month :any =     (date.getMonth() + 1)
-         var   dat  :any =     date.getDate()
+        var year =     date.getFullYear()
+        var month :any =     (date.getMonth() + 1)
+        var dat  :any =     date.getDate()
         var hours :any  = date.getHours();
         var minutes :any = date.getMinutes();
         var sec :any = date.getSeconds();

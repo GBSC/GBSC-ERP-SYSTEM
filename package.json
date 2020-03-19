@@ -27,8 +27,8 @@
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
-    "ag-grid-angular": "^20.1.0",
-    "ag-grid-community": "^20.1.0",
+    "ag-grid-angular": "^20.2.0",
+    "ag-grid-community": "^20.2.0",
     "ag-grid-enterprise": "^20.1.0",
     "cldrjs": "~0.5.0",
     "core-js": "^2.5.4",
@@ -39,7 +39,7 @@
     "firebase": "^5.0.3",
     "firestore": "^1.1.6",
     "globalize": "^1.4.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.1",
     "jquery-ui": "~1.12.1",
     "knockout": "~3.4.2",
     "ng-recaptcha": "^3.0.0",
@@ -55,7 +55,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.2",
+    "@angular-devkit/build-angular": "^0.900.5",
     "@angular/cli": "~7.1.4",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",

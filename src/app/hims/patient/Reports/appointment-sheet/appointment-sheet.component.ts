@@ -53,9 +53,8 @@ export class AppointmentSheetComponent implements AfterViewInit {
     formatDate(date: Date) {
         return  (date.getMonth() + 1) + "/" +   date.getDate() + "/" +   date.getFullYear() ;
     }
-    itemsend(cid,type,from,to) {
-         console.log(cid.value)
-         console.log(type.value)
+    itemsend(type,from,to) {
+          console.log(type.value)
  
          console.log(this.formatDate(new Date(from.value)))
       

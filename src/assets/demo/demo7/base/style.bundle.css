@@ -34334,7 +34334,7 @@ body.m-content--skin-light2 {
     .m-aside-menu-overlay--on .m-aside-menu-overlay {
       opacity: 1 ;
       filter: alpha(opacity=100) ;
-      display: block;
+      /* display: none; */
       -webkit-animation: m-animate-fade-in 0.2s linear;
       -moz-animation: m-animate-fade-in 0.2s linear;
       -ms-animation: m-animate-fade-in 0.2s linear;
